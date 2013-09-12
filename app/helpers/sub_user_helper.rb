@@ -1,0 +1,2 @@
+module SubUserHelper
+end

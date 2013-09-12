@@ -1,0 +1,147 @@
+<html>
+<head><!-- Stylesheets -->
+	<link href="/css/bootstrap.css" rel="stylesheet">
+	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+	</head>
+<body style="margin-top: ;margin-left: 20px">
+
+
+<div>
+   <div>
+   
+	
+	
+		<table >
+		
+			<tr>		
+				<%= form_tag("/admin_home/add_product/", :method=>"post", :multipart => true) do %>
+				<tab id=t1><h1>Product  Details  </h1>
+				<br/>
+				<label class="control-label">
+				Product Name 
+				<span class="required">*</span>
+				</label>
+				<%= text_field_tag(:productname,"") %>
+			</tr>
+			<tr>
+				<td>
+					
+					<label class="control-label">
+					Title
+					<span class="required">*</span>
+				
+				</label>
+					<%= text_field_tag(:title,"") %>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td>
+					<label class="control-label">
+						Description
+						
+					</label>
+				<%= text_area_tag(:description,"") %>
+				</td>
+			</tr>
+
+			<tr>
+				<td>
+					<label class="control-label">
+					Select  Product Category 
+					<span class="required">*</span>
+					</label>
+					 <% @test =Masterusers.find_by_sql("select * from product_category_"+session["master_user_id"].to_s)%>
+					<%= select_tag "category_id", options_for_select(@test.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a project"%>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="control-label">
+					Select SubCategory 
+					<span class="required">*</span>
+					</label>
+					<% @sub =Masterusers.find_by_sql("select * from product_sub_category_"+session["master_user_id"].to_s)%>
+					<%= select_tag "subcategory_id", options_for_select(@sub.collect{ |u| [u.sub_category_name, u.sub_category_id] }), :prompt => "Select a project"%>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="control-label">
+					Price Per Unit
+					<span class="required">*</span>
+					</label>
+					<%= text_field_tag(:price,"") %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="control-label">
+					Sale Price
+					<span class="required">*</span>
+					</label>
+					<%= text_field_tag(:saleprice,"") %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="control-label">
+					Quantity
+					<span class="required">*</span>
+					</label>
+					<%= text_field_tag(:quantity,"") %>
+				</td>
+			</tr>
+		
+			<tr>
+				<td>
+				
+					<p><label for="Upload_image">Select Product Image 1 </label>
+					<%= file_field 'upload1', 'file' %></p>
+				</td>
+				<td>
+					<p><label for="Upload_image">Select Product Image 2</label>
+					<%= file_field 'upload2', 'file' %></p>
+				</td>
+				<td>
+					<p><label for="Upload_image">Select Product Image 3</label>
+					<%= file_field 'upload3', 'file' %></p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label class="checkbox" >
+					<%= check_box_tag  "shipping_checkbox","shipping" %>
+						 Allow Shipping
+					</label>
+				</td>
+			<tr>
+			<tr>
+				<td>
+					<label class="checkbox" >
+					<%= check_box_tag  "comment_checkbox","comment" %>
+					Allow Comment
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td>
+		
+					<%= submit_tag("step1",  :value => "Submit",:class=>"btn btn-primary") %>
+				</td>
+			</tr>
+			<% end %>
+			
+		</table>	
+		
+		
+		
+		
+		
+	</div>
+</div>
+
+	
+</body>
+</html>

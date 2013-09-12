@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Template</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- Styles -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    <link href="/css/css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="/css/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="/css/sign-up.css" type="text/css" media="screen">
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body style="padding-top: 0px;">
+<% unless flash[:notice].nil? %>
+			<div class="heading_featured" >
+				<fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+					<div align="center">
+						<font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+					</div>
+				</fieldset>
+			</div>
+		<% end %>
+    <!-- Sign In Option 2 -->
+    <div id="sign_in2">
+        <div class="container">
+            <div class="section_header">
+                <h3>Sign up </h3>
+            </div>
+            <div class="row login">
+                
+
+                <div class="span6 signin_box">
+                    <div class="box">
+                        <div class="box_cont">
+
+							<div class="span12 footer">
+						<%= form_tag("/sub_user/subuser_signup/", :method=>"put") do %>
+						
+						<%=text_field_tag 'first_name', nil, :placeholder => 'First Name'%><br>
+						<%=text_field_tag 'last_name', nil, :placeholder => 'Last Name'%><br>
+						<%=text_field_tag 'address', nil, :placeholder => 'Address'%><br>
+						<%=text_field_tag 'city', nil, :placeholder => 'City'%><br>
+						<%=text_field_tag 'state', nil, :placeholder => 'State'%><br>
+						<%=text_field_tag 'pincode', nil, :placeholder => 'Pincode'%><br>
+						<%=text_field_tag 'country', nil, :placeholder => 'Country'%><br>
+						<%=text_field_tag 'phone', nil, :placeholder => 'Phone'%><br>						
+						<%=text_field_tag 'subuser_email', nil, :placeholder => 'Email id'%><br>
+                        <%=password_field_tag 'password', nil, :placeholder => 'Password'%><br><br>
+                        <%= submit_tag("Sign up",  :value => "signup", :class => "btn btn-large btn btn-info" ) %>
+                    <% end %>
+                </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+
+    <script src="/js/jquery-latest.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/theme.js"></script>
+
+</body></html>
