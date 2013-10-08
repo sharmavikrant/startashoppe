@@ -1,0 +1,6 @@
+<% if @ajaxsearch == "sub_category" %>
+$('#subcategory_details').html('<%= escape_javascript(render("inventory_subcategory")) %>');
+<%end%>
+<% if @ajaxsearch == "product" %>
+$('#product').html('<%= escape_javascript(render("inventory_product")) %>');
+<% end %>

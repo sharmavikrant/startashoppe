@@ -1,0 +1,218 @@
+<%if !@x.nil?%>
+
+
+<article class="span7 data-block">
+	<header> <%if !@x.nil?%> 
+		<h2 id="orderno">#<%=@x['order_id']%> - <%=@x['order_status']%></h2>
+		<%end%>
+		<ul class="data-header-actions print-options">
+			<li id="orders-prints" class="powertour-hook-relative"><a href="javascript:void();" class="btn btn-alt prints">Prints</a><div class="powertour powertour-style-basic " style="display: none; width: 400px; right: 0px; bottom: -206px;" data-tour-id="682" data-tour-step="6"><span class="powertour-arrow-br"></span><div class="powertour-inner"><div class="powertour-content"><div id="orders-prints-step" class="single-step" style="width: 370px; display: block;"><header><h3>Prints</h3></header><p>Go here to print order invoices and to print your shipping labels.</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a> <a href="javascript:void(0);" class="powertour-btn-next"><span>Next</span></a> <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div></li>
+			<li><span title="" id="order_loading" class="loading green" data-original-title="Loading, please wait…" style="display: none;">Loading…</span></li>
+		</ul>
+	</header>
+	<section id="order_shortinfo" class="powertour-hook-relative"><div id="notification"></div>
+<article class="modal fade hide" id="prints">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">×</button>
+		<h3 class="modal-header">Take following prints to initiate proper delivery.</h3>
+	</div>
+	<div class="modal-body">
+		<form class="no-margin">
+			<fieldset>
+				
+			</fieldset>
+		 
+		</form>
+		
+	</div>
+	</article>
+	
+	
+<div class="box-content">
+	<div class="pull-left powertour-hook-relative" id="orders-order-actions">
+		<!-- Modal -->
+				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	
+							<tab id=t1><h1>Cancle Order </h1>
+					</div>
+					<div class="modal-body">
+	  					<%= form_tag("/admin_home/order/", :method=>"put") do %>
+								<label class="control-label">
+								Notify user 
+
+							
+							</label>
+							<input type="hidden" name="order_id" value=<%=@x['order_id']%>>
+							<label class="control-label">
+								Reason for canceling the order
+
+							<span class="required">*</span>
+							</label>
+							<%= text_area_tag(:reason,"") %><br/>
+							<%= submit_tag("login",  :value => "submit", :class => "btn btn-primary" ) %>
+			
+		
+		
+		
+						<% end %>
+					</div>
+	  
+					
+				</div>
+	<!--end modal -->
+		<%= form_tag("/admin_home/order/", :method=>"put") do %>
+			<%if !@x.nil?%>
+			<a href="/admin_home/order_status?filter=Mark as Dispatch&order_id=<%=@x['order_id']%>" data-option-value=".cod-confirmed">All</a>
+			<button class="btn btn-alt btn-info" id="mark_as_shipped" name="shipment" onchange='this.form.submit()'>Mark as Dispatch</button>
+			<div class="powertour powertour-style-basic " style="display: none; width: 400px; left: 0px; bottom: -278px;" data-tour-id="682" data-tour-step="7"><span class="powertour-arrow-bl"></span><div class="powertour-inner"><div class="powertour-content"><div id="orders-order-actions-step" class="single-step" style="width: 370px; display: block;"><header><h3>Order Actions</h3></header><p>Order actions will let you perform various actions on the order based on which stage an order is on. You will be able to mark an order as confirmed, canceled, shipped, delivered and returned from this area. Note: if you have automated shipping on your plan, post confirmation all status changes are automatic! Yea, we know it's cool :)</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a>  <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div></div>
+				<div>
+				
+				
+					
+								
+								<select id="search_mode" name="order_status" onchange='this.form.submit()' >
+									<option value="Panding"><%=@x['order_status']%></option>
+									<option value="Panding">Panding</option>
+									<option value="ROD">Ready for Dispatch</option>
+									<option value="Dispatch">Dispatch</option>
+									<option value="Delivered">Delivered</option>
+									
+								</select>
+								
+							
+				<input type="hidden" name="order_id" value=<%=@x['order_id']%>>
+					
+				<div class="pull-right">
+				<a href="#myModal" data-toggle="modal" >Cancle Order</a>
+					<button class="btn btn-alt btn-danger" id="mark_as_canceled" onchange='this.form.submit()'>Cancel Order</button>
+				</div>
+				<%end%>
+				
+				
+						
+		<%end%>
+				
+	</div>
+		<div class="clearfix"></div>
+	<hr class="hr-normal">
+	<% if !@p.nil? then %>
+		<table class="table table-striped table-bordered table-condensed table-hover no-margin">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Unit Price</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<!-- rails code start-->
+			
+			<%@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",@a])%>
+		
+				<%if !@p.nil? && cookies[:cart_value]!= ""then %>
+					<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%b=a.split("-")%>
+							<%if i['product_id']==b[0].to_i  then %>
+								<%if i['revised_price'].nil? then %>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total %>
+								<%else%>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total%>
+								<%end%>
+									
+			
+								<tbody>
+									<tr>
+										<td><%=i['product_name']%>	<br></td>
+										<td><%=b[1]%></td>
+										<td><%=i['sale_price']%></td>
+										<td><%=@p_total%></td>
+									</tr>
+								</tbody>
+							<%end%>
+
+						<%end%>
+					<%end%>	
+				<%else%><!-- end of condition if -->
+					<h2> Empty Cart</h2>
+				<%end%><!-- rails code end-->
+				<tbody id="totals" class="table table-striped table-bordered table-condensed table-hover no-margin">
+					<tr>
+						<td colspan="3"><div class="text-right">Handling Fee:</div></td>
+						<td>Rs.</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div class="text-right">Low Order Fee:</div></td>
+						<td>Rs.</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div class="text-right">Sub-Total:</div></td>
+						<td>Rs.</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div class="text-right">Free Shipping:</div></td>
+						<td>Rs.0</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div class="text-right">VAT / CST 5% (Inclusive):</div></td>
+						<td>Rs.</td>
+					</tr>
+					<tr>
+						<td colspan="3"><div class="text-right">Total:</div></td>
+						<td>Rs.<%=@total%></td>
+					</tr>
+				</tbody>
+		</table>
+		<%end%>
+	<hr class="hr-normal">
+		<dl class="dl-horizontal">
+			<div id="orders-customer-details" class="powertour-hook-relative">
+				<dt>
+					<div class="text-left"><span class="awe-envelope"></span> Customer Address</div></dt>
+						<dd>
+						<%if !@x.nil?%>
+							<%=@x['name']%> <br>
+							<%=@x['address']%>, <br>
+							Near:<%=@x['landmark']%> <br>
+							<%=@x['state']%>, <%=@x['city']%><br> 
+							<%=@x['pincode']%> , <%=@x['country']%>	
+						<%end%>							
+						</dd>
+				<dt>
+			<div class="text-left"><span class="awe-user"></span> Customer Details</div></dt>
+				<dd>
+					<a href="http://vikrantstore.kartrocket.co/admin/index.php?route=sale/customer/update&amp;token=e624853ce134326bfdd2e56e216b520c&amp;customer_id=59"><%if !@x.nil?%><%=@x['name']%><%end%></a> <br>
+					<%if !@x.nil?%><%=@x['email']%><%end%>
+				</dd>
+				<div class="powertour powertour-style-basic " style="display: none; width: 400px; left: 50%; margin-left: -205px; top: -168px;" data-tour-id="682" data-tour-step="3"><span class="powertour-arrow-tm"></span><div class="powertour-inner"><div class="powertour-content"><div id="orders-customer-details-step" class="single-step" style="width: 370px; display: block;"><header><h3>Customer Details</h3></header><p>These are details of the customer that has placed the order.</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a> <a href="javascript:void(0);" class="powertour-btn-next"><span>Next</span></a> <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div><div class="powertour powertour-style-basic " style="display: none; width: 400px; left: 50%; margin-left: -205px; top: -168px;" data-tour-id="682" data-tour-step="4"><span class="powertour-arrow-tm"></span><div class="powertour-inner"><div class="powertour-content"><div id="orders-shipping-details-step" class="single-step" style="width: 370px; display: block;"><header><h3>Shipping Details</h3></header><p>And their shipping details...</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a> <a href="javascript:void(0);" class="powertour-btn-next"><span>Next</span></a> <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div></div>
+					<div id="orders-shipping-details">
+						<dt>
+							<div class="text-left"><span class="awe-truck"></span> Shipping Details
+							</div>
+						</dt>
+						<dd class="shipping-details">
+							FIRSTFLIGHT <br>
+							<a target="_blank" href="http://smartdelivery.in/public/shipping/track/ui?awbcode=LD3179368&amp;company=4" alt="4" title="FIRSTFLIGHT">LD3179368</a> <br>
+							<button class="btn btn-alt btn-warning" id="ship_again">Re-assign AWB</button>
+						</dd>
+					</div>
+				</dl>
+				<hr class="hr-normal">
+	
+<div id='order_details'>
+</div>
+
+
+ 
+ 
+<div class="powertour powertour-style-basic " style="display: none; width: 400px; left: 50%; margin-left: -205px; top: -186px;" data-tour-id="682" data-tour-step="2"><span class="powertour-arrow-tm"></span><div class="powertour-inner"><div class="powertour-content"><div id="order_shortinfo-step" class="single-step" style="width: 370px; display: block;"><header><h3>Order Details</h3></header><p>Shows details for the order you have selected from the list on the left.</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a> <a href="javascript:void(0);" class="powertour-btn-next"><span>Next</span></a> <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div></section>
+
+</article>
+
+</section>
+</article>
+<%end%>

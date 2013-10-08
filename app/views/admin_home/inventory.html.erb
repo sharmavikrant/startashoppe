@@ -1,0 +1,158 @@
+
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
+    <!-- Styles -->
+   
+	
+	<link href="/inventory/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/inventory/css/tablecloth.css" rel="stylesheet" type="text/css"/>
+	 <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]--> 
+  <link href="/inventory/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  
+  
+  <script src="/inventory/jquery-ui.js"></script>
+	</style>
+
+</head>
+<body class="page-header-fixed">
+
+
+ <%= render :partial => 'header' %>
+  <%= render :partial => 'sidebar' %>
+
+<div class="span9" style="float:right; margin-top:3%;">				
+				<h2 style="color: #563d7c;">Inquiries and Reports</h2>
+				<hr>				
+					<ul class="nav nav-tabs" style="padding-left: 20%;">
+						<li style="font-size: 18px;">
+							<%= link_to "Inventory Item Status", {:controller => "admin_home", :action => "inventory", :name => "status", :method => :post}%>
+						</li>
+						<li style="font-size: 18px;">
+							<%= link_to "Inventory Item Report", {:controller => "admin_home", :action => "inventory", :name => "report", :method => :post}%>
+						</li>
+					</ul>				
+			</div> 				
+		<div class="span9" style="float:right;">
+		
+			
+			
+		   <% if @flag == "status" then%>
+			<%= form_tag("/admin_home/inventory/", :method=>"post", :multipart => true) do %>
+				<h4 style="color: #563d7c;">Inventory Item Status</h4>
+				<hr>
+					
+					<div class="span4">
+							<label class="control-label">
+							Select  Product Category 
+							<span class="required">*</span>
+							</label>
+							<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
+							<% select_tag "category_id", options_for_select(@category.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a project",include_blank: true%>
+							<%= select_tag "category_id", options_for_select(@category.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a Category",include_blank:false,:data => { :remote => true, :url => url_for(:controller => "admin_home",  :action => "inventory",:filter =>"sub_category") }%>
+						</div>
+							<div id='subcategory_details' class="span4" >
+						
+							</div>
+
+							<div id='product' class="span4" >
+						
+							</div>
+							
+					<div class="span4">
+					<%= submit_tag("ok",  :value => "ok",:class=>"btn") %>	
+				<%end%>	
+				<br/>
+				<br/>
+				</div>
+					<table id="category_details" class="table table-stats table-condensed table-striped table-sortable">
+						<thead>
+							<tr>
+								<th>Product id</th>
+								<th>Product Name</th>
+								<th>Remaining</th>
+								<th>Out</th>
+								<th>Total Available</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<%if !@name.nil? then%>
+							<tr>
+								<td><%= @name[0]['product_id'] %></td>
+								<td><%= @name[0]['product_name'] %></td>
+								<td><%= @name[0]['quantity'] %></td>
+								<td><%= @name[0]['out_quantity']%></td>
+								<td><%= @name[0]['quantity'] %></td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>
+				
+		<%end%>		
+		
+		<%if @flag == "report" then %>
+		
+				<%= form_tag("/admin_home/inventory/", :method=>"post") do %>
+					<h4 class="side_heading">Sales Report</h4>
+					<p>Start Date: <input type="text" id="datepicker" name="start_date"/></p>
+					<p>End Date:&nbsp;&nbsp;&nbsp;<input type="text" id="datepicker1" name="end_date"/></p>
+					
+					<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>	
+				<%end%>
+				<%if !@display.nil? then%>
+					<table class="table table-hover" id="customers-customer-list">
+						<thead>
+							<tr>
+								<th class="headerSortable"> Order Id </th>
+								<th class="headerSortable"> Customer Name</th>
+								<th class="headerSortable"> Order Date</th>
+								<th class="headerSortable"> Total Amount</th>
+								
+							</tr>
+						</thead>
+						<tbody>						
+						<%@display.each do |i|%>
+							<tr>
+							
+								<td><%=i["order_id"]%></td>
+								<td><%= i["name"]%></td>
+								<td><%= i["order_date"]%></td>
+								<td><%= i["total_amt"]%></td>
+							
+							</tr>
+						<%end%>	
+						</tbody>
+					</table>
+				<%end%>
+				
+				
+				
+		<%end%>		
+			</div>
+
+	
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  <script>
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+  });
+  </script>
+	</body>
+	</html>
+	

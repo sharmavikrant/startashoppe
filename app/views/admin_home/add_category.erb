@@ -6,179 +6,190 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
     <!-- Styles -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/css/theme.css">
-    <link href="/css/css" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" type="text/css" href="/css/animate.css" media="screen, projection">
-    <link rel="stylesheet" href="/css/sign-up.css" type="text/css" media="screen">
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    
+    <script src="/js/bootstrap-collapse.js"></script>
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="/adminhome/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   
+	<link href="/adminhome/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 	
-	<style type="text/css">
-
-.suckerdiv ul{
-margin: 0;
-padding: 0;
-list-style-type: none;
-width: 220px; /* Width of Menu Items */
-border-bottom: 1px solid #ccc;
-}
-
-.suckerdiv ul li{
-position: relative;
-}
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="/adminhome/css/favicon.ico" />
 	
-/*Sub level menu items */
-.suckerdiv ul li ul{
-position: absolute;
-width: 170px; /*sub menu width*/
-top: 0;
-visibility: hidden;
-}
- #half
- {
-  width : 50%;
-  float:left;
- }
-  
-/* Sub level menu links style */
-.suckerdiv ul li a{
-display: block;
-overflow: auto; /*force hasLayout in IE7 */
-color: black;
-text-decoration: none;
-background: #fff;
-padding: 1px 5px;
-border: 1px solid #ccc;
-border-bottom: 0;
-}
+    <script language="javascript">
 
-.suckerdiv ul li a:visited{
-color: black;
-}
-
-.suckerdiv ul li a:hover{
-background-color:#F79F81;
-}
-
-.suckerdiv .subfolderstyle{
-background: url(media/arrow-list.gif) no-repeat center right;
-}
-
+	function myFunction()
+	{
+		var x=document.forms["login"]["c_name"].value;
+		
+			(x==''||x== null) ? document.getElementById('testing').innerHTML = 'Category name Mandatory' : document.getElementById('testing').innerHTML = '';
+			
+		
+			
+		
+		var x1=document.forms["sub_category"]["c_name"].value;
+		
+			(x1==''||x1== null) ? document.getElementById('testing1').innerHTML = 'Subcategory name Mandatory' : document.getElementById('testing1').innerHTML = '';
+			
+		
+	}
 	
-/* Holly Hack for IE \*/
-* html .suckerdiv ul li { float: left; height: 1%; }
-* html .suckerdiv ul li a { height: 1%; }
-/* End */
+	</script>
+     <style>
+    .abc
+    {width:73%;
+    float:right;}
+    @media (max-width: 979px){
+.abc {
 
-</style>
+margin-left:5%;
+width:90%;
+float:none;
 
-<script type="text/javascript">
-
-//SuckerTree Vertical Menu 1.1 (Nov 8th, 06)
-//By Dynamic Drive: http://www.dynamicdrive.com/style/
-
-var menuids=["suckertree1"] //Enter id(s) of SuckerTree UL menus, separated by commas
-
-function buildsubmenus(){
-for (var i=0; i<menuids.length; i++){
-  var ultags=document.getElementById(menuids[i]).getElementsByTagName("ul")
-    for (var t=0; t<ultags.length; t++){
-    ultags[t].parentNode.getElementsByTagName("a")[0].className="subfolderstyle"
-		if (ultags[t].parentNode.parentNode.id==menuids[i]) //if this is a first level submenu
-			ultags[t].style.left=ultags[t].parentNode.offsetWidth+"px" //dynamically position first level submenus to be width of main menu item
-		else //else if this is a sub level submenu (ul)
-		  ultags[t].style.left=ultags[t-1].getElementsByTagName("a")[0].offsetWidth+"px" //position menu to the right of menu item that activated it
-    ultags[t].parentNode.onmouseover=function(){
-    this.getElementsByTagName("ul")[0].style.display="block"
-    }
-    ultags[t].parentNode.onmouseout=function(){
-    this.getElementsByTagName("ul")[0].style.display="none"
-    }
-    }
-		for (var t=ultags.length-1; t>-1; t--){ //loop through all sub menus again, and use "display:none" to hide menus (to prevent possible page scrollbars
-		ultags[t].style.visibility="visible"
-		ultags[t].style.display="none"
-		}
-  }
-}
-
-if (window.addEventListener)
-window.addEventListener("load", buildsubmenus, false)
-else if (window.attachEvent)
-window.attachEvent("onload", buildsubmenus)
-
-</script>
+}}
+    </style>
 </head>
-<body style="padding-top: 0px;">
+<body class="page-header-fixed">
 
-
-  <div style="float:right;height:100%; width:60%;padding-right:10%;margin-top:5%">
-
-	
-				<!-- Sign In Option 1 -->
-   
-        
-		
-				<%= form_tag("/admin_home/add_category/", :method=>"post") do %>
-			
-			 
-			
-			
-			<div style="">
-				<tab ><h1>select categories </h1>
-				<hr>
-			
-		
-				<label class="control-label">
-					Category Name
-			
-				</label>
-					<%= text_field_tag(:c_name,"") %><br/>
-			
-			
-					<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>		<br><br>
-			
-			
-			
-			
-					<% end %>
-			
-			
-	
-		
-			
-            		
-					<%= form_tag("/admin_home/add_subcategory/", :method=>"post") do %>
-					<%= submit_tag("submit",  :value => "Add Subcategories",:class=>"btn btn-primary") %>	
+<% unless flash[:notice].nil? %>
+						<div class="heading_featured" >
+							<fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+							<div align="center">
+							<font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+						</div>
+					</fieldset>
+						</div>
 					<%end%>
-		
-				
-			
-					<table class="table table-hover"  style=" float:right; margin:10%; width :20%;border;border: 2px solid black; margin-top:-150px">
-						<tr><td><h5>Available category </h5> </td><tr>
-						<%@test=Masterusers.find_by_sql("select * from product_category_"+ session[:master_user_id].to_s)%>
-						<%@test.each do |i|%>
-						<tr><td><%=i.product_category_name%></td></tr>
-				
-						<%end%>
-					</table>
-	
-			
-			</div>
-			
-   
 
-  
-	</div>
-		
-    <script src="/js/jquery-latest.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/theme.js"></script>
+<%= render :partial => 'header' %>
+
+
+             
+            <%= render :partial => 'sidebar' %>
+       	
+ 
+   
+           
+     <!-- Add category-->
+    <div class="span9 abc" style="float:right; margin-top:2%" >
+   
+        <div class="span5">
+            <div class="accordion" id="accordion2"> 
+                    <div class="accordion-group" style=" border: 2px solid #e5e5e5;">  
+                        <div class="accordion-heading" > 
+                            
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#name" style="padding: 7%;font-size: 20px;">
+                            Select categories
+                            </a>
+                           
+                        </div>
+                        <div id="name"  class="accordion-body collapse" style="height: 0px; background-color: #563d7c;">  
+                            <div class="accordion-inner" >  
+                                <%= form_tag({:action => 'add_category'}, {:name => 'login'}) do%>
+                    
+                                <label class="control-label" style="color : white;">
+                                    Category Name
+                                </label>
+                                    <%= text_field_tag(:c_name,"",:onfocusout=>'myFunction()') %><p id="testing" style="color:red;"></p><br/>
+                                        <%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>		<br><br>
+                                    <% end %>
+                            </div>
+                        </div>
+                    </div>
+			
+                    <div class="accordion-group" style=" border: 2px solid #e5e5e5;">  
+                        <div class="accordion-heading" > 
+                          
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" style="padding: 7%;font-size: 20px;">
+                              Add Subcategories
+                            </a>
+                          
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse" style=" background-color: #563d7c;">  
+                            <div class="accordion-inner" >  
+                            <%= form_tag({:action => 'add_subcategory'}, {:name => 'sub_category'}) do%>
+                                            
+                                        
+                                        <label class="control-label" style="color : white;">
+                                            Subcategory Name
+                                    
+                                        </label>
+                                    <%= text_field_tag(:c_name,"",:onfocusout=>'myFunction()',:required=>true) %><p id="testing1" style="color:red;"></p><br/>
+                                        <label class="control-label" style="color : white;">
+                                        Select  Product Category 
+                                        <span class="required">*</span>
+                                        </label>
+                                    <%@test=Masterusers.find_by_sql("select * from product_category_"+ session[:master_user_id].to_s)%>
+                                    <%= select_tag "category_id", options_for_select(@test.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a category",:required=>true%>
+                                    <br><%= submit_tag("submit",  :value => "Submit",:class=>"btn btn-primary") %>		
+                                    
+                                    <% end %>
+                                    
+                                          
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>		
+
+<div class="span3">
+<div  style="padding:10%;  background-color: #563d7c;">
+ 
+    <h3 style="color:white;">  Available categories </h3>
+    <div style="color:black;">   
+               <%@test=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
+					<%@test.each do |i|%>
+					<dl>
+
+
+
+						<dt><%=i['product_category_name']%></dt><br>
+						
+									<%@subtest=Masterusers.find_by_sql("select * from product_sub_category_"+session[:master_user_id].to_s+" where product_category_id="+i.product_category_id.to_s)%>
+									
+									<div class="subcat">
+									<%@subtest.each do |a|%><t>
+									<dd><%=a["sub_category_name"]%></dd><br>
+									
+									<%end%>
+									
+									</div>	
+									</dl>
+								<hr>
+					<%end%>		
+      
+	  </div>
+	  
+</div>		
+</div>
+</div>			
+
+    
+    
+    
+    </div><!--span8 ends--><!-- Add category ends-->
+
+
+
+			
+            
+            
+    </div>      <!--main span12-->
+    
+        
+
+	   
+	
+
+	
+	
+
 
 </body></html>

@@ -1,0 +1,156 @@
+
+ 
+	<link href="/adminhome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/adminhome/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="/adminhome/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/adminhome/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="/adminhome/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="/adminhome/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+        <link href="/adminhome/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+	
+    
+            <div class="page-container" >
+                <!-- BEGIN SIDEBAR -->
+                <div class="page-sidebar nav-collapse in collapse" >
+                    <!-- BEGIN SIDEBAR MENU -->        
+                    <ul class="page-sidebar-menu">
+                        <li>
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                            <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                        </li>
+                        <li>
+                            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+                            <form class="sidebar-search">
+                             
+                             </form>
+                            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+                        </li>
+                        <li class="start active ">
+                            <a href="adminhome.html">
+                            <i class="icon-home"></i> 
+                            <span class="title">Dashboard</span>
+                            <span class="selected"></span>
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                            <i class="icon-cogs"></i> 
+                            <span class="title">Category</span>
+                            <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="add_category.html">
+                                    <i class="icon-plus"></i> 
+                                    Product Category</a>
+                                </li>
+                                <li >
+                                    <a href="add_subcategory.html">
+                                    <i class="icon-plus"></i> 
+                                     Sub Category</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="">
+                                <a href="javascript:;">
+                                <i class="icon-bookmark-empty"></i> 
+                                    <span class="title">Product</span>
+                                <span class="arrow "></span>
+                                    </a>
+                                    <ul class="sub-menu">						
+                                        <li >
+                                        <a href="add_product.html">
+                                        Add Product</a>
+                                        </li>
+                                        <li >
+                                        <a href="/c_shop/view_all_products.html">
+                                        View all Products</a>
+                                        </li>						
+							
+                                    </ul>
+                        </li>
+                        <li class="">
+                            <a href="javascript:;">
+                            <i class="icon-bookmark-empty"></i> 
+                            <span class="title">Orders</span>
+                            <span class="arrow "></span>
+                            </a>
+                                <ul class="sub-menu">						
+                                    <li >
+                                        <a href="/admin_home/order">
+                                        Order Management</a>
+                                    </li>							
+                                </ul>
+                        </li>
+                        <li class="">
+                        <a href="javascript:;">
+                        <i class="icon-bookmark-empty"></i> 
+                            <span class="title">Customers</span>
+                            <span class="arrow "></span>
+                            </a>
+                                <ul class="sub-menu">						
+                                    <li >
+                                    <a href="customer_detail.html">
+                                    View all customers</a>
+                                    </li>							
+                                </ul>
+                        </li>
+                    <li class="">
+                            <a href="javascript:;">
+                            <i class="icon-bookmark-empty"></i> 
+                            <span class="title">UI Features</span>
+                            <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="ui_general.html">
+                                    Edit mode</a>
+                                </li>
+                                
+                            </ul>
+                    </li>
+                    
+                    <li class="">
+                            <a href="javascript:;">
+                            <i class="icon-bookmark-empty"></i> 
+                            <span class="title">Inquiries and Reports</span>
+                            <span class="arrow "></span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li >
+                                    <a href="inventory.html">
+                                    Inventory Status</a>
+                                </li>
+                                 
+                                
+                            </ul>
+                    </li>
+			<!-- END SIDEBAR MENU -->
+                </div>
+		<!-- END SIDEBAR -->
+		</div>
+
+        <script src="/adminhome/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="/adminhome/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="/adminhome/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script> 
+<script src="/adminhome/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/adminhome/js/twitter-bootstrap-hover-dropdown.min.js" type="text/javascript" ></script>    
+ 	<script src="/adminhome/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+
+	<!-- BEGIN PAGE LEVEL SCRIPTS-->
+	<script src="/adminhome/js/app.js" type="text/javascript"></script>
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {    
+		   App.init(); // initlayout and core plugins
+		   Index.init();
+		   Index.initJQVMAP(); // init index page's custom scripts
+		   Index.initCalendar(); // init index page's custom scripts
+		   Index.initCharts(); // init index page's custom scripts
+		   Index.initChat();
+		   Index.initMiniCharts();
+		   Index.initDashboardDaterange();
+		   Index.initIntro();
+		});
+	</script>   

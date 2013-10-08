@@ -1,147 +1,336 @@
 <html>
 <head><!-- Stylesheets -->
-	<link href="/css/bootstrap.css" rel="stylesheet">
-	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-	</head>
-<body style="margin-top: ;margin-left: 20px">
-
-
-<div>
-   <div>
+	<!-- Styles -->
    
+    
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="/adminhome/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="/adminhome/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
 	
-	
-		<table >
-		
-			<tr>		
-				<%= form_tag("/admin_home/add_product/", :method=>"post", :multipart => true) do %>
-				<tab id=t1><h1>Product  Details  </h1>
-				<br/>
-				<label class="control-label">
-				Product Name 
-				<span class="required">*</span>
-				</label>
-				<%= text_field_tag(:productname,"") %>
-			</tr>
-			<tr>
-				<td>
-					
-					<label class="control-label">
-					Title
-					<span class="required">*</span>
-				
-				</label>
-					<%= text_field_tag(:title,"") %>
-				</td>
-			</tr>
-			
-			
-			<tr>
-				<td>
-					<label class="control-label">
-						Description
-						
-					</label>
-				<%= text_area_tag(:description,"") %>
-				</td>
-			</tr>
 
-			<tr>
-				<td>
-					<label class="control-label">
-					Select  Product Category 
-					<span class="required">*</span>
-					</label>
-					 <% @test =Masterusers.find_by_sql("select * from product_category_"+session["master_user_id"].to_s)%>
-					<%= select_tag "category_id", options_for_select(@test.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a project"%>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="control-label">
-					Select SubCategory 
-					<span class="required">*</span>
-					</label>
-					<% @sub =Masterusers.find_by_sql("select * from product_sub_category_"+session["master_user_id"].to_s)%>
-					<%= select_tag "subcategory_id", options_for_select(@sub.collect{ |u| [u.sub_category_name, u.sub_category_id] }), :prompt => "Select a project"%>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="control-label">
-					Price Per Unit
-					<span class="required">*</span>
-					</label>
-					<%= text_field_tag(:price,"") %>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="control-label">
-					Sale Price
-					<span class="required">*</span>
-					</label>
-					<%= text_field_tag(:saleprice,"") %>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="control-label">
-					Quantity
-					<span class="required">*</span>
-					</label>
-					<%= text_field_tag(:quantity,"") %>
-				</td>
-			</tr>
+   
+	<!-- END GLOBAL MANDATORY STYLES -->
+	
+	<link rel="shortcut icon" href="/adminhome/css/favicon.ico" />
+	
+	<script language="javascript">
+	
+	
+	function myFunction()
+	{
+	
 		
-			<tr>
-				<td>
+		var x=document.forms["product"]["productname"].value;
+		
+		
+			(x==''||x== null) ? document.getElementById('testing').innerHTML = 'Product name Mandatory' : document.getElementById('testing').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction1()
+	{
+		var x1=document.forms["product"]["title"].value;
+		(x1==''||x1== null) ? document.getElementById('testing1').innerHTML = 'Title Mandetory' : document.getElementById('testing1').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction2()
+	{
+	
+		
+		
+		var x2=document.forms["product"]["description"].value;
+		
+		
+			
+			(x2==''||x2== null) ? document.getElementById('testing2').innerHTML = 'Description Mandetory' : document.getElementById('testing2').innerHTML = '';
+	
+			
+		
+			
+		
+	}
+	function myFunction3()
+	{
+	
+		
+		
+		var x3=document.forms["product"]["category_id"].value;
+		
+		
+			
+			(x3==''||x3== null) ? document.getElementById('testing3').innerHTML = 'Select a Category Mandetory' : document.getElementById('testing3').innerHTML = '';
+		
+			
+			
+		
+	}
+	function myFunction4()
+	{
+	
+		
+		
+		var x4=document.forms["product"]["subcategory_id"].value;
+		
+			
+			(x4==''||x4== null) ? document.getElementById('testing4').innerHTML = 'State Mandetory' : document.getElementById('testing4').innerHTML = '';
+		
+			
+			
+		
+	}
+	function myFunction5()
+	{
+	
+		
+		
+		var x5=document.forms["product"]["price"].value;
+		
+		
+			
+			(x5==''||x5== null) ? document.getElementById('testing5').innerHTML = 'Price Mandetory' : document.getElementById('testing5').innerHTML = '';
+		
+			
+		
+	}
+	function myFunction6()
+	{
+	
+		
+		
+		var x6=document.forms["product"]["saleprice"].value;
+		
+			
+			(x6==''||x6== null) ? document.getElementById('testing6').innerHTML = 'Sale Price Mandetory' : document.getElementById('testing6').innerHTML = '';
+		
+			
+		
+	}
+	function myFunction7()
+	{
+	
+		
+		
+		var x7=document.forms["product"]["quantity"].value;
+		
+			
+			(x7==''||x7== null) ? document.getElementById('testing7').innerHTML = 'Quantity Mandetory' : document.getElementById('testing7').innerHTML = '';
+		
+			
+		
+	}
+	function myFunction15()
+	{
+		if ($('#subcategory_id option:selected').text()=="Select a Subcategory"){
+		document.getElementById('testing9').innerHTML = 'Please select a sub category' 
+		
+		}
+		else
+		{
+		document.getElementById('testing9').innerHTML = '' 
+		}
+	}
+	
+	
+	
+	</script>
+    <style>
+    .abc
+    {width:73%;
+    float:right;}
+    @media (max-width: 979px){
+.abc {
+
+margin-left:5%;
+width:90%;
+float:none;
+
+}}
+    </style>
+	</head>
+<body class="page-header-fixed">
+
+
+ <%= render :partial => 'header' %>
+
+	<!-- END HEADER -->
+
+        
+             
+            <%= render :partial => 'sidebar' %>
+       
+	
+<!-- span4 ends->      
+          
+        <!-- Add category-->
+        <div class="abc" style="border: 2px solid #e5e5e5; padding:2%; " >
+
+           <% unless flash[:notice].nil? %>
+						<div class="heading_featured" >
+							<fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+							<div align="center">
+							<font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+						</div>
+					</fieldset>
+						</div>
+					<%end%>
+ 
+           <h1 style="color: #563d7c;">Product  Details  </h1>
+         
+                    <div class="span9" >
+                        <div class="span3 " style="margin-top: -2.5%" >	
+                           <%= form_tag("/admin_home/add_product/", :method=>"post", :multipart => true, :name => "product") do %>
 				
-					<p><label for="Upload_image">Select Product Image 1 </label>
-					<%= file_field 'upload1', 'file' %></p>
-				</td>
-				<td>
-					<p><label for="Upload_image">Select Product Image 2</label>
-					<%= file_field 'upload2', 'file' %></p>
-				</td>
-				<td>
-					<p><label for="Upload_image">Select Product Image 3</label>
-					<%= file_field 'upload3', 'file' %></p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label class="checkbox" >
-					<%= check_box_tag  "shipping_checkbox","shipping" %>
-						 Allow Shipping
-					</label>
-				</td>
-			<tr>
-			<tr>
-				<td>
-					<label class="checkbox" >
-					<%= check_box_tag  "comment_checkbox","comment" %>
-					Allow Comment
-					</label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-		
-					<%= submit_tag("step1",  :value => "Submit",:class=>"btn btn-primary") %>
-				</td>
-			</tr>
+                            <br/>
+                            <label class="control-label" style="color : #563d7c;">
+                                Product Name 
+                                <span class="required">*</span>
+                            </label>
+							
+                            <%= text_field_tag(:productname,"", class: "input-block-level",:onblur=>'myFunction()',:required=>true) %><p id="testing" style="color:red;"></p>
+						
+						
+						
+						</div>
+                        <div class="span3" >
+                            <label class="control-label" style="color : #563d7c;">
+                                Title
+                                <span class="required">*</span>
+				
+                            </label>
+                            <%= text_field_tag(:title,"", class: "input-block-level",:onblur=>'myFunction1()',:required=>true) %><p id="testing1" style="color:red;"></p>
+				
+				
+				
+				
+				
+                        </div>
+                    </div>
+                    <div class="span8">
+                        <div class="span6" >
+                    
+                            <label class="control-label" style="color : #563d7c;">
+                            Description
+						
+                            </label>
+                            <%= text_area_tag(:description,"", class: "input-block-level",:onblur=>'myFunction2()',:required=>true) %><p id="testing2" style="color:red;"></p>
+				
+                        </div>
+					</div>
+					<div class="span8">
+                        <div class="span3"  >
+				
+                            <label class="control-label" style="color : #563d7c;">
+                            Select  Product Category 
+                            <span class="required">*</span>
+                            </label>
+                            <% @test =Masterusers.find_by_sql("select * from product_category_"+session["master_user_id"].to_s)%>
+                            
+							<%= select_tag "category_id", options_for_select(@test.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a Category",:onblur=>'myFunction3()',:required=>true,:data => { :remote => true, :url => url_for(:controller => "admin_home", 
+                                         :action => "add_product",
+                                         :filter =>"order_details") } %><p id="testing3" style="color:red;"></p>
+				
+                        </div>
+						
+						<div id='product_details' class="span3" >
+						<label class="control-label" style="color : #563d7c;">
+                            Select Sub Category
+                            <span class="required">*</span>
+                            </label>
+							<%= select_tag "subcategory_id", options_for_select(@sub.collect{ |u| [u.sub_category_name, u.sub_category_id] }), :prompt => "Select a Subcategory",:onblur=>'myFunction15()',:required=>true %><p id="testing9" style="color:red;" ></p>
+
+						</div>
+						
+					
+                    </div>
+					
+                    <div class="span8" style="padding-top:3%">
+                        <div class="span3" >
+				
+                            <label class="control-label" style="color : #563d7c;">
+                            Price Per Unit
+                            <span class="required">*</span>
+                            </label>
+                            <%= text_field_tag(:price,"",class: "input-block-level",:onblur=>'myFunction5()',:required=>true) %><p id="testing5" style="color:red;"></p>
+				
+                        </div>
+						<div class="span3" >
+				
+                            <label class="control-label" style="color : #563d7c;">
+                            Sale Price
+                            <span class="required">*</span>
+                            </label>
+                            <%= text_field_tag(:saleprice,"", class: "input-block-level",:onblur=>'myFunction6()',:required=>true) %><p id="testing6" style="color:red;"></p>
+				
+                        </div>
+                    </div>
+        
+        
+                    <div class="span8" style="padding-top:3%" >
+                        
+                        <div class="span3" >
+				
+                         <label class="control-label" style="color : #563d7c;">
+                            Quantity
+                            <span class="required">*</span>
+                            </label>
+                            <%= text_field_tag(:quantity,"", class: "input-block-level",:onblur=>'myFunction7()',:required=>true) %><p id="testing7" style="color:red;"></p>
+				
+                        </div>	
+				</div>
+        
+        </div>
+            <div class="abc" style="border: 2px solid #e5e5e5; padding:2%; ">
+                <h1 style="color : #563d7c;">Image Upload </h1>
+
+                <div class="span3">
+					<label for="Upload_image" style="color : #563d7c;">Select Product Image 1 </label>
+					<%= file_field 'upload1', 'file' %>
+				</div>
+                <div class="span8"> 
+                <div class="panel-group" id="accordion"  style="padding:5%;">
+                    <div class="panel panel-default" style="border: 2px solid #e5e5e5; padding:1%; #563d7c;;background-color: rgba(236, 236, 236, 0.88);">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#name">
+                            Upload more
+                            </a>
+                            </h3>
+                        </div>
+                        <div id="name" class="panel-collapse collapse">
+                        <div class="panel-body">
+                                <div class="span3">	
+        
+                                    <label for="Upload_image" style="color : #563d7c;">Select Product Image 2</label>
+                                    <%= file_field 'upload2', 'file' ,class: "input-block-level" %>
+                                </div>
+				
+                                <div class="span3">
+                                    <p><label for="Upload_image" style="color : #563d7c;">Select Product Image 3</label>
+                                    <%= file_field 'upload3', 'file',class: "input-block-level" %></p>
+                                </div>
+                        </div>   
+                        </div>
+                    </div>
+                </div>  
+                    <%= submit_tag("step1",  :value => "Submit",:class=>"btn btn-primary") %>
+                </div>
 			<% end %>
 			
-		</table>	
 		
 		
 		
 		
 		
+	
 	</div>
 </div>
-
+    		
 	
 </body>
 </html>

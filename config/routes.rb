@@ -1,8 +1,10 @@
 Startashop::Application.routes.draw do
 	 
 	  match "/" => "c_shop#shop_search",:constraints => {:subdomain => /.+/}
-	  match "/" => "c_shop#fst"
+	  match "/" => "first#start"
+	  #match "/" => "c_shop#fst"
 	  match "admin/" => "admin_home#adminlogin"
+	  #match ":session_url/home/" => "c_shop#home"
 	  
   # The priority is based upon order of creation:
   # first created -> highest priority.

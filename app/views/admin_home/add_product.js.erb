@@ -1,0 +1,4 @@
+$('#subcategory_id').find('option').remove().end().append('<option value="whatever">Select a Subcategory</option>').val('whatever');
+<%@sub.each do |a|%>
+$("#subcategory_id").append("<option value=<%=a['sub_category_id']%>><%=a['sub_category_name']%></option>");
+<%end%>

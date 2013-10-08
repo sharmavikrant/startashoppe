@@ -22,7 +22,7 @@ select:focus {
 }
 
 .btn {
-	background-color: #e5e5e5;
+	background-color: #563c7d;
 	background-image: none;
 	filter: none;
 	border: 0;
@@ -30,7 +30,7 @@ select:focus {
 	text-shadow: none;
 	font-family: "Segoe UI", Helvetica, Arial, sans-serif;
   font-size: 14px;  	
-  color: #333333;
+  color: white;
 	cursor: pointer;
 	outline: none;
   -webkit-box-shadow: none !important;

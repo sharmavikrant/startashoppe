@@ -1,0 +1,18 @@
+<script >
+function myFunction15()
+	{
+		if ($('#subcategory_id option:selected').text()=="Select a project"){
+		document.getElementById('testing9').innerHTML = 'Please select a sub category' 
+		$('#subcategory_id').focus();
+		}
+		else
+		{
+		document.getElementById('testing9').innerHTML = '' 
+		}
+	}
+	</script>
+<label class="control-label">
+                            Select Product
+                            <span class="required">*</span>
+                            </label>
+<%= select_tag "product_id", options_for_select(@product.collect{ |u| [u.product_name, u.product_id] }), :prompt => "Select a product",:onblur=>'myFunction15()',:required=>true%><p id="testing9"></p>

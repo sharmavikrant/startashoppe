@@ -1,0 +1,120 @@
+/*
+Common stylesheet for admin 
+*/
+a {
+	cursor:pointer;
+}
+select, input, textarea, .uneditable-input {
+	width:auto;
+}
+
+.data-block header .header-search input {
+	width:225px;
+}
+
+body.login .container .login-logo .brand, #header > h1 .brand {
+	width:300px;
+}
+
+body.login .container form input[type="text"], body.login .container form input[type="password"] {
+	width: 236px !important;
+}
+
+body.login .container .login-logo .brand, #header > h1 .brand {
+	background: url("../img/kartrocket_logo.png") no-repeat;
+}
+
+body.login .container {
+	width: 640px;
+}
+
+.scrollbox {
+	height: 100px;
+	overflow: auto;
+	margin-bottom:10px;
+}
+
+#header {
+	margin-top:-20px;
+}
+
+#header > h1 span {
+	margin-top:0;
+}
+
+#footer {
+	margin-top:50px;
+}
+.alert, .success, .warning {
+  padding: 8px 35px 8px 14px;
+  margin: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  background-color: #f39c12;
+  border: 1px solid #f39c12;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+.alert-error , .warning{
+  background-color: #c0392b;
+  border-color: #c0392b;
+  color: #b94a48;
+}
+.alert-success , .success{
+  background-color: #27ae60;
+  border-color: #27ae60;
+  color: #468847;
+}
+.alert, .success, .warning  {
+  color: #ffffff;
+  text-shadow: none;
+}
+
+.user-profile .dropdown-menu
+	{
+		background-color:white !important
+	}
+.user-profile .dropdown-menu li 
+	{
+		background-color:white !important;
+		float:none !important;
+			}
+.user-profile .dropdown-menu li + li {
+	margin-left:0px !important;
+
+	}
+		
+.main-navigation .navbar
+{
+	margin-top:-20px !important;
+}
+
+.btn-group  ul > li a:hover
+{
+	color:white !important;
+	cursor:pointer;
+}
+.user-profile ul > li
+{
+cursor:pointer;	
+}
+
+.user-profile figure
+{
+	margin-right:40px;
+}
+
+.widget-block {
+	height:115px;
+}
+
+/*Prabhat Singh*/
+table#orders-list.table tbody tr.active {
+	background: none repeat scroll 0 0 #DCE4EC;
+}
+#orders-customer-details span{
+	font-size: 20px;
+}
+#orders-shipping-details span{
+	font-size: 20px;
+}

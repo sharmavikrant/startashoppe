@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Template</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/sangoma-green.css" rel="stylesheet" type="text/css">	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">			
+
+</head>
+
+<body>
+<%= render :partial => 'header' %>
+
+<div class="row-fluid" style="padding-top:4.18%">
+
+	<article class="span12 data-block">
+	<header>
+	<h2>Orders</h2>
+	
+	<ul class="data-header-actions">
+		<li class="active"><a href="" title="" data-original-title="Create new order">Add Order</a></li>
+		<li><a onclick="$('#order-form').attr('action', ''); $('#order-form').attr('target', '_blank'); $('#order-form').submit();">Print Manifest</a></li>
+		<li><a onclick="$('#order-form').attr('action', ''); $('#order-form').attr('target', '_blank'); $('#order-form').submit();">Print Invoice</a></li>
+		<li><a id="generate-pickup" href="javascript:void(0)">Generate Pickup</a></li>
+	</ul>
+	
+</header>
+	<div class="data-block-nav tab-content">
+	  <div class="tab-pane active powertour-hook-relative" id="orders-status-filters">
+			  <ul class="option-set clearfix" data-option-key="filter">			
+				<li class="active">
+					
+								<li><a href="/admin_home/order?filter=all" data-option-value=".cod-confirmed">All</a></li>
+								<li><a href="/admin_home/order?filter=cod" data-option-value=".cod-confirmed">COD Confirmed</a></li>
+								<li><a  href="/admin_home/order?filter=canceled" data-option-value=".canceled">Canceled</a></li>
+								<li><a  href="/admin_home/order?filter=delivered" data-option-value=".delivered">Delivered</a></li>
+								<li><a  href="/admin_home/order?filter=pending" data-option-value=".pending">Pending</a></li>
+								<li><a  href="/admin_home/order?filter=rod" data-option-value=".ready-for-dispatch">Ready for Dispatch</a></li>
+								<li><a  href="/admin_home/order?filter=shipped" data-option-value=".shipped">Shipped</a></li>
+								<li><a  href="/admin_home/order?filter=epr" data-option-value=".epayment-received">ePayment Received</a></li>
+							  </ul>
+	  
+	</div>
+
+	<section class="filter-bar">
+
+		<form class="form-inline" id="search-order" action="/admin_home/order" method="get">
+			<fieldset>
+				<div class="control-group span12">
+				
+					<div class="controls span12" style="font-weight: bolder;font-size: 20px;">Search Orders
+					</div>
+					<div class="control-group span3" >
+						
+						
+							<input type="text" id="order-search-text" class="input-large ui-autocomplete-input" name="filter_order_id" autocomplete="OfF" role="textbox" aria-autocomplete="list" aria-haspopup="true" onchange='this.form.submit()'>
+					</div>
+							<div class="control-group span3" style="margin-left:2%" >
+							    <select id="search_mode" name="search_mode" style="margin-left:2%">
+									<option value="filter_order_id">Order Id</option>
+									<option value="filter_customer">Customer Name</option>
+									<option value="filter_payment_mode">Payment Mode</option>
+									<option value="filter_courier_company">Courier Company</option>
+									<option value="filter_awb_number">Tracking No.</option>
+								</select>
+								
+                            </div>
+					
+				
+		</form>
+            <div class="span6">
+			<form class="form-inline" id="search-order" action="/admin_home/order" name="order_date_form" method="get">	
+				<div class="span3">
+					<label class="control-label">Order Date</label>
+					</div>	
+                    <div class="span3">
+						 <input type="text" id="datepicker" class="input-large ui-autocomplete-input" name="order_date" autocomplete="OfF" role="textbox" aria-autocomplete="list" aria-haspopup="true" onchange='this.form.submit()'>
+										
+										
+			</form>
+				
+			</fieldset>
+		
+
+	</section>
+	
+	
+	
+	
+<section>						
+<article class="span5 data-block">
+
+<form id="order-form" enctype="multipart/form-data" method="post" action="">
+	<table id="orders-list" class="table table-hover isotope powertour-hook-relative">
+				<tbody>
+					<tr data-id="453" class="element ready-for-dispatch isotope-item active">
+						<td class="right span1">Order_Id</td>
+						<td class="left span4">Customer Name</td>
+						<td class="left span4">Order Date</td>
+						<td class="left span4">Status</td>
+						<td class="right span2">Total Amount</td>
+					</tr>
+					
+	<%@order.each do |i|%>
+				
+				<tr>
+					<td class="right span1"><%=link_to i["order_id"], :controller => "admin_home", :action => "order", :id => @profile,:remote=>true,:g=>"order_detail", :id => i["order_id"]%></td>
+					<td class="left span4"><%=i["name"]%></td>
+					<td class="left span4">Order Date</td>
+					
+					<%if i['canceled'] == 'false'  then %>
+					<td class="left span4"><%=i['order_status']%></td>
+					<%else%>
+					<td class="left span4"><%=i['canceled']%></td>
+					<%end%>
+					<td class="right span2"><%=i["total_amt"]%></td>
+				</tr>
+	<%end%>
+		</tbody>
+	</table>
+		<div class="powertour powertour-style-basic " style="display: none; width: 400px; left: 0px; top: -224px;" data-tour-id="682" data-tour-step="1"><span class="powertour-arrow-tl"></span><div class="powertour-inner"><div class="powertour-content"><div id="orders-list-step" class="single-step" style="width: 370px; display: block;"><header><h3>Order List</h3></header><p>Here you will see recent orders received on your store. You simply have to click on an order to view the details on the window pane on the right.</p></div></div><footer class="powertour-footer"><div><a href="javascript:void(0);" class="powertour-btn-prev"><span>Prev</span></a> <a href="javascript:void(0);" class="powertour-btn-next"><span>Next</span></a> <a href="javascript:void(0);" class="powertour-btn-stop"><span>Stop</span></a></div></footer></div></div></table>
+</form>
+
+
+</article>
+
+<div id ='order_details'>
+</div>
+
+<script type='text/javascript' src='/viewall/js/admin-bar.min.js?ver=3.6'></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  <script src="/js/jquery-latest.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/theme.js"></script>
+</body>
+</html>

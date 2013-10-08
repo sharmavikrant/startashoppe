@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Template</title>
+    
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
+	<link href="/inventory/css/reset.css" rel="stylesheet" type="text/css"/>
+	<link href="/inventory/css/prettify.css" rel="stylesheet" type="text/css"/>
+	<link href="/inventory/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/inventory/css/tablecloth.css" rel="stylesheet" type="text/css"/>
+	
+
+	
+	<!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+    <!-- Styles -->
+    
+	
+</head>
+	<body class="page-header-fixed">
+	
+	
+	
+	<%= render :partial => 'header' %>
+
+	<!-- END HEADER -->
+
+        
+             
+            <%= render :partial => 'sidebar' %>
+	
+	
+	<!-- Modal sub category edit -->
+<div id="edit_sub_category" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  
+  <div class="modal-body">
+  
+  
+  	<%= form_tag({ controller:'real', :action => 'admin_home'}, :multipart => true) do %>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+	
+			<tab id=t1><h1>Home details  <small>fill details to customize your store </small></h1></tab>
+			<hr>
+			<br>
+			<br>
+			
+
+			
+			<%= submit_tag("submit", :value => "slider_1", :class=>"btn btn-primary") %>
+		
+			<br>
+			<br>
+		
+		
+		
+			
+			<% end %>
+			
+			
+			
+  </div>
+ 
+</div>
+
+		<!-- end  Modal sub category edit -->
+	
+
+<section id="content">
+  <div class="container">
+    
+    <div class="row">
+      <div class="clear">&nbsp;</div>
+    </div>
+    
+    <div class="row hidden-phone">
+    </div>
+    
+    <div class="row">
+	<div class="span3">
+	</div>
+	<div class="span8">
+	
+	<h2 style="color: #563d7c;"> Category Details</h2>
+	
+	</div>
+    </div>
+      
+    <div class="row">
+	<div class="span3">
+	
+	</div>
+      <div class="span8">
+        <div class="hidden-phone">
+          <table class="table table-stats table-bordered table-striped" id="example-default">
+            <thead>
+              <tr>
+			  <th>Delete</th>
+                <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Edit</th>
+       
+              </tr>
+            </thead>
+            <tbody>
+              <%@category.each do |i|%>
+			<div id=<%=i['product_category_name']%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-body">
+					<% @cat = Masterusers.find_by_sql("select product_category_name,product_category_id from product_category_"+session[:master_user_id].to_s+" where product_category_id ="+ i["product_category_id"].to_s)%>
+						 <%= form_tag({ controller:'admin_home', :action => "category_detail"}, :multipart => true) do %>
+							 <%@cat.each do |i|%>
+								<h2>Change your category name</h2>
+								<label class="control-label">Category Name	</label>
+								<%= text_field_tag(:categoryname,i["product_category_name"]) %><br/>
+								<input type="hidden" name="category" value=<%=i["product_category_id"].to_s%>>
+											
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					<%= submit_tag("save",  :value => "save",:class=>"btn btn-primary") %>	
+				</div>
+							<%end%>
+						<%end%>
+			</div>		       
+			<tr>
+				<td><%= link_to image_tag("/images/cross.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'category_detail', :id => @profile,:value => "delete_category", :method => :post, :product_category_id => i["product_category_id"]%></td>
+				<td> <%= i["product_category_id"]%></td>
+				<td><%= i["product_category_name"]%></td>
+				<td><%= link_to image_tag("/images/edit.ico", :width => 30, :height => 30),"#"+i["product_category_name"].squish , html_options = {:data => {:toggle => 'modal'} } ,:product_category_id => i["product_category_id"]%></td>
+			</tr>
+		<%end%>
+            </tbody>
+          </table>
+        </div>
+		<div class="visible-phone">
+        <table class="table table-bordered table-striped" id="example-default">
+          <thead>
+            <tr>
+			<th>Delete</th>
+             <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Edit</th>
+                
+              
+            </tr>
+          </thead>
+          <tbody>
+           <%@category.each do |i|%>
+			<div id=<%=i['product_category_name']%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-body">
+					<% @cat = Masterusers.find_by_sql("select product_category_name,product_category_id from product_category_"+session[:master_user_id].to_s+" where product_category_id ="+ i["product_category_id"].to_s)%>
+						 <%= form_tag({ controller:'admin_home', :action => "category_detail"}, :multipart => true) do %>
+							 <%@cat.each do |i|%>
+								<h2>Change your category name</h2>
+								<label class="control-label">Category Name	</label>
+								<%= text_field_tag(:categoryname,i["product_category_name"]) %><br/>
+								<input type="hidden" name="category" value=<%=i["product_category_id"].to_s%>>
+											
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+					<%= submit_tag("save",  :value => "save",:class=>"btn btn-primary") %>	
+				</div>
+							<%end%>
+						<%end%>
+			</div>		       
+			<tr>
+				<td><%= link_to image_tag("/images/cross.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'category_detail', :id => @profile,:value => "delete_category", :method => :post, :product_category_id => i["product_category_id"]%></td>
+				<td> <%= i["product_category_id"]%></td>
+				<td><%= i["product_category_name"]%></td>
+				<td><%= link_to image_tag("/images/edit.ico", :width => 30, :height => 30),"#"+i["product_category_name"].squish , html_options = {:data => {:toggle => 'modal'} } ,:product_category_id => i["product_category_id"]%></td>
+			</tr>
+		<%end%>
+          </tbody>
+        </table>
+        </div>
+      </div>    
+    </div>
+    		
+          
+
+ <div class="row">
+	<div class="span3">
+	
+	</div>
+	<div class="span8">
+	
+	<h2 style="color: #563d7c;"> Sub Category Details</h2>
+	
+	</div>
+    </div>
+	
+<div class="row">
+<div class="span3">
+
+</div>
+      <div class="span8">
+        <div class="hidden-phone">
+          <table class="table table-stats table-bordered table-striped" id="example-default">
+            <thead>
+              <tr>
+			  <th>Delete</th>
+                <th>Category Id</th>
+                <th>Category Name</th>
+                <th>Sub Category Name</th>
+				<th>Edit</th>
+                
+                
+              </tr>
+			</thead>
+			<tbody>
+			<%@sub_category.each do |i|%>
+				<% @category_name = Masterusers.find_by_sql("select product_category_name from product_category_"+session[:master_user_id].to_s+" where product_category_id = "+i["product_category_id"].to_s)%>
+		        <%@category_name.each do |j|%>
+			
+			<!-- Modal sub category edit -->
+				<div id=<%=i['sub_category_name']%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-body">
+						<% @cat = Masterusers.find_by_sql("select sub_category_name,sub_category_id from product_sub_category_"+session[:master_user_id].to_s+" where sub_category_id ="+ i["sub_category_id"].to_s)%>
+						<%= form_tag({ controller:'admin_home', :action => "category_detail"}, :multipart => true) do %>
+							<%@cat.each do |i|%>
+								<h2>Change your sub category name</h2>
+								<label class="control-label">Sub Category Name	</label>
+								<%= text_field_tag(:subcategoryname,i["sub_category_name"]) %><br/>
+								<input type="hidden" name="subcategory" value=<%=i["sub_category_id"].to_s%>>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>	
+					</div>
+							<%end%>
+						<%end%>
+				</div>		   
+			
+			
+
+				<tr>
+					<td><%= link_to image_tag("/images/cross.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'category_detail', :id => @profile,:value => "delete_sub_category", :method => :post, :sub_category_id => i["sub_category_id"]%></td>
+					<td> <%= i["product_category_id"]%></td>
+					<td><%= j["product_category_name"] %></td>
+					<td><%= i["sub_category_name"]%></td>
+					<td><%= link_to image_tag("/images/edit.ico", :width => 30, :height => 30),"#"+i["sub_category_name"].squish, html_options = {:data => {:toggle => 'modal'} },:product_category_id => i["product_category_id"],:sub_category_id => i["sub_category_id"]%></td>
+				</tr>
+				<%end%>
+		 <%end%>
+		
+			</tbody>
+		</table>
+		</div>
+		<div class="visible-phone">
+        <table class="table table-bordered table-striped" id="example-default">
+          <thead>
+            <tr>
+			<th>Delete</th>
+             <th>Category Id</th>
+                <th>Category Name</th>
+				<th>Sub Category Name</th>
+                <th>Edit</th>
+                
+              
+            </tr>
+          </thead>
+          <tbody>
+           <%@sub_category.each do |i|%>
+				<% @category_name = Masterusers.find_by_sql("select product_category_name from product_category_"+session[:master_user_id].to_s+" where product_category_id = "+i["product_category_id"].to_s)%>
+		        <%@category_name.each do |j|%>
+			
+			<!-- Modal sub category edit -->
+				<div id=<%=i['sub_category_name']%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-body">
+						<% @cat = Masterusers.find_by_sql("select sub_category_name,sub_category_id from product_sub_category_"+session[:master_user_id].to_s+" where sub_category_id ="+ i["sub_category_id"].to_s)%>
+						<%= form_tag({ controller:'admin_home', :action => "category_detail"}, :multipart => true) do %>
+							<%@cat.each do |i|%>
+								<h2>Change your sub category name</h2>
+								<label class="control-label">Sub Category Name	</label>
+								<%= text_field_tag(:subcategoryname,i["sub_category_name"]) %><br/>
+								<input type="hidden" name="subcategory" value=<%=i["sub_category_id"].to_s%>>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+						<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>	
+					</div>
+							<%end%>
+						<%end%>
+				</div>		   
+			
+			
+
+				<tr>
+					<td><%= link_to image_tag("/images/cross.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'category_detail', :id => @profile,:value => "delete_sub_category", :method => :post, :sub_category_id => i["sub_category_id"]%></td>
+					<td> <%= i["product_category_id"]%></td>
+					<td><%= j["product_category_name"] %></td>
+					<td><%= i["sub_category_name"]%></td>
+					<td><%= link_to image_tag("/images/edit.ico", :width => 30, :height => 30),"#"+i["sub_category_name"].squish, html_options = {:data => {:toggle => 'modal'} },:product_category_id => i["product_category_id"],:sub_category_id => i["sub_category_id"]%></td>
+				</tr>
+				<%end%>
+		 <%end%> 
+          </tbody>
+        </table>
+        </div>
+		</div>
+</div>
+</section>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    
+    window.prettyPrint && prettyPrint();
+    
+ 
+    
+   
+    
+  });
+</script>
+
+
+	<script src="/adminhome/js/bootstrap.min.js" type="text/javascript"></script>

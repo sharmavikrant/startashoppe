@@ -1,0 +1,401 @@
+<html>
+<head><!-- Stylesheets -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <script src="/js/jquery-latest.js"></script>
+    <script src="/js/bootstrap.js"></script>
+<script language="javascript">
+	
+	function confirmFunction()
+	{
+		var x=document.forms["details"]["password"].value;
+		var x1=document.forms["details"]["confirmpassword"].value;
+		(x != x1) ? document.getElementById('testing13').innerHTML = 'Password and confirm password not match' : document.getElementById('testing13').innerHTML = '';
+		(x1==''|| 	x1== null) ?document.getElementById('testing12').innerHTML = ' ConfirmPassword Mandatory'  : document.getElementById('testing12').innerHTML = '';
+	}
+	function passwordFunction()
+	{
+		
+		var x=document.forms["details"]["password"].value;
+		
+		
+			(x==''|| x== null) ?document.getElementById('testing11').innerHTML = 'Password Mandatory' : document.getElementById('testing11').innerHTML = '';
+			
+			
+		
+		
+	}
+		
+	
+		
+		
+	function myFunction()
+	{
+		var x=document.forms["details"]["shopname"].value;
+		
+		
+			(x==''||x== null) ? document.getElementById('testing').innerHTML = 'Shop name Mandatory' : document.getElementById('testing').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction1()
+	{
+		var x1=document.forms["details"]["firstname"].value;
+		(x1==''||x1== null) ? document.getElementById('testing1').innerHTML = 'First name Mandetory' : document.getElementById('testing1').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction2()
+	{
+	
+		
+		
+		var x2=document.forms["details"]["emailaddress"].value;
+		
+		
+			
+			(x2==''||x2== null) ? document.getElementById('testing2').innerHTML = 'Email Mandetory' : document.getElementById('testing2').innerHTML = '';
+			
+			
+		
+			
+		
+	}
+	function myFunction3()
+	{
+	
+		
+		
+		var x3=document.forms["details"]["address"].value;
+		
+		
+			
+			(x3==''||x3== null) ? document.getElementById('testing3').innerHTML = 'Address Mandetory' : document.getElementById('testing3').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction4()
+	{
+	
+		
+		
+		var x4=document.forms["details"]["state"].value;
+		
+			
+			(x4==''||x4== null) ? document.getElementById('testing4').innerHTML = 'State Mandetory' : document.getElementById('testing4').innerHTML = '';
+			
+			
+			
+		
+	}
+	function myFunction5()
+	{
+	
+		
+		
+		var x5=document.forms["details"]["pincode"].value;
+		
+		
+			
+			(x5==''||x5== null) ? document.getElementById('testing5').innerHTML = 'Pincode Mandetory' : document.getElementById('testing5').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction6()
+	{
+	
+		var x6=document.forms["details"]["country"].value;
+		
+		
+		
+			
+			(x6==''||x6== null) ? document.getElementById('testing6').innerHTML = 'Country Mandetory' : document.getElementById('testing6').innerHTML = '';
+			
+		
+	}
+	function myFunction7()
+	{
+	
+		
+		
+		var x7=document.forms["details"]["phone"].value;
+		
+		
+		
+			(x7==''||x7== null) ? document.getElementById('testing7').innerHTML = 'Phone Mandetory' : document.getElementById('testing7').innerHTML = '';
+			
+		
+	}function myFunction8()
+	{
+	
+		
+		
+		var x8=document.forms["details"]["city"].value;
+		
+		
+		
+			
+			(x8==''||x8== null) ? document.getElementById('testing8').innerHTML = 'City Mandetory' : document.getElementById('testing8').innerHTML = '';
+			
+		
+	}
+	
+	
+	</script>   
+	<style>
+	abc> a:hover { color:#563D7C}
+	
+	</style>
+   </head>
+<body>
+
+<% unless flash[:notice].nil? %>
+                        <div class="heading_featured" >
+                            <fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+                            <div align="center">
+                            <font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+                        </div>
+                    </fieldset>
+                        </div>
+                    <%end%>
+	<%if session[:flag] == "true" then%>			
+		<div class="span3" style="padding-left:38%;padding-top:1%">
+			<%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
+			<a href=<%="http://"+@a1[0]['url_name']+".lvh.me:3000/c_shop/shop_search_2"%> class="btn btn-lg">Go to your Shop</a>
+		</div> 
+<%else%>		
+<div class="panel-group" id="accordion"  style="padding:5%;">
+  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%; background-color: #563D7C;">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#name">
+          Your Shop Details
+        </a>
+      </h3>
+    </div>
+    <div id="name" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="span3">    
+                	<%= form_tag({ :controller =>  "first",:action => 'c_step_2'}, {:name => 'details'}) do%>
+                <tab id=t1>
+                <br/>
+                <label class="control-label">
+                Shop Name 
+                <span class="required">*</span>
+                </label>
+               <%= text_field_tag(:shopname,"",:placeholder => 'Shop Name', class: "input-block-level",:required=>true,:onblur=>'myFunction()') %><p id="testing" style="color:red;"></p>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+                </a>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #fff;">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:#0088cc">
+          Create your Administration Account
+        </a>
+      </h3>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+       <table >
+        <div class="span8">    
+                    
+            
+            <div class="span3">    
+                    <label class="control-label">First Name 
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:firstname,"", class: "input-block-level",:placeholder => 'Admin Name',:required=>true,:onblur=>'myFunction1()') %><p id="testing1" style="color:red;"></p>
+            </div>
+        
+            <div class="span3">    
+                    <label class="control-label"> Last Name 
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:lastname ,"", class: "input-block-level") %>
+            </div>
+            </div>
+            <div class="span8">    
+                <div class="span3">    
+                    <label class="control-label">Email address 
+                    <span class="required">*</span>
+                    </label>
+                    <%= email_field_tag(:emailaddress,"",:placeholder => 'Login Id', class: "input-block-level",:onblur=>'myFunction2()',:required=>true) %><p id="testing2"></p>
+                    
+                </div>
+                <div class="span3">    
+                    <label class="control-label">
+                    Password 
+                    <span class="required">*</span>
+                    </label>
+					<%= password_field_tag(:password ,"",:placeholder => 'Password',:onblur=>'passwordFunction()',:required=>true) %><p id="testing11" style="color:red;"></p>
+                   
+                </div>
+            </div>
+            <div class="span8">    
+                <div class="span3">    
+                    <label class="control-label">
+                    confirm Password 
+                    <span class="required">*</span>
+                    </label>
+                   <%= password_field_tag(:confirmpassword ,"",:placeholder => ' Confirm Password',:onfocusout=>'confirmFunction()',:required=>true) %><p id="testing12" style="color:red;"></p>
+				<p id="testing13" style="color:red;" ></p>
+                </div>
+            </div>
+            <div class="span6">    
+        
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+            </a>
+            </div>
+            
+            
+        </table>    
+        
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #563D7C;">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle abc" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Choose a Theme for Your Shop
+        </a>
+      </h3>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div class="span10">
+            <div class="span3" >
+                <%= link_to image_tag("/theme2/img/slide1.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_1', :id => @profile,:name => "Residential", :method => :post,:remote=>true,:theme=>"theme_1"%><br>
+                <div class="span2"><%=link_to "Preview", :controller =>  "first", :action => "preview", :id => @profile, :theme=>"theme_1"%></h4></div>
+            </div>
+            <div class="span3">
+                <%= link_to image_tag("/theme1/img/32.jpg", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_1', :id => @profile,:name => "Residential", :method => :post,:remote=>true,:theme=>"theme_2"%><br>
+                <div class="span2"><%=link_to "Preview", :controller =>  "first", :action => "preview", :id => @profile, :theme=>"theme_2"%></h4></div>
+            </div>
+        </div>
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+        </a>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #fff;">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Select Slider Images for Your Shop
+        </a>
+      </h3>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div class="span10">
+            <div class="span3">
+               
+            </div>
+            <div class="span3">
+                
+            </div>
+        </div>
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+        </a>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%; background-color: #563D7C;">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+          Where  is Your Shop Located?
+        </a>
+      </h3>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div>
+        
+            <div class="span10">
+            <div class="span4">
+                    <label class="control-label">
+                    Address  
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:address,"",:placeholder => 'Your Shop Address',:required=>true,:onblur=>'myFunction3()', class: "input-block-level") %><p id="testing3" style="color:red;"></p>
+            </div>
+            <div class="span4">
+                    <label class="control-label">
+                    Landmark 
+                    </label>
+                    <%= text_field_tag(:landmark  ,"", class: "input-block-level") %>
+            </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                        City
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:city,"",:placeholder => ' City',:required=>true,:onblur=>'myFunction8()',class: "input-block-level") %><p id="testing8" style="color:red;"></p>
+                </div>
+                <div class="span4">
+                    <label class="control-label">
+                    State
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:state ,"",:placeholder => 'State',:required=>true,:onblur=>'myFunction4()', class: "input-block-level") %><p id="testing4" style="color:red;"></p>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                    Pincode
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:pincode ,"",:placeholder => ' Pincode',:required=>true,:onblur=>'myFunction5()', class: "input-block-level") %><p id="testing5" style="color:red;"></p>
+                </div>
+                <div class="span4">
+                    <label class="control-label">
+                    Country
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:country ,"",:placeholder => ' Country',:required=>true,:onblur=>'myFunction6()', class: "input-block-level") %><p id="testing6" style="color:red;"></p>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                    Phone
+                    <span class="required">*</span>
+                    </label>
+					<%= text_field_tag(:phone ,"",:placeholder => ' Phone',:required=>true,:onblur=>'myFunction7()', class: "input-block-level") %><p id="testing7" style="color:red;"></p>
+                   
+                </div>
+            </div>
+            
+        </div>    
+        <div class="span10" style="padding-left:40%">
+            <%= submit_tag("step3",  :value => "Submit",:class=>"btn") %>
+            <% end %>    
+        </div>    
+        </div>
+    </div>
+  </div>
+</div>
+
+     <%end%>
+
+    
+</body>
+</html>

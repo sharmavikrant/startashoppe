@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>startashoppe</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Base scripts -->
+<script type="text/javascript" src="/first/js/jquery.js"></script>
+<script type="text/javascript" src="/first/js/modernizr-latest.js"></script>
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="/first/css/style.css" />
+<!-- media query -->
+<link rel="stylesheet" type="text/css" href="/first/css/mediaquery.css" />
+<!-- Fonts -->
+<link href="/first/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script language="javascript">
+	
+function myFunction()
+	{
+		var x=document.forms["login"]["name"].value;
+		
+		
+			(x==''||x== null||x=='Shop Name') ? document.getElementById('testing').innerHTML = 'Shop name Mandatory' : document.getElementById('testing').innerHTML = '';
+			
+			
+		
+	}
+	function myFunction2()
+	{
+	
+		
+		
+		var x2=document.forms["login"]["email"].value;
+		
+		
+			
+			(x2==''||x2== null||x2=='Email') ? document.getElementById('testing2').innerHTML = 'Email Mandetory' : document.getElementById('testing2').innerHTML = '';
+			
+			
+		
+			
+		
+	}
+</script>
+
+</head>
+
+<body class="home" data-spy="scroll" data-target="#navbar">
+<% unless flash[:notice].nil? %>
+                        <div class="heading_featured" >
+                            <fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+                            <div align="center">
+                            <font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+                        </div>
+                    </fieldset>
+                        </div>
+                    <%end%>
+<div class="page-header">
+  <div class="row-fluid">
+    <div id="myCarousel" class="carousel slide carousel-fade">
+      <ol class="carousel-indicators carousel-fade">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      </ol>
+      <!-- Carousel items -->
+      <div id="slider" class="carousel-inner ">
+        <div class="active item"><img src="/first/img/slide1.jpg" alt="" /></div>
+        <div class="item"><img src="/first/img/slide2.jpg" alt="" /></div>
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a> </div>
+    <script type="text/javascript">
+	$('.carousel').carousel({
+      interval: 1
+    })
+	</script>
+  </div>
+  <div class="navbar-wrapper">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+        <a class="brand" href="#">StartAShoppe</a>
+        <div id="navbar" class="main nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Get in touch</a></li>
+			
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">See More<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+              </ul>
+			  </li>
+			  <li>
+			<!-- Button to trigger modal -->
+  <a href="#myModal" data-toggle="modal">Login</a>
+  <!-- Modal -->
+ 
+			</li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!-- /.navbar-inner -->
+    </div>
+    <!-- /.navbar -->
+  </div>
+  <!-- /.navbar-wrapper -->
+</div>
+
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+	
+      <div class="login-form">
+	  
+        <form action="">
+          <fieldset>
+          <div class="clearfix">
+            <input type="text" placeholder="Username">
+          </div>
+          <div class="clearfix">
+            <input type="password" placeholder="Password">
+          </div>
+          <button class="btn primary" type="submit">Sign in</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+ </footer>
+<footer class="main contact">
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span12 ">
+	  <%= form_tag({:controller=>'first',:action => 'master_signup'}, {:name => 'login'}) do%>
+        
+          <div class="row-fluid">
+            <div class="span4">
+			  <%= text_field_tag(:name,"",:placeholder => 'Shop Name', class: "input-block-level",:required=>true,:onfocusout=>'myFunction()') %><p id="testing" style="color:red;"></p>
+
+            </div>
+            <!-- /.span4 -->
+            <div class="span4">
+            <%=text_field_tag 'email', nil, :placeholder => 'Email' ,:requried=>true,:onfocusout=>'myFunction2()'%><p id="testing2" style="color:red;"></p>
+            </div>
+            <!-- /.span4 -->
+			<div class="span4" style="padding-left: 5%;">
+           <%= submit_tag("upload",  :value => "upload", :class => "btn btn-large btn btn-info" ) %>
+			</div>
+          </div>
+          <!-- /.row-fluid -->
+			<%end%>
+      </div>
+      <!-- /.span12 -->
+    </div>
+    <!-- /.row-fluid -->
+  </div>
+  <!-- /.container -->
+</footer>
+<div id="features" class="box">
+  <section>
+    <div class="container">
+      <h1 class="hero">Features</h1>
+      <p class="sub-hero">Check out some of the stuff we've created</p>
+      <div class="tabbable" style="margin-left:8%">
+        <ul class="nav nav-tabs" data-tabs="tabs" style="text-align:center">
+          <li class="active"><a href="#f1" data-toggle="tab1"><i class="icon-bar-chart icon-2x"></i>
+            <h6>Sales Analytics</h6>
+            </a></li>
+          <li><a href="#f2" data-toggle="tab1"><i class="icon-resize-small icon-2x"></i>
+            <h6>Liquid design</h6>
+            </a></li>
+          <li><a href="#f3" data-toggle="tab1"><i class="icon-check icon-2x"></i>
+            <h6>Click Setup</h6>
+            </a></li>
+          <li><a href="#f4" data-toggle="tab1"><i class="icon-cloud-upload icon-2x"></i>
+            <h6>Cloud Hosting</h6>
+            </a></li>
+			<li><a href="#f5" data-toggle="tab1"><i class="icon-folder-open icon-2x"></i>
+            <h6>App store</h6>
+            </a></li>
+			<li><a href="#f6" data-toggle="tab1"><i class="icon-group icon-2x"></i>
+            <h6>SEO & SMO</h6>
+            </a></li>
+			<li><a href="#f7" data-toggle="tab1"><i class="icon-external-link-sign icon-2x"></i>
+            <h6>Lead Generation</h6>
+            </a></li>
+			<li><a href="#f8" data-toggle="tab1"><i class="icon-exchange icon-2x"></i>
+            <h6>Share it</h6>
+            </a></li>
+			<li><a href="#f9" data-toggle="tab1"><i class="icon-inr icon-2x"></i>
+            <h6>Payment gateway</h6>
+            </a></li>
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+          <div class="tab-pane active" id="f1">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+            </div>
+            <div class="span4 " style="margin-top:20px" > 
+			<h4>Start selling online to India and worldwide</h4></div>
+          </div>
+          <div class="tab-pane" id="f2">
+            <div class="span3"> <img src="/first/img/theme9.png" alt="">
+            </div>
+			 <div class="span4 " style="margin-top:20px" > 
+			<h4>Mobile optimized sites from the word go, tap the mobile market</h4></div>
+          
+          </div>
+          <div class="tab-pane" id="f3">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Be as creative as you want, design your store the way you want, without worrying about knowledge of coding, HTML etc</h4></div>
+          </div>
+          <div class="tab-pane" id="f4">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f5">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f6">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Get in built Google SEO for your sites, let people find you on Google
+Make your site socially relevant, integrate social media sites in your store
+</h4></div>
+          </div>
+		   <div class="tab-pane" id="f7">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f8">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f9">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Get Payment Gateway, start accepting money online</h4></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="examples" class="box">
+  <section>
+    <div class="container">
+      <h1 class="hero">Our Stores</h1>
+      <p class="sub-hero">Check out some of the stuff we've created</p>
+      <div class="tabbable" style="margin-left:2%">
+        <ul class="nav nav-tabs"  data-tabs="tabs" style="text-align:center">
+          <li class="active extab"><a href="#s1" data-toggle="tab2"><i class="icon-star-empty icon-2x"></i><h6>Featured</h6></a></li>
+          <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-female icon-2x"></i><h6>Fashion</h6></a></li>
+          <li class="extab"><a href="#s3" data-toggle="tab2"><i class="icon-camera icon-2x"></i><h6>Electronics</h6></a></li>
+          <li class="extab"><a href="#s4" data-toggle="tab2"><i class="icon-gift icon-2x"></i><h6>Gifts</h6></a></li>
+		  <li class="extab"><a href="#s1" data-toggle="tab2"><i class="icon-plus-sign-alt icon-2x"></i><h6>Health</h6></a></li>
+          <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-star-empty icon-2x"></i><h6>Featured</h6></a></li>
+          <li class="extab"><a href="#s3" data-toggle="tab2"><i class="icon-female icon-2x"></i><h6>Fashion</h6></a></li>
+          <li class="extab"><a href="#s4" data-toggle="tab2"><i class="icon-camera icon-2x"></i><h6>Electronics</h6></a></li>
+          <li class="extab"><a href="#s1" data-toggle="tab2"><i class="icon-gift icon-2x"></i><h6>Gifts</h6></a></li>
+		  <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-plus-sign-alt icon-2x"></i><h6>Health</h6></a></li>        </ul>
+        <div id="my-tab-content" class="tab-content">
+          <div class="tab-pane active" id="s1">
+          <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+              <h4>Theme 7</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme2.png" alt="">
+              <h4>Theme 6</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme3.png" alt="">
+              <h4>Theme 5</h4>
+            </div>
+          </div>
+          <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+              <h4>Theme 4</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme5.png" alt="">
+              <h4>Theme 3</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 2</h4>
+            </div>
+          </div>
+          <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme7.png" alt="">
+              <h4>Theme 1</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme8.png" alt="">
+              <h4>Theme 9</h4>
+            </div>
+          </div>
+          </div>
+          <div class="tab-pane" id="s2">
+           <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme9.png" alt="">
+              <h4>Theme 8</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+              <h4>Theme 7</h4>
+            </div>
+          </div>
+          </div>
+          <div class="tab-pane" id="s3">
+           <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+              <h4>Theme 6</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme2.png" alt="">
+              <h4>Theme 5</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme3.png" alt="">
+              <h4>Theme 4 </h4>
+            </div>
+           </div>
+          </div>
+          <div class="tab-pane" id="s4">
+           <div style="margin-left:7%;">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+              <h4>Theme 2</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme5.png" alt="">
+              <h4>Theme 3 </h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div id="contact" class="box ">
+  <footer class="main contact ">
+    <div class="container">
+      <h1 class="hero">Get in touch.</h1>
+      <div id="results">
+        <div class="alert alert-error" id="error"> Please fill in all required fields. </div>
+        <div class="alert alert-success" id="success"> Thanks for getting in touch. We will get back to you shortly! </div>
+      </div>
+      <div class="row-fluid">
+        <!-- /.span3 -->
+        <div class="span3 styledbox general" style="padding-left:5%">
+          <h6><i class="icon-envelope"></i>Email</h6>
+          <p>abc@xyz.com <br />
+            abc@xyz.com</p>
+          <h6><i class="icon-phone"></i>Phone</h6>
+          <p>Phone no.<br/>
+            Fax no.</p>
+        </div>
+        <!-- /.span3 -->
+        <div class="span6 offset1">
+          <form action="form.php" method="POST" id="contact">
+            <div class="row-fluid">
+              <div class="span6">
+                <input class="req" id="name" type="text" placeholder="Name..." name="name">
+              </div>
+              <!-- /.span6 -->
+              <div class="span6">
+                <input class="req" id="email" type="text" placeholder="Email..." name="name">
+              </div>
+              <!-- /.span6 -->
+            </div>
+            <!-- /.row-fluid -->
+            <div class="row-fluid">
+              <div class="span12">
+                <textarea class="req" id="comments" name="comments" placeholder="Comments..."></textarea>
+                <input type="submit" value="Send!" class="pull-right" />
+              </div>
+              <!-- /.span12 -->
+            </div>
+            <!-- /.row-fluid -->
+          </form>
+        </div>
+        <!-- /.span6 -->
+      </div>
+      <!-- /.row-fluid -->
+    </div>
+    <!-- /.container -->
+    <div class="copyright clearfix">
+      <div class="container">
+        <div class="pull-left">
+          <p>startashoppe</p>
+        </div>
+        <!-- /.pull-left -->
+        <div class="pull-right">
+          <nav class="footer">
+            <ul class="inline">
+              <li><a href="about.html" style="color:white;">About us</a></li>
+              <li><a href="terms.html" style="color:white;">Terms and Services</a></li>
+              <li><a href="faq.html" style="color:white;">FAQs</a></li>
+            </ul>
+          </nav>
+          <!-- /nav.footer -->
+        </div>
+        <!-- /.pull-right -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.copyright -->
+  </footer>
+</div>
+<!-- /footer.main -->
+<script type="text/javascript" src="/first/js/jquery.js"></script>
+<script type="text/javascript" src="/first/js/bootstrap.js"></script>
+<script type="text/javascript" src="/first/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/first/js/custom.js"></script>
+<script type="text/javascript" src="/first/js/jquery.debouncedresize.js"></script>
+<script type="text/javascript" src="/first/js/retina.js"></script>
+<script type="text/javascript" src="/first/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="/first/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/first/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="/first/js/jquery.actual.js"></script>
+<script type="text/javascript" src="/first/js/form.js"></script>
+<script type="text/javascript">
+
+		jQuery(document).ready(function($) {
+
+
+		});
+ 
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+
+	</script>
+</body>
+</html>

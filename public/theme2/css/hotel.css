@@ -7449,7 +7449,6 @@ blockquote.pull-right small:after {
 }
 .navbar .nav-collapse .nav .active > a,
 .navbar .nav-collapse .nav .active > a:hover {
-  background-color: #b81007;
   color: #ffffff;
   text-shadow: none;
 }
