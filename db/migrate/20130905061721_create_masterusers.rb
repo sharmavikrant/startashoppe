@@ -17,6 +17,9 @@ class CreateMasterusers < ActiveRecord::Migration
       t.string :master_email
       t.boolean :validate
 	  t.string :theam
+	  t.string :slide_1
+	  t.string :slide_2
+	  t.string :slide_3
 	  
       t.timestamps
     end

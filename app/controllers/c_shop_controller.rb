@@ -26,7 +26,7 @@ connection = ActiveRecord::Base.connection();
 				
 	
 			cookies.delete :cart_value				
-			
+		redirect_to :action => 'home'	
 	end
 end
 
@@ -173,9 +173,53 @@ def home
 		redirect_to :action => 'c_step_2'
 		end
 		
-		
-		
-		
+		if params[:name] == "edit"
+			session[:mode]="edit"
+		end	
+
+		if params[:commit] == "visit site"
+			session[:mode]="abc"
+		end
+end
+
+def editmode
+	if params[:commit] == "slider_1"
+		if !params[:upload1].blank?
+			name = params[:upload1][:file1].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_1.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload1][:file1].read) }
+			
+			@path1 = "/images/#{session[:master_user_id]}/slider_1.#{name}"
+		end	
+		Masterusers.find_by_sql(["UPDATE masterusers SET slide_1 =? WHERE master_user_id=?",@path1,session[:master_user_id]])	
+	end
+	if params[:commit] == "slider_2"
+		if !params[:upload2].blank?
+			name = params[:upload2][:file2].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_2.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload2][:file2].read) }
+			
+			@path1 = "/images/#{session[:master_user_id]}/slider_2.#{name}"
+		end	
+		Masterusers.find_by_sql(["UPDATE masterusers SET slide_2 =? WHERE master_user_id=?",@path1,session[:master_user_id]])	
+	end
+	if params[:commit] == "slider_3"
+		if !params[:upload3].blank?
+			name = params[:upload3][:file3].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_3.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload3][:file3].read) }
+			
+			@path1 = "/images/#{session[:master_user_id]}/slider_3.#{name}"
+		end	
+		Masterusers.find_by_sql(["UPDATE masterusers SET slide_3 =? WHERE master_user_id=?",@path1,session[:master_user_id]])	
+	end
+	redirect_to :action => 'home'
 
 end
 def master_signup 

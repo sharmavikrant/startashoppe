@@ -4,6 +4,7 @@
     <link href="/css/bootstrap-responsive.css" rel="stylesheet">
     <script src="/js/jquery-latest.js"></script>
     <script src="/js/bootstrap.js"></script>
+    <link href="/first/font-awesome/css/font-awesome.css" rel="stylesheet">
 <script language="javascript">
 	
 	function confirmFunction()
@@ -148,10 +149,33 @@
 	</script>   
 	<style>
 	abc> a:hover { color:#563D7C}
-	
+     .block
+    {
+    padding:1%; 
+    
+    border-radius:10px;
+    margin-top:1%;
+    background-image: -webkit-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: -moz-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: -o-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: linear-gradient(top, #5F369E 0%,#37004D 100%);
+    }
+    h1
+    { padding-top:4%;
+        text-align:center;
+        color:white;
+        }
+	label
+    {color:white;
+    font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;}
+     h1, h2, h3, h4, h5, h6 {
+font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;
+text-transform: uppercase;
+font-weight: normal;
+}
 	</style>
    </head>
-<body>
+<body style="background-color:rgb(91, 58, 143);">
 
 <% unless flash[:notice].nil? %>
                         <div class="heading_featured" >
@@ -162,17 +186,19 @@
                     </fieldset>
                         </div>
                     <%end%>
-	<%if session[:flag] == "true" then%>			
+	<%if session[:flag] != "true" then%>			
 		<div class="span3" style="padding-left:38%;padding-top:1%">
 			<%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
 			<a href=<%="http://"+@a1[0]['url_name']+".lvh.me:3000/c_shop/shop_search_2"%> class="btn btn-lg">Go to your Shop</a>
 		</div> 
-<%else%>		
-<div class="panel-group" id="accordion"  style="padding:5%;">
-  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%; background-color: #563D7C;">
+<%end%>		
+	<%if session[:flag] == "true" then%>		
+<h1><i class="icon-quote-left"></i>&nbsp;Create Your Shop&nbsp;<i class="icon-quote-right"></i></h1>
+<div class="panel-group span9" id="accordion"  style="padding-left: 13%;padding-top: 3%;">
+  <div class="panel panel-default block" >
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#name">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#name" style="color:white;">
           Your Shop Details
         </a>
       </h3>
@@ -180,10 +206,10 @@
     <div id="name" class="panel-collapse collapse in">
       <div class="panel-body">
         <div class="span3">    
-                	<%= form_tag({ :controller =>  "first",:action => 'c_step_2'}, {:name => 'details'}) do%>
+                	<%= form_tag({ :controller =>  "first",:action => 'c_step_2'}, {:name => 'details',:multipart=>true}) do%>
                 <tab id=t1>
                 <br/>
-                <label class="control-label">
+                <label class="control-label" style="color:white;">
                 Shop Name 
                 <span class="required">*</span>
                 </label>
@@ -196,10 +222,10 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #fff;">
+  <div class="panel panel-default block" >
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:#0088cc">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:white;">
           Create your Administration Account
         </a>
       </h3>
@@ -264,10 +290,10 @@
       </div>
     </div>
   </div>
-  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #563D7C;">
+  <div class="panel panel-default block" >
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a class="accordion-toggle abc" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+        <a class="accordion-toggle abc" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color:white;">
           Choose a Theme for Your Shop
         </a>
       </h3>
@@ -290,22 +316,29 @@
         </div>
     </div>
   </div>
-  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%;background-color: #fff;">
+  <div class="panel panel-default block" >
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color:white;">
           Select Slider Images for Your Shop
         </a>
       </h3>
     </div>
+	
     <div id="collapseThree" class="panel-collapse collapse">
       <div class="panel-body">
        <div class="span10">
             <div class="span3">
-               
+               <p style="color :white"><label for="Upload_image" >Select slider image 1</label>
+			<%= file_field 'upload1', 'file',class: "input-block-level" %></p>
             </div>
             <div class="span3">
-                
+                <p style="color :white"><label for="Upload_image" >Select slider image 2</label>
+			<%= file_field 'upload2', 'file',class: "input-block-level" %></p>
+            </div>
+			<div class="span3">
+			<p style="color :white"><label for="Upload_image" >Select slider image 3</label>
+			<%= file_field 'upload3', 'file',class: "input-block-level" %></p>
             </div>
         </div>
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:#0088cc">
@@ -314,10 +347,10 @@
         </div>
     </div>
   </div>
-  <div class="panel panel-default" style="border: 5px solid rgb(204, 204, 204); padding:1%; background-color: #563D7C;">
+  <div class="panel panel-default block" >
     <div class="panel-heading">
       <h3 class="panel-title">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:white;">
           Where  is Your Shop Located?
         </a>
       </h3>

@@ -41,7 +41,7 @@ background-color: #563d7c;
 	</div>
 	
 	<div class="tab-pane" id="tab2">
-		
+				   <%= form_tag("/c_shop/payment/", :method=>"put") do %>
 				<div class="span10" style="margin-left: 8%;">
 					<div class="span3">
                                 <label class="control-label"  for="name">Full Name</label>
@@ -158,7 +158,7 @@ background-color: #563d7c;
 							</p>
 						
                             
-                               <%= form_tag("/c_shop/payment/", :method=>"put") do %>
+                            
 							   	<br><br><br>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<%= submit_tag("payment", :value => "payment", :class => "btn btn-primary") %>
 								<%end%>

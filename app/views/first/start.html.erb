@@ -47,6 +47,17 @@ function myFunction()
 		
 	}
 </script>
+<style>
+ h1, h2, h3, h4, h5, h6 {
+font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;
+text-transform: uppercase;
+font-weight: normal;
+}
+.nav > li > a{
+color: #563d7c;
+font-size: medium;
+}
+</style>
 
 </head>
 
@@ -145,17 +156,20 @@ function myFunction()
 	  <%= form_tag({:controller=>'first',:action => 'master_signup'}, {:name => 'login'}) do%>
         
           <div class="row-fluid">
-            <div class="span4">
+          
+            <div class="span4" style="margin-top: 3%; margin-left:6%;">
 			  <%= text_field_tag(:name,"",:placeholder => 'Shop Name', class: "input-block-level",:required=>true,:onfocusout=>'myFunction()') %><p id="testing" style="color:red;"></p>
 
             </div>
             <!-- /.span4 -->
-            <div class="span4">
+            <div class="span4"  style="margin-top: 3%;">
             <%=text_field_tag 'email', nil, :placeholder => 'Email' ,:requried=>true,:onfocusout=>'myFunction2()'%><p id="testing2" style="color:red;"></p>
+            
             </div>
             <!-- /.span4 -->
-			<div class="span4" style="padding-left: 5%;">
-           <%= submit_tag("upload",  :value => "upload", :class => "btn btn-large btn btn-info" ) %>
+			<div class="span3">
+             <%= submit_tag("upload",  :value => "upload", :class => "btn btn-large btn btn-info" ) %>
+           <img src="/first/img/arrow2.png" width="60%">
 			</div>
           </div>
           <!-- /.row-fluid -->
@@ -270,7 +284,7 @@ Make your site socially relevant, integrate social media sites in your store
     <div class="container">
       <h1 class="hero">Our Stores</h1>
       <p class="sub-hero">Check out some of the stuff we've created</p>
-      <div class="tabbable" style="margin-left:2%">
+      <div class="tabbable" style="margin-left:8%">
         <ul class="nav nav-tabs"  data-tabs="tabs" style="text-align:center">
           <li class="active extab"><a href="#s1" data-toggle="tab2"><i class="icon-star-empty icon-2x"></i><h6>Featured</h6></a></li>
           <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-female icon-2x"></i><h6>Fashion</h6></a></li>
@@ -280,11 +294,10 @@ Make your site socially relevant, integrate social media sites in your store
           <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-star-empty icon-2x"></i><h6>Featured</h6></a></li>
           <li class="extab"><a href="#s3" data-toggle="tab2"><i class="icon-female icon-2x"></i><h6>Fashion</h6></a></li>
           <li class="extab"><a href="#s4" data-toggle="tab2"><i class="icon-camera icon-2x"></i><h6>Electronics</h6></a></li>
-          <li class="extab"><a href="#s1" data-toggle="tab2"><i class="icon-gift icon-2x"></i><h6>Gifts</h6></a></li>
-		  <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-plus-sign-alt icon-2x"></i><h6>Health</h6></a></li>        </ul>
+           </ul>
         <div id="my-tab-content" class="tab-content">
           <div class="tab-pane active" id="s1">
-          <div style="margin-left:7%;">
+          <div >
             <div class="span3"> <img src="/first/img/theme1.png" alt="">
               <h4>Theme 7</h4>
             </div>
@@ -295,7 +308,7 @@ Make your site socially relevant, integrate social media sites in your store
               <h4>Theme 5</h4>
             </div>
           </div>
-          <div style="margin-left:7%;">
+          <div >
             <div class="span3"> <img src="/first/img/theme4.png" alt="">
               <h4>Theme 4</h4>
             </div>
@@ -306,7 +319,7 @@ Make your site socially relevant, integrate social media sites in your store
               <h4>Theme 2</h4>
             </div>
           </div>
-          <div style="margin-left:7%;">
+          <div >
             <div class="span3"> <img src="/first/img/theme7.png" alt="">
               <h4>Theme 1</h4>
             </div>
@@ -326,7 +339,7 @@ Make your site socially relevant, integrate social media sites in your store
           </div>
           </div>
           <div class="tab-pane" id="s3">
-           <div style="margin-left:7%;">
+           <div>
             <div class="span3"> <img src="/first/img/theme1.png" alt="">
               <h4>Theme 6</h4>
             </div>
@@ -339,7 +352,7 @@ Make your site socially relevant, integrate social media sites in your store
            </div>
           </div>
           <div class="tab-pane" id="s4">
-           <div style="margin-left:7%;">
+           <div>
             <div class="span3"> <img src="/first/img/theme4.png" alt="">
               <h4>Theme 2</h4>
             </div>

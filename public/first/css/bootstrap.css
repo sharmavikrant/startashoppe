@@ -231,7 +231,7 @@ body {
 }
 
 a {
-  color: #FF8B00;
+  color: #563d7c;
   text-decoration: none;
 }
 
@@ -805,7 +805,7 @@ h4 small {
 
 .page-header {
   padding-bottom: 9px;
-  border-bottom: 1px solid #eeeeee;
+ 
   width:100%;
 }
 
@@ -4629,7 +4629,7 @@ color:black;
 .navbar .nav > li > a {
   float: none;
   padding: 10px 15px 10px;
-  color: #777777;
+  color: #563d7c;
   text-decoration: none;
   text-shadow: 0 1px 0 #ffffff;
 }
@@ -4807,20 +4807,14 @@ color:black;
 }
 
 .navbar-inverse .navbar-inner {
-  background-color: #1b1b1b;
-  background-image: -moz-linear-gradient(top, #222222, #111111);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
-  background-image: -webkit-linear-gradient(top, #222222, #111111);
-  background-image: -o-linear-gradient(top, #222222, #111111);
-  background-image: linear-gradient(to bottom, #222222, #111111);
-  background-repeat: repeat-x;
+  
   border-color: #252525;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
 }
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #999999;
+
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -4828,7 +4822,7 @@ color:black;
 .navbar-inverse .nav > li > a:hover,
 .navbar-inverse .brand:focus,
 .navbar-inverse .nav > li > a:focus {
-  color: #ffffff;
+  color: #563d7c;
 }
 
 .navbar-inverse .brand {
@@ -4841,15 +4835,15 @@ color:black;
 
 .navbar-inverse .nav > li > a:focus,
 .navbar-inverse .nav > li > a:hover {
-  color: #ffffff;
+  color: #563d7c;
   background-color: transparent;
 }
 
 .navbar-inverse .nav .active > a,
 .navbar-inverse .nav .active > a:hover,
 .navbar-inverse .nav .active > a:focus {
-  color: #ffffff;
-  background-color: #111111;
+  color:  white;
+  background-color: #563d7c;
 }
 
 .navbar-inverse .navbar-link {

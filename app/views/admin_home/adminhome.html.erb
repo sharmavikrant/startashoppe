@@ -29,23 +29,39 @@
 <link href="/adminhome/css/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
 <!-- END PAGE LEVEL STYLES -->
 <link rel="shortcut icon" href="/adminhome/css/favicon.ico" />
+<style>
+.return { 
+background-color:white !important;
+color:#563d7c !important;
+font-family: 'Oxygen', sans-serif !important;
+font-weight: bold;
+
+}
+li , p , h4,h1,h2,h3 label ,dt {
+  font-family: 'Oxygen', sans-serif;
+  color:#563d7c !important;
+ 
+  }
+</style>
+
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
+<%= session[:adminflag] = "true" %>
 <!-- BEGIN HEADER -->
 <div class="header navbar navbar-inverse navbar-fixed-top">
   <!-- BEGIN TOP NAVIGATION BAR -->
   <div class="navbar-inner">
     <div class="container-fluid">
       <!-- BEGIN LOGO -->
-	  <a class="brand" href="index.html">
+	  <a class="brand" href="index.html" style="margin-left:1%;">
 				StartAshoppe
 				</a>
 				
      <i class="icon-home icon-2x">
 					 <%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
-					<a href=<%="http://"+@a1[0]['url_name']+".lvh.me:3000"%> class="btn btn-lg">Go to your Shop</a>
+					<a href=<%="http://"+@a1[0]['url_name']+".lvh.me:3000"%> class="btn btn-lg return">Go to your Shop</a>
     
 				</i>
       <!-- END LOGO -->
@@ -103,15 +119,10 @@
         </li>
         <!-- END TODO DROPDOWN -->
         <!-- BEGIN USER LOGIN DROPDOWN -->
-        <li class="dropdown user"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img alt="" src="/adminhome/img/avatar1_small.jpg" /> <span class="username">Bob Nilson</span> <i class="icon-angle-down"></i> </a>
+        <li class="dropdown user"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span class="username">Admin</span> <i class="icon-angle-down"></i> </a>
           <ul class="dropdown-menu">
-            <li><a href="extra_profile.html"><i class="icon-user"></i> My Profile</a></li>
-            <li><a href="page_calendar.html"><i class="icon-calendar"></i> My Calendar</a></li>
-            <li><a href="inbox.html"><i class="icon-envelope"></i> My Inbox(3)</a></li>
-            <li><a href="#"><i class="icon-tasks"></i> My Tasks</a></li>
-            <li class="divider"></li>
-            <li><a href="extra_lock.html"><i class="icon-lock"></i> Lock Screen</a></li>
-            <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+           
+            <li><i class="icon-key"></i> <%=link_to "Log out", :controller => "admin_home", :action => "admin_logout", :id => @profile, :value => "logout" %></li>
           </ul>
         </li>
         <!-- END USER LOGIN DROPDOWN -->
@@ -156,9 +167,14 @@
                                     Product Category</a>
                                 </li>
                                 <li >
-                                    <a href="add_subcategory.html">
+                                    <a href="add_category.html">
                                     <i class="icon-plus"></i> 
                                      Sub Category</a>
+                                </li>
+								<li >
+                                    <a href="category_detail.html">
+                                    
+                                    View all category</a>
                                 </li>
                             </ul>
                         </li>
@@ -213,10 +229,10 @@
                             <span class="arrow "></span>
                             </a>
                             <ul class="sub-menu">
-                                <li >
-                                    <a href="ui_general.html">
-                                    Edit mode</a>
-                                </li>
+                                
+								<li>
+									<%=link_to "Edit Mode", :controller =>  "c_shop", :action => "home", :id => @profile, :method => :post, :name => "edit"%>
+								</li>
                                 
                             </ul>
                     </li>
@@ -424,7 +440,7 @@
 		});
 	</script>
 <!-- END JAVASCRIPTS -->
-<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script>
+
 </body>
 <!-- END BODY -->
 </html>

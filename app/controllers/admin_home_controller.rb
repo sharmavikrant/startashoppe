@@ -40,7 +40,7 @@ class AdminHomeController <CShopController
        end
 	end
 	def adminhome
-
+		session[:adminflag] == "true"
 	end
 
 	def add_category
@@ -336,8 +336,9 @@ class AdminHomeController <CShopController
 	
 	def admin_logout
 		if params[:value] == "logout" then
-			session[:master_user_id] = 0
-			redirect_to :controller=>'c_shop', :action => 'home'
+			#session[:master_user_id] = 0
+			session[:adminflag] = "false"
+			redirect_to :controller=> 'c_shop', :action => 'home'
 		end
 	end
 	

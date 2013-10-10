@@ -5,8 +5,61 @@
 	<title>Template</title>
     
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="/css/sangoma-green.css" rel="stylesheet" type="text/css">	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">			
+    <link href="/adminhome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/sangoma-green.css" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">			
+<style>
+p, td , label{
+font-family: 'Oxygen', sans-serif;
+color:#563d7c !important;
+}
+.header .nav > li.dropdown .dropdown-toggle .badge {
+position: absolute;
+font-size: 11px !important;
+font-weight: 300;
+top: 8px;
+right: 24px;
+text-align: center;
+height: 14px;
+background-color: #e02222;
+padding: 2px 6px 2px 6px;
+-webkit-border-radius: 12px !important;
+-moz-border-radius: 12px !important;
+border-radius: 12px !important;
+text-shadow: none !important;
+}
+.label, .badge {
+font-weight: 300;
 
+}
+.badge {
+padding-right: 9px;
+padding-left: 9px;
+-webkit-border-radius: 9px;
+-moz-border-radius: 9px;
+border-radius: 9px;
+}
+.label, .badge {
+display: inline-block;
+padding: 2px 4px;
+font-size: 11.844px;
+font-weight: bold;
+line-height: 14px;
+color: #fff;
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+white-space: nowrap;
+vertical-align: baseline;
+background-color: #999;
+}
+.return { 
+background-color:white !important;
+color:#563d7c !important;
+font-family: 'Oxygen', sans-serif !important;
+font-weight: bold;
+
+}
+
+</style>
 </head>
 
 <body>
@@ -49,7 +102,7 @@
 			<fieldset>
 				<div class="control-group span12">
 				
-					<div class="controls span12" style="font-weight: bolder;font-size: 20px;">Search Orders
+					<div class="controls span12" style="font-weight: bolder;font-size: 20px;font-family: 'Oxygen', sans-serif;color:#563d7c;">Search Orders
 					</div>
 					<div class="control-group span3" >
 						
@@ -57,7 +110,7 @@
 							<input type="text" id="order-search-text" class="input-large ui-autocomplete-input" name="filter_order_id" autocomplete="OfF" role="textbox" aria-autocomplete="list" aria-haspopup="true" onchange='this.form.submit()'>
 					</div>
 							<div class="control-group span3" style="margin-left:2%" >
-							    <select id="search_mode" name="search_mode" style="margin-left:2%">
+							    <select id="search_mode" name="search_mode" style="margin-left:2%;font-family: 'Oxygen', sans-serif;">
 									<option value="filter_order_id">Order Id</option>
 									<option value="filter_customer">Customer Name</option>
 									<option value="filter_payment_mode">Payment Mode</option>
@@ -72,7 +125,7 @@
             <div class="span6">
 			<form class="form-inline" id="search-order" action="/admin_home/order" name="order_date_form" method="get">	
 				<div class="span3">
-					<label class="control-label">Order Date</label>
+					<label class="control-label" style="font-family: 'Oxygen', sans-serif;">Order Date</label>
 					</div>	
                     <div class="span3">
 						 <input type="text" id="datepicker" class="input-large ui-autocomplete-input" name="order_date" autocomplete="OfF" role="textbox" aria-autocomplete="list" aria-haspopup="true" onchange='this.form.submit()'>
@@ -94,7 +147,7 @@
 <form id="order-form" enctype="multipart/form-data" method="post" action="">
 	<table id="orders-list" class="table table-hover isotope powertour-hook-relative">
 				<tbody>
-					<tr data-id="453" class="element ready-for-dispatch isotope-item active">
+					<tr data-id="453" class="element ready-for-dispatch isotope-item active" style="font-family: 'Oxygen', sans-serif;">
 						<td class="right span1">Order_Id</td>
 						<td class="left span4">Customer Name</td>
 						<td class="left span4">Order Date</td>

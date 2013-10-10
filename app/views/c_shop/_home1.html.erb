@@ -16,9 +16,10 @@
           <div class="nav-collapse collapse">
             <ul class="nav span10">
               <li class="active"><%=link_to "Home", :controller =>  "c_shop", :action => "home", :id => @profile, :method => :post%></li>
+				<li class="active"><%=link_to "View all", :controller =>  "c_shop", :action => "view_all_products", :id => @profile, :method => :post%></li>
 	<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
 						<%@category.each do |i|%>
-	<li  class="dropdown-toggle" data-toggle="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=i["product_category_name"]%></a>
+	<li  class="active"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=i["product_category_name"]%></a>
 			<ul class="dropdown-menu" role="menu" >
 					<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
 						<%@subcategory.each do |i|%>
@@ -31,12 +32,18 @@
 		
 	</li>
 	<%end%>
-	
-	
-	<li class="dropdown-toggle" data-toggle="dropdown"><%=link_to "About Us", :controller =>  "c_shop", :action => "home", :id => @profile, :method => :post%></li>
-	<li class="dropdown-toggle" data-toggle="dropdown" style="float:right;"> 
-	</li></ul>
+	<% if session[:adminflag] == "true" then %>
+		<li class="active"><%=link_to "Admin home", :controller =>  "admin_home", :action => "adminhome", :id => @profile, :method => :post%></li>
+	<%end%>
+	<li class="active"><%=link_to "About Us", :controller =>  "c_shop", :action => "home", :id => @profile, :method => :post%></li>
+	<% if session[:adminflag] == "false" then %>
+	<li class="active"> 
+	<%=link_to "Admin Login", :controller =>  "admin_home", :action => "adminlogin", :id => @profile, :method => :post%>
+	</li>
+	<%end%>
+	</ul>
     <div class="span1" style="float:right;">
+	
 	<%=link_to image_tag("/images/Shopping-Cart.png", :width => 50, :height => 100), :controller =>  "c_shop",:action => "add_to_cart" , :id => @profile,:name => "show_cart", :method => :post %>
     </div>
 	

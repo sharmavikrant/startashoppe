@@ -75,76 +75,11 @@ $(function(){
 		return false;
 	});
 
-	$('.home .datepicker_from').datepicker({                
-		dateFormat: 'dd/mm/yy',
-		showOtherMonths: true,
-		numberOfMonths: 1,
-		altField: ".check-in-date",
-		altFormat: "d M, '3:00 PM'",
-		minDate: 0,
-		onSelect: function(date) {
-			update_total_price();
-		}
-	});	
-	$('.home .datepicker_to').datepicker({                
-		dateFormat: 'dd/mm/yy',
-		showOtherMonths: true,
-		numberOfMonths: 1,
-		altField: ".check-out-date",
-		altFormat: "d M, '12:00 PM'",
-		minDate: 1,
-		defaultDate: "+1w",
-		onSelect: function(date) {
-			update_total_price();
-		}
-	});
+	
 
 
-	$('.book-start .datepicker_from').datepicker({   
-		changeMonth: true,
-		numberOfMonths: 3,
-		minDate: 0,
-		onClose: function( selectedDate ) {
-			$('.book-start .datepicker_from').datepicker( "option", "minDate", selectedDate );
-		},
-		onSelect: function(date) {
-			update_total_price();
-		}
-	});
-	$('.book-start .datepicker_to').datepicker({       
-		defaultDate: "+1w",
-		changeMonth: true,
-		numberOfMonths: 3,
-		minDate: 1,
-		onClose: function( selectedDate ) {
-			$('.book-start .datepicker_to').datepicker( "option", "maxDate", selectedDate );
-		},
-		onSelect: function(date) {
-			update_total_price();
-		}
-	});
-
-	$('.global-datepicker-from').datepicker({   
-		minDate: 0,
-		onClose: function( selectedDate ) {
-			$('.global-datepicker-from').datepicker( "option", "minDate", selectedDate );
-		}
-	});
-	$('#global-datepicker-from').click(function(){
-		$('.global-datepicker-from').datepicker('show');
-		return false;
-	});
-	$('.global-datepicker-to').datepicker({   
-		defaultDate: "+1w",
-		minDate: 1,
-		onClose: function( selectedDate ) {
-			$('.global-datepicker-to').datepicker( "option", "maxDate", selectedDate );
-		}
-	});
-	$('#global-datepicker-to').click(function(){
-		$('.global-datepicker-to').datepicker('show');
-		return false;
-	});
+	
+	
 	var firstDay = new Date();
 	var nextWeek = new Date(firstDay.getTime() + 7 * 24 * 60 * 60 * 1000);
 	$(".global-datepicker-from").datepicker('setDate', firstDay);

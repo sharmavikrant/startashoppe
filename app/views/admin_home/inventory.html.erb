@@ -18,6 +18,25 @@
   
   
   <script src="/inventory/jquery-ui.js"></script>
+  <style>
+  li , p , h4, label{
+  font-family: 'Oxygen', sans-serif;
+  }
+  p 
+  { font-weight: bold;
+color: #563d7c;
+}
+label {
+color: #563d7c;}
+
+.return { 
+background-color:white !important;
+color:#563d7c !important;
+font-family: 'Oxygen', sans-serif !important;
+font-weight: bold;
+
+}
+
 	</style>
 
 </head>
@@ -26,7 +45,7 @@
 
  <%= render :partial => 'header' %>
   <%= render :partial => 'sidebar' %>
-
+<div class="row-fluid" style="margin-left: -1%;">
 <div class="span9" style="float:right; margin-top:3%;">				
 				<h2 style="color: #563d7c;">Inquiries and Reports</h2>
 				<hr>				
@@ -38,15 +57,16 @@
 							<%= link_to "Inventory Item Report", {:controller => "admin_home", :action => "inventory", :name => "report", :method => :post}%>
 						</li>
 					</ul>				
-			</div> 				
+			</div> 	
+		
 		<div class="span9" style="float:right;">
 		
 			
 			
 		   <% if @flag == "status" then%>
 			<%= form_tag("/admin_home/inventory/", :method=>"post", :multipart => true) do %>
-				<h4 style="color: #563d7c;">Inventory Item Status</h4>
-				<hr>
+				<h4 style="color: #563d7c;text-align:center;">Inventory Item Status</h4>
+			
 					
 					<div class="span4">
 							<label class="control-label">
@@ -100,14 +120,14 @@
 		<%if @flag == "report" then %>
 		
 				<%= form_tag("/admin_home/inventory/", :method=>"post") do %>
-					<h4 class="side_heading">Sales Report</h4>
+					<h4 class="side_heading" style="color: #563d7c;text-align:center;">Sales Report</h4>
 					<p>Start Date: <input type="text" id="datepicker" name="start_date"/></p>
 					<p>End Date:&nbsp;&nbsp;&nbsp;<input type="text" id="datepicker1" name="end_date"/></p>
 					
 					<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>	
 				<%end%>
 				<%if !@display.nil? then%>
-					<table class="table table-hover" id="customers-customer-list">
+					<table class="table table-hover table-stats" id="customers-customer-list">
 						<thead>
 							<tr>
 								<th class="headerSortable"> Order Id </th>
@@ -136,7 +156,7 @@
 				
 		<%end%>		
 			</div>
-
+</div>
 	
 	
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />

@@ -14,7 +14,8 @@ class FirstController < CShopController
 					Masterusers.create(:url_name => params[:name])
 					# Mastermailer.master_welcome_email( a,params[:name],params[:email]).deliver
 					MasterMailer.master_welcome_email(params[:name],params[:email]).deliver
-					session[:master_user_id]=(Masterusers.last).master_user_id	 
+					session[:master_user_id]=(Masterusers.last).master_user_id	
+					session[:flag] = "true"					
 					redirect_to :action => 'c_step_2'
 				end
 			end
@@ -37,9 +38,12 @@ class FirstController < CShopController
 	end
 	
 	def c_step_2
+	unless File.directory?("public/images/#{session[:master_user_id]}")
+				Dir.mkdir"public/images/#{session[:master_user_id]}"
+			end
 	@test=params[:commit]
 	@t=Masterusers.all
-	begin
+	#begin
 		if params[:commit]== "Submit" then
 			
 			@test=params[:commit]
@@ -48,19 +52,48 @@ class FirstController < CShopController
 			params[:emailaddress] =='' ? nil : params[:emailaddress]
 				#Masterusers.find_by_sql(["UPDATE masterusers SET address =?,landmark=?,city=?,state=?, pincode=?,country=?,phone=? WHERE master_user_id=?",params[:address],params[:landmark],params[:city],params[:state],params[:pincode],params[:country],params[:phone],session[:master_user_id]])	
 				#Masterusers.find_by_sql(["UPDATE masterusers SET theam =? WHERE master_user_id=?",params[:theme],session[:master_user_id]])	
-				session[:flag] = "true"
-				Masterusers.find_by_sql(["UPDATE masterusers SET shop_name =?,first_name=?,last_name=?,master_email=?, password=?,address =?,landmark=?,city=?,state=?, pincode=?,country=?,phone=? WHERE master_user_id=?",params[:shopname],params[:firstname],params[:lastname],params[:emailaddress],params[:password],params[:address],params[:landmark],params[:city],params[:state],params[:pincode],params[:country],params[:phone],session[:master_user_id]])	
+				
+			if !params[:upload1].blank?
+			name = params[:upload1][:file].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_1.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload1][:file].read) }
+			
+			@path1 = "/images/#{session[:master_user_id]}/slider_1.#{name}"
+			end	
+			if !params[:upload2].blank?
+			name = params[:upload2][:file].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_2.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload2][:file].read) }
+			
+			@path2 = "/images/#{session[:master_user_id]}/slider_2.#{name}"
+			end	
+			if !params[:upload3].blank?
+			name = params[:upload3][:file].original_filename
+			name=name.split(".").last
+			directory = "public/images/"
+			@path = "public/images/#{session[:master_user_id]}/slider_3.#{name}"
+			File.open(@path, "wb") { |f| f.write(params[:upload3][:file].read) }
+			
+			@path3 = "/images/#{session[:master_user_id]}/slider_3.#{name}"
+			end	
+				
+				Masterusers.find_by_sql(["UPDATE masterusers SET shop_name =?,first_name=?,last_name=?,master_email=?, password=?,address =?,landmark=?,city=?,state=?, pincode=?,country=?,phone=?,slide_1=?,slide_2=?,slide_3=? WHERE master_user_id=?",params[:shopname],params[:firstname],params[:lastname],params[:emailaddress],params[:password],params[:address],params[:landmark],params[:city],params[:state],params[:pincode],params[:country],params[:phone],@path1,@path2,@path3,session[:master_user_id]])	
 				#Masterusers.find_by_sql(["UPDATE masterusers SET last_name=?,master_email=?, password=? WHERE master_user_id=?",params[:lastname],params[:emailaddress],params[:password],session[:master_user_id]])	
+				session[:flag] = "false"
 				redirect_to :action => 'shop_search',:name=>"ok"
 			else
 			flash[:notice] = "#{'password and confirm password does not match'}"
 					redirect_to :action => 'c_step_2'
 			end
 		end
-	rescue => e 
-	flash[:notice] = "#{'this email already exists'}"
+	#rescue => e 
+	#flash[:notice] = "#{'this email already exists'}"
 	
-	end
+	#end
 	
 		
 	end

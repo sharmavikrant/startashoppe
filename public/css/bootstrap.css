@@ -806,7 +806,7 @@ h4 small {
 .page-header {
   padding-bottom: 9px;
   margin: 20px 0 30px;
-  border-bottom: 1px solid #eeeeee;
+ 
 }
 
 ul,
@@ -5945,7 +5945,7 @@ a.badge:focus {
 
 .accordion-group {
   margin-bottom: 2px;
-  border: 1px solid #e5e5e5;
+
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;

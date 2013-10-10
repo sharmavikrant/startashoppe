@@ -40,8 +40,8 @@ opacity: 1;
 }
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
 color: rgb(87, 99, 115);
-border-color: rgb(76, 143, 189) rgb(197, 208, 220) transparent;
-border-top: 2px solid rgb(76, 143, 189);
+border-color: #563d7c rgb(197, 208, 220) transparent;
+border-top: 2px solid #563d7c;
 background-color: rgb(255, 255, 255);
 z-index: 12;
 line-height: 16px;
@@ -166,7 +166,7 @@ padding: 5px;
 }
 .accordion-style2.panel-group .panel-heading .accordion-toggle.collapsed:hover {
 background-color: rgb(246, 246, 246);
-color: rgb(67, 142, 185);
+color: #563d7c;
 text-decoration: none;
 }
 .accordion-style2.panel-group .panel-heading .accordion-toggle.collapsed {
@@ -179,8 +179,8 @@ border-color: rgb(217, 217, 217);
 text-decoration: none;
 }
 .accordion-style1.panel-group .panel-heading .accordion-toggle:hover {
-color: rgb(110, 166, 204);
-background-color: rgb(241, 248, 253);
+color: white;
+background-color: #563d7c;
 text-decoration: none;
 }
 .accordion-style2.panel-group .panel-heading .accordion-toggle {
@@ -192,8 +192,8 @@ border-image-outset: initial;
 border-image-repeat: initial;
 }
 .accordion-style1.panel-group .panel-heading .accordion-toggle {
-color: rgb(76, 143, 189);
-background-color: rgb(238, 244, 249);
+color: white;
+background-color: #563d7c;
 position: relative;
 font-weight: bold;
 font-size: 13px;
