@@ -1,0 +1,17 @@
+$('#header_order_bar').html('<%= escape_javascript(render("toporder")) %>');
+
+$('#test123').html('<%= escape_javascript(render("topmessage")) %>');
+
+<%if  $message.count != 0  %>
+
+$('#header_message_count').html('<span  class="badge"><%=$message.count%></span>');
+
+<%else%>
+
+$('#header_message_count').html('');
+
+<%end%>
+
+$('#inner_message_count').html('You have <%=$message.count%> new messages');
+
+

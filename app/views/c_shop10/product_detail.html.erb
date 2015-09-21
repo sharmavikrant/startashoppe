@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <title>product detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+    <!-- bootstrap -->
+    <link href="/theme10/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/theme10/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="/theme10/themes/css/bootstrappage.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    <!-- global styles -->
+    <link href="/theme10/themes/css/flexslider.css" rel="stylesheet" />
+    <link href="/theme10/themes/css/main.css" rel="stylesheet" />
+    <!-- scripts -->
+<script src="/theme10/bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="/theme10/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/theme10/bootstrap/js/jquery.elevatezoom.js"></script>
+
+
+
+    <!--[if lt IE 9]>                       
+                        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+                        <script src="js/respond.min.js"></script>
+                <![endif]-->
+  </head>
+  <body>
+  <%= render :partial => 'header10' %>
+	  
+	  <%@d.each do |i|%>
+      <section class="main-content wrap">
+        <div class="shop-content">
+          <div class="row">
+            <div class="span9">
+              <h2 class="widget-title"><span>Product detail</span></h2>
+			  <div class="sidebar-line"><span></span></div>
+            </div>
+          </div>
+          
+          <section id="mainBody">
+            <div class="container">
+              <div class="row">
+                <div class="span6">
+                  <div class="image-product-desc"> 
+                      <img id="zoom_01" src='<%="#{i['image_1']}/thumb/#{i[:image_name_1]}"%>' height = "500" width = "500" data-zoom-image="<%="#{i['image_1']}#{i[:image_name_1]}"%> "/>
+                  </div>
+                </div>
+                <%= form_tag("/c_shop10/add_to_cart/", :method=>"post") do %>
+                  <div style="margin:0;padding:0;display:inline">
+                    
+                  </div>
+                  <div class="span6">
+                    <div class="promoDetail">
+                    <h1><%=i["product_name"]%></h1>
+                    <ul>
+                      <li><%=i["title"]%></li>
+                    </ul>
+                    <h3>Price:<%=i["price"]%></h3>
+                    <div class="control-group">
+                      <h3>Quantity:</h3>
+                      <div class="">
+                        <% @qty = Masterusers.find_by_sql("select quantity, description from product_"+session[:master_user_id].to_s+" where product_id = "+i["product_id"].to_s) %>
+											
+											
+											
+											<% x = @qty[0]['quantity'] %>
+											<select name="quantity">
+											<% for j in 1..x  %>
+											<option value= <%= j %>><%= j %></option>
+											<%end%>
+											</select>
+                      </div>
+                    </div>
+                    
+                    <input type="hidden" name="p_id" value=<%=i['product_id']%> />
+					<%= submit_tag("add to cart", :name=>"name", :value => "add to cart",:class=>"btn btn-warning") %>
+                    <br />
+                    <div class="share-button">
+                      <div class="row-fluid">
+                        <h5>Share Product On:</h5>
+                    <div class="span3">
+
+                         
+<%@ids=Masterusers.find_by_sql("select product_category_id, sub_category_id from product_#{session["master_user_id"].to_s} where product_id = "+i["product_id"].to_s)%>
+<%@cat=Masterusers.find_by_sql("select product_category_name from product_category_#{session["master_user_id"].to_s} where product_category_id = #{@ids[0]["product_category_id"]}")%>
+<%@sub=Masterusers.find_by_sql("select sub_category_name from product_sub_category_#{session["master_user_id"].to_s} where sub_category_id = #{@ids[0]["sub_category_id"]}")%>
+
+<% @xx = "/#{Masterusers.title(i[:title])}/#{@cat[0]["product_category_name"]}/#{@sub[0]["sub_category_name"]}/c_shop10/#{i['product_id']}"%>
+
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-url= "http://<%= session[:url_name]%>.startashoppe.com<%= @xx%>" data-text=<%=i['title']%> data-count="vertical" data-via=<%= session[:shop_name]%>>Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+
+
+  </div>
+
+                        <div class="span6">
+
+
+<button class="btn btn-primary facebookshare" type="button"
+
+                          onclick=" window.open( &#39;http://www.facebook.com/sharer.php?s=100&amp;p[title]=<%=i['title']%>&p[summary]=<%=i['description']%>,<%= @x%> &p[url]=http://<%= session[:url_name]%>.startashoppe.com/<%= params[:controller]%>/product_detail?product='+<%=i['product_id']%>,'facebook-share-dialog','width=626,height=436' ); return false;">
+
+                         <i class="fa fa-2x fa-facebook"></i> share on facebook</button>
+
+                        </div>
+                      </div>
+                    </div>
+                    <br />
+                  </div>
+                <%end%>
+                
+              </div>
+			
+			<div class="row">  
+			  
+			  <!-- product description here -->	
+			  
+			  <div class="span9 desc-product">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class="active"><a href="#home">Description</a></li>
+									<li class=""><a href="#profile">Additional Information</a></li>
+								</ul>							 
+								<div class="tab-content">
+									<div class="tab-pane active" id="home"><%=i[:description]%></div>
+									<div class="tab-pane" id="profile">
+										<table class="table table-striped shop_attributes">	
+											<tbody>
+												<tr class="">
+													<th>Product Code:</th>
+													<td><%=i[:product_id]%></td>
+												</tr>		
+												<tr class="alt">
+													<th>Availability:</th>
+													<td><%if i[:quantity]>0 then %>Instock<%else%>Out of Stock<%end%></td>
+												</tr>
+												<tr class="alt">
+													<th>Price:</th>
+													<td>$<%=i[:sale_price]%></td>
+												</tr>
+												<tr class="alt">
+													<th>Eco Tax:</th>
+													<td>Nil</td>
+												</tr>
+												<tr class="alt">
+													<th>Vat(10%):</th>
+													<td>Nil</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>							
+				</div>
+				
+			<!-- product description here -->	
+			</div>	
+            </div>
+          </section>
+        </div>
+      </section>
+       <section id="footer-bar">
+				<div class="row">
+					<div class="span4">
+                        <div class="heading_footer">                 
+						<h4>Navigation</h4>
+                        </div>
+                        <div class="row">
+                        <div class="span2">
+                       
+						<ul class="nav">
+							
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Shipping &amp; Delivery Policy</a></li>
+							<li><a href="#">Disclaimer Policy</a></li>
+							
+						</ul>
+                            </div>
+                         <div class="span2">
+                       
+						<ul class="nav">
+							<li><a href="#">
+Terms &amp; Conditions</a></li>  
+							
+							<li><a href="#">
+Privacy Policy</a></li>
+							<li><a href="#">
+Cancellation &amp; Refund</a></li>							
+						</ul>
+                            </div>
+                                </div>
+					</div>
+					<div class="span4">
+                    <div class="heading_footer2">                 
+						<h4>My Account</h4>
+                     </div>
+                        <div class="row">
+                            <div class="span2">
+						<ul class="nav">
+						
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="#">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+						</ul>
+					</div>
+                        <div class="span2">
+						<ul class="nav">
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							<li><a href="#">Wish List</a></li>
+							<li><a href="#">Newsletter</a></li>
+						</ul>
+					</div></div></div>
+					<div class="span3">
+						<div class="heading_footer2">                 
+						<h4>My Account</h4>
+                     </div>
+                        <ul class="nav">
+							<li><a href="#">My Account</a></li>
+							<li><a href="#">Order History</a></li>
+							
+                        
+						</ul>
+                        <span class="social_icons" style="color:#fff!important;">
+							<a class="facebook" href="#">Facebook</a>
+							<a class="twitter" href="#">Twitter</a>
+							<a class="skype" href="#">Skype</a>
+							<a class="vimeo" href="#">Vimeo</a>
+						</span>
+						
+					</div>					
+				</div>	
+			</section>
+
+			<section id="copyright">
+				<span>Powered by <a href="http://www.startashoppe.com">StartAShoppe</a></span>
+			</section>
+    </div>
+   <%end%>
+	<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+		</script>
+<script>
+    $('#zoom_01').elevateZoom({
+    zoomType: "inner",
+cursor: "crosshair",
+zoomWindowFadeIn: 500,
+zoomWindowFadeOut: 750
+   }); 
+</script>
+  </body>
+</html>

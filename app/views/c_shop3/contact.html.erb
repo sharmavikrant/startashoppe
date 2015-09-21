@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Metawing Shop</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="/shopymart/css/style.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+
+<link href="/shopymart/css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen"><!-- prettyPhoto -->
+
+<link href="/shopymart/css/tipsy.css" type="text/css" rel="stylesheet" media="screen"><!--tipsy-->
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
+
+
+
+<script type="text/javascript" src="/shopymart/js/css3-mediaqueries.js"></script><!--mediaqueries-->
+
+<script type="text/javascript" src="/shopymart/js/modernizr-1.7.min.js"></script><!--modernizr-->
+
+<script type="text/javascript" src="/shopymart/js/jquery.prettyPhoto.js"></script><!-- prettyPhoto -->
+
+<script type="text/javascript" src="/shopymart/js/jquery.tipsy.js"></script><!--tooltip-->
+
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+
+<script type="text/javascript" src="/shopymart/js/jquery.hoverIntent.minified.js"></script><!--menu-->
+
+<script type="text/javascript" src="/shopymart/js/jquery.dcmegamenu.1.3.3.js"></script><!--menu-->
+
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
+
+<!--MENU-->
+
+
+
+</head>
+
+
+
+<body onLoad="initialize()">
+
+<script type="text/javascript">
+
+$(document).ready(function($){
+
+	$('#mega-menu-3').dcMegaMenu({
+
+		rowItems: '2',
+
+		speed: 'fast',
+
+		effect: 'fade'
+
+	});
+
+});
+
+</script>
+
+<!--MENU-->
+
+<script type="text/javascript">
+
+$(document).ready(function($){
+
+	$('#mega-menu-3').dcMegaMenu({
+
+		rowItems: '2',
+
+		speed: 'fast',
+
+		effect: 'fade'
+
+	});
+
+});
+
+</script>
+
+	<div id="page_wrap">
+
+    	<%= render :partial => 't3_header' %>
+
+        <div id="container">
+
+        	
+
+            <div class="content-wrap">
+
+            	
+
+                <div class="container-2">
+
+                	<section class="content">
+
+                        <h3>View Our Map Location</h3>
+
+                        <div ><iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.in/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=North+Star+Business+Center,+B+Block,+Sector+5,+Noida,+Uttar+Pradesh&amp;aq=0&amp;oq=north+star&amp;sll=20.983588,82.752628&amp;sspn=48.65509,86.572266&amp;ie=UTF8&amp;hq=North+Star+Business+Center,&amp;hnear=B+Block,+Sector+5,+Noida,+Gautam+Buddh+Nagar,+Uttar+Pradesh&amp;ll=28.589939,77.320184&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe><br /><small><a href="https://maps.google.co.in/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=North+Star+Business+Center,+B+Block,+Sector+5,+Noida,+Uttar+Pradesh&amp;aq=0&amp;oq=north+star&amp;sll=20.983588,82.752628&amp;sspn=48.65509,86.572266&amp;ie=UTF8&amp;hq=North+Star+Business+Center,&amp;hnear=B+Block,+Sector+5,+Noida,+Gautam+Buddh+Nagar,+Uttar+Pradesh&amp;ll=28.589939,77.320184&amp;spn=0.006295,0.006295&amp;t=m" style="color:#0000FF;text-align:left">View Larger Map</a></small></div>
+
+                       
+
+                        <h3>Please use the form below to get in touch with us.</h3>
+
+                        <p><%=session[:shop_name]%><br><br>
+
+                              Tel: 012345678910<br>
+
+                              Fax: 012345678910<br>
+
+                              Email: <a href="mailto:sidharth20092009@gmail.com">sidharth20092009@gmail.com</a></p>
+
+                        <form action="/c_shop3/contact" id="ajax-contact-form" class="contactForm">
+
+                          <div id="note"></div>
+
+                          <p>
+
+                            <input type="text" name="name" value="Your Name" onBlur="if (this.value == ''){this.value = 'Your Name'; }" onFocus="if (this.value == 'Your Name') {this.value = '';}" >
+
+                            &nbsp;
+
+                            <input type="text" name="email" value="Your Email" onBlur="if (this.value == ''){this.value = 'Your Email'; }" onFocus="if (this.value == 'Your Email') {this.value = '';}">
+
+                            &nbsp;
+
+                            <input type="text" name="Phone" value="Phone" onBlur="if (this.value == ''){this.value = 'Phone '; }" onFocus="if (this.value == 'Your Website') {this.value = '';}">
+
+                          </p>
+
+                          <p>
+
+                            <textarea name="message" rows="10" cols="20" onBlur="if (this.value == ''){this.value = 'Your Message'; }" onFocus="if (this.value == 'Your Message') {this.value = '';}">Your Message</textarea>
+
+                          </p>
+
+                          <p>
+
+                            <input type="submit" name="submit" class="submit" value="Send Message">
+
+                          </p>
+
+                        </form>     
+
+                    </section>
+
+                    <aside class="sidebar">
+
+                    	<div class="side">
+
+                        	<h4>Category</h4>
+
+                            <ul class="cat">
+
+                            	<%@category=Masterusers.find_by_sql("select * from product_category_#{session[:master_user_id]} " )%>
+
+								<li><a href="/c_shop3/view_all ">All</a></li>
+
+								<%@category.each do |c|%>	
+
+								
+
+                            	<li><a href="/c_shop3/view_all?c_id=<%=c[:product_category_id]%>&filter=search "><%=c[:product_category_name]%></a>
+
+									
+
+								</li>
+
+                                <%end%>
+
+                            </ul>
+
+                        </div><!--end:side-->
+
+						
+
+					
+
+				
+
+					
+
+                        
+
+                    </aside>
+
+                </div><!--end:container-2-->
+
+               <%= render :partial => 't3_footer' %>
+
+            </div><!--end:content-wrap-->
+
+           
+
+        </div><!--end:container-->
+
+    </div><!--end:page_wrap-->
+
+       
+
+</body>
+
+</html>

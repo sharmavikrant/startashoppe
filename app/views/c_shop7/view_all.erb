@@ -1,0 +1,376 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sell anythign: Premium Responsive Template develope by bootstrappage.com (bootstrap 2.3.1 version)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!-- styles -->
+<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="/theme7/menu/css/default.css" />
+		 <link rel="stylesheet" type="text/css" href="/theme7/menu/css/component.css" />
+		<script src="/theme7/menu/js/modernizr.custom.js"></script>
+
+
+	<link rel="stylesheet/less" type="text/css" href="/theme7/less/bootstrap.less">
+	<script src="/theme7/js/less/less.js" type="text/javascript"></script>
+<style>
+.widget {
+margin-bottom: 15px;
+padding: 10px;
+}
+
+.page-header, .widget-title {
+color: #1a1a1a;
+font-size: 16px;
+padding: 30px 0 10px;
+margin: 0;
+text-transform: uppercase;
+}
+.page-header, .widget-title {
+color: #1a1a1a;
+font-size: 16px;
+text-transform: uppercase;
+}
+.sidebar-line {
+width: 100%;
+height: 1px;
+background: #F6F5F2;
+margin-bottom: 25px;
+}
+.sidebar-line span {
+background: #b2151d;
+display: block;
+width: 100px;
+height: 3px;
+}
+ul.bullet_arrow2 li,div.bullet_arrow2 li {
+background: url(/theme10/themes/images/arrow2.png) no-repeat scroll 0 0.1em transparent;
+line-height: 18px;
+list-style: none outside none;
+margin: 7px;
+padding: 0 0 0 18px;
+}
+ul.categories li {
+display: block;
+border-bottom: 1px solid #F6F5F2;
+padding-bottom: 3px !important;
+}
+.widget a {
+color: #808080!important;
+}
+
+</style>
+<style>
+
+</style>
+	<!-- favicon-icons -->
+    <link rel="shortcut icon" href="/theme7/images/favicon.ico">
+  </head>
+<body>
+<%= render :partial => 'home7' %>
+<section id="mainBody">
+<div class="container">
+<div class="row">
+<div id="sideBar" class="span3">
+
+	
+		<h3 class="title"><span>Filter By Categories </span></h3>
+	  <div class="span3">
+
+
+
+                        <div class="widget">
+
+             
+
+                <div class="sidebar-line"><span></span></div>
+
+                    <ul class="bullet_arrow2 categories">
+
+						<%@category.each do |i|%>
+
+                       
+
+                        <li><%=link_to i["product_category_name"], :controller =>  "c_shop7", :action => "view_all", :id => @profile,:filter => "search", :method => :post, :c_id => i['product_category_id'] %> 
+
+                            <ul>
+
+								<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+
+									<%@subcategory.each do |i|%>
+
+										<li><%=link_to i["sub_category_name"], :controller =>  "c_shop7", :action => "view_all", :filter => "subcategory", :s_id => i["sub_category_id"] %></li>
+
+									<%end%>
+
+                            </ul>
+
+                        </li>
+
+                        
+
+						<%end%>
+
+                    </ul>
+
+                    </div>
+
+                         
+
+                    </div>
+
+
+
+
+<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set
+					end%>	
+		<h3 class="title" style="margin-top: 50%;"><span>RECENTLY VIEWED </span></h3>
+		
+	<%@pro=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+            	
+			<%@p.each do |a|%>
+						<%@pro.each do |i|%>
+							<%if i['product_id']==a.to_i  then %>
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+																													<%@d.each do |a|%>
+
+<div class="indexItems" style = "margin-top: 10%;"> 
+
+		<div class=" displayStyle">
+		<div class="itemBlock">
+			<span class="indexItemsImageMask"></span>
+			<span class="itemBlockAction">
+				<%= form_tag("/c_shop7/product_detail/", :method=>"put") do %>
+
+
+		<input type="hidden" name="product" value=<%=a['product_id']%>>
+		<input type="hidden" name="product_name" value=<%=a["product_name"]%>>
+	<%= submit_tag("Detail",  :value => "View Detail", :class => "btn btn-warning btn-xs", :productid => a["product_id"] ) %>
+						
+				
+<%end%>
+				
+			</span>
+			<a href="#" class="indexProductsImage">
+				<img src="<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" alt="Women's Clothing" title=" Women's Clothing ">
+			</a>
+		</div>
+		</div>
+</div>
+
+<%end%>	
+<%end%>	
+<%end%>	
+<%end%>		
+		
+		
+	<%end%>	
+		
+</div>
+
+<div class="span9">
+<div class="products">
+
+<h3 class="title"><span>All Products</span></h3>
+
+
+
+<ul class="thumbnails">
+	
+<%@product.each do |i|%>
+
+<%@category.each do |c|%>
+
+	<% if i["product_category_id"] == c["product_category_id"]%>
+		<% @cat = c["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if i["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+			
+	  <li class="span3">
+		<div class="thumbnail">
+			<img src="<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>" style="height: 124px!important;width: 160px!important;" alt="#">
+			<div class="caption">
+			<h3><%= i['title'].truncate(15, separator: ' ')%></h3>
+			<p class="detailNprice">
+				$<span><%= i['price']%></span>
+			</p>
+			<p>
+
+
+<%= form_tag("/#{Masterusers.title(i[:title])}/#{@cat}/#{@sub}/c_shop_7/#{i['product_id']}", :method=>"put") do %>
+
+
+		<input type="hidden" name="product" value=<%=i['product_id']%>>
+		<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => i["product_id"] ) %>
+						
+				
+<%end%>
+			</p>
+		  </div>
+		</div>
+	  </li>
+<%end%>
+	 
+	  </ul>
+	
+	
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="container-fluid">
+
+<section id="footer-bar">
+
+
+
+				<div class="row-fluid">
+
+					<div class="span4">
+
+                        <div class="heading_footer">                 
+
+						<h4>Navigation</h4>
+
+                        </div>
+
+                        <div class="row">
+
+                        <div class="span12">
+
+                       
+
+						<ul class="nav">
+
+							
+
+							<li><a href="/c_shop10/home">About Us</a></li>
+
+							<li><a href="/c_shop10/home">Shipping &amp; Delivery Policy</a></li>
+
+							<li><a href="/c_shop10/home">Disclaimer Policy</a></li>
+
+							
+
+						</ul>
+
+                            </div>
+
+                       
+
+                                </div>
+
+					</div>
+
+					<div class="span4">
+
+                    <div class="heading_footer2">                 
+
+						<h4>My Account</h4>
+
+                     </div>
+
+                        <div class="row">
+
+                            <div class="span12">
+
+						<ul class="nav">
+
+							<li><a href="/c_shop10/home">My Account</a></li>
+
+							<li><a href="/c_shop10/home">Order History</a></li>
+
+							<li><a href="/c_shop10/home">Wish List</a></li>
+
+							<li><a href="/c_shop10/home">Newsletter</a></li>
+
+						</ul>
+
+					</div>
+
+                       </div></div>
+
+					<div class="span3">
+
+						<div class="heading_footer2">                 
+
+						<h4>My Account</h4>
+
+                     </div>
+
+                        <ul class="nav">
+
+							<li><a href="/c_shop10/home">My Account</a></li>
+
+							<li><a href="/c_shop10/home">Order History</a></li>
+
+							
+
+                        
+
+						</ul>
+
+                        <span class="social_icons" style="color:#fff!important;">
+
+							<a class="facebook" href="/c_shop10/home">Facebook</a>
+
+							<a class="twitter" href="/c_shop10/home">Twitter</a>
+
+							<a class="skype" href="/c_shop10/home">Skype</a>
+
+							<a class="vimeo" href="/c_shop10/home">Vimeo</a>
+
+						</span>
+
+						
+
+					</div>					
+
+				</div>	
+
+			</section>
+
+
+
+
+
+
+    <script src="/theme7/js/jquery-1.8.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/theme7/js/smart.js"></script>
+
+<script src="/theme7/menu/js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+				});
+			});
+		</script>
+
+
+
+
+  </body>
+</html>

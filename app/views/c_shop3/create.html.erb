@@ -1,0 +1,4 @@
+                           <%= form_tag("/c_shop3/create/", :method=>"post", :multipart => true, :name => "product") do %>
+<%= file_field 'upload1', 'file1' %>
+                    <%= submit_tag("step1",  :value => "Submit",:class=>"btn btn-primary") %>
+<% end %>

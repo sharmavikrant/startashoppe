@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="/theme6/menu/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="/theme6/menu/css/component.css" />
+		<script src="/theme6/menu/js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<div class="container demo-2">	
+			<!-- Codrops top bar -->
+			
+			<div class="main clearfix">
+				
+
+<div id="dl-menu" class="dl-menuwrapper">
+	<button class="dl-trigger">Open Menu</button>
+	<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+			
+	<ul class="dl-menu">
+	<%@category.each do |i|%>
+		<li>
+			<a href="#"> <%=i["product_category_name"]%></a>
+			<ul class="dl-submenu">
+		<li> <a href="#"><%=link_to "view all", :controller =>  "c_shop5", :action => "view_all", :id => @profile,:name => "search", :method => :post, :category_id => i['product_category_id'] %></a></li>
+	<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+			<%@subcategory.each do |j|%>
+				
+				<li><a href="#"><%=link_to j["sub_category_name"], :controller =>  "c_shop5", :action => "view_all", :id => @profile,:name => "sub", :method => :post, :sub_category_id => j["sub_category_id"]%></a>	</li>
+				
+			<%end%>	
+			</ul>
+		</li>
+	<%end%>
+		
+		
+	</ul>
+					</div><!-- /dl-menuwrapper -->
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="/theme6/menu/js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+				});
+			});
+		</script>
+	</body>
+</html>

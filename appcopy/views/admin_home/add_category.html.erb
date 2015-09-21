@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Template</title>
+    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- Styles -->
+   
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="/adminhome/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+   
+	<link href="/adminhome/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="/adminhome/css/favicon.ico" />
+	
+
+    <script language="javascript">
+
+	function myFunction()
+	{
+		var x=document.forms["login"]["c_name"].value;
+		
+			(x==''||x== null) ? document.getElementById('testing').innerHTML = 'Category name Mandatory' : document.getElementById('testing').innerHTML = '';
+			
+		
+			
+		
+		var x1=document.forms["sub_category"]["c_name"].value;
+		
+			(x1==''||x1== null) ? document.getElementById('testing1').innerHTML = 'Subcategory name Mandatory' : document.getElementById('testing1').innerHTML = '';
+			
+		
+	}
+	
+	</script>
+     <style>
+   
+ .abc
+    {width:73%;
+    float:right;}
+    @media (max-width: 979px){
+.abc {
+
+margin-left:5%;
+width:90%;
+float:none;
+
+}}
+.return { 
+background-color:white !important;
+color:#563d7c !important;
+font-family: 'Oxygen', sans-serif !important;
+font-weight: bold;
+
+}
+ li , p , h4, label ,dt {
+  font-family: 'Oxygen', sans-serif;
+ 
+  }
+  dt
+  {color: white;
+  font-weight: bold;
+  font-size: 15px;
+  }
+  .send
+  { background-color:white !important;
+color:#563d7c !important;}
+ .block
+    {
+    padding:1%; 
+    
+    border-radius:10px;
+    margin-top:1%;
+    background-image: -webkit-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: -moz-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: -o-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: linear-gradient(top, #5F369E 0%,#37004D 100%);
+    }
+    .accordion-heading a {
+
+    color:white;}
+    </style>
+	<script type='text/javascript'>
+         $(document).ready(function() {
+            //option A
+            $("#sub_category").submit(function(e){
+              var s= startFunction();
+			  var e= endFunction();
+			   return (s&&e);
+                
+            });
+			
+        });
+		function startFunction()
+	{	
+			var x=document.forms["sub_category"]["category_id"].value;
+			
+			if (x==''||x== null||x=="Select a category")
+			{	
+				document.getElementById('sb_subcategory').innerHTML = 'Select Start Date' 
+				return false;
+			}
+			else
+			{
+				
+					document.getElementById('sb_subcategory').innerHTML = '';
+				return true;
+			}
+	}
+	function endFunction()
+	{
+		
+			var x1=document.forms["sub_category"]["c_name"].value;
+		
+			(x1==''||x1== null) ? document.getElementById('testing1').innerHTML = 'Subcategory name Mandatory' : document.getElementById('testing1').innerHTML = '';
+			
+	}
+        </script>
+</head>
+<body class="page-header-fixed">
+
+
+<%= render :partial => 'header' %>
+
+
+             
+            <%= render :partial => 'sidebar' %>
+       	
+ <div id ="notice">
+ </div>
+
+
+           
+     <!-- Add category-->
+
+    <div class="span9 abc" style="float:right; margin-top:2%" >
+		<h3>Create your Category and Subcategries this will help you<br> to mantain your product easly</h3>
+   
+        <div class="span5">
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group block" >
+                    <div class="accordion-heading active">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"  href="#collapseOne" style="padding: 7%;font-size: 20px;">
+                            Select categories
+                         </a>
+                           
+                    </div>
+                        <div id="collapseOne"  class="accordion-body collapse in" style="height: 0px; background-color: #563d7c;">  
+                            <div class="accordion-inner" >  
+                                <%= form_tag({:action => 'add_category'}, {:name => 'login',remote:true}) do%>
+                    
+                                <label class="control-label" style="color : white;">
+                                    Category Name
+                                </label>
+                                    <%= text_field_tag(:c_name,"",:onfocusout=>'myFunction()') %><p id="testing" style="color:red;"></p><br/>
+                                        <%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary send") %>		<br><br>
+                                    <% end %>
+                            </div>
+                        </div>
+                </div>
+			
+                <div class="accordion-group block">
+                    <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" style="padding: 7%;font-size: 20px;">
+                              Add Subcategories
+                            </a>
+                          
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse" style=" background-color: #563d7c;">  
+                        <div class="accordion-inner" >  
+                            <%= form_tag({:action => 'add_subcategory'}, {:name => 'sub_category',:id=>'sub_category',remote:true}) do%>
+                                            
+                                        
+                            <label class="control-label" style="color : white;">
+                                            Subcategory Name
+                                    
+                            </label>
+                            <%= text_field_tag(:c_name,"",:onfocusout=>'myFunction()',:required=>true) %><p id="testing1" style="color:red;"></p><br/>
+                                        <label class="control-label" style="color : white;">
+                                        Select  Product Category 
+                                        <span class="required">*</span>
+                                        </label>
+									<%@test=Masterusers.find_by_sql("select * from product_category_"+ session[:master_user_id].to_s)%>
+                                    <%= select_tag "category_id",  options_for_select(@test.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a category",:required=>true,:onfocusout=>'startFunction()'%><p id="sb_subcategory" style="color:red;"></p>
+                                    <br><%= submit_tag("submit",  :value => "Submit",:class=>"btn btn-primary send") %>		
+                                    
+                            <% end %>
+                                    
+                                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>		
+
+		<div class="span3" id ="category_table">
+			<div  style="padding:10%;  background-color: #563d7c;border-radius: 10px; ">
+ 				<h3 style="color:white;">  Available categories </h3>
+				<div style="color:black;">   
+					<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
+						<%if @category[0]==nil then %>											<dt>Empty No Category Avilable</dt><br>
+							<%else%>
+						<%@category.each do |i|%>
+						<dl>
+							<dt><%=i['product_category_name']%></dt><br>
+							<%@subtest=Masterusers.find_by_sql("select * from product_sub_category_"+session[:master_user_id].to_s+" where product_category_id="+i.product_category_id.to_s)%>
+							<div class="subcat">
+								 <%if @subtest[0]==nil then %>                                                                                  <dd>Empty No Sub Category Avilable</dd><br>
+                                                        <%else%>
+
+								<%@subtest.each do |a|%><t>
+									<dd><%=a["sub_category_name"]%></dd><br>
+								<%end%>
+							</div>	
+							<%end%>
+						</dl>
+						<hr>
+					<%end%>		
+				</div>
+	  			<%end%>
+			</div>		
+		</div>
+</div>			
+
+    
+    
+    
+    </div><!--span8 ends--><!-- Add category ends-->
+
+
+
+			
+            
+            
+    </div>      <!--main span12-->
+    
+        
+
+	   
+	
+
+	
+	
+
+
+
+</body>
+<script src="/first/js/bootstrap-tooltip.js"></script>
+		<script src="/first/js/bootstrap-popover.js"></script></html>
+</html>

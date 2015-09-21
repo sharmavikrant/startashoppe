@@ -1,0 +1,65 @@
+ <div id="top-bar" class="container">
+			<div class="row">
+				<div class="span4 pull-left">
+							<div class="logo-img">
+								<!--<img src="\theme10\themes\images\logo.png">-->
+							
+<a href="/c_shop10/home"><h2><%=session[:shop_name]%></h2></a>
+</div>
+					</div>
+				
+                <div class="span4 offset4">
+                    <div class="login-buttons">
+					<ul class="nav nav-pills pull-right">  
+						 
+						<li><a href="/c_shop10/add_to_cart?name=show_cart"><i class="fa fa-shopping-cart"></i>&nbsp;Cart</a></a></li>  
+				</div>
+                
+                
+			</div>
+			</div>
+			<div class="row">
+					 <div class="span4 pull-left">
+							<div class="store-name">
+								
+							
+							</div>
+							
+				 </div>
+			</div>	
+           
+		</div>
+    <div id="wrapper" class="container">
+      <section class="navbar main-menu">
+        <div class="navbar-inner main-menu menugrid">
+          <nav id="menu" class="pull-left">
+		  <%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+
+							
+            <ul>
+			<li>
+				<%=link_to "HOME", :controller =>  "c_shop10", :action => "home", :id => @profile %>
+</li><li><%=link_to "All Products", :controller =>  "c_shop10", :action => "view_all", :id => @profile %>  
+
+ 
+
+					
+				</li>
+			<%@category.each do |i|%>
+				<li>
+					<%=link_to i["product_category_name"], :controller =>  "c_shop10", :action => "view_all", :id => @profile,:filter => "search", :method => :post, :c_id => i['product_category_id'] %> 
+					<ul>
+						<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+						<%@subcategory.each do |i|%>
+							<li ><%=link_to i["sub_category_name"], :controller =>  "c_shop10", :action => "view_all", :filter => "subcategory", :s_id=> i["sub_category_id"] %> </li>
+
+						<%end%>                                      
+					</ul>
+				</li>
+				<%end%>
+				<li><a href="/c_shop10/contact">Contact us</a></li>
+            </ul>
+			
+          </nav>
+        </div>
+      </section>

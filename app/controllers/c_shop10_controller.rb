@@ -1,0 +1,153 @@
+class CShop10Controller < ApplicationController
+
+
+	def add_to_cart
+	session[:master_user_id]=Masterusers.shop_search(request.subdomain);
+		
+		if params[:commit] == "payment" then
+		 redirect_to :action => 'payment',:total=>params[:total]
+		end
+		if params[:name]=="add to cart" then 
+			if cookies[:cart_value].nil? then 
+				cookies[:cart_value]="";
+			end
+			cart1=cookies[:cart_value].split(' ')
+			 if  @q=cart1.find { |e| /#{params[:p_id]}+[-]+[\d]*/ =~ e }==nil then 
+					cart =cookies[:cart_value]
+					cart=  params[:p_id].to_s + "-"+params[:quantity].to_s + " " + cart  
+					cookies[:cart_value]= { :value => cart, :expires => 15.day.from_now};
+					cookies[:cart_value]={ :value => cookies[:cart_value].squish, :expires => 15.day.from_now};
+					if !cookies[:cart_value].nil? then 
+						@p=cookies[:cart_value].split(" ")
+						@a=cookies[:cart_value].split(/[-]+[\d]*[\s]*/)
+					end
+			else
+			cookies[:cart_value].gsub!(/#{params[:p_id]}+[-]+[\d]*/, ' ')
+			cart =cookies[:cart_value]
+					cart=  params[:p_id].to_s + "-"+params[:quantity].to_s + " " + cart  
+					cookies[:cart_value]= { :value => cart, :expires => 15.day.from_now};
+					cookies[:cart_value]={ :value => cookies[:cart_value].squish, :expires => 15.day.from_now};
+					if !cookies[:cart_value].nil? then 
+						@p=cookies[:cart_value].split(" ")
+						@a=cookies[:cart_value].split(/[-]+[\d]*[\s]*/)
+					end
+			end
+			
+		end
+		if params[:name]=="show_cart"
+			if !cookies[:cart_value].nil? then 
+				@p=cookies[:cart_value].split(" ")
+				@a=cookies[:cart_value].split(/[-]+[\d]*[\s]*/)
+				
+			end
+		end
+		
+		if params[:name]=="delete"
+		
+		
+			a=cookies[:cart_value].gsub!(/#{params[:p_id]}+[-]+[\d]*/, ' ')
+			cookies[:cart_value]= { :value => a, :expires => 15.day.from_now};
+		
+			if !cookies[:cart_value].nil? then 
+				@p=cookies[:cart_value].split(" /#{params[:p_id]}+[-]+[\d]*/")
+				@a=cookies[:cart_value].split(/[-]+[\d][\s]*/)
+				
+			end
+redirect_to :action => 'add_to_cart',:name=>"show_cart"
+		
+		end
+		
+	end
+	
+	def contact
+	session[:master_user_id]=Masterusers.shop_search(request.subdomain);
+		if params[:submit]=='Send Message' then 
+			Masterusers.find_by_sql(["INSERT INTO message_"+session[:master_user_id].to_s+"(name,email,phone,message,read) VALUES (?,?,?,?,?)",params[:name], params[:email],params[:phone],params[:message],'false'])                        
+		end 
+	end 
+	def view_all
+		#session[:master_user_id]=Masterusers.shop_search(request.subdomain);
+		@controller = params[:controller]
+		@category=Masterusers.find_by_sql("select * from product_category_#{session[:master_user_id]} " )
+		@sub_category=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} " )
+		@products=Masterusers.find_by_sql("select * from product_#{session[:master_user_id]} " )
+		if params[:filter]=='search' then 
+			@products=Masterusers.find_by_sql("select * from product_#{session[:master_user_id]} where product_category_id=#{params[:c_id]} " )
+		end
+		if params[:filter]=='subcategory' then 
+			@products=Masterusers.find_by_sql("select * from product_#{session[:master_user_id]} where sub_category_id=#{params[:s_id]} " )
+		end
+	end
+	
+  
+  
+def product_detail
+	session[:master_user_id]=Masterusers.shop_search(request.subdomain);
+
+	
+#	 if cookies[:recently_view].index(params[:product]) == nil then
+
+
+ #                       cookies[:recently_view]=params[:product].to_s+" "+ cookies[:recently_view].to_s
+  #      else
+
+   #     cookies[:recently_view]=cookies[:recently_view].delete( params[:product].to_s)
+    #    cookies[:recently_view]=cookies[:recently_view].squish
+     #   cookies[:recently_view]=params[:product].to_s+" "+ cookies[:recently_view].to_s
+      #  end
+
+		if cookies[:recently_view].nil? then 
+		cookies[:recently_view]=""
+		end
+		 if cookies[:recently_view].index(params[:product]) == nil then 
+		
+		
+				#session[:cart]=  session[:cart] + params[:p_id].to_s + " " 
+				#cookies[:cart_value]= { :value => session[:cart], :expires => 1.month.from_now};
+				cookies[:recently_view]=params[:product].to_s+" "+ cookies[:recently_view].to_s
+		else
+
+		cookies[:recently_view]=cookies[:recently_view].delete( params[:product].to_s)
+		cookies[:recently_view]=cookies[:recently_view].squish
+		cookies[:recently_view]=params[:product].to_s+" "+ cookies[:recently_view].to_s
+		end	
+
+
+
+		@d=Masterusers.find_by_sql("select * from product_"+session[:master_user_id].to_s+" where product_id = "+params[:product].to_s)
+	
+	if params[:name]=="detail" then 
+		@d=Masterusers.find_by_sql("select * from product_"+session[:master_user_id].to_s+" where product_id = "+params[:product].to_s)
+	end
+
+	end
+	def home
+	@category=Masterusers.find_by_sql("select * from product_category_#{session[:master_user_id]} " )
+		@sub_category=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} " )
+		
+	
+
+		@t=Masterusers.all
+		@theme=session[:theme]
+		t=Masterusers.find_by_master_user_id(session[:master_user_id])
+		 session[:shop_name]=t['shop_name']
+ session[:url_name]=t['url_name']
+         @address=t['address']
+         @master_email=t['master_email']
+         @phone=t['phone']
+ 
+		if params[:name]=="createstore"
+		redirect_to :action => 'c_step_2'
+		end
+		
+		if params[:name] == "edit"
+			session[:mode]="edit"
+		end	
+
+		if params[:commit] == "visit site"
+			session[:mode]="abc"
+		end
+  end
+	
+end
+

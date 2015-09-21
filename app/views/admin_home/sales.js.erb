@@ -1,0 +1,7 @@
+<%if @ajaxsearch=='filter_by_date' then %>
+$('#search_result').html('<%= escape_javascript(render("sales")) %>');
+<%end%>
+<%if @ajaxsearch=='filter_by_product' then %>
+$('#search_result').html('<%= escape_javascript(render("sales")) %>');
+<%end%>
+

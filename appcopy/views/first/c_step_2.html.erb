@@ -1,0 +1,664 @@
+
+<% if session[:flag] == "true" then%>
+
+<html>
+<head><!-- Stylesheets -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+	
+
+<script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script>
+
+
+
+
+
+    <script src="/js/jquery-latest.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <link href="/first/font-awesome/css/font-awesome.css" rel="stylesheet">
+<script language="javascript">
+	
+	function confirmFunction()
+	{	var test
+		var x=document.forms["details"]["password"].value;
+		var x1=document.forms["details"]["confirmpassword"].value;
+		(x != x1) ?( document.getElementById('testing13').innerHTML = 'Password and confirm password not match', test = false) : (document.getElementById('testing13').innerHTML = '',test = true);
+		(x1==''|| 	x1== null) ?(document.getElementById('testing12').innerHTML = ' ConfirmPassword Mandatory', test = false) : (document.getElementById('testing12').innerHTML = '',test = true);
+	}
+	function passwordFunction()
+	{
+		
+		var x=document.forms["details"]["password"].value;
+		var test ;
+		
+			(x==''|| x== null) ?(document.getElementById('testing11').innerHTML = 'Password Mandatory',test = false ): (document.getElementById('testing11').innerHTML = '',test = true);
+			
+			return test ;
+		
+		
+	}
+		
+	
+		
+		
+	function myFunction()
+	{
+		var x=document.forms["details"]["shopname"].value;
+		var test ;
+		
+			(x==''||x== null) ? ( document.getElementById('testing').innerHTML = 'Shop name Mandatory',test = false) : (document.getElementById('testing').innerHTML = '',test = true);
+			
+			return test ;
+		
+	}
+	function myFunction1()
+	{
+		var x1=document.forms["details"]["firstname"].value;
+		var test ;
+		(x1==''||x1== null) ? (document.getElementById('testing1').innerHTML = 'First name Mandetory',test = false ): (document.getElementById('testing1').innerHTML = '',test = true);
+			
+			return test ;
+		
+	}
+	
+	function myFunction3()
+	{
+	
+		
+		
+		var x3=document.forms["details"]["address"].value;
+		var test;
+		
+			
+			(x3==''||x3== null) ? (document.getElementById('testing3').innerHTML = 'Address Mandetory',test = false ): (document.getElementById('testing3').innerHTML = '',test = true);
+			return test;
+			
+		
+	}
+	function myFunction4()
+	{
+	
+		
+		var test;
+		var x4=document.forms["details"]["state"].value;
+		
+			
+			(x4==''||x4== null) ?( document.getElementById('testing4').innerHTML = 'State Mandetory',test = false ):( document.getElementById('testing4').innerHTML = '',test = true);
+			
+			return test;
+			
+		
+	}
+	function myFunction5()
+	{
+		var x5=document.forms["details"]["pincode"].value;
+		var test;
+				var phoneno = /^\d{6}$/; 
+			var  cinteger=/^\d+$/;
+			if (x5==''||x5== null)
+			{
+				document.getElementById('testing5').innerHTML = 'Pincode Mandetory';
+				test = false;
+			}
+			else if(x5.match(cinteger)== null)
+			{
+				document.getElementById('testing5').innerHTML = 'Only Numeric value allowed';
+				test = false;
+			}
+			else if(x5.match(phoneno)== null)
+			{
+				document.getElementById('testing5').innerHTML = ' Invalid ,6 digit Number ';
+				test = false;
+			}
+			
+			else
+			{
+				document.getElementById('testing5').innerHTML = '';
+				test = true;
+			}
+			return test;
+			
+		
+	}
+	function myFunction6()
+	{
+	
+		var x6=document.forms["details"]["country"].value;
+		var test;
+		
+		
+			
+			(x6==''||x6== null) ? (document.getElementById('testing6').innerHTML = 'Country Mandetory',test = false) :( document.getElementById('testing6').innerHTML = '',test = true);
+			return test;
+		
+	}
+	function myFunction7()
+	{
+		var test;
+		var x7=document.forms["details"]["phone"].value;
+			var phoneno = /^\d{10}$/; 
+			var  cinteger=/^\d+$/;			
+			
+			if (x7==''||x7== null) 
+			{
+				document.getElementById('testing7').innerHTML = 'Phone Mandetory';
+				test = false;
+			}
+			else if(x7.match(cinteger)== null)
+			{
+				document.getElementById('testing7').innerHTML = 'Only Numeric value allowed';
+				test = false;
+			}
+			else if(x7.match(phoneno)== null)
+			{
+				document.getElementById('testing7').innerHTML = ' Invalid ,10 digit Number ';
+				test = false;
+			}
+			
+			else
+			{
+				document.getElementById('testing7').innerHTML = '';
+				test = true;
+			}
+			
+			return test;
+		
+	}
+	function myFunction8()
+	{
+	
+		
+		
+		var x8=document.forms["details"]["city"].value;
+		var test;
+		
+		
+			
+			(x8==''||x8== null) ? (document.getElementById('testing8').innerHTML = 'City Mandetory',test = false) : (document.getElementById('testing8').innerHTML = '',test =  true);
+			return test;
+		
+	}
+	
+	
+	</script>  
+	<script type='text/javascript'>
+         $(document).ready(function() {
+            $("#c_step_2").submit(function(e){
+              var s= myFunction8();
+              var s1= myFunction7();
+              var s2= myFunction6();
+              var s3= myFunction5();
+              var s4= myFunction4();
+              var s5= myFunction3();
+              var s6= myFunction2();
+              var s7= myFunction1();
+              var s8= myFunction();
+			  
+			  
+			
+        });
+        </script>
+	<script type='text/javascript'>
+		$(document).ready(function(){
+			$( "#emailaddress" ).blur(function() {
+			
+				var x2=$( "#emailaddress" ).val();
+		
+			if (x2=='' || x2==null)
+			{
+				$("#testing2").html("email address must not be empty ");
+			}
+			else
+			{
+				$.ajax({
+					type: "get",
+					url: "/first/c_step_2?email=emailtest",
+					dataType: "script",
+					data: ({testemail: this.value}) ,
+
+					success: $('#paymentdetails').append('<h1><h1>')
+					});
+			}
+			});
+		});
+	</script>	
+	<style>
+	abc> a:hover { color:#563D7C}
+     .block
+    {
+    padding:1%; 
+    
+    border-radius:10px;
+    margin-top:1%;
+    background-image: -webkit-linear-gradient(top, #5F418B 0%,#530B70);
+    background-image: -moz-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: -o-linear-gradient(top, #5F369E 0%,#37004D 100%);
+    background-image: linear-gradient(top, #5F369E 0%,#37004D 100%);
+    }
+    h1
+    { padding-top:4%;
+        text-align:center;
+        color:#5F369E;
+        }
+	label
+    {color:white;
+    font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;}
+     h1, h2, h3, h4, h5, h6 {
+font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;
+text-transform: uppercase;
+font-weight: normal;
+}
+	</style>
+	<script>(function(d, s, id) {
+ var js, fjs = d.getElementsByTagName(s)[0];
+ if (d.getElementById(id)) return;
+ js = d.createElement(s); js.id = id;
+ js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=599946793397754";
+ fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<link href="/first/ btn.css" rel="stylesheet">
+
+<link href="/first/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+   </head>
+<body     style="background-color: rgb(231, 231, 231);">
+
+<div id ="notice">
+ </div>
+ 
+ 
+ 
+
+	
+<h1><i class="icon-quote-left"></i>&nbsp;Create Your Shop&nbsp;<i class="icon-quote-right"></i></h1>
+<div class="panel-group span9" id="accordion"  style="padding-left: 16%;padding-top: 3%;">
+  <div class="panel panel-default block" >
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#name" style="color:white;">
+          Your Shop Details
+        </a>
+      </h3>
+    </div>
+    <div id="name" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <div class="span3">    
+                	<%= form_tag({ :controller =>  "first",:action => 'c_step_2'}, {:name => 'details',:multipart=>true,:id=>'c_step_2'}) do%>
+                <tab id=t1>
+                <br/>
+                <label class="control-label" style="color:white;">
+                Shop Name 
+                <span class="required">*</span>
+                </label>
+               <%= text_field_tag(:shopname,"",:placeholder => 'Shop Name', class: "input-block-level",:required=>true,:onblur=>'myFunction()') %><p id="testing" style="color:red;"></p>
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+                </a>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default block" >
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" style="color:white;">
+          Create your Administration Account
+        </a>
+      </h3>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+       <table >
+        <div class="span8">    
+                    
+            
+            <div class="span3">    
+                    <label class="control-label">First Name 
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:firstname,"", class: "input-block-level",:placeholder => 'Admin Name',:required=>true,:onblur=>'myFunction1()') %><p id="testing1" style="color:red;"></p>
+            </div>
+        
+            <div class="span3">    
+                    <label class="control-label"> Last Name 
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:lastname ,"", :placeholder => 'Last Name',class: "input-block-level") %>
+            </div>
+            </div>
+            <div class="span8">    
+                <div class="span3">    
+                    <label class="control-label">Email address 
+                    <span class="required">*</span>
+                    </label>
+                    <%= email_field_tag(:emailaddress,"",:placeholder => 'Login Id', class: "input-block-level",:onblur=>'myFunction2()',:required=>true) %><p id="testing2" style="color:red;"></p>
+                    
+                </div>
+                <div class="span3">    
+                    <label class="control-label">
+                    Password 
+                    <span class="required">*</span>
+                    </label>
+					<%= password_field_tag(:password ,"",:placeholder => 'Password',:onblur=>'passwordFunction()',:required=>true,:style=>"height: auto;width: 100%;") %><p id="testing11" style="color:red;"></p>
+                   
+                </div>
+            </div>
+            <div class="span8">    
+                <div class="span3">    
+                    <label class="control-label">
+                    confirm Password 
+                    <span class="required">*</span>
+                    </label>
+                   <%= password_field_tag(:confirmpassword ,"",:placeholder => ' Confirm Password',:onfocusout=>'confirmFunction()',:required=>true,:style=>"height: auto;width: 100%;") %><p id="testing12" style="color:red;"></p>
+				<p id="testing13" style="color:red;" ></p>
+                </div>
+            </div>
+            <div class="span6">    
+        
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+            </a>
+            </div>
+            
+            
+        </table>    
+        
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default block" >
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle abc" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" style="color:white;">
+          Choose a Theme for Your Shop
+        </a>
+      </h3>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+	  <p id ="theme"></p>
+       <div class="span10">
+            <div class="span3" >
+                <%= link_to image_tag("/first/img/theme1.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_2', :id => @profile,:name => "theme", :method => :post,:remote=>true,:theme=>"theme_1"%><br>
+<!--                <div class="span2"><%=link_to "Preview", :controller =>  "first", :action => "preview", :id => @profile, :theme=>"theme_1"%></h4></div>   -->
+            </div>
+            <div class="span3">
+
+                <%= link_to image_tag("/first/img/7.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_2', :id => @profile,:name => "theme", :method => :post,:remote=>true,:theme=>"theme_2"%><br>
+            </div>
+			<div class="span3">
+                <%= link_to image_tag("/first/img/9.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_2', :id => @profile,:name => "theme", :method => :post,:remote=>true,:theme=>"theme_5"%><br>
+            </div>
+        
+   <div class="span3">
+                <%= link_to image_tag("/first/img/10.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_2', :id => @profile,:name => "theme", :method => :post,:remote=>true,:theme=>"theme_4"%><br>
+            </div>
+   <div class="span3">
+                <%= link_to image_tag("/first/img/11.png", :width => 150, :height => 175), :controller =>  "first",:action => 'c_step_2', :id => @profile,:name => "theme", :method => :post,:remote=>true,:theme=>"theme_6"%><br>
+            </div>
+
+
+
+
+
+</div>
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+        </a>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default block" >
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" style="color:white;">
+          Select Slider Images for Your Shop
+        </a>
+      </h3>
+    </div>
+	
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div class="span10">
+            <div class="span3">
+               <p style="color :white"><label for="Upload_image" >Select slider image 1</label>
+			<%= file_field 'upload1', 'file',class: "input-block-level" %></p>
+            </div>
+            <div class="span3">
+                <p style="color :white"><label for="Upload_image" >Select slider image 2</label>
+			<%= file_field 'upload2', 'file',class: "input-block-level" %></p>
+            </div>
+			<div class="span3">
+			<p style="color :white"><label for="Upload_image" >Select slider image 3</label>
+			<%= file_field 'upload3', 'file',class: "input-block-level" %></p>
+            </div>
+        </div>
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:#0088cc">
+                    <button type="button" class="btn">Next</button>
+        </a>
+        </div>
+    </div>
+  </div>
+  <div class="panel panel-default block" >
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" style="color:white;">
+          Where  is Your Shop Located?
+        </a>
+      </h3>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse">
+      <div class="panel-body">
+       <div>
+        
+            <div class="span10">
+            <div class="span4">
+                    <label class="control-label">
+                    Address  
+                    <span class="required">*</span>
+                    </label>
+                    <%= text_field_tag(:address,"",:placeholder => 'Your Shop Address',:required=>true,:onblur=>'myFunction3()', class: "input-block-level") %><p id="testing3" style="color:red;"></p>
+            </div>
+            <div class="span4">
+                    <label class="control-label">
+                    Landmark 
+                    </label>
+                    <%= text_field_tag(:landmark  ,"", class: "input-block-level") %>
+            </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                        City
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:city,"",:placeholder => ' City',:required=>true,:onblur=>'myFunction8()',class: "input-block-level") %><p id="testing8" style="color:red;"></p>
+                </div>
+                <div class="span4">
+                    <label class="control-label">
+                    State
+                    <span class="required">*</span>
+                    </label>
+				
+<%=select_tag "state" , "<option value=''>Select State</option><option value='Andaman and Nicobar Islands'>Andaman and Nicobar Islands</option><option value='Andhra Pradesh'>Andhra Pradesh</option><option value='Arunachal Pradesh'>Arunachal Pradesh</option><option value='Assam'>Assam</option><option value='Bihar'>Bihar</option><option value='Chandigarh'>Chandigarh</option><option value='Chhattisgarh'>Chhattisgarh</option><option value='Dadra and Nagar Haveli'>Dadra and Nagar Haveli</option><option value='Daman and Diu'>Daman and Diu</option><option value='Delhi'>Delhi</option><option value='Goa'>Goa</option><option value='Gujarat'>Gujarat</option><option value='Haryana'>Haryana</option><option value='Himachal Pradesh'>Himachal Pradesh</option><option value='Jammu and Kashmir'>Jammu and Kashmir</option><option value='Jharkhand'>Jharkhand</option><option value='Karnataka'>Karnataka</option><option value='Kerala'>Kerala</option><option value='Lakshadweep'>Lakshadweep</option><option value='Madhya Pradesh'>Madhya Pradesh</option><option value='Maharashtra'>Maharashtra</option><option value='Manipur'>Manipur</option><option value='Meghalaya'>Meghalaya</option><option value='Mizoram'>Mizoram</option><option value='Nagaland'>Nagaland</option><option value='Orissa'>Orissa</option><option value='Pondicherry'>Pondicherry</option><option value='Punjab'>Punjab</option><option value='Rajasthan'>Rajasthan</option><option value='Sikkim'>Sikkim</option><option value='Tamil Nadu'>Tamil Nadu</option><option value='Tripura'>Tripura</option><option value='Uttaranchal'>Uttaranchal</option><option value='Uttar Pradesh'>Uttar Pradesh</option><option value='West Bengal'>West Bengal</option>".html_safe,:style=>"width: 100%;"%>
+
+						<p id="testing4" style="color:red;"></p>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                    Pincode
+                    <span class="required">*</span>
+                    </label>
+                   <%= text_field_tag(:pincode ,"",:placeholder => ' Pincode',:required=>true,:onblur=>'myFunction5()', class: "input-block-level") %><p id="testing5" style="color:red;"></p>
+                </div>
+                <div class="span4">
+                    <label class="control-label">
+                    Country
+                    <span class="required">*</span>
+                    </label>
+								<%= select_tag 'Country' ,"<option value='' selected='selected'>Select Country</option><option value='India'>India</option><option value='United States'>United States</option><option value='United Kingdom'>United Kingdom</option><option value='Afghanistan'>Afghanistan</option><option value='Albania'>Albania</option><option value='Algeria'>Algeria</option><option value='American Samoa'>American Samoa</option><option value='Andorra'>Andorra</option><option value='China'>China</option><option value='Malaysia'>Malaysia</option><option value='Maldives'>Maldives</option><option value='Monaco'>Monaco</option><option value='Mongolia'>Mongolia</option><option value='Montserrat'>Montserrat</option><option value='Morocco'>Morocco</option><option value='Mozambique'>Mozambique</option><option value='Myanmar'>Myanmar</option><option value='Namibia'>Namibia</option><option value='Nauru'>Nauru</option><option value='Nepal'>Nepal</option><option value='Netherlands'>Netherlands</option><option value='Netherlands Antilles'>Netherlands Antilles</option><option value='New Caledonia'>New Caledonia</option><option value='New Zealand'>New Zealand</option><option value='Nicaragua'>Nicaragua</option><option value='Niger'>Niger</option><option value='Nigeria'>Nigeria</option><option value='Niue'>Niue</option><option value='Norfolk Island'>Norfolk Island</option><option value='Northern Mariana Islands'>Northern Mariana Islands</option><option value='Norway'>Norway</option><option value='Oman'>Oman</option><option value='Pakistan'>Pakistan</option><option value='Palau'>Palau</option><option value='Palestinian Territory, Occupied'>Palestinian Territory, Occupied</option><option value='Panama'>Panama</option><option value='Papua New Guinea'>Papua New Guinea</option><option value='Paraguay'>Paraguay</option><option value='Peru'>Peru</option><option value='Philippines'>Philippines</option><option value='Pitcairn'>Pitcairn</option><option value='Poland'>Poland</option><option value='Portugal'>Portugal</option><option value='Puerto Rico'>Puerto Rico</option><option value='Qatar'>Qatar</option><option value='Reunion'>Reunion</option><option value='Romania'>Romania</option><option value='Russian Federation'>Russian Federation</option><option value='Rwanda'>Rwanda</option><option value='Saint Helena'>Saint Helena</option><option value='Saint Kitts and Nevis'>Saint Kitts and Nevis</option><option value='Saint Lucia'>Saint Lucia</option><option value='Saint Pierre and Miquelon'>Saint Pierre and Miquelon</option><option value='Saint Vincent and The Grenadines'>Saint Vincent and The Grenadines</option><option value='Samoa'>Samoa</option><option value='San Marino'>San Marino</option><option value='Sao Tome and Principe'>Sao Tome and Principe</option><option value='Saudi Arabia'>Saudi Arabia</option><option value='Senegal'>Senegal</option><option value='Serbia and Montenegro'>Serbia and Montenegro</option><option value='Seychelles'>Seychelles</option><option value='Sierra Leone'>Sierra Leone</option><option value='Singapore'>Singapore</option><option value='Slovakia'>Slovakia</option><option value='Slovenia'>Slovenia</option><option value='Solomon Islands'>Solomon Islands</option><option value='Somalia'>Somalia</option><option value='South Africa'>South Africa</option><option value='South Georgia and The South Sandwich Islands'>South Georgia and The South Sandwich Islands</option><option value='Spain'>Spain</option><option value='Sri Lanka'>Sri Lanka</option><option value='Sudan'>Sudan</option><option value='Suriname'>Suriname</option><option value='Svalbard and Jan Mayen'>Svalbard and Jan Mayen</option><option value='Swaziland'>Swaziland</option><option value='Sweden'>Sweden</option><option value='Switzerland'>Switzerland</option><option value='Syrian Arab Republic'>Syrian Arab Republic</option><option value='Taiwan, Province of China'>Taiwan, Province of China</option><option value='Tajikistan'>Tajikistan</option><option value='Tanzania, United Republic of'>Tanzania, United Republic of</option><option value='Thailand'>Thailand</option><option value='Timor-leste'>Timor-leste</option><option value='Togo'>Togo</option><option value='Tokelau'>Tokelau</option><option value='Tonga'>Tonga</option><option value='Trinidad and Tobago'>Trinidad and Tobago</option><option value='Tunisia'>Tunisia</option><option value='Turkey'>Turkey</option><option value='Turkmenistan'>Turkmenistan</option><option value='Turks and Caicos Islands'>Turks and Caicos Islands</option><option value='Tuvalu'>Tuvalu</option><option value='Uganda'>Uganda</option><option value='Ukraine'>Ukraine</option><option value='United Arab Emirates'>United Arab Emirates</option><option value='United Kingdom'>United Kingdom</option><option value='United States'>United States</option><option value='United States Minor Outlying Islands'>United States Minor Outlying Islands</option><option value='Uruguay'>Uruguay</option><option value='Uzbekistan'>Uzbekistan</option><option value='Vanuatu'>Vanuatu</option><option value='Venezuela'>Venezuela</option><option value='Viet Nam'>Viet Nam</option><option value='Virgin Islands, British'>Virgin Islands, British</option><option value='Virgin Islands, U.S.'>Virgin Islands, U.S.</option><option value='Wallis and Futuna'>Wallis and Futuna</option><option value='Western Sahara'>Western Sahara</option><option value='Yemen'>Yemen</option><option value='Zambia'>Zambia</option><option value='Zimbabwe'>Zimbabwe</option>".html_safe,:style=>"width: 100%;"%>
+<p id="testing6" style="color:red;"></p>
+                </div>
+            </div>
+            <div class="span10">
+                <div class="span4">
+                    <label class="control-label">
+                    Phone
+                    <span class="required">*</span>
+                    </label>
+						<%= text_field_tag(:phone ,"",:placeholder => ' Phone',:required=>true,:onblur=>'myFunction7()', class: "input-block-level") %><p id="testing7" style="color:red;"></p>
+					
+                </div>
+            </div>
+            
+        </div>    
+        <div class="span10" style="padding-left:40%">
+            <%= submit_tag("step3",  :value => "Submit",:class=>"btn") %>
+            <% end %>    
+        </div>    
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+    
+</body>
+</html>
+<%end%>
+
+
+
+
+
+
+
+
+
+
+
+ <%if session[:flag] != "true" then%>
+
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+
+
+<meta charset="utf-8">
+
+
+
+<title></title>
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+
+<link href="/first/btn/bootstrap.css" rel="stylesheet">
+
+<link href="/first/btn/bootstrap-responsive.css" rel="stylesheet">
+
+<link href="/first/btn/btn.css" rel="stylesheet">
+
+
+
+<link href="/first/btn/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+
+</head>
+
+
+
+<body style="background-color:#8363B3;">
+
+<div style="background-color:#8363B3;">
+
+
+
+            <a href="#"   onclick="
+
+
+
+   window.open(
+
+
+
+     'https://www.facebook.com/sharer/sharer.php?u=http://lvh.me:3000/c_shop/c_step_2', 
+
+
+
+     'facebook-share-dialog', 
+
+
+
+     'width=626,height=436'); 
+
+
+
+     return false;" type="button" class="btn btn-new btn-lg btn3d" style="width:30%; height:50px; margin-left: 35%; margin-top: 20%;}"><h1>Share on <i class="icon-facebook icon-large icon-white"></i>acebook</h1></a>
+
+
+
+
+<%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>
+
+
+
+
+
+<a href=<%= "http://#{@a1[0]['url_name']}.startashoppe.com/c_shop/shop_search_2"%> type="button" class="btn btn-new btn-lg btn3d" style="width:30%; height:50px; margin-left: 35%;}"><h1>Go To Your Sh<i class="icon-home icon-large icon-white">p</i></h1></a>
+
+
+
+</div>
+
+</body>
+
+                </ul>
+
+            </div>
+
+</html>
+
+<%end%>
+
+
+
+

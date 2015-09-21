@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bootstrap E-commerce Templates</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="/theme4/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme4/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="/theme4/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="/theme4/themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="/theme4/themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="/theme4/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme4/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme4/themes/js/superfish.js"></script>	
+		<script src="/theme4/themes/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="/theme4/themes/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		<%= render :partial => 't4_header' %>
+		<div id="wrapper" class="container">
+			
+					
+			<section class="header_text sub">
+			<img class="pageBanner" src="/theme4/themes/images/pageBanner.png" alt="New products" >
+				<h4><span>Shopping Cart</span></h4>
+			</section>
+			<section class="main-content">				
+				<div class="row">
+					<div class="span12">					
+						<h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th class="image">Image</th>
+									<th class="name">Product Name</th>
+									<th class="model">Model</th>
+									<th class="quantity">Quantity</th>
+									<th class="price">Unit Price</th>
+									<th class="total">Total</th>
+									<th class="action">Action</th>
+								  </tr>
+					</thead>
+
+							 <%@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",@a])%>
+								<%@p.each do |a|%>
+									<%@product.each do |i|%>
+										<%b=a.split("-")%>
+										<%if i['product_id']==b[0].to_i  then %>
+											<%if i['revised_price'].nil? then %>
+												<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+												<%@total=@total.to_i + @p_total %>
+											<%else%>
+												<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+												<%@total=@total.to_i + @p_total%>
+											<%end%>
+							<tbody>
+								<tr>
+									<td class="image"><a href="#"><img title="product" alt="product" src="<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>" height="50" width="50"></a></td>
+									<td  class="name"><a href="#"><%=i[:title]%></a></td>
+									<td class="model">Sample Model</td>
+									<td class="quantity"><input type="text" size="1" value="<%=b[1]%>" name="quantity[40]" class="span1"></td>
+									<td class="price">$<%=i[:sale_price]%></td>
+									<td class="total">$<%=@p_total%></td>
+									<td class="remove-update"> <a href="/c_shop3/add_to_cart?p_id=<%=i['product_id']%>&name=delete" class="tip remove" title="Remove" style = "background: #e76565;padding: 5px 5px 6px 5px; -khtml-border-radius: 30px ;border-radius: 30px;"><img src="/shopymart/images/remove.png" alt=""></a>
+									 
+								</tr>
+							</tbody>
+							<%end%>
+							
+						<%end%>
+					<%end%>
+
+						</table>
+						
+						<hr>
+						<p class="cart-total right">
+							<strong>Sub-Total</strong>:	$<%=@total%><br>
+							<strong>Eco Tax (-2.00)</strong>: $0.00<br>
+							<strong>VAT (17.5%)</strong>: $00.00<br>
+							<strong>Total</strong>: $<%=@total%><br>
+						</p>
+						<h4>What would you like to do next?</h4>
+						
+						<hr/>
+						
+                    
+						<div class="span8">	
+							<div class="span2">							
+								<form class="mp_buy_form form-inline" method="get" action="/c_shop4/view_all">
+									<input type="submit" value="Continue Shopping" class="btn btn-primary">
+								</form>
+							</div>
+							<div class="span2">	
+								<%= form_tag("/c_shop/add_to_cart/", :method=>"post") do %>
+									<input type="hidden" name="total" value=<%=@total%>>
+									<%= submit_tag("payment", :value => "payment", :class => "btn btn-inverse") %>
+								<%end%>
+							</div>
+						</div>					
+					</div>
+					
+				</div>
+			</section>			
+			
+			<%= render :partial => 't4_footer' %>
+		</div>
+		<script src="/theme4/themes/js/common.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#checkout').click(function (e) {
+					document.location.href = "checkout.html";
+				})
+			});
+		</script>		
+    </body>
+</html>

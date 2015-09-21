@@ -1,0 +1,427 @@
+
+
+<!DOCTYPE html>
+
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Template</title>
+
+    
+
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    
+
+	
+
+	<!--[if lt IE 9]>
+
+  
+
+  <![endif]-->
+
+   <script language="javascript">
+
+	$(document).ready(function(){
+
+		
+
+		$('#slide1').hide();$('#slide2').hide();$('#slide3').hide();
+
+		
+
+	});
+
+    
+
+	</script>
+
+	<script>
+
+	
+
+	function slide1(){
+
+		$('#slide1').show();
+
+	}
+
+	function slide2(){
+
+		$('#slide2').show();
+
+	}
+
+	function slide3(){
+
+		$('#slide3').show();
+
+	}
+
+	
+
+  </script>
+
+    <style>
+
+    .abc
+
+    {width:73%;
+
+    float:right;}
+
+    @media (max-width: 979px){
+
+.abc {
+
+
+
+margin-left:5%;
+
+width:90%;
+
+float:none;
+
+
+
+}
+
+
+
+}
+
+    </style>
+
+		<script language="javascript">
+
+			$(document).ready(function(){
+
+               $('#category_id').val("<%=@product[0]['product_category_id']%>");
+
+               $('#sub_category_id').val("<%=@product[0]['sub_category_id']%>");
+
+			});
+
+   
+
+       </script>
+
+</head>
+
+	<body class="page-header-fixed">
+
+	
+
+	
+
+	
+
+	<%= render :partial => 'header' %>
+
+
+
+	<!-- END HEADER -->
+
+
+
+        
+
+             
+
+            <%= render :partial => 'sidebar' %>
+
+			<br><br>
+
+				<div class="abc" style="border: 2px solid #e5e5e5; margin-right: 35;">
+
+					
+
+					<h1 style="color: #563d7c;">Edit Product Details   </h1>
+
+                    <div class='row'>
+
+					<div class="span10" >
+
+                        <div class="span4 " style="margin-top: -2.5%" >	
+
+                          <%= form_tag({ controller:'admin_home', :action => "product_edit"}, :multipart => true) do %>
+
+							<%@product.each do |i|%>
+
+                            <br/>
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                                Product Name 
+
+                                <span class="required">*</span>
+
+                            </label>
+
+							
+
+								<%= text_field_tag(:productname,i["product_name"],:style=>"width: 100%;height: auto;") %><br/>						
+
+							
+
+						</div>
+
+                        <div class="span4" >
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                                Title
+
+                                <span class="required">*</span>
+
+				
+
+                            </label>
+
+							<%= text_field_tag(:title,i["title"],:style=>"width: 100%;height: auto;") %>
+
+                        </div>
+
+                    </div>
+
+                    </div>
+
+					<div class='row'>
+
+                    <div class="span10">
+
+                       <div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Category
+
+						
+
+                            </label>
+
+									<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>	
+
+								  <%= select_tag "category_id", options_for_select(@category.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select Category",:style=>"width: 100%;height: auto;" %>
+
+ 					
+
+                        </div>
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Sub Category
+
+						
+
+                            </label>
+
+								<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_"+session[:master_user_id].to_s)%>	
+
+								<%= select_tag "sub_category_id", options_for_select(@subcategory.collect{ |u| [u.sub_category_name, u.sub_category_id] }), :prompt => "Select Subcategory",:style=>"width: 100%;height: auto;" %>
+
+							
+
+                        </div>
+
+						
+
+					</div>
+
+					</div>
+
+					<div class='row'>
+
+					<div class="span10" style="padding-top:3%">
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Price
+
+						
+
+                            </label>
+
+								<%= text_field_tag(:price,i["price"],:style=>"width: 100%;height: auto;") %><br/>				
+
+                        </div>
+
+                        <div class="span4" >
+
+				
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Sale Price
+
+                            <span class="required">*</span>
+
+                            </label>
+
+							<%= text_field_tag(:sales_price,i["sale_price"],:style=>"width: 100%;height: auto;") %>				
+
+                        </div>
+
+						
+
+                    </div>
+
+                    </div>
+
+					<div class='row'>
+
+					<div class="span10">
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Quantity
+
+						
+
+                            </label>
+
+							<%= text_field_tag(:quantity,i["quantity"],:style=>"width: 100%;height: auto;") %>
+
+											
+
+                        </div>
+
+                        
+
+                    </div>
+
+                    </div>
+
+					
+
+				</div>
+
+				<div class="abc" style="border: 2px solid #e5e5e5; margin-right: 35;">
+
+					
+
+					
+
+                <h1 style="color : #563d7c;">Images </h1>
+
+				<div class='row'>
+
+				<div class="span10">
+
+					<div class="span3">
+
+					
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 1 </label>
+
+						<img src= <%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide1()>
+
+						Edit
+
+						</button><br><br>
+
+						<p id ="slide1"><%= file_field 'upload1', 'file' ,class: "input-block-level", :productname => i['product_name'], :product_id => i['product_id'] %>	</p>
+
+					</div>
+
+					<div class="span3">
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 2 </label>
+
+						<img src= <%="#{i['image_2']}thumb/#{i[:image_name_2]}"%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide2()>
+
+						Edit
+
+						</button><br><br>
+
+						<p id ="slide2"><%= file_field 'upload2', 'file' ,class: "input-block-level", :productname => i["product_name"], :product_id => i["product_id"] %>								</p>
+
+					</div>
+
+					<div class="span3">
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 3 </label>
+
+						<img src= <%="#{i['image_3']}thumb/#{i[:image_name_3]}"%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide3()>
+
+						Edit
+
+						</button><br><br>
+
+
+
+						<p id ="slide3"><%= file_field 'upload3', 'file' ,class: "input-block-level", :productname => i["product_name"], :product_id => i["product_id"] %>								</p>
+
+					</div>
+
+				</div>
+
+				</div>
+
+				<input type="hidden" name="product_id" value=<%=i["product_id"]%>>
+
+				<div class='row'>
+
+				<div class="span10"> 
+
+					<br><br>
+
+					<%= submit_tag("submit",  :value => "submit",:class=>"btn btn-primary") %>						
+
+							
+
+				</div>
+
+				</div>
+
+				
+
+			<% end %><% end %>
+
+		</div>
+
+		
+
+		</div>
+
+
+
+</body>
+
+<script src="/first/js/bootstrap-tooltip.js"></script>
+
+		<script src="/first/js/bootstrap-popover.js"></script>
+
+	
+
+
+
+</html>

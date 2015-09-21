@@ -1,0 +1,43 @@
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+.navbar .nav>li>a {
+float: none;
+padding: 1px 15px 1px;
+}
+</style>
+<div class="navbar-inverse" style ="height:7%;" >
+
+		<!-- BEGIN TOP NAVIGATION BAR -->
+
+		<div class="navbar-inner" style ="margin-top: 0; height:20%;" >
+
+			<div style="padding: .5% 2%;">
+
+				<!-- BEGIN LOGO -->
+				<a class="brand" href="/admin_home/adminhome" style="margin-left:1%;">
+					Start<span style="color:#01b8e9!important;display:inline;font-size:16px;">AShoppe</span>
+				
+				</a>
+
+					 <%= link_to "Edit Your Shop ", {:controller =>  "admin_home", :action => "edit_mode_theme",:id => @profile, :method => :post, :name => "edit", :th => session[:theme]}, {:class=>"btn btn-lg return"} %>	
+					
+				
+				<ul class="pull-right" >
+								
+							<li style="float:left;"><i class="icon-key"></i> <font color="#8C9BC9"> <%= link_to "Dashboard", {:controller => "admin_home", :action => "adminhome"}, {:style=>'color:white'} %></li>
+							<li style="float:right;"><i class="icon-key"></i> <%= link_to "Log Out", {:controller => "admin_home", :action => "admin_logout"}, {:style=>'color:white'} %></li>
+						
+					
+				</ul>   
+				
+				<!-- END TOP NAVIGATION MENU --> 
+
+			</div>
+
+		</div>
+
+		<!-- END TOP NAVIGATION BAR -->
+
+	</div>
+

@@ -1,0 +1,27 @@
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        $('#theForm').submit();
+    });
+ 
+    
+    </script>
+<form name="input" action="https://secure.payu.in/_payment" method="post" id="theForm">
+ <input type='hidden' name="key" value="RV6ahR">
+ <input type="hidden" name="txnid" value="<%=@details[:order_id]%>">
+ <input type="hidden" name="amount" value="<%=@details[:total_amt]%>">
+ <input type="hidden" name="productinfo" value="Test Order">
+ <input type="hidden" name="firstname" value="<%=@details[:name]%>">
+ <input type="hidden" name="email" value="<%=@details[:email]%>">
+ <input type="hidden" name="phone" value="<%=@details[:phone]%>">
+ <input type="hidden" name="hash" value="<%=@digest%>">
+ <input type="hidden" name="surl" value="http://electronics.startashoppe.com/c_shop/paymentsucess">
+ <input type="hidden" name="furl" value="http://www.startashoppe.com">
+ <input type="hidden" name="service_provider" value="payu_paisa" >
+<input type="submit" value="Submit" style="visibility:hidden">
+</form>
+
+<img src="/images/processing.jpg" alt="Smiley face" height="200" width="200" style="margin-left: 40%;margin-top: 8%;">
+
+
+

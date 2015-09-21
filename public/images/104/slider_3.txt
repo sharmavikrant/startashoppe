@@ -1,0 +1,81 @@
+<html>
+<head>
+<script language="javascript">
+function formValidation()   
+{
+var uzip = document.registration.zip;
+var passid = document.registration.passid;   
+var umsex = document.registration.msex;   
+var ufsex = document.registration.fsex;
+if(allnumeric(uzip))   
+{  
+if(passid_validation(passid,7,12))   
+{ 
+if(validsex(umsex,ufsex))   
+{   
+}     
+}
+}
+return false;
+}
+function allnumeric(uzip)   
+{    
+var numbers = /^[0-9]+$/;   
+if(uzip.value.match(numbers))   
+{   
+return true;   
+}   
+else  
+{   
+alert('ZIP code must have numeric characters only');   
+uzip.focus();   
+return false;   
+}   
+}
+function passid_validation(passid,mx,my)   
+{   
+var passid_len = passid.value.length;   
+if (passid_len == 0 ||passid_len >= my || passid_len < mx)   
+{   
+alert("Password should not be empty / length be between "+mx+" to "+my);   
+passid.focus();   
+return false;   
+}   
+return true;   
+}   
+ function validsex(umsex,ufsex)   
+{   
+x=0; 
+if(umsex.checked)    
+{   
+x++; 
+}  
+ if(ufsex.checked)   
+{   
+x++;    
+}   
+if(x==0)   
+{   
+alert('Select Male/Female');   
+umsex.focus();   
+return false;   
+}   
+else  
+{   
+alert('Form Successfully Submitted');   
+window.location.reload()   
+return true;}
+}              
+</script>
+</head>
+<body onload="document.registration.zip.focus();">  
+<form name='registration' onSubmit="return formValidation();">  
+<input type ="text" name ="zip">ZIP Code:
+<input type="password" name="passid" size="12">password
+<label id="gender">Sex:</label><br>  
+<input type="radio" name="msex" value="Male" /><span>Male</span>  
+<input type="radio" name="fsex" value="Female" /><span>Female</span>
+<input type="submit" name="submit" value="Submit" />
+</form>
+</body>
+</html>

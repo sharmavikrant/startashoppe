@@ -1,0 +1,27 @@
+<%$message.each do |a|%>
+
+<li>
+
+<a href="inbox.html?a=view">
+
+
+
+<span class="subject">
+
+<span class="from"><%=a[:name]%></span>
+
+
+
+</span>
+
+<span class="message">
+
+<%=a[:message]%>
+
+</span>  
+
+</a>
+
+</li>
+
+<%end%>

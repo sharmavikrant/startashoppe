@@ -1,0 +1,125 @@
+
+
+<html>
+
+<head>
+
+<link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"> 
+
+
+
+<link href="/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+
+<link href="/theme7/nav/bootstrappage.css" rel="stylesheet"/>
+
+<link href="/theme7/nav/flexslider.css" rel="stylesheet"/>
+
+<link href="/theme7/nav/main.css" rel="stylesheet"/>
+
+<script src="/theme7/nav/jquery-1.7.2.min.js"></script>
+
+<script src="/bootstrap/js/bootstrap.min.js"></script>				
+
+<script src="/theme7/nav/superfish.js"></script>	
+
+<script src="/theme7/nav/jquery.scrolltotop.js"></script>
+
+<script src="/theme7/nav/common.js"></script>
+
+</head>
+
+<body>
+
+<header class="header" style="margin-top:-40px">
+
+
+
+<div id="top-bar" class="container">
+
+			<div class="row">
+
+				<div class="span4">
+
+					 <div id="demo-header" style= "width: 125px;height: 27px;float: left;padding-left: 60px;padding-bottom: 20px;position: relative;z-index: 999;top: 4px;font-family: sans-serif;text-transform: uppercase;margin-right: 36px;">
+
+				
+
+				   <h2 style="color: #000000;"><a href="/c_shop/home" class="logo pull-left"><%=session[:shop_name]%></a></h2>
+
+					   </div>
+
+				</div>
+
+				<div class="span8">
+
+					<div class="account pull-right">
+
+						<ul class="user-menu">				
+
+							<li>
+
+							<%=link_to "Your Cart", :controller =>  "c_shop7", :action => "add_to_cart", :id => @profile,:name => "show_cart", :method => :post %>
+
+							</li>
+
+							<li><a href="#">Login</a></li>		
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="wrapper" class="container">
+
+			<section class="navbar main-menu">
+
+<div class="navbar-inner main-menu">				
+
+
+
+					<nav id="menu" class="pull-right">
+
+						<ul>
+
+							<li><a href="/c_shop7/view_all">All Products</a></li>
+
+							<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+
+							<%@category.each do |i|%>
+
+							<li><%=link_to i["product_category_name"], :controller =>  "c_shop7", :action => "view_all", :id => @profile,:name => "search", :method => :post, :category_id => i['product_category_id'] %>					
+
+								
+
+							</li>
+
+							<%end%>
+
+								<li><a href="/c_shop7/contact">Contact Us</a></li>				
+
+							
+
+							
+
+						</ul>
+
+					</nav>
+
+				</div>
+
+			</section>
+
+
+
+</header>
+
+</body>
+
+</html>

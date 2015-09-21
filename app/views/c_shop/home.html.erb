@@ -1,5 +1,1604 @@
-
 <%if @theme =="theme_1"%>
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Sell anythign: Premium Responsive Template develope by bootstrappage.com (bootstrap 2.3.1 version)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="">
+
+    <meta name="author" content="">
+
+<!-- styles -->
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+
+	<link rel="stylesheet/less" type="text/css" href="/theme7/less/bootstrap.less">
+
+	<script src="/theme7/js/less/less.js" type="text/javascript"></script>
+
+
+
+	<!-- favicon-icons -->
+
+    <link rel="shortcut icon" href="/theme7/images/favicon.ico">
+
+
+
+		<script src="/theme7/js/smart.js"></script>
+		<%if session[:flag]==true then %>
+		<style>
+			
+			.editbtn
+			{
+				display:none!important;
+			}
+			#mainCarousel:hover .editbtn
+			{
+			display:block!important;
+			}
+			#mainCarousel img:hover {
+				-webkit-filter: brightness(20%);
+			}
+			
+		</style>
+		<%end%>
+  </head>
+
+<body>
+
+  <%if session[:flag]==true then %>
+		<%=render :partial => 'testheader' %><br>
+	<%end%>
+
+		<%= render :partial => 'home7' %>
+
+		<div class="container">
+
+			<section id="mainCarousel">
+
+				<div class="displayStyle">
+
+					<div id="myCarousel" class="carousel slide">
+
+						<span class="newTag tagRight"></span>
+
+							<ol class="carousel-indicators">
+
+								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+								<li data-target="#myCarousel" data-slide-to="1"></li>
+
+								<li data-target="#myCarousel" data-slide-to="2"></li>
+
+							</ol>
+							<div class="carousel-inner">
+
+								<div class="item active">
+
+									<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+									<div class="row">
+
+										<div class="span12">
+
+											<img src="<%= @product[0]['slide_1']%>" style="height: 383px!important;" alt="#" />
+
+										</div>
+
+					
+
+									</div>
+
+								</div>
+
+								<div class="item">
+
+									<div class="row">
+
+										<div class="span12">
+
+											<img src="<%= @product[0]['slide_2']%>" style="height: 383px!important;" alt="#" />
+
+										</div>
+
+						
+
+									</div>
+
+								</div>
+
+								<div class="item">
+
+									<div class="row">
+
+										<div class="span12">
+
+											<img src="<%= @product[0]['slide_3']%>" style="height: 383px!important;" alt="#" />
+
+										</div>
+
+				
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<a class="left carousel-control" href="#myCarousel" data-slide="prev"></a>
+							<%if session[:flag]==true then %>
+								<%= form_tag({ controller:'admin_home', :action => "basic_details"}, :multipart => true) do %>
+									<%= submit_tag("View Detail",  :value => "Change Your Image",:class=>"editbtn" , :style=>"position: absolute;bottom: 50%;left: 42%;") %>
+								<%end%>	
+							<%end%>
+							<a class="right carousel-control" href="#myCarousel" data-slide="next" style="left:93%"></a>
+			
+					</div>
+
+	</div>
+
+</section>
+
+
+
+
+
+<section id="featuredProduct">
+
+
+
+<h3 class="title"><span>New Products</span></h3>
+
+
+
+<div id="myCarouselOne" class="carousel slide">
+
+
+
+	<!-- Dot Indicators -->
+
+
+
+	<div class="carousel-inner">
+
+
+
+
+
+
+
+<% count=0;
+
+
+
+	@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+
+
+
+							
+
+
+
+	<%@categories.each do |c|
+
+
+
+	count=count+1;%>
+
+
+
+
+
+
+
+	<%if count==1 then %>
+
+
+
+		<div class="item active">
+
+
+
+		<div class="row">
+
+
+
+				<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+
+
+
+				<%@products.each do |p|%>
+
+
+<% @sub_category=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} " ) %>
+
+	<%@category.each do |x|%>
+
+	<% if p["product_category_id"] == x["product_category_id"]%>
+		<% @cat = x["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if p["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+	
+
+						<div class="span3">
+
+
+
+						<div class="well well-small">
+
+
+
+							<span class="newTag"></span>
+
+
+
+							<span class="priceTag">
+
+
+
+								
+
+
+
+								<span class="newPrice"><small>$</small><%=p[:price]%></span>
+
+
+
+							</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a class="displayStyle" href="#"><img src="<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>" style="height: 165px!important;width: 164px!important;" alt="#"/></a>
+
+
+
+							<h5><%=p[:title]%></h5>
+
+
+
+							<p>
+
+
+
+								
+
+
+
+							<%= form_tag("/#{Masterusers.title(p[:title])}/#{@cat}/#{@sub}/c_shop_7/#{p['product_id']}", :method=>"put") do %>
+
+
+
+
+
+
+
+
+
+
+
+		<input type="hidden" name="product" value=<%=p['product_id']%>>
+
+
+
+		<input type="hidden" name="product_name" value=<%=p["product_name"]%>>
+
+
+
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => p["product_id"] ) %>
+
+
+
+						
+
+
+
+				
+
+
+
+<%end%>
+
+
+
+							</p>
+
+
+
+							<p><span class="price"><small>$</small><%=p[:price]%></span></p>
+
+
+
+					
+
+
+
+						</div>
+
+
+
+						</div>
+
+
+
+				<%end%>
+
+
+
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+	<%else%>
+
+
+
+	<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+
+
+
+
+
+
+
+	<div class="item">
+
+
+
+	<div class="row">
+
+
+
+	<%@products.each do |p|%>
+
+<%@category.each do |x|%>
+
+	<% if p["product_category_id"] == x["product_category_id"]%>
+		<% @cat = x["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if p["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+
+
+
+		<div class="span3">
+
+
+
+			<div class="well well-small">
+
+
+
+				<span class="newTag"></span>
+
+
+
+				<span class="priceTag">
+
+
+
+					
+
+					<span class="newPrice"><small>$</small><%=p[:price]%></span>
+
+
+
+				</span>
+
+
+
+				<a class="displayStyle" href="#"><img src="<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>" style="height: 165px!important;width: 164px!important;" alt="#"/></a>
+
+
+
+				<h5><%=p[:title]%></h5>
+
+
+
+				<p>
+
+
+
+	
+
+
+
+					
+
+
+
+							<%= form_tag("/#{Masterusers.title(p[:title])}/#{@cat}/#{@sub}/c_shop_7/#{p['product_id']}", :method=>"put") do %>
+
+
+
+
+
+
+
+
+
+
+
+		<input type="hidden" name="product" value=<%=p['product_id']%>>
+
+
+
+		<input type="hidden" name="product_name" value=<%=p["product_name"]%>>
+
+
+
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => p["product_id"] ) %>
+
+
+
+						
+
+
+
+				
+
+
+
+<%end%>
+
+
+
+				</p>
+
+
+
+				<p><span class="price"><small>$</small><%=p[:price]%></span></p>
+
+
+
+				
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+	<%end%>	
+
+
+
+	</div>
+
+
+
+	</div>
+
+
+
+<%end%>
+
+
+
+<%end%>
+
+
+
+
+
+
+
+	</div>
+
+
+
+		<a class="left carousel-control" href="#myCarouselOne" data-slide="prev"></a>
+
+
+
+		<a class="right carousel-control" href="#myCarouselOne" data-slide="next"></a>
+
+
+
+</div>
+
+
+
+	<%if !cookies[:recently_view].nil? then
+
+
+
+						@a=cookies[:recently_view]
+
+
+
+						@p=[]
+
+
+
+						@p=@a.split(' ')
+
+
+
+						@p=@p.to_set
+
+
+
+					end%>	
+
+
+
+<h3 class="title"><span>Recentlly Viewed Items</span></h3>
+
+
+
+<div id="showCase" class="row">
+
+
+
+
+
+
+
+	
+
+
+
+	<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+
+
+
+
+
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+
+
+
+
+
+
+
+
+
+            	
+
+
+
+			<%@p.each do |a|%>
+
+
+
+						<%@product.each do |i|%>
+
+
+
+							<%if i['product_id']==a.to_i  then %>
+
+
+
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+
+
+
+																													<%@d.each do |a|%>
+
+
+
+<div class="span2">
+
+
+
+<div class="carousel slide">
+
+
+
+                     <div class="carousel-inner">       
+
+
+
+			<div class="item active">
+
+
+
+			<a  href="details.php" ><img src="<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" style="height: 90px!important;width: 108px!important;" alt="#"/>
+
+
+
+			</a>
+
+
+
+<%=link_to "View Detail", :controller =>  "c_shop7", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => a['product_id'] , :product => a['product_id'],:product_name => a["product_name"]%>
+
+
+
+			</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+	<%end%>	
+
+
+
+<%end%>	
+
+
+
+<%end%>	
+
+
+
+<%end%>			
+
+
+
+	
+
+
+
+
+
+
+
+</div>
+
+
+
+<%end%>	
+
+
+
+</section>
+
+
+<!--
+<section id="scn">
+
+<h3 class="title"><span>WELCOME !</span></h3>
+
+<div class="row">
+
+	<div class="span4">
+
+	<h1><i class="icon-heart"></i> </h1>
+
+	<h4>Who we are?</h4>	
+
+	<p>Bootstrapapge.com helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage, Logo etc. </p>
+
+	<p>We are helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage </p>
+
+	</div>
+
+	<div class="span4">
+
+	<div class="seperator">
+
+		<h1><i class="icon-truck iconShipping"></i> </h1>		
+
+		<h4>Shipping Information</h4>		
+
+		<p>If you are looking for upgrade your website for mobiles and tablets, Even if you do not have any website. Remember! bootsttrappage.com will come to make your dreams true.</p>
+
+		<p class="shipping"><span class="shippingCall">Free Shipping On Orders Over $400</span></p>
+
+	</div>
+
+	</div>
+
+	<div class="span4">
+
+		<h1><i class="icon-comments-alt"></i> </h1>
+
+		<h4>Find us in</h4>
+
+		<p class="findUs">
+
+			<a href="#"><i class="icon-facebook"></i> </a>
+
+			<a href="#"><i class="icon-twitter"></i> </a>
+
+			<a href="#"><i class="icon-google-plus"></i> </a>
+
+		</p>
+
+		<h4>Subscribe us</h4>	
+
+		<div class="caption">
+
+		<p> Subscribe us for our newsletters</p>
+
+		<form class="">
+
+		  <div class="control-group">
+
+			<div class="controls">
+
+			  <input type="text" id="userEmail" placeholder="eg: info:bootstrappage.com">
+
+			</div>
+
+		  </div>
+
+		  <div class="control-group">
+
+			<div class="controls">
+
+			  <button type="submit" class="btn btn-success ">subscribe</button>
+
+			</div>
+
+		  </div>
+
+		</form>
+
+	</div>
+
+</div>
+
+</div>
+
+</section>
+
+<hr class="soften"/>
+
+
+-->
+</div>
+
+<!-- Footer
+
+================================================== 
+<footer class="footer">
+
+<div class="container">
+
+<h5>Accepted Payment Methods </h5>
+
+<p><a href="#"><img src="/theme7/images/payment_methods.png" alt="payment methods"/></a></p>
+
+<hr class="soften"/>
+
+<div class="footerMenu">
+
+	<a href="register.php"> REGISTRATION</a> | 
+
+	<a href="about_us.php"> ABOUT US</a> | 
+
+	<a  href="topology.php" >TOPOLOGY</a> | 
+
+	<a href="contact_us.php">CONTACT </a>
+
+<p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
+
+</div>
+
+</div>
+
+</footer>
+
+<span id="toTop" style="display: none;"><span><i class="icon-angle-up"></i></span></span>
+
+-->
+<div class="container-fluid">
+
+<section id="footer-bar">
+
+
+
+				<div class="row-fluid">
+
+					<div class="span4">
+
+                        <div class="heading_footer">                 
+
+						<h4>Navigation</h4>
+
+                        </div>
+
+                        <div class="row">
+
+                        <div class="span12">
+
+                       
+
+						<ul class="nav">
+
+							
+
+							<li><a href="/c_shop10/home">About Us</a></li>
+
+							<li><a href="/c_shop10/home">Shipping &amp; Delivery Policy</a></li>
+
+							<li><a href="/c_shop10/home">Disclaimer Policy</a></li>
+
+							
+
+						</ul>
+
+                            </div>
+
+                       
+
+                                </div>
+
+					</div>
+
+					<div class="span4">
+
+                    <div class="heading_footer2">                 
+
+						<h4>My Account</h4>
+
+                     </div>
+
+                        <div class="row">
+
+                            <div class="span12">
+
+						<ul class="nav">
+
+							<li><a href="/c_shop10/home">My Account</a></li>
+
+							<li><a href="/c_shop10/home">Order History</a></li>
+
+							<li><a href="/c_shop10/home">Wish List</a></li>
+
+							<li><a href="/c_shop10/home">Newsletter</a></li>
+
+						</ul>
+
+					</div>
+
+                       </div></div>
+
+					<div class="span3">
+
+						<div class="heading_footer2">                 
+
+						<h4>My Account</h4>
+
+                     </div>
+
+                        <ul class="nav">
+
+							<li><a href="/c_shop10/home">My Account</a></li>
+
+							<li><a href="/c_shop10/home">Order History</a></li>
+
+							
+
+                        
+
+						</ul>
+
+                        <span class="social_icons" style="color:#fff!important;">
+
+							<a class="facebook" href="/c_shop10/home">Facebook</a>
+
+							<a class="twitter" href="/c_shop10/home">Twitter</a>
+
+							<a class="skype" href="/c_shop10/home">Skype</a>
+
+							<a class="vimeo" href="/c_shop10/home">Vimeo</a>
+
+						</span>
+
+						
+
+					</div>					
+
+				</div>	
+
+			</section>
+
+</div>
+<!--  javascript
+
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/theme7/js/jquery-1.8.3.min.js"></script>
+
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/theme7/js/smart.js"></script>
+
+  </body>
+
+</html>
+
+
+
+
+
+<%end%>
+
+
+
+
+
+
+
+<%if @theme =="theme_6"%>
+<%if session[:flag]==true then %>
+		<%=render :partial => 'testheader' %>
+	<%end%>
+<%= render :partial => 'home6' %>
+
+
+
+<!DOCTYPE html>
+
+
+
+<head>
+
+	<script type="text/javascript">
+
+//<![CDATA[
+
+window.__CF=window.__CF||{};window.__CF.AJS={"abetterbrowser":{"ie":"7"},"ga_key":{"ua":"UA-7078796-5","ga_bs":"2"}};
+
+//]]>
+
+</script>
+
+<script type="text/javascript">
+
+//<![CDATA[
+
+try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/abv=2980380653/"},atok:"de8fe5ff0bd002870044c36593fe8ba2",petok:"8101959a919cc564267338dd66801fcd-1384149002-1800",zone:"template-help.com",rocket:"0",apps:{"abetterbrowser":{"ie":"7"},"ga_key":{"ua":"UA-7078796-5","ga_bs":"2"}}}];var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.async=!0;a.src="//ajax.cloudflare.com/cdn-cgi/nexp/abv=616370820/cloudflare.min.js";b.parentNode.insertBefore(a,b);}}catch(e){};
+
+//]]>
+
+</script>
+
+<script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><title>Travel Store | Just another WordPress site</title>
+
+	<meta name="description" content=" | Just another WordPress site" />
+
+	<meta charset="UTF-8" />
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	
+
+	
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/normalize.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/style.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/prettyPhoto.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/cameraslideshow.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/flexslider.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/skeleton.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/touchTouch.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/shop-styles.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/320.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/480.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/768.css" />
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+<script type='text/javascript' src='/theme6/js/jquery.mobilemenu.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/superfish.js?ver=1.4.8'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.easing.1.3.js?ver=1.3'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.prettyPhoto.js?ver=3.1.3'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.tools.min.js?ver=1.2.6'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.elastislide.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.loader.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/swfobject.js?ver=2.2-20120417'></script>
+
+<script type='text/javascript' src='/theme6/js/slides.jquery.js?ver=1.1.9'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.twitter.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.flickrush.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/touchTouch.jquery.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/audiojs/audio.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/camera.js?ver=1.3.3'></script>
+
+<script type='text/javascript' src='/theme6/js/custom.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery-ui-1.9.2.min.js?ver=1.9.2'></script>
+
+<script type='text/javascript' src='/theme6/js/blockui.js?ver=3.4'></script>
+
+
+
+<script type='text/javascript' src='/theme6/js/comment-reply.js?ver=3.4'></script>
+
+
+
+
+
+	
+
+	
+
+	<script type="text/javascript">
+
+		jQuery(window).load(function() {
+
+			$('#topnav').css({display:'block'});
+
+		});
+
+	</script>
+
+
+
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+var _gaq = _gaq || [];
+
+_gaq.push(['_setAccount', 'UA-7078796-5']);
+
+_gaq.push(['_trackPageview']);
+
+
+
+(function() {
+
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+})();
+
+
+
+(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
+
+/* ]]> */
+
+</script>
+
+</head>
+
+
+
+<body class="home page page-id-203 page-template page-template-page-home-php">
+
+
+
+<div id="main"><!-- this encompasses the entire Web site -->
+
+	
+
+	<div class="bg-content">
+
+			<section id="slider-wrapper">
+
+			<div class="slider-container">
+
+				<script type="text/javascript">
+
+	jQuery(window).load(function() {
+
+		jQuery(function(){
+
+			jQuery('.camera_wrap').camera({
+
+				autoAdvance			: true,	//true, false
+
+				mobileAutoAdvance	: true, //true, false. Auto-advancing for mobile devices
+
+				barDirection		: 'leftToRight',	//'leftToRight', 'rightToLeft', 'topToBottom', 'bottomToTop'
+
+				barPosition			: 'bottom',	//'bottom', 'left', 'top', 'right'
+
+				cols				: 10,
+
+				easing				: 'easeInOutExpo',	//for the complete list http://jqueryui.com/demos/effect/easing.html
+
+				mobileEasing		: '',	//leave empty if you want to display the same easing on mobile devices and on desktop etc.
+
+				fx					: 'stampede',	//'random','simpleFade', 'curtainTopLeft', 'curtainTopRight', 'curtainBottomLeft', 			'curtainBottomRight', 'curtainSliceLeft', 'curtainSliceRight', 'blindCurtainTopLeft', 'blindCurtainTopRight', 'blindCurtainBottomLeft', 'blindCurtainBottomRight', 'blindCurtainSliceBottom', 'blindCurtainSliceTop', 'stampede', 'mosaic', 'mosaicReverse', 'mosaicRandom', 'mosaicSpiral', 'mosaicSpiralReverse', 'topLeftBottomRight', 'bottomRightTopLeft', 'bottomLeftTopRight', 'bottomLeftTopRight'
+
+												//you can also use more than one effect, just separate them with commas: 'simpleFade, scrollRight, scrollBottom'
+
+				mobileFx			: '',	//leave empty if you want to display the same effect on mobile devices and on desktop etc.
+
+				gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
+
+				height				: '27.62%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+
+				imagePath			: 'images/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)	
+
+				loader				: 'none',	//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)
+
+				loaderColor			: '#eeeeee', 
+
+				loaderBgColor		: '#222222', 
+
+				loaderOpacity		: .8,	//0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1
+
+				loaderPadding		: 2,	//how many empty pixels you want to display between the loader and its background
+
+				loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter		
+
+				minHeight			: '200px',	//you can also leave it blank
+
+				navigation			: true,	//true or false, to display or not the navigation buttons
+
+				navigationHover		: false,	//if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always 
+
+				pagination			: true,
+
+				playPause			: false,	//true or false, to display or not the play/pause buttons
+
+				pieDiameter			: 38,
+
+				piePosition			: 'rightTop',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
+
+				rows				: 3,
+
+				slicedCols			: 10,
+
+				slicedRows			: 3,
+
+				thumbnails			: true,
+
+				time				: 5000,	//milliseconds between the end of the sliding effect and the start of the next one
+
+				transPeriod			: 1000,	//lenght of the sliding effect in milliseconds
+
+				
+
+		////////callbacks
+
+
+
+				onEndTransition		: function() {  },	//this callback is invoked when the transition effect ends
+
+				onLoaded			: function() {  },	//this callback is invoked when the image on a slide has completely loaded
+
+				onStartLoading		: function() {  },	//this callback is invoked when the image on a slide start loading
+
+				onStartTransition	: function() {  }	//this callback is invoked when the transition effect starts
+
+			});
+
+		});
+
+	});
+
+</script>
+
+
+
+<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+<div class="camera_wrap">
+
+					
+
+		
+
+		
+
+					
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_1']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/emotive/lorem-ipsum-dolor/' data-thumb='<%= @product[0]['slide_1']%>'>										
+
+							</div>	
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_2']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/cityscape/mauris-posuere/' data-thumb='<%= @product[0]['slide_2']%>'>										
+
+							</div>	
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_3']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/emotive/dolore-magna-aliqua/' data-thumb='<%= @product[0]['slide_3']%>'>										
+
+							</div>	
+
+		
+
+		</div>			</div>
+
+		</section><!--#slider-->
+
+		<div class="content-box bg">
+
+		<div class="primary_content_wrap">
+
+        		<div class="before-content-area clearfix">
+
+        <div class="container_12 clearfix">
+
+			<div class="grid_12">
+
+								<div id="my_carouselwidget-2">					<h2>Featured Products</h2>							
+
+							<!-- Elastislide Carousel -->
+
+							<div id="carousel" class="es-carousel-wrapper">
+
+								<div class="es-carousel">
+
+									<div class="item-list">
+
+										<ul>
+
+											                                            		<% @product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 4 ")%>
+
+		
+
+<%@product.each do |i|%>																				
+
+																						
+
+																														<li>
+
+																							<figure class="featured-thumbnail"><a href=" <%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>"><img src= <%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> style="height: 127px;"> </a></figure>
+
+ 																							<h4><a href=""><%= i['title']%></a></h4>
+
+
+
+<%= form_tag("/c_shop6/product_detail/", :method=>"put") do %>	
+
+                                		
+
+<input type="hidden" name="productid" value=<%=i['product_id']%> />
+
+<input type="hidden" name="product" value=<%=i['product_id']%> />
+
+<input type="hidden" name="product_name" value=<%=i['product_name']%> />
+
+<%= submit_tag("detail", :name=>"detail", :value => "detail",:class=>"js_widget_product_link button") %>
+
+<span class="price" style="margin-left:30%">$<%= i['price']%></span>     
+
+<%end%>
+
+
+
+				                               
+
+											</li>
+
+																					
+
+<%end%>		 											
+
+																																				
+
+																		</ul>
+
+									</div>
+
+								</div>
+
+<div class="es-nav"><span class="es-nav-prev" style="display: none;"><span>Previous</span></span><span class="es-nav-next" style="display: block;"><span>Next</span></span></div>
+
+							</div>
+
+							<script type="text/javascript">
+
+			
+
+								$('#carousel').elastislide({
+
+									imageW 	: 220,
+
+									minItems	: 4
+
+								});
+
+								
+
+							</script>
+
+							<!-- End Elastislide Carousel -->
+
+			
+
+			
+
+				</div>        			</div>
+
+		</div><!-- .container -->
+
+	</div>
+
+
+
+        
+
+
+
+
+
+<div class="content-area">
+
+		<div class="container_12 clearfix">
+
+			<div class="main-separator clearfix">
+
+				<div class="grid_8">
+
+
+
+
+
+				<%if !cookies[:recently_view].nil? then
+
+						@a=cookies[:recently_view]
+
+						@p=[]
+
+						@p=@a.split(' ')
+
+						@p=@p.to_set
+
+					end%>
+
+			<div id="widget_recent_entries"><h2>Latest products</h2>
+
+				<ul class="product_list_widget">
+
+					<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+
+
+
+            	
+
+			<%@p.each do |a|%>
+
+						<%@product.each do |i|%>
+
+							<%if i['product_id']==a.to_i  then %>
+
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+
+																													<%@d.each do |a|%>
+
+                            
+
+
+
+
+
+		<li>
+
+			<div class="inner">
+
+			<figure class="featured-thumbnail">
+
+			<a href=" <%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" class="thumb">
+
+				<span class="stroke"></span>
+
+				<span class="image-wrapper">
+
+				<img src=" <%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" alt="">
+
+				</span>
+
+			</a>
+
+			</figure>
+
+			<div class="js_widget_product_title">
+
+			<a href=""><%=a["title"]%></a>
+
+			</div>
+
+			<span class="js_widget_product_excerpt"><%=a["description"]%></span>
+
+			<span class="js_widget_product_price">$<%=a["price"]%></span>
+
+			<a href="" class="js_widget_product_link button">Details</a>
+
+		</li>
+
+	
+
+<%end%>	
+
+<%end%>	
+
+<%end%>	
+
+<%end%>	
+
+</ul>
+
+</div>	
+
+<%end%>			
+
+<br>
+
+<br>
+
+<a href="/c_shop7/view_all" class="link">view all</a>
+
+	</div>
+
+				
+
+		  
+
+		<div id="text-3" class="grid_3 widget-footer"><h4>Quick contact</h4>			<div class="textwidget"><div class="wpcf7" id="wpcf7-f208-w1-o1"><form action="/free_sample_jigoshop/#wpcf7-f208-w1-o1" method="post" class="wpcf7-form">
+
+<div style="display: none;">
+
+<input type="hidden" name="_wpcf7" value="208" />
+
+<input type="hidden" name="_wpcf7_version" value="3.3" />
+
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f208-w1-o1" />
+
+<input type="hidden" name="_wpnonce" value="ec054a9d7c" />
+
+</div>
+
+<p class="field"><span class="wpcf7-form-control-wrap text-193"><input type="text" name="text-193" value="" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required wpcf7-use-title-as-watermark" size="40" title="Name" /></span></p>
+
+<p class="field"><span class="wpcf7-form-control-wrap email-611"><input type="text" name="email-611" value="" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email wpcf7-use-title-as-watermark" size="40" title="Email" /></span></p>
+
+<p class="area"><span class="wpcf7-form-control-wrap textarea-113"><textarea name="textarea-113" class="wpcf7-form-control  wpcf7-textarea wpcf7-use-title-as-watermark" cols="40" rows="10" title="Message"></textarea></span></p>
+
+<p class="submit-wrap"><input type="submit" value="Send" class="wpcf7-form-control  wpcf7-submit" /></p>
+
+</form></div></div>
+
+		</div>		
+
+
+
+			</div>
+
+			</div>
+
+		</div>
+
+					</div><!--.container-->
+
+                </div><!--.primary_content_wrap-->
+
+			</div><!--.content-box-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+<%end%>
+
+
+
+
+<%if @theme =="theme_10"%>
 
 <!DOCTYPE html>
 <html lang="en"><head>
@@ -27,18 +1626,7 @@
 	<link rel="stylesheet" href="/theme2/css/nivo-slider.css" type="text/css" media="screen" >
 	<link rel="stylesheet" href="/theme2/css/socialcount-with-icons.css" type="text/css" media="screen" >
 	
-	<style>
-	div.ui-datepicker{
-	font-size:11px;
-	}
-	.nivoSlider img{
-	height:354px;!important}
-    h1, h2, h3, h4, h5, h6 {
-font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif
-text-transform: uppercase;
-font-weight: normal;
-}
-	</style>
+	
 	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">			
 	<link rel="shortcut icon" href="http://demo.startashoppe.info/files/2012/12/Untitled-1.png" /> 
 	<link href="/viewall/css/style.css" type="text/css" rel="stylesheet" />
@@ -56,7 +1644,29 @@ font-weight: normal;
     <link rel="stylesheet" type="text/css" href="/css/animate.css" media="screen, projection">
     <link rel="stylesheet" href="/css/sign-up.css" type="text/css" media="screen">
 
+
+<script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script>
+
+
 <script type='text/javascript' src='/viewall/js/jquery.js'></script>
+
 <script type='text/javascript' src='/viewall/js/jquery-migrate.min.js?ver=1.2.1'></script>
 <script type='text/javascript'>
 /* <![CDATA[ */
@@ -89,14 +1699,14 @@ color: #563d7c;
 <body>
   <%= render :partial => 'home1' %>
 	
-	
+	\
 	
 	</div>
 	</div><!-- end header -->
 	<!-- Modal slider_1 -->
 <div id="slider_1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h3 id="myModalLabel">Slider Image</h3>
   </div>
   <div class="modal-body">
@@ -142,7 +1752,7 @@ color: #563d7c;
 	<!-- Modal slider_2 -->
 <div id="slider_2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h3 id="myModalLabel">Slider Image</h3>
   </div>
   <div class="modal-body">
@@ -188,7 +1798,7 @@ color: #563d7c;
 		<!-- Modal slider_3 -->
 <div id="slider_3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
     <h3 id="myModalLabel">Slider Image</h3>
   </div>
   <div class="modal-body">
@@ -246,8 +1856,8 @@ color: #563d7c;
 							<%=link_to image_tag(@product[0]['slide_3'], :width => 1000, :height => 500)  ,'#slider_3', html_options = {:data => {:toggle => 'modal'} }%>
 							
 						<%else%>
-						
-							<img src= "<%= @product[0]['slide_1']%>" alt="">
+						<%= image_tag(@product[0]['slide_1'], :size => "260x180") %> 
+							
 							<img src= "<%= @product[0]['slide_2']%>" alt="" >
 							<img src= "<%= @product[0]['slide_3']%>" alt="" >
 						<%end%>
@@ -284,7 +1894,7 @@ color: #563d7c;
 		<%@product.each do |i|%>
 <!-- Modal -->
 			<div id=<%=i["product_id"]%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:65%;height:320px;">
-				<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 				</div>
 				<div id="product-single-wrapper">
 					<div class="content-section">
@@ -308,7 +1918,7 @@ color: #563d7c;
 
 								
 									
-												<div class="mainContent"><img src=<%=i['image_1']%> width="190" height="240" data-src=<%=i['image_1']%>/>
+												<div class="mainContent"><img src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>  width="190" height="240" data-src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%> >
 												</div>
 					
 													</a>
@@ -357,8 +1967,9 @@ color: #563d7c;
 					
 					
 					<div class="mainContent">
+				
 					 <a href="/test">
-					<img src=<%=i['image_1']%> width="190" height="240" data-src=<%=i['image_1']%>
+					<img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>%>
 					</a>
 					<input type="hidden" name="product" value=<%=i['product_id']%>>
 					<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
@@ -445,7 +2056,7 @@ color: #563d7c;
 							<%if i['product_id']==a.to_i  then %>
 <!-- Modal -->
 										<div id=<%=i["product_id"]%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:65%;height:320px;">
-											<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 											</div>
 											<div id="product-single-wrapper">
 												<div class="content-section">
@@ -469,7 +2080,7 @@ color: #563d7c;
 
 															
 																
-																			<div class="mainContent"><img src="/images/loader_lazyload1.gif" width="190" height="240" data-src=<%=i['image_1']%>/>
+																			<div class="mainContent"><img src="/images/loader_lazyload1.gif" width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>>
 																			</div>
 												
 																				</a>
@@ -519,7 +2130,7 @@ color: #563d7c;
 												
 												<div class="mainContent">
 												 <a href="/test">
-												<img src=<%=i['image_1']%> width="190" height="240" data-src=<%=i['image_1']%>
+												<img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>  width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> 
 												</a>
 												<input type="hidden" name="product" value=<%=i['product_id']%>>
 												<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
@@ -684,947 +2295,929 @@ var lumeboxOptions = {"graphicsDir":"http:\/\/demo.startashoppe.info\/wp-content
 
 
 <%elsif @theme == "theme_2" %>
-<!DOCTYPE html>
-<html lang="en-US"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="/js/jquery.unveil.js"></script>
-<script type="text/javascript" charset="utf-8">
-               $(document).ready(function() {
-                        console.log('testing lazyload');
-                        $("img").unveil();
-               });
-       </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>UnoSlider | Maya Shop</title>          
-    
-    <link rel="stylesheet" type="text/css" media="all" href="/theme1/css/style.css">
-    <link rel="pingback" href="#">                              
-	
-	<link rel="stylesheet" type="text/css" media="screen and (max-width: 960px)" href="/theme1/css/lessthen960.css">
-	<link rel="stylesheet" type="text/css" media="screen and (max-width: 600px)" href="/theme1/css/lessthen600.css">
-	<link rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" href="/theme1/css/lessthen480.css">
-	    
-    
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Metawing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/shopymart/css/style.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+<link href="/shopymart/css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen"><!-- prettyPhoto -->
+<link href="/shopymart/css/tipsy.css" type="text/css" rel="stylesheet" media="screen"><!--tooltip-->
+<link href="/shopymart/css/jcarousel.css" type="text/css" rel="stylesheet" media="screen" /> <!-- list_work -->
+<link href="/shopymart/css/itemslider.css" type="text/css" rel="stylesheet" media="screen" /> <!-- list_work -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
 
-    <!-- [favicon] begin -->
-    <link rel="shortcut icon" type="image/x-icon" href="#">
-    <link rel="icon" type="image/x-icon" href="#">
-    <!-- [favicon] end -->  
-    
-                <style>
-                            </style>
-            <script type="text/javascript">
-            var yith_wcwl_plugin_ajax_web_url = '#';
-            var login_redirect_url= '#';
-            </script>
-            <link rel="alternate" type="application/rss+xml" title="Maya Shop » Feed" href="#">
-<link rel="alternate" type="application/rss+xml" title="Maya Shop » Comments Feed" href="#">
-<link rel="alternate" type="application/rss+xml" title="Maya Shop » UnoSlider Comments Feed" href="#">
-<link rel="stylesheet" id="woocommerce_frontend_styles-css" href="/theme1/css/style(1).css" type="text/css" media="all">
-<link rel="stylesheet" id="thickbox-css" href="/theme1/css/thickbox.css" type="text/css" media="all">
-<link rel="stylesheet" id="eMember.style-css" href="/theme1/css/eMember_style.css" type="text/css" media="all">
-<link rel="stylesheet" id="eMember.style.custom-css" href="/theme1/css/eMember_custom_style.css" type="text/css" media="all">
-<link rel="stylesheet" id="validationEngine.jquery-css" href="/theme1/css/validationEngine.jquery.css" type="text/css" media="all">
-<link rel="stylesheet" id="jquery.fileuploader-css" href="/theme1/css/jquery.fileuploader.css" type="text/css" media="all">
-<link rel="stylesheet" id="jquery-ui-style-css" href="/theme1/css/jquery-ui.css" type="text/css" media="all">
-<link rel="stylesheet" id="pacifico-font-css" href="/theme1/css/css" type="text/css" media="all">
-<link rel="stylesheet" id="rokkitt-font-css" href="/theme1/css/css(1)" type="text/css" media="all">
-<link rel="stylesheet" id="shadows-into-light-font-css" href="/theme1/css/css(2)" type="text/css" media="all">
-<link rel="stylesheet" id="prettyPhoto-css" href="/theme1/css/prettyPhoto.css" type="text/css" media="all">
-<link rel="stylesheet" id="tipsy-css" href="/theme1/css/tipsy.css" type="text/css" media="all">
-<link rel="stylesheet" id="flexslider-css" href="/theme1/css/flexslider.css" type="text/css" media="all">
-<link rel="stylesheet" id="slider-unoslider-css" href="/theme1/css/slider-unoslider.css" type="text/css" media="all">
-<link rel="stylesheet" id="slider-unoslider--css" href="/theme1/css/theme.css" type="text/css" media="all">
-<link rel="stylesheet" id="custom-css-css" href="/theme1/css/custom.css" type="text/css" media="all">
-<link rel="stylesheet" id="layerslider_css-css" href="/theme1/css/layerslider.css" type="text/css" media="all">
-<link rel="stylesheet" id="yith-wcwl-main-css" href="/theme1/css/style(2).css" type="text/css" media="all">
-<link rel="stylesheet" id="style-changer-css" href="/theme1/css/picker.css" type="text/css" media="all">
+<script type="text/javascript" src="/shopymart/js/css3-mediaqueries.js"></script><!--mediaqueries-->
+<script type="text/javascript" src="/shopymart/js/modernizr-1.7.min.js"></script><!--modernizr-->
+<script type="text/javascript" src="/shopymart/js/modernizr.custom.63321.js"></script><!--itemslider-modernizr-->
+<script type="text/javascript" src="/shopymart/js/jquery.prettyPhoto.js"></script><!-- prettyPhoto -->
+<script type="text/javascript" src="/shopymart/js/jquery.tipsy.js"></script><!--tooltip-->
+<script type="text/javascript" src="/shopymart/js/jquery.jcarousel.min.js"> </script> <!-- list_work -->
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+<script type='text/javascript' src='/shopymart/js/jquery.hoverIntent.minified.js'></script><!--menu-->
+<script type='text/javascript' src='/shopymart/js/jquery.dcmegamenu.1.3.3.js'></script><!--menu-->
+<script type='text/javascript' src="/shopymart/js/jquery.tweet.js"></script><!--twitter plugin-->
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+<script type="text/javascript" src="/shopymart/js/jquery.catslider.js"></script><!--itemslider-->
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
 
-<script type="text/javascript">      
-    var     yiw_slider_type = 'unoslider',
-            yiw_slider_unoslider_theme               = 'light',
-            yiw_slider_unoslider_responsive          = true, 
-            yiw_slider_unoslider_width               = 948, 
-            yiw_slider_unoslider_height              = 350, 
-            yiw_slider_unoslider_indicator           = { autohide: true }, 
-            yiw_slider_unoslider_navigation          = { autohide: true, prev: 'Prev', next: 'Next', play: 'Play', stop: 'Stop' }, 
-            yiw_slider_unoslider_slideshow           = { autostart: true, speed: 4, timer: true, hoverPause: true, continuous: true, infinite: true }, 
-            yiw_slider_unoslider_interval            = 4,
-            yiw_slider_unoslider_block               = { vertical: 10, horizontal: 4 }, 
-            yiw_slider_unoslider_preset              = ["chess","flash","spiral_reversed","spiral","sq_appear","sq_flyoff","sq_drop","sq_squeeze","sq_random","sq_diagonal_rev","sq_diagonal","sq_fade_random","sq_fade_diagonal_rev","sq_fade_diagonal","explode","implode","fountain","blind_bottom","blind_top","blind_right","blind_left","shot_right","shot_left","alternate_vertical","alternate_horizontal","zipper_right","zipper_left","bar_slide_random","bar_slide_bottomright","bar_slide_topright","bar_slide_topleft","bar_fade_bottom","bar_fade_top","bar_fade_right","bar_fade_left","bar_fade_random","v_slide_top","h_slide_right","v_slide_bottom","h_slide_left","stretch","squeez","fade"], 
-            yiw_slider_unoslider_animation           = { speed : 500, delay : 50 };
-</script>
-    <script type="text/javascript">
-    var yiw_prettyphoto_style = 'pp_default';
-</script>
-    <script type="text/javascript">      
-    var     yiw_product_slider_interval = 6;</script>
-    <script type="text/javascript" src="/theme1/js/jquery.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.external.lib.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.lightbox-0.5.pack.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.fileuploader.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.validationEngine.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.hint.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.tools18.min.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.libs.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.pagination-2.0rc.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.confirm-1.3.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.prettyPhoto.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.tweetable.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.nivo.slider.pack.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.cycle.min.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.jcarousel.min.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.mobilemenu.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.flexslider.min.js"></script>
-<script type="text/javascript" src="/theme1/js/unoslider.js"></script>
-<script type="text/javascript" src="/theme1/js/comment-reply.min.js"></script>
-<script type="text/javascript" src="/theme1/js/layerslider.kreaturamedia.jquery.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery-easing-1.3.js"></script>
-<script type="text/javascript" src="/theme1/js/jquerytransit.js"></script>
-<script type="text/javascript" src="/theme1/js/layerslider.transitions.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.cookie.js"></script>
-<script type="text/javascript" src="/theme1/js/colorpicker.js"></script>
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="#">
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="#"> 
-<link rel="prev" title="Layers Slider" href="#">
-<link rel="next" title="Elegant Slider" href="#">
-<meta name="generator" content="WordPress 3.5.1">
-<link rel="canonical" href="#">
-<link type="text/css" rel="stylesheet" href="/theme1/css/affiliate_platform_style.css">
-<link type="text/css" rel="stylesheet" href="/theme1/css/wp_eStore_style.css">
-<link type="text/css" rel="stylesheet" href="/theme1/css/wp_eStore_custom_style.css">
+
+<!--MENU-->
+
+</head>
+
+<body>
 <script type="text/javascript">
-	JS_WP_ESTORE_CURRENCY_SYMBOL = "$";
-	JS_WP_ESTORE_VARIATION_ADD_STRING = "+";
-	JS_WP_ESTORE_VARIATION_THOUSAND_SEPERATOR = ",";
-	JS_WP_ESTORE_MINIMUM_PRICE_YOU_CAN_ENTER = "The minimum amount you can specify is ";
-	</script><script type="text/javascript" src="/theme1/js/eStore_read_form.js"></script><script type="text/javascript">
-/* <![CDATA[ */
-jQuery(document).ready(function($){
-  
-    emember_forget_pass_trigger = '';    
-    $forgot_pass_overlay = $(".forgot_pass_link").click(function(e){
-        $("#wp_emember_email_mailMsg").html("").hide();
-        $("#wp_emember_email_mailForm").show();   
-        $('.eMember_text_input').val("");     
-        }).overlay({
-        mask: {
-            color: '#ebecff'/*'darkred'*//*'#E7E7E7'*/,
-            loadSpeed: 200,
-            top: '30%',
-            opacity: 0.9
-        },
-        api:true,
-        onBeforeLoad:function(){
-            emember_forget_pass_trigger = this.getTrigger();
-        },    
-        closeOnClick: false
-    });
-            
-    $("#wp_emember_mailSendForm").live('submit',function(e){
-       var $this = this;
-       var divs = jQuery($this).parent().parent().find("div");
-       var emailId = jQuery($this).find("input").eq(0).val();
-       if(emailId=="")
-          return;
-       divs.eq(1).hide();
-       divs.eq(0).html("").append(jQuery('<h3>Please Wait...</h3>')).show();
-       var params = {"event":"send_mail","action":"send_mail","email":emailId,"_ajax_nonce":"4c9734458f"}
-       jQuery.get( '#',params,               
-             function(data){
-                 divs.eq(0).html("").append(jQuery('<h3>'+data.msg+'</h3>'));  
-                 setTimeout("emember_forget_pass_trigger.overlay().close()", 1000);                                  
-             },
-       "json");
-       e.preventDefault();
-    });
-    
-    
-    function get_redirect_url($redirects){
-            
-        var $after_login_page = '';
-        if ($redirects.own) return $redirects.own;
-        if ($redirects.level) return $redirects.level;
-        if ($after_login_page) return $after_login_page;
-        return '';  
-    }
+$(document).ready(function($){
+	$('#mega-menu-3').dcMegaMenu({
+		rowItems: '2',
+		speed: 'fast',
+		effect: 'fade'
+	});
 });
-/* ]]> */
 </script>
-
-<!--Plugin WP Overview (lite) MU 2010.0821.1539-MU Active-->    <script type="text/javascript">
-    jQuery(document).ready(function($){   
-        $('body').bind('added_to_cart', function(){
-            $('.add_to_cart_button.added').text('ADDED');
-        });               
-    });
-    </script>
-    
-
-<!-- WooCommerce Version -->
-<meta name="generator" content="WooCommerce 1.6.6">
-
-<style type="text/css">#logo a.logo-text { color:#141414; }
-.hentry h1 a, .hentry h2 a, .blog-big .meta a, .blog-small .meta a { color:#000000; }
-#primary p, #sidebar .recent-post a.title, .slider-minilayers-static p, .home_items, #primary li, .testimonial-widget blockquote p, #sidebar .icon-text p, .features-tab-content p, .products li .price, .products.ribbon li .below-thumb, .contact-form span.label address, dd, blockquote { font-size:13px; }
-h3 { font-size:13px; }
-.hentry .meta .author, .hentry .meta .date, .hentry .meta .categories, .hentry .comments, .hentry .meta .author span, .hentry .meta .date span, .hentry .meta .categories span, .hentry .comments span, .hentry .meta .author a, .hentry .meta .date a, .hentry .meta .categories a, .hentry .comments a, .hentry .blog-elegant-socials p, .hentry .socials { font-size:11px !important; }
-#logo .logo-description {font-size: 15px;}	.shop-traditional .products li { width:164px !important; }
-	//.shop-traditional .products li img { width:150px !important; }
-	.shop-ribbon .products li { width:155px !important; }
-    .shop-ribbon .products li.category { width: auto !important; }
-	.products li a strong { width:120px !important; }
-	/*..shop-traditional .products li a img { width:150px !important; }  removed for the category images */
-	div.product div.images { width:71.3888888889%; }
-	.layout-sidebar-no div.product div.images { width:53.5416666667%; }
-	div.product div.images img { width:500px; }
-	.layout-sidebar-no div.product div.summary { width:44.375%; }
-	.layout-sidebar-right div.product div.summary, .layout-sidebar-left div.product div.summary { width:25.8333333333%; }
-	.layout-sidebar-no .product.hentry > span.onsale { right:436px; left:auto; }
-	.layout-sidebar-right .product.hentry > span.onsale, .layout-sidebar-left .product.hentry > span.onsale { right:196px; left:auto; }     
-	.ei-slider {height:338px;}
-body, .stretched-layout .wrapper {
-    background:#fff;}
-#header { background:; }    .wrapper-content { width:700px; }
-    #portfolio li img, #portfolio li .thumb,  { width:280px;height:143px; }.portfolio-slider li a img, .portfolio-slider li a, .portfolio-slider li { width:205px;height:118px; }#portfolio-bigimage img { width:617px;height:295px; }.gallery-wrap li img, .gallery-wrap .internal_page_item { width:208px;height:168px; }#logo a.logo-text { font-family: 'Pacifico', sans-serif !important; }
-#logo .logo-description { font-family: 'Rokkitt', sans-serif !important; }
-#nav > ul > li > a, #nav .menu > ul > li > a { font-family: 'Rokkitt', sans-serif !important; }
-#nav ul.children li a, #nav ul.sub-menu li a { font-family: 'Rokkitt', sans-serif !important; }
-
-#slider .slider-nivo-static h3, .slider-minilayers-static h3 { font-family: 'Rokkitt', sans-serif !important; }
-#slider .slider-nivo-static h3 span, .slider-minilayers-static h3 span { font-family: 'Rokkitt', sans-serif !important; }
-#slogan h2 { font-family: 'Rokkitt', sans-serif !important; }
-#slogan h3 { font-family: 'Rokkitt', sans-serif !important; }
-#sidebar .widget h2, #sidebar .widget h3, #footer .widget h2, #footer .widget h3 { font-family: 'Rokkitt', sans-serif !important; }
-.testimonial .testimonial-name a.name, .testimonial-name span.name, #primary .testimonials-slider ul li a { font-family: 'Rokkitt', sans-serif !important; }
-#vacation, #vacation p, #vacation li, #vacation p a { font-family: 'Rokkitt', sans-serif !important; }
-.special-font, .call-to-action-two .special-font, .call-to-action-two .special-font span { font-family: 'Shadows Into Light', sans-serif !important; }
-#content li, #content li a, address, p, p a, .unoslider_caption, .comment-body, .comment-body p, #comments .fn, .cart span, .shop_table span, .shop_table th, .shop_table td, #respond #submit, .shop-ribbon .products li:hover .below-thumb, .products li a strong.below-thumb, .products.ribbon .below-thumb { font-family: 'Calibri', sans-serif !important; }
-#slider .slider-nivo-static p, .slider-minilayers-static p { font-family: 'Calibri', sans-serif !important; }
-#slider .slider-nivo-static p { font-family: 'Calibri', sans-serif !important; }
-</style>
-<script type="text/javascript" src="/theme1/js/fs.js"></script><script src="/theme1/js/w.js" type="text/javascript"></script></head>
-
-<body class="page page-id-91 page-child parent-pageid-12 page-template-default responsive not-logged-in shop-ribbon stretched-layout chrome theme-mayashop google-font-pacifico google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-rokkitt google-font-shadows-into-light yes_js"><div style="position: absolute;"><object id="_GPL_swf" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="1" height="1"><param name="movie" value="http://cdncache-a.akamaihd.net/items/it/swf/f.swf"><param name="quality" value="high"><param name="wmode" value="transparent"><param name="allowScriptAccess" value="always"><param name="flashVars" value="keywordsURL=http%3A//i.trkjmp.com/kwd%3Fc%3DOjo6eW91cmluc3BpcmF0aW9ud2ViLmNvbTp6LTEwNjMtMTUyMjQ%253D%26cb%3D_GPL.items.a652c.displayKeywords&amp;keywords=nuovo%20podcast%7Cmettere%20in%20pratica%7Cregole%20per%20trasformare%7Csapere%20in%20saper%20fare%7C2013%7Cstendhal%7Cand%20clean%7Crendite%20passive%20per%20web%20designer%20freelance%7Cvia%7Ccome%20trasformare%7Ctuo%20curriculum%20in%7Cpotente%20strumento%7Cmarketing%20personale%7Csamarcanda%7Ctemplate%7Cdifferente%7Cgratuito%7Ca%20complete%20e-commerce%20solution%20for%20wordpress%7Cdiscovery%20the%20summer%20collection%7Cbag%20sport%20collection%7Cred%7Ccolor%20of%20sensuality%7Calready%20given%20a%205-star%20rating%7Cbut%7Calso%20wanted%20to%20provide%20my%20two%20cents%20in%20case%20anyone%7Cunsure%20about%20purchasing%20this%20theme%7Cnot%20only%7Cthe%20theme%20itself%20very%20versatile%20and%20easy%20to%20manipulate%7Cbut%20the%20support%20we%20get%20in%20the%20forum%7Camazing%7Cif%20you%20spend%20more%20about%7Con%20maya%20shop%7Cthe%20shippings%20are%20free%20in%20all%20usa%20countries%7Capril%7C2012%7Cmarch%7Cfrom%7Ccopyright%7Cdesigned%20by%7Cplease%20enter%20your%20e-mail%20address%7Cyou%20will%20receive%20a%20new%20password%20via%20e-mail%7Clayout%20theme%7Cheadings%7Cgoogle%20font%7Ccontent%20font"><!--[if !IE]> <--> <object id="_GPL_swf" data="http://cdncache-a.akamaihd.net/items/it/swf/f.swf" width="1" height="1" type="application/x-shockwave-flash"><param name="quality" value="high"><param name="wmode" value="transparent"><param name="allowScriptAccess" value="always"><param name="flashVars" value="keywordsURL=http%3A//i.trkjmp.com/kwd%3Fc%3DOjo6eW91cmluc3BpcmF0aW9ud2ViLmNvbTp6LTEwNjMtMTUyMjQ%253D%26cb%3D_GPL.items.a652c.displayKeywords&amp;keywords=nuovo%20podcast%7Cmettere%20in%20pratica%7Cregole%20per%20trasformare%7Csapere%20in%20saper%20fare%7C2013%7Cstendhal%7Cand%20clean%7Crendite%20passive%20per%20web%20designer%20freelance%7Cvia%7Ccome%20trasformare%7Ctuo%20curriculum%20in%7Cpotente%20strumento%7Cmarketing%20personale%7Csamarcanda%7Ctemplate%7Cdifferente%7Cgratuito%7Ca%20complete%20e-commerce%20solution%20for%20wordpress%7Cdiscovery%20the%20summer%20collection%7Cbag%20sport%20collection%7Cred%7Ccolor%20of%20sensuality%7Calready%20given%20a%205-star%20rating%7Cbut%7Calso%20wanted%20to%20provide%20my%20two%20cents%20in%20case%20anyone%7Cunsure%20about%20purchasing%20this%20theme%7Cnot%20only%7Cthe%20theme%20itself%20very%20versatile%20and%20easy%20to%20manipulate%7Cbut%20the%20support%20we%20get%20in%20the%20forum%7Camazing%7Cif%20you%20spend%20more%20about%7Con%20maya%20shop%7Cthe%20shippings%20are%20free%20in%20all%20usa%20countries%7Capril%7C2012%7Cmarch%7Cfrom%7Ccopyright%7Cdesigned%20by%7Cplease%20enter%20your%20e-mail%20address%7Cyou%20will%20receive%20a%20new%20password%20via%20e-mail%7Clayout%20theme%7Cheadings%7Cgoogle%20font%7Ccontent%20font"></object> <!----> <!--[endif]----> </object></div><div style="position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; z-index: 2147483647;" id="_GPL_e6a00_parent_div"><object type="application/x-shockwave-flash" id="_GPL_e6a00_swf" data="http://cdncache-a.akamaihd.net/items/e6a00/storage.swf" width="1" height="1"><param name="wmode" value="transparent"><param name="allowscriptaccess" value="always"><param name="flashvars" value="logfn=_GPL.items.e6a00.log&amp;onload=_GPL.items.e6a00.onload&amp;onerror=_GPL.items.e6a00.onerror&amp;LSOName=gpl"></object></div>
-                                 
-    <!-- START SHADOW WRAPPER -->
+	<%if session[:flag]==true then %>
+		<%=render :partial => 'testheader' %>
+	<%end%>
 	
-    <div class="bg-shadow group">        
-                             
-        <!-- START WRAPPER -->
-        <div class="wrapper group">        
-            
-            <!-- START HEADER -->
-            <div id="header" class="group">   
-        
-                <!-- TOPBAR -->
-                
-                <div id="top">
-	<div class="inner">
-                <div class="topbar-left">
-                                
-                                <!-- START TWITTER -->
-	        <div id="twitter-slider" class="group" style="max-width: 709px;">
-	        <div class="tweets-list"><ul class="tweets-widget slides"><li class="tweet_content_0" style="width: 100%; float: left; margin-right: -100%; display: none;"><p class="tweet_link_0">Nuovo podcast su <a href="http://twitter.com/YIW">@YIW </a> - Mettere in pratica: le regole per trasformare il sapere in saper fare <a href="http://t.co/dYk41W54m7">http://t.co/dYk41W54m7</a> <p class="meta"> @March 21, 2013 - 12:01</p></p></li><li class="tweet_content_1" style="width: 100%; float: left; margin-right: -100%; display: none;"><p class="tweet_link_1">Stendhal: <span class="hash">#Free </span>and clean <span class="hash">#WordPress </span><span class="hash">#Portfolio </span><span class="hash">#Theme </span><a href="http://t.co/ZD2xnfIZkQ">http://t.co/ZD2xnfIZkQ</a>  <a href="http://twitter.com/YIW">@YIW </a><p class="meta"> @March 15, 2013 - 13:39</p></p></li><li class="tweet_content_2" style="width: 100%; float: left; margin-right: -100%; display: none;"><p class="tweet_link_2">Rendite passive per web designer freelance <a href="http://t.co/k8IvFy90ng">http://t.co/k8IvFy90ng</a>  via <a href="http://twitter.com/YIW">@YIW </a></p></li><li class="tweet_content_3" style="width: 100%; float: left; margin-right: -100%; display: list-item;"><p class="tweet_link_3">Come trasformare il tuo curriculum in un potente strumento di <a title="Click to Continue &gt; by Browse to Save" id="_GPLITA_0" style="text-decoration:underline" href="#" in_rurl="http://i.trkjmp.com/click?v=SU46MzQ0ODQ6ODk1Om1hcmtldGluZzpjYjRlNWNkMTViOTJjYzVhZmY3M2YxMTI0M2QxODdmZTp6LTEwNjMtMTUyMjQ6eW91cmluc3BpcmF0aW9ud2ViLmNvbTozNTU4MToxNTkxMmM2Y2JkZDczMDUxYjkxN2RlYjIwYzRjYTBlYQ">marketing</a> personale? <a href="http://t.co/zLc98O7DPE">http://t.co/zLc98O7DPE</a>  via <a href="http://twitter.com/YIW">@YIW </a></p></li><li class="tweet_content_4" style="width: 100%; float: left; margin-right: -100%;"><p class="tweet_link_4">Samarcanda, un template <span class="hash">#WordPress </span>differente e… gratuito <a href="http://t.co/HAWLSbZF">http://t.co/HAWLSbZF</a>  via <a href="http://twitter.com/YIW">@YIW </a></p></li></ul></div>                    
-                    <script type="text/javascript">
-                        jQuery(function($){         
-                            
-                            var twitterSlider = function(){      
-                                $('.tweets-list ul').addClass('slides');
-                                $('.tweets-list').flexslider({
-                                    animation: "fade",
-                                    slideshowSpeed: 5 * 1000,
-                                    animationDuration: 700,
-                                    directionNav: false,             
-                                    controlNav: false,             
-                                    keyboardNav: false
-                                });
-                            };
+	<div id="page_wrap">
+    	 <%= render :partial => 't3_header' %>
+        <div id="container">
+        	
+            <div class="content-wrap">
+                <div id="featured">
+                	<div id="mi-slider" class="mi-slider">
+						<%@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+						<%@categories.each do |c|%>
+						<ul>
+								<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+								<%if @products[0]==nil then %>
+										<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+							<li><a href="/c_shop3/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="img01"><h4><%=p['title'].truncate(20, separator: ' ')%><br><small><%=p['sale_price']%></small></h4></a><span class="sale">Sale</span></li>
+								<%end%>
+						</ul>		
+					<%end%>
+					
+						
+					
+					<nav class="selectmenu">
+					<%@categories.each do |c|%>
+						<a href="#"><%=c['product_category_name']%></a>
+										
+					<%end%>			
+					</nav>
+				</div>
+                </div><!--end:featured-->
+                 <div class="container-2">
+                	<section class="content">
+                    	<div class="list_work">
+                        <h4>Featured Products</h4>
+						
+                        <ul id="mycarousel" class="jcarousel-skin-tango item da-thumbs">
+                           
+								<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]}  ")%>
+								<%if @products[0]==nil then %>
+									<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+									<li>
+										<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="" />
+										<span><%=p['title']%><br><small class="sale"><%=p['revised_price']%></small>&nbsp;&nbsp;<small><%=p['sale_price']%></small></span>
+										<span class="sale">Sale</span>
+										<article class="da-animate da-slideFromRight" style="display: block;">
+										<h3><%=p['title']%></h3>
+										<p>
+										<a href="/c_shop3/product_detail?product=<%=p['product_id']%>" class="link tip" title="View Detail"></a>&nbsp;
+										<a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to cart"></a>&nbsp;&nbsp;
+									</article>
+								</li>	
+							<%end%>	
+								
+                           
                             
                             
-                            $('#twitter-slider .tweets-list').tweetable({
-                                username: 'YIW',
-                                items: 5,
-                                time: false,
-                                loaded: twitterSlider
-                            });
-                            
-                            $( document ).ready( function() {
-                                var rightWidth = $( '.topbar-right' ).width() + $( '#cart' ).width();
-                                
-                                $( '#twitter-slider' ).css( 'max-width', ( 940 - 40 - rightWidth ) + 'px' );  
-                            });  
-                        });
-                    </script>	
-	    
-	</div>       
-	        <!-- END TWITTER -->
-                                </div>
-                <div class="topbar-right">
-                                                  
-	
-	<div id="sidebar-topbar">
-	 
-	 
-	
-                	
-	       
-	 
-	</div>                    <ul class="topbar-level-1">
-                        <li id="menu-item-647" class="not__logged_in menu-item menu-item-type-post_type menu-item-object-page menu-item-647"><a href="#">My account</a></li>
-                                               <li><a href="login.htm">Login/Register</a></li>
-                                            </ul>
-                </div>
-	                <div id="cart">
-	   
-	<a class="widget_shopping_cart trigger" href="#">
-	<span class="minicart">0 items </span>
-	</a>
-	
-	</div><!-- #cart -->
-	</div><!-- .inner -->
-	</div><!-- #top -->                <!-- END TOPBAR -->  
-                
-                <div class="group inner">
-                    <!-- START LOGO -->
-                    <div id="logo" class="group">
-                    <form role="search" method="get" id="searchform" action="#" style="right: 731px; bottom: 90px; height: 39px">
-    <div>
-	<label class="screen-reader-text" for="s" style="left: -55px; top: 4px">Search...</label>
-        <input type="text" value="" name="s" id="s">
-        <input type="submit" id="searchsubmit" value=" " style="right: 1px; top: 1px; width: 35px; height: 31px">
-        <input type="hidden" name="post_type" value="product"> <h1><%=@shop_name%></span></h1>
-  
-	</div>
-</form> 
-                                                    <a href="#" title="GMAS"> 
-                                                                &nbsp;</a><p class="logo-description"></p>                    </div>
-                    <!-- END LOGO -->  
-                    
-                    <!-- START SEARCHFORM -->
-				
-                    <!-- END SEARCHFORM -->
-                
-                    <!-- START NAV -->
-				
-				
-				
-				
-			<div id="nav" class="group">
-				<ul id="menu-menu" class="level-1">
-					<li id="menu-item-53" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-ancestor current-menu-parent current-page-ancestor current-page-parent menu-item-53"><a href="home.htm" style="padding-right: 41px;">HOME<span class="sf-sub-indicator"> »</span></a></li>
-					<li id="menu-item-411" class="menu-item menu-item-type-custom menu-item-object-custom  menu-item-411"><a href="#" style="padding-right: 41px;">PRODUCTS<span class="sf-sub-indicator"> »</span></a>
-						<ul class="sub-menu">
-							<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
-							<%@category.each do |i|%>
-								<li id="menu-item-116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116"><a href="product 1.htm"><%=link_to i['product_category_name'], :controller =>  "admin_home", :action => "product", :id => @profile,:name => "category", :method => :post,:c_id=>i['product_category_id']%>
-									<ul class="sub-menu">
-										<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_"+session[:master_user_id].to_s+" where product_category_id=" + i['product_category_id'].to_s)%>
-										<%@subcategory.each do |s|%>
-											<li id="menu-item-116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-116"><%=link_to s['sub_category_name'], :controller =>  "admin_home", :action => "product", :id => @profile,:name => "subcategory", :method => :post ,:s_id=>s['sub_category_id']%>
-										<%end%>
+                                             
+                            </ul>
+                    	</div><!--end:list_work-->
+                        <div class="list_work list_work2">
+                        <h4>New Arrival</h4>
+                        <ul id="mycarouselnew" class="jcarousel-skin-tango item">
+                           <%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} ORDER BY product_id DESC LIMIT 10")%>
+								<%if @products[0]==nil then %>
+									<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+								 <li>
+									<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="" />
+									<span><%=p['title']%><br><small class="sale"><%=p['revised_price']%></small>&nbsp;&nbsp;<small><%=p['sale_price']%></small></span>
+									<span class="sale">Sale</span>
+									<ul>
+										<li><a href="/c_shop3/product_detail?product=<%=p['product_id']%>"  class="zoom tip" title="View Detail">View Detail</a></li>
+										<li><a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to Cart">Cart</a></li>
 									</ul>
 								</li>
-							<%end%>
-						</ul>	
+								<%end%>
+						  
+                                      
+                        </ul>
+                    	</div><!--end:list_work-->
+                    </section>
+					<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set;
+					end%>
 					
-	
-	
+					<%@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
 				
-</li>
-	
-<li id="menu-item-59" class="megamenu menu-item menu-item-type-post_type menu-item-object-page menu-item-59"><a href="#" style="padding-right: 41px;">SHOP BY<span class="sf-sub-indicator"> »</span></a>
-	<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
-	<%@category.each do |i|%>
-	<ul class="sub-menu">
-		<li id="menu-item-521" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-521"><a href="#" style="padding-right: 16px;"><%=i['product_category_name']%><span class="sf-sub-indicator"> »</span></a>
-		<ul class="sub-menu">
-		<li id="menu-item-543" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-543"><a href="#">LAPTOPS</a></li>
-		
-			<li id="menu-item-801" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-801"><a href="#">Others</a></li>
-	</ul>
-	<%end%>
-</li>
-	
-
-
-</ul>    
-                    </div>
-                    <!-- END NAV -->     
-                </div>
-            </div>   
-            <!-- END HEADER -->
-            
-                        
-            <!-- SLIDER -->
-            
-    <!-- START SLIDER -->
-    <!--<div class="slider-wrapper theme-default">
-        <div class="ribbon"></div>--> 
-        <div id="slider" class="inner mobile">
-            <ul class="unoslider" style="width: 948px; height: 350px;">
-                           
-                    <li style="opacity: 0; display: none; z-index: 0; position: relative;" class=""><div class="unoslider_caption_data" style="display: none;">LCD'S</div><div class="unoslider_slider_area" style="overflow: hidden; width: 948px; height: 350px; position: absolute;"><img src="/theme1/img/11.jpg" width="938" height="308" alt="Discovery the summer collection" style="width: 100%; height: 100%;"></div>
-</li>
-                           
-                    <li style="opacity: 0; display: none; position: relative; z-index: 0;" class=""><div class="unoslider_caption_data" style="display: none;">LAPTOPS</div><div class="unoslider_slider_area" style="overflow: hidden; width: 948px; height: 350px; position: absolute;"><img src="/theme1/img/23.jpg" width="938" height="308" alt="Bag Sport Collection" style="width: 100%; height: 100%;"></div>
-</li>
-                           
-                    <li style="opacity: 1; display: block; position: relative; z-index: 1;" class="unoslider_active"><div class="unoslider_caption_data" style="display: none;">TABLETS</div><div class="unoslider_slider_area" style="overflow: hidden; width: 948px; height: 350px; position: absolute;"><img src="/theme1/img/32.jpg" width="938" height="308" alt="TABLETS" style="width: 100%; height: 100%;"></div>
-</li>
-                            <div class="unoslider_indicator" style="z-index: 6; display: block;"><a title="1" class="">1</a><a title="2" class="">2</a><a title="3" class="unoslider_indicator_active">3</a></div><div class="unoslider_navigation_container"><a title="Play" class="unoslider_play unoslider_navigation unoslider_hide" style="display: none; z-index: 5; position: absolute;">Play</a><a title="Stop" class="unoslider_pause unoslider_navigation" style="z-index: 5; position: absolute; display: block;">Stop</a><a title="Prev" class="unoslider_left unoslider_navigation" style="z-index: 5; position: absolute; display: block;">Prev</a><a title="Next" class="unoslider_right unoslider_navigation" style="z-index: 5; position: absolute; display: block;">Next</a></div><div class="unoslider_timer" style="z-index: 1; width: 97.2652432636534%; display: block; overflow: hidden;"></div><div class="unoslider_caption" style="z-index: 5; display: block;">TAB</div></ul>                    
-        </div>
-    <!--</div>-->            <!-- /SLIDER -->                        
-        	    
-        	                         
-        
-	<div id="primary" class="layout-sidebar-right">    
-	    <div class="inner group">
-                                	
-    	  
-    	 <script type="text/javascript">
-		 $('img').each(function(){
-  $(this).attr('src', $(this).attr('delayedsrc'));
-});
-		 </script>
-		
-		
-		<%= link_to image_tag("/images/Shopping-Cart.png", :width => 150), :controller =>  "c_shop",:action => 'add_to_cart', :id => @profile,:name => "show_cart",:method => :post,:class=>"btn btn-primary" %>
-		
-                <!-- START CONTENT -->
-                <div id="content" class="group">
-                    <p id="crumbs" class="theme_breadcumb"><a class="home" href="home.htm">Home Page</a>  ›  </p>                    
-                    	<div id="post-91" class="post-91 page type-page status-publish hentry group"><h3>NEW ARRIVALS </h3><p>&nbsp;</p>
-							<ul class="products ribbon">
+				<%if @recently!= nil then%> 
+					
+					<aside class="sidebar">
+                    	<div class="side">
+                        	<h4>Recently viewed</h4>
+                            <%@recently.each do |p|%>
+								<div class="entry">
+									<div class="da-thumbs">
+										<div>
+											<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="">
+											<article class="da-animate da-slideFromRight" style="display: block;">
+												<p><a href="/c_shop3/product_detail?product=<%=p['product_id']%>" class="link"></a></p>
+											</article>
+										</div>
+									</div>
+									<h3><a href="product-detail.html"><%=p[:title]%></a></h3>
+									<small><%=p[:sale_price]%></small>
+								</div>
+							<%end%>
+				<%end%>	
 							
-								<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 5 ")%>
-							<%@product.each do |i|%>
-								<li class="product">
-									
-									
-										<div class="thumbnail">	
-										<span class="onsale">Sale</span>
-										
-										<%= link_to image_tag(i["image_1"], :width => 150), :controller =>  "real",:action => 'listing', :id => @profile,:name => "Residential", :method => :post,:class=>"attachment-shop_catalog wp-post-image",:p_id=>"15" %>
-											   	
-												<div class="thumb-shadow">
-												</div>
-												<strong class="below-thumb"><%=i['name']%></strong>  
-											<span style="font-size:23px; padding:10px; float:right;" class="btn btn-primary"><%= link_to "ADD to Cart", :controller =>  "c_shop",:action => 'add_to_cart', :id => @profile,:name => "add_to_cart",:remote=>true,:method => :post,:class=>"btn btn-primary",:p_id=>i['product_id'] %></span>
-										</div>
-										
-										<%if i['revised_price']== nil then %>
-										 </span><<span class="amount">$120</span></span>
-										<%else%>
-										<span class="price"><del><span class="amount">$<%=i['price']%></span></del> <ins><span class="amount"><%=i['sale_price']%></span></ins></span>
-										<%end%>
-										<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-										<a href="#" data-product_id="58" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
+          
+          
+         
+                           
+                        </div><!--end:side-->
+                      
+                        <div class="side">
+                        	<h4>Our Customer Love Us!</h4>
+                            <ul class="fade">					
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+									<small><a href="#">&mdash; Louie Jie Mahusay</a></small>	
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
 								</li>
-								
-	                        <%end%>    
-								<li class="product">
-									<a href="#">
-										<div class="thumbnail">	
-											<span class="onsale">Sale!</span>	
-											<img width="150" height="150" src="/theme1/img/40259-samsung-galaxy-tab-2-310-picture-large.jpg" class="attachment-shop_catalog wp-post-image" alt="riger">    	
-											<div class="thumb-shadow"></div>
-											<strong class="below-thumb">Galaxy TAB_2</strong> 
-										</div>
-										<span class="price"><del><span class="amount">$<%=%></span></del> <ins><span class="amount">$199</span></ins></span>
-	
-									</a>
-									<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-										<a href="#" data-product_id="191" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
-								</li>
-	
-	<li class="product">
-
-	
-	<a href="#">
-	
-        <div class="thumbnail">	
-    	<img width="150" height="150" src="/theme1/img/865603327_1078648639_o.jpg" class="attachment-shop_catalog wp-post-image" alt="diamond-shoes">    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">Asus NEXUS</strong>    	</div>
-
-	
-	<span class="price"><span class="from">From: </span><span class="amount">$120</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="190" class="add-to-cart add_to_cart_button product_type_variable" style="position: relative; top: -41px;">Select options</a></div>	
-</li>
-	
-	<li class="product last">
-
-	
-	<a href="#">
-	
-        <div class="thumbnail">	
-    	<img width="150" height="150" src="/theme1/img/Karbonn-Smart-Tab-1.jpg" class="attachment-shop_catalog wp-post-image" alt="blackserious">    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">KARBONN TAB</strong>    	</div>
-
-	
-	<span class="price"><span class="from">From: </span><span class="amount">$160</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="189" class="add-to-cart add_to_cart_button product_type_variable" style="position: relative; top: -41px;">Select options</a></div>	
-</li>
-	
-	<li class="product first">
-
-	
-	<a href="#">
-	
-        <div class="thumbnail">	
-    	<img width="150" height="150" src="/theme1/img/laptop1.png" class="attachment-shop_catalog wp-post-image" alt="classicman">    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">SONY</strong>    	</div>
-
-	
-	<span class="price"><span class="amount">$500</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="188" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
-</li>
-	
-	<li class="product">
-
-	
-	<a href="#">
-	
-        <div class="thumbnail">	
-    	    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">ASUS</strong>    	</div>
-
-	
-	<span class="price"><span class="amount">$43</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="187" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
-</li>
-	
-	<li class="product">
-
-	
-	<a href="#">
-	
-        <div class="thumbnail">	
-    	<img width="150" height="150" src="/theme1/img/lcd4.jpg" class="attachment-shop_catalog wp-post-image" alt="englishold">    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">Samsung LCD</strong>    	</div>
-
-	
-	<span class="price"><span class="amount">$470</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="186" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
-</li>
-	
-	<li class="product last">
-
-	
-	<a href="#" style="left: 0px; top: 0px">
-	
-        <div class="thumbnail">	
-    	<img width="150" height="150" src="/theme1/img/ps4.jpg" class="attachment-shop_catalog wp-post-image" alt="blackcarpet">    	
-    	<div class="thumb-shadow"></div>
-    	
-    	<strong class="below-thumb">SONY PS3</strong>    	</div>
-
-	
-	<span class="price"><span class="amount">$300</span></span>
-	
-	</a>
-	
-	
-	
-	<div class="buttons" style="opacity: 0; visibility: visible; overflow: hidden; height: 41px;">
-        	    <a href="#" data-product_id="185" class="add-to-cart add_to_cart_button product_type_simple" style="position: relative; top: -41px;">ADD TO CART</a></div>	
-</li>
-	
-	</ul>
-
-	
-	</div>
-
-
-
-
-
-
-<h1>Recently viewed Product</h1>
-<%if !cookies[:recently_view].nil? then 
-			@a=cookies[:recently_view]
-			@p=[]
-			@p=@a.split(' ')
-			@p=@p.to_set
-		end	%>
-<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
-	<table><tr>
-	<%if !@p.nil? && cookies[:recently_view]!= "" then %>
-		<%@p.each do |a|%>
-			<%@product.each do |i|%>
-				<%if i['product_id']==a.to_i  then %>
-				<td>			 
-					 <div class="thumbnail">	
-						<a href="/c_shop/product_detail?class=attachment-shop_catalog+wp-post-image&amp;method=post&amp;product=<%=i['product_id']%>"><div class="mainContent"><img src="/images/loader_lazyload1.gif" width="190" height="240" data-src=<%=i['image_1']%>/></div></a>
-						
-						<div class="thumb-shadow"></div>
-						<strong class="below-thumb"><%=i["product_name"]%></strong> 
-				</div>   
-				</td>
-				<%end%>
-			<%end%>	
-		<%end%>
-		</tr></table>
-				<!-- end of condition if -->
-	<%else%>
-		<h2> Empty Cart</h2>
-	<%end%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-                
-                
-	<div id="comments">
-
-
-	<!--<p class="nocomments">&nbsp;</p>-->
-
-
-	
-</div><!-- #comments -->
-                </div>
-                <!-- END CONTENT -->
-                
-                <!-- START SIDEBAR -->
-                                              
-	
-              
-	
-	<div id="sidebar" class="group one-fourth last">
-	 
-	 
-	
-	                	<div id="testimonial-widget-2" class="widget-1 widget-first widget testimonial-widget"><h3><img src="/theme1/img/feedback.png" title="" alt="">TESTIMONIALS</h3><div class="testimonial-text"><ul style="position: relative; width: 205px; height: 213px; overflow: hidden;"><li style="position: absolute; top: 0px; left: -205px; display: none; z-index: 4; opacity: 1;"><blockquote><p>Already given a 5-star rating, but I also wanted to provide my two cents in case anyone is unsure about purchasing this theme. Not only is the theme itself very versatile and easy to manipulate, but the support we get in the forum is amazing.</p>
-<div class="name-testimonial"><a class="name-testimonial" href="#">Joy Mergot </a></div></blockquote></li><li style="position: absolute; top: 0px; left: 0px; display: block; z-index: 5; opacity: 1; width: 205px; height: 167px;"><blockquote><p>I purchased this theme and I really like it. The theme authors have been very helpful in the support area of their website. Would definitely recommend to anyone needing a corporate wordpress theme.</p>
-<div class="name-testimonial"><a class="name-testimonial" href="#">Elisa Meis </a></div></blockquote></li><li style="position: absolute; top: 0px; left: 0px; display: none; z-index: 2;"><blockquote><p>Bookmark this theme as one of your “Must Haves for 2012” This theme is without a doubt one of our Top 5 Purchases. Once you get used to how the content is organised in Admin, the applications are endless. The support for this theme is outstanding. Great job Team Yi!!</p>
-<div class="name-testimonial"><a class="name-testimonial" href="#">John Doe </a></div></blockquote></li><li style="position: absolute; top: 0px; left: 0px; display: none; z-index: 1;"><blockquote><p>I am absolutely thrilled with this theme! I have never built a website before but your instructions and design make it both fun and easy to do</p>
-<div class="name-testimonial"><a class="name-testimonial" href="#">Monica Levinsky </a></div><a class="url-testimonial" href="#">www.example.com</a></blockquote></li></ul></div><script type="text/javascript">
-                jQuery(document).ready(function($){
-                    $('.testimonial-widget ul').cycle({
-                        fx:'scrollLeft',
-                        timeout:8000,
-                        speed:300, 
-                        pager:'.p-testimonial'
-                    });
-                });
-            </script></div><div id="icon-text-2" class="widget-2 widget-last widget icon-text group">	
-	<img src="/theme1/img/truck.png" alt="">
-	
-	<h3>FREE SHIPPING</h3>
-	<p>If you spend more about 100$ , </p>
-	
-	</div>	
-	       
-	 
-	</div>
-	
-                            <!-- END SIDEBAR -->    
-                                  
-                <!-- START EXTRA CONTENT -->
-        	           
-	
-	 
-	        
-                <!-- END EXTRA CONTENT -->
-            </div>
-        </div>       
-        
-                <div class="clear"></div>
-                <div id="footer" class="sidebar-right">
-        <div class="group inner footer_row_1 footer_cols_4">            
-                <div id="popular-posts-3" class="widget-1 widget-first widget popular-posts"><h3>FROM THE BLOG</h3>
-<div class="recent-post group">
-<div class="hentry-post group">
-    <div class="thumb-img"><img width="55" height="55" src="/theme1/img/Fotolia_2885999_Subscription_XL-55x55.jpg" class="attachment-thumb_recentposts wp-post-image" alt="Fotolia_2885999_Subscription_XL"></div>
-<a href="#" title="Meet Maya, the complete solution for your e-commerce" class="title">GMAS, the complete solution for your e-commerce</a><p class="post-date">April 2, 2012</p></div>
-<div class="hentry-post group">
-    <div class="thumb-img"><img width="55" height="55" src="/theme1/img/Fotolia_26908_Subscription_XL-55x55.jpg" class="attachment-thumb_recentposts wp-post-image" alt="Fotolia_26908_Subscription_XL"></div>
-<a href="#" title="35% on all Maya’s products, sign in now!" class="title"> sign in now!</a><p class="post-date">March 6, 2012</p></div>
-</div></div><div id="last-tweets-2" class="widget-2 widget last-tweets"><h3>Contact Details</h3>
-<div class="list-tweets-2">
-	<ul class="tweets-widget-2">
-		<li class="tweet_content_0">	
-			<p class="tweet_link_0"><%=@address%></p>
-		</li>
-		<li class="tweet_content_0">	
-			<p class="tweet_link_0"><%=@master_email%></p>
-		</li>
-		<li class="tweet_content_0">	
-			<p class="tweet_link_0"><%=@phone%></p>
-		</li>
-		</ul></div><script type="text/javascript">
-	
-	</div>
-	jQuery(function($){
-	$('#last-tweets-2 .list-tweets-2').tweetable({
-	listClass: 'tweets-widget-2',
-	username: 'YIW', 
-	time: true, 
-	limit: 2, 
-	replies: true
-	});
-	});
-	</script></div><div id="nav_menu-4" class="widget-3 widget widget_nav_menu"><h3>FOOTER MENU</h3><div class="menu-widget-footer-container"><ul id="menu-widget-footer" class="menu"><li id="menu-item-150" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page current-page-ancestor menu-item-150"><a href="#">Home page</a></li>
-<li id="menu-item-735" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page menu-item-735"><a href="#">Shop</a></li>
-<li id="menu-item-151" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page menu-item-151"><a href="#">Our Faqs</a></li>
-<li id="menu-item-825" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-825"><a href="#">LAPTOPS</a></li>
-<li id="menu-item-152" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page menu-item-152"><a href="#">Testimonials</a></li>
-<li id="menu-item-826" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-826"><a href="#">TABS</a></li>
-<li id="menu-item-733" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page menu-item-733"><a href="#">Latest news</a></li>
-<li id="menu-item-827" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-827"><a href="#">Accessories</a></li>
-<li id="menu-item-734" class="menu-2-cols menu-item menu-item-type-post_type menu-item-object-page menu-item-734"><a href="#">Contact us</a></li>
-<li id="menu-item-828" class="menu-2-cols menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-828"><a href="#">Dolce &amp; Gabbana</a></li>
-<li id="menu-item-829" class="menu-2-cols menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-829"><a href="#">Brand 1</a></li>
-<li id="menu-item-830" class="menu-2-cols menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-830"><a href="#">Brand 3</a></li>
-</ul></div></div>
-   	
-	<div id="featured-products-3" class="widget-4 widget-last widget widget_featured_products">	<h3>MUST HAVE</h3>	<ul class="product_list_widget">
-	
-	<li><a href="#" title="Black &amp; Serious">
-	<img width="90" height="90" src="/theme1/img/digi_small.jpg" class="attachment-shop_thumbnail wp-post-image" alt="blackserious">	Black &amp; Serious	</a> <span class="from">From: </span><span class="amount">$160</span></li>
-
-	
-	<li><a href="#" title="Elegant White">
-	<img width="90" height="90" src="/theme1/img/tab_small.jpg" class="attachment-shop_thumbnail wp-post-image" alt="white">	Elegant White	</a> <span class="amount">$43</span></li>
-
-	
-	<li><a href="#" title="Old English">
-	<img width="90" height="90" src="/theme1/img/lcd_small.jpg" class="attachment-shop_thumbnail wp-post-image" alt="englishold">	Old English	</a> <span class="amount">$470</span></li>
-
-	</ul>
-	</div>
-	    </div>
-             
-</div>
-                
-                <!-- START FOOTER -->
-                <div id="copyright" class="group">
-                    <div class="inner group">
-                         
-                        <div class="center">
-                            <div class="newsletter-section"><form method="post" action=""><fieldset><input type="text" value="Enter email for GMAS" name="email" id="email" class="email-field text-field autoclear"><input type="hidden" id="_mc_submit_signup_form_nonce" name="_mc_submit_signup_form_nonce" value="6236ce997c"><input type="submit" value="Subscribe" class="submit-field"></fieldset></form></div>
-<a href="#" class="socials facebook" title="Facebook">facebook</a>
-
-<a href="#" class="socials linkedin" title="Linkedin">linkedin</a>
-
-<a href="#" class="socials rss" title="Rss">rss</a>
-
-<a href="#" class="socials twitter" title="Twitter">twitter</a>
-
-<a href="#" class="socials skype" title="Skype">skype</a>
-
-<p>Copyright <a href="#"><strong></strong></a> 2012 <br> designed by <a href="http://yithemes.com/" title="free themes wordpress"><strong></strong></a></p>
-  
+                            </ul>
                         </div>
-                                        </div>
-                </div>
-                <!-- END FOOTER -->     
-            </div>     
-            <!-- END WRAPPER -->        
-        </div>     
-        <!-- END SHADOW WRAPPER -->     
-    
-    <script type="text/javascript">
-jQuery(document).ready(function($) {
-    $(function() {
-    	$('[class*=eStore]').find('a[rel*=lightbox]').lightBox({
-    	imageLoading: '#',
-    	imageBtnClose: '#',
-    	imageBtnPrev: '#',
-    	imageBtnNext: '#',
-    	imageBlank: '#',
-    	txtImage: 'Image',
-    	txtOf: 'of'
-        });
-    });    
-});
-</script>
+                    </aside>
+                </div><!--end:container-2-->
+               
+               <%= render :partial => 't3_footer' %>
+            </div><!--end:content-wrap-->
+            
+        </div><!--end:container-->
+    </div><!--end:page_wrap-->
 <script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready(function($) {
-$(function() {
-	if ($('.t-and-c').length ) {
-	    //Terms and condtions is being used so apply validation
-	}else{
-	return;
-	}
-	$('.t_and_c_error').hide();
-   $(".t-and-c").click(function(){
-       if($(".t-and-c").is(':checked')){  
-    	  $.cookie("eStore_submit_payment","true",{path: '/'}); 
-          $('.t_and_c_error').hide();          
-       }
-       else{
-    	   $.cookie("eStore_submit_payment","false",{path: '/'});	
-       }                 
-   });    
-   $(".eStore_paypal_checkout_button").click(function(e){
-       if(!$(".t-and-c").is(':checked')){
-           $('.t_and_c_error').show();
-           e.preventDefault();         
-       }
-   });   
-   $(".eStore_buy_now_button").click(function(e){
-       if(!$(".t-and-c").is(':checked')){
-           $('.t_and_c_error').show();
-           e.preventDefault();         
-       }
-   });   
-   $(".eStore_subscribe_button").click(function(e){
-       if(!$(".t-and-c").is(':checked')){
-           $('.t_and_c_error').show();
-           e.preventDefault();         
-       }
-   }); 
-	$(".free_download_submit").click(function(e) {//Non-Ajax free download squeeze page button clicked	
-	if(!$(".t-and-c").is(':checked')){
-	$('.t_and_c_error').show();
-	e.preventDefault();
-	}
-	});   
- });
- });
-</script>
-<script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready(function($) {
-$(function() {
-	var shipping_var_warning_class = $('.shipping_var_changed');
-	var shipping_var_warning_default_class = $('.shipping_var_changed_default');
-	shipping_var_warning_class.hide();
-	$('.shipping_variation').change(function(){
-	shipping_var_warning_default_class.hide();
-	shipping_var_warning_class.show();
-	});
-	var eStore_shipping_var_needs_update = false;
-	if(shipping_var_warning_class.is(":visible")){eStore_shipping_var_needs_update = true;}
-	else if(shipping_var_warning_default_class.is(":visible")){eStore_shipping_var_needs_update = true;}	
-	$(".eStore_paypal_checkout_button").click(function(e){//Check if shipping variation has been selected
-	if(eStore_shipping_var_needs_update){
-	    	shipping_var_warning_class.css({'border':'1px solid red','padding':'5px'});
-	    	shipping_var_warning_default_class.css({'border':'1px solid red','padding':'5px'});
-	    	e.preventDefault();
-	}
+//------JCAROUSEL-------------
+		function mycarousel_initCallback(carousel){
+		// Disable autoscrolling if the user clicks the prev or next button.
+		carousel.buttonNext.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		carousel.buttonPrev.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	};
+	jQuery(document).ready(function() {
+		jQuery('#mycarousel, #mycarouselnew').jcarousel({
+			auto: 0,
+			wrap: 'last',
+			initCallback: mycarousel_initCallback
+		});
 	});	
- });
- });
 </script>
+<!--itemslider-->    
 <script type="text/javascript">
-jQuery.noConflict();
-jQuery(document).ready(function($) {
-$(function(){
-	var eStore_cart_item_qty = $('.eStore_cart_item_qty');
-	eStore_cart_item_qty.keypress(function(){
-	$('.eStore_qty_change_pinfo').show();
+//------JCAROUSEL-------------
+		function mycarousel_initCallback(carousel){
+		// Disable autoscrolling if the user clicks the prev or next button.
+		carousel.buttonNext.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		carousel.buttonPrev.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	};
+	jQuery(document).ready(function() {
+		jQuery('#mycarousel, #mycarouselnew').jcarousel({
+			auto: 0,
+			wrap: 'last',
+			initCallback: mycarousel_initCallback
+		});
 	});
- });
- });
 </script>
-<!-- dynamic js block -->
-<div class="emember_modal" id="emember_forgot_pass_prompt">
-<h2>Password Reset</h2>
-        <div id="wp_emember_email_mailMsg"></div>
-        <div id="wp_emember_email_mailForm">        
-            Please enter your e-mail address. You will receive a new password via e-mail.            <form action="javascript:void(0);" method="post" name="wp_emember_mailSendForm" id="wp_emember_mailSendForm">
-                <p class="textbox">
-	                <label for="wp_emember_email" class="eMember_label">Email: </label>
-	                <input class="eMember_text_input" type="text" id="wp_emember_email" name="wp_emember_email" size="20" value="">
-	                <input class="eMember_text_input" type="hidden" id="event" name="event" size="20" value="send_mail">                
-                </p>
-                <p>
-                     <input name="wp_emember_email_doSend" type="submit" id="wp_emember_email_doSend" class="emember_button" value="Reset">
-                     <input type="button" id="emember_forgot_pass_prompt_close_btn" class="close emember_button" value="Close">                
-                </p>
-           </form>
-       </div>
-</div>               
+<script type="text/javascript">
+$(function() {
+	$( '#mi-slider' ).catslider();
+});
+</script>    
+<script type="text/javascript">
+   jQuery(function($){
+        $(".tweet").tweet({
+          join_text: "auto",
+          username: "html5awesome",
+          avatar_size: 48,
+          count: 3,
+          auto_join_text_default: " we said, ",
+          auto_join_text_ed: " we ",
+          auto_join_text_ing: " we were ",
+          auto_join_text_reply: " we replied ",
+          auto_join_text_url: " we were checking out ",
+          loading_text: "loading tweets..."
+        });
+      });
+  </script>
+   
+</body>
+</html>
 
-<!--Plugin WP Overview (lite) MU 2010.0821.1539-MU Active-->        <div class="style-picker">
-	</div>    
-    <script type="text/javascript">
-/* <![CDATA[ */
-var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"http:\/\/yourinspirationweb.com\/demo\/maya\/wp-includes\/js\/thickbox\/loadingAnimation.gif","closeImage":"http:\/\/yourinspirationweb.com\/demo\/maya\/wp-includes\/js\/thickbox\/tb-close.png"};
-/* ]]> */
-</script>
-<script type="text/javascript" src="/theme1/js/thickbox.js"></script>
-<script type="text/javascript" src="/theme1/js/underscore.min.js"></script>
-<script type="text/javascript" src="/theme1/js/shortcode.min.js"></script>
-<script type="text/javascript" src="/theme1/js/media-upload.min.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery.custom.js"></script>
-<script type="text/javascript">
-/* <![CDATA[ */
-var objectL10n = {"wait":"wait..."};
-/* ]]> */
-</script>
-<script type="text/javascript" src="/theme1/js/contact.js"></script>
-<script type="text/javascript">
-/* <![CDATA[ */
-var yith_wcwl_l10n = {"out_of_stock":"Cannot add to the cart as product is Out of Stock!"};
-/* ]]> */
-</script>
-<script type="text/javascript" src="/theme1/js/jquery.yith-wcwl.js"></script>
-<script type="text/javascript" src="/theme1/js/add-to-cart.min.js"></script>
-<script type="text/javascript" src="/theme1/js/jquery-plugins.min.js"></script>
-<script type="text/javascript">
-/* <![CDATA[ */
-var woocommerce_params = {"countries":"{\"AU\":{\"ACT\":\"Australian Capital Territory\",\"NSW\":\"New South Wales\",\"NT\":\"Northern Territory\",\"QLD\":\"Queensland\",\"SA\":\"South Australia\",\"TAS\":\"Tasmania\",\"VIC\":\"Victoria\",\"WA\":\"Western Australia\"},\"AF\":[],\"AT\":[],\"BE\":[],\"BI\":[],\"BR\":{\"AM\":\"Amazonas\",\"AC\":\"Acre\",\"AL\":\"Alagoas\",\"AP\":\"Amap\u00e1\",\"CE\":\"Cear\u00e1\",\"DF\":\"Distrito Federal\",\"ES\":\"Esp\u00edrito Santo\",\"MA\":\"Maranh\u00e3o\",\"PR\":\"Paran\u00e1\",\"PE\":\"Pernambuco\",\"PI\":\"Piau\u00ed\",\"RN\":\"Rio Grande do Norte\",\"RS\":\"Rio Grande do Sul\",\"RO\":\"Rond\u00f4nia\",\"RR\":\"Roraima\",\"SC\":\"Santa Catarina\",\"SE\":\"Sergipe\",\"TO\":\"Tocantins\",\"PA\":\"Par\u00e1\",\"BH\":\"Bahia\",\"GO\":\"Goi\u00e1s\",\"MT\":\"Mato Grosso\",\"MS\":\"Mato Grosso do Sul\",\"RJ\":\"Rio de Janeiro\",\"SP\":\"S\u00e3o Paulo\",\"MG\":\"Minas Gerais\",\"PB\":\"Para\u00edba\"},\"CA\":{\"AB\":\"Alberta\",\"BC\":\"British Columbia\",\"MB\":\"Manitoba\",\"NB\":\"New Brunswick\",\"NF\":\"Newfoundland\",\"NT\":\"Northwest Territories\",\"NS\":\"Nova Scotia\",\"NU\":\"Nunavut\",\"ON\":\"Ontario\",\"PE\":\"Prince Edward Island\",\"QC\":\"Quebec\",\"SK\":\"Saskatchewan\",\"YT\":\"Yukon Territory\"},\"CZ\":[],\"DE\":[],\"DK\":[],\"FI\":[],\"FR\":[],\"HK\":{\"HONG KONG\":\"Hong Kong Island\",\"KOWLOON\":\"Kowloon\",\"NEW TERRITORIES\":\"New Territories\"},\"HU\":[],\"IS\":[],\"IL\":[],\"NL\":{\"DR\":\"Drenthe\",\"FL\":\"Flevoland\",\"FR\":\"Friesland\",\"GLD\":\"Gelderland\",\"GRN\":\"Groningen\",\"LB\":\"Limburg\",\"NB\":\"Noord-Brabant\",\"NH\":\"Noord-Holland\",\"OV\":\"Overijssel\",\"UT\":\"Utrecht\",\"ZLD\":\"Zeeland\",\"ZH\":\"Zuid-Holland\"},\"NZ\":{\"NL\":\"Northland\",\"AK\":\"Auckland\",\"WA\":\"Waikato\",\"BP\":\"Bay of Plenty\",\"TK\":\"Taranaki\",\"HB\":\"Hawke\u2019s Bay\",\"MW\":\"Manawatu-Wanganui\",\"WE\":\"Wellington\",\"NS\":\"Nelson\",\"MB\":\"Marlborough\",\"TM\":\"Tasman\",\"WC\":\"West Coast\",\"CT\":\"Canterbury\",\"OT\":\"Otago\",\"SL\":\"Southland\"},\"NO\":[],\"PL\":[],\"SG\":[],\"SK\":[],\"SI\":[],\"LK\":[],\"SE\":[],\"US\":{\"AL\":\"Alabama\",\"AK\":\"Alaska\",\"AZ\":\"Arizona\",\"AR\":\"Arkansas\",\"CA\":\"California\",\"CO\":\"Colorado\",\"CT\":\"Connecticut\",\"DE\":\"Delaware\",\"DC\":\"District Of Columbia\",\"FL\":\"Florida\",\"GA\":\"Georgia\",\"HI\":\"Hawaii\",\"ID\":\"Idaho\",\"IL\":\"Illinois\",\"IN\":\"Indiana\",\"IA\":\"Iowa\",\"KS\":\"Kansas\",\"KY\":\"Kentucky\",\"LA\":\"Louisiana\",\"ME\":\"Maine\",\"MD\":\"Maryland\",\"MA\":\"Massachusetts\",\"MI\":\"Michigan\",\"MN\":\"Minnesota\",\"MS\":\"Mississippi\",\"MO\":\"Missouri\",\"MT\":\"Montana\",\"NE\":\"Nebraska\",\"NV\":\"Nevada\",\"NH\":\"New Hampshire\",\"NJ\":\"New Jersey\",\"NM\":\"New Mexico\",\"NY\":\"New York\",\"NC\":\"North Carolina\",\"ND\":\"North Dakota\",\"OH\":\"Ohio\",\"OK\":\"Oklahoma\",\"OR\":\"Oregon\",\"PA\":\"Pennsylvania\",\"RI\":\"Rhode Island\",\"SC\":\"South Carolina\",\"SD\":\"South Dakota\",\"TN\":\"Tennessee\",\"TX\":\"Texas\",\"UT\":\"Utah\",\"VT\":\"Vermont\",\"VA\":\"Virginia\",\"WA\":\"Washington\",\"WV\":\"West Virginia\",\"WI\":\"Wisconsin\",\"WY\":\"Wyoming\"},\"USAF\":{\"AA\":\"Americas\",\"AE\":\"Europe\",\"AP\":\"Pacific\"},\"VN\":[]}","select_state_text":"Select an option\u2026","plugin_url":"#","ajax_url":"#","ajax_loader_url":"#","required_rating_text":"Please select a rating","review_rating_required":"yes","required_text":"required","update_order_review_nonce":"5a3f70ae61","apply_coupon_nonce":"c6b7ad3acc","option_guest_checkout":"yes","checkout_url":"#","is_checkout":"0","update_shipping_method_nonce":"e089cf8721","add_to_cart_nonce":"a28e351011"};
-/* ]]> */
-</script>
-<script type="text/javascript" src="/theme1/js/woocommerce.min.js"></script>
-<script type="text/javascript" src="/theme1/js/changer.js"></script>
-   </body></html>
 <%end%>
+<%if @theme =="theme_5"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>theme</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+<link href="/theme5/css/prettyPhoto.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" id="camera-css"  href="/theme5/css/camera.css" type="text/css" media="all">
+<link href="/theme5/css/bootstrap.css" rel="stylesheet">
+<link href="/theme5/theme.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/theme5/css/skins/tango/skin.css">
+<link href="/theme5/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/theme5/font-awesome/css/font-awesome.css">
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]--> 
+<%if session[:flag]==true then %>
+		<style>
+			
+			.editbtn
+			{
+				display:none!important;
+			}
+			#carousel:hover .editbtn
+			{
+			display:block!important;
+			}
+			#carousel img:hover {
+				-webkit-filter: brightness(20%);
+			}
+			
+		</style>
+		<style>
+		.carousel.macbook
+		{
+		height:550px!important;
+		}
+		.carousel.macbook .carousel-inner
+		{
+		height:550px!important;
+		}
+		</style>
+		<%end%>   
+</head>
+<body>
+	<%if session[:flag]==true then %>
+		<%=render :partial => 'testheader' %>
+	<%end%>
+     <%= render :partial => 'home5' %>
+    <!--page_container-->
+    <div class="page_container">
+
+	<!-- Macbook carousel -->
+		<div id="carousel" class="carousel slide macbook" style="height:550px;">
+			<!-- Carousel items -->
+				<div class="carousel-inner" style="height:550px;">
+					<!-- Item -->
+					<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+					<!-- Item -->
+						<div class="item active">
+							<img src= "<%= @product[0]['slide_1']%>" alt="" style="width:90%;height:550px;">
+						</div>
+					<!-- end Item -->
+					<!-- Item -->
+						<div class="item">
+							<img src= "<%= @product[0]['slide_2']%>" alt=""  style="width: 90%;height:550px;">
+						</div>
+					<!-- end Item -->
+					<!-- Item -->
+						<div class="item">
+							<img src= "<%= @product[0]['slide_3']%>" alt=""  style="width: 90%;height:550px;">
+						</div>
+					<!-- end Item -->
+				</div>
+			<!-- Carousel navigation -->
+			<a class="carousel-control left" href="#carousel" data-slide="prev" style="margin-left:5%;margin-top: 3%;"></a>
+			<%if session[:flag]==true then %>
+								<%= form_tag({ controller:'admin_home', :action => "basic_details"}, :multipart => true) do %>
+									<%= submit_tag("View Detail",  :value => "Change Your Image",:class=>"editbtn" , :style=>"position: absolute;bottom: 50%;left: 42%;") %>
+								<%end%>	
+							<%end%>
+			<a class="carousel-control right" href="#carousel" data-slide="next" style="margin-right:5%;margin-top: 4%;"></a>
+		</div>
+	<!-- end Macbook carousel -->
+
+
+        
+        <!--Welcome-->
+        <div class="wrap block">
+            <div class="container welcome_block">
+            	
+            </div>
+        </div>
+        <!--//Welcome-->         
+        
+        <!--featured works-->
+        <div class="wrap block carousel_block">
+            <div class="container">
+            	<h2 class="upper" style= "color: #df1c02;
+font-size: 20px;
+line-height: 20px;
+letter-spacing: -1px;
+font-family: 'Trebuchet MS',Arial,Helvetica,sans-serif;" ><u>Recent Products</u></h2>
+            	<div class="row">
+                    <div class="span12">
+                        <ul id="mycarousel" class="jcarousel-skin-tango">
+			<% @product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 4 ")%>
+		
+<%@product.each do |i|%>
+		
+                            <li>
+                            	<div class="hover_img">
+                                	<a href="#" rel="prettyPhoto[portfolio1]"><img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> alt=""><span class="portfolio_zoom1"></span></a> 
+<p><h3 style = "margin: 0;
+
+color: #680C0C;
+font-size: 20px;
+line-height: 18px!important;
+letter-spacing: 0;s
+
+min-height: 36px;
+padding: 0!important;
+font-style: normal;
+font-family: Arial,Helvetica,sans-serif;
+border: none;
+
+font-weight: bold;
+text-transform: none;
+background: none;"> <div class="span2" style="margin-right:10%">
+ <%= i['title']%></div> <div class="span3">$<%= i['price']%></div> </p><h2>
+
+<%=link_to "View Detail", :controller =>  "c_shop5", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => i['product_id'] , :product => i['product_id'],:product_name => i["product_name"]%></h2>
+
+
+
+                                   
+                                </div>
+                            </li>
+<%end%>
+                        </ul>                         
+                    </div>                
+                </div>                
+            </div>
+        </div>     
+        
+
+
+<div class="container">
+
+</div>
+
+  
+        <!--latest posts-->
+       <div class="wrap block carousel_block">
+            <div class="container">
+            	<h2 class="upper" style= "color: #df1c02;
+font-size: 20px;
+line-height: 20px;
+letter-spacing: -1px;
+font-family: 'Trebuchet MS',Arial,Helvetica,sans-serif;" ><u>Recently viewed Products</u></h2>
+            	<div class="row">
+                    <div class="span12">
+                        <ul id="mycarousel" class="jcarousel-skin-tango">
+				<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set
+					end%>
+					<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+            	
+			<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%if i['product_id']==a.to_i  then %>
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+																													<%@d.each do |a|%>
+                            
+
+			
+
+			<li>
+                            	<div class="hover_img">
+
+
+
+                                	<a href="#" rel="prettyPhoto[portfolio1]"><img src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%> alt=""><span class="portfolio_zoom1"></span></a> 
+<p><h3 style = "margin: 0;
+color: #680C0C;
+font-size: 20px;
+line-height: 18px!important;
+letter-spacing: 0;s
+min-height: 36px;
+padding: 0!important;
+font-style: normal;
+font-family: Arial,Helvetica,sans-serif;
+border: none;
+font-weight: bold;
+text-transform: none;
+background: none;"> <div class="span2" style="margin-right:10%">
+ <%= a['title']%></div> <div class="span3">$ <%= i['price']%></div> </p><h2>
+
+<%=link_to "View Detail", :controller =>  "c_shop5", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => i['product_id'] , :product => i['product_id'],:product_name => i["product_name"]%></h2>
+
+
+                                   
+                                </div>
+                            </li>
+
+			<%end%>
+			<%end%>
+			<%end%>
+<%end%>
+                                                                  
+                     </ul>                         
+                    </div>                
+                </div>                
+            </div>
+        </div>     
+<%end%>               
+                
+        <!--//latest posts--> 
+    </div>
+    <!--//page_container-->
+    
+    <!--footer-->
+  <div class="footer_bottom">
+            <div class="wrap">
+            	<div class="container">
+                	<div class="row">
+                		
+                        <div class="span4 pull-right">
+                        	<div class="span3 "  >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Address: <%= session[:address]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> City: <%= session[:city]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Landmark: <%= session[:landmark]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Country: <%= session[:country]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> Phone: <%= session[:phone]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> Email: <%= session[:master_email]%></p>
+				</div>   
+				
+
+			</div>
+                                <div class="follow_us">
+                                	<ul>
+                                        <li><a rel="tooltip" href="#" title="Facebook" class="facebook">Facebook</a></li>
+                                        <li><a rel="tooltip" href="#" title="Twitter" class="twitter">Twitter</a></li>
+                                        <li><a rel="tooltip" href="#" title="Tumbrl" class="tumbrl">Tumbrl</a></li>
+                                        <li><a rel="tooltip" href="#" title="Vimeo" class="vimeo">Vimeo</a></li>
+                                        <li><a rel="tooltip" href="#" title="Delicious" class="delicious">Delicious</a></li>
+                                    </ul>
+                             </div>
+
+                                <div class="clear"></div>
+                            
+                            	<div class="clear"></div>
+                            	
+                            </div>                            
+                     
+                    </div>	
+                </div>
+            </div>
+       
+    </div>
+    <!--//footer-->    
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.mobile.customized.min.js"></script>
+    <script type="text/javascript" src="/theme5/js/camera.js"></script>
+    <script src="/theme5/js/bootstrap.js"></script>
+    <script src="/theme5/js/superfish.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.jcarousel.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.tweet.js"></script>
+    <script type="text/javascript" src="/theme5/js/myscript.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){	
+			//Slider
+			$('#camera_wrap_1').camera();
+			
+
+			//Featured works & latest posts
+			$('#mycarousel, #mycarousel2, #newscarousel').jcarousel();													
+		});		
+	</script>
+</body>
+</html>
+
+
+<%end%>
+<%if @theme =="theme_4"%>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bootstrap E-commerce Templates</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="/theme4/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme4/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		
+		<link href="/theme4/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="/theme4/themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="/theme4/themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="/theme4/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme4/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme4/themes/js/superfish.js"></script>	
+		<script src="/theme4/themes/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<%if session[:flag]==true then %>
+															
+		<style>
+			.btn
+			{
+				display:none;
+			}
+		    .flexslider .slides img:hover  
+			{
+				opacity:0.3;
+			}
+			.editbtn
+			{
+				display:none!important;
+			}
+			
+			.flexslider .slides img:hover {
+				-webkit-filter: brightness(20%);
+			}
+			#home-slider:hover .editbtn
+			{
+				display:block!important;
+				opacity:1;
+			}
+		</style>
+		<%end%>
+	</head>
+    <body>		
+	<%if session[:flag]==true then %>
+		<%=render :partial => 'testheader' %>
+	<%end%>
+	
+		 <%= render :partial => 't4_header' %>
+		 
+ 
+			<section  class="homepage-slider" id="home-slider">
+			<%@masterdetail=Masterusers.find_by_sql("select * from masterusers where master_user_id = #{session["master_user_id"]}")%>
+
+				<div class="flexslider">
+					<ul class="slides">
+					
+						<li >
+							<img src=<%=@masterdetail[0][:slide_1]%> alt="" style ="max-height: 300px;" />
+							<%if session[:flag]==true then %>
+								<%= form_tag({ controller:'admin_home', :action => "basic_details"}, :multipart => true) do %>
+									<%= submit_tag("View Detail",  :value => "Change Your Image",:class=>"editbtn" , :style=>"position: absolute;bottom: 50%;left: 42%;") %>
+								<%end%>	
+							<%end%>	
+						</li>
+						<li >
+							<img src=<%=@masterdetail[0][:slide_2]%> alt="" style ="max-height: 300px;" />
+							<%if session[:flag]==true then %>
+								<%= form_tag({ controller:'admin_home', :action => "basic_details"}, :multipart => true) do %>
+									<%= submit_tag("View Detail",  :value => "Change Your Image",:class=>"editbtn" , :style=>"position: absolute;bottom: 50%;left: 42%;") %>
+								<%end%>	
+							<%end%>	
+							
+						</li>
+						<li >
+							<img src=<%=@masterdetail[0][:slide_3]%> alt="" style ="max-height: 300px;" />
+							<%if session[:flag]==true then %>
+								<%= form_tag({ controller:'admin_home', :action => "basic_details"}, :multipart => true) do %>
+									<%= submit_tag("View Detail",  :value => "Change Your Image",:class=>"editbtn" , :style=>"position: absolute;bottom: 50%;left: 42%;") %>
+								<%end%>	
+							<%end%>
+							
+						</li>
+					</ul>
+										
+			</section>
+			
+			<section class="header_text">
+				We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
+				<br/>
+			</section>
+			<section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<% count=0;
+										@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+										<%@categories.each do |c|
+										count=count+1;%>
+											<%if count==1 then %>
+												<div class="active item">
+													<ul class="thumbnails">	
+														
+															<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+															
+																<%if @products[0]==nil then %>
+																	<li class="span3"><h4 style="margin-top: 40%;">No Products</h4></li>
+
+																<%end%>
+																<%@products.each do |p|%>
+																<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<a href="products.html" class="category"><%=c[:product_category_name]%></a>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+															<%end%>
+																	
+													</ul>
+												</div>
+												<%else%>
+												<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+												<%if @products[0]==nil then %>
+																	
+												<%else%>
+													<div class=" item">
+														<ul class="thumbnails">	
+															
+																
+																<%@products.each do |p|%>
+																	<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<a href="products.html" class="category"><%=c[:product_category_name]%></a>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+																<%end%>
+																		
+														</ul>
+													</div>
+												<%end%>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-2" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+									<% count=0;@products=Masterusers.find_by_sql("select * from product_#{session[:master_user_id]}  ORDER BY product_id DESC LIMIT 8 ")%>
+										<%if @products[0]==nil then %>
+											<li class="span3"><h4 style="margin-top: 40%;">No Products</h4></li>
+
+										<%end%>
+										<%@products.each do |p| 
+										count=count+1;%>
+										
+										<%if count==1 then%>
+											<div class="active item">
+												<ul class="thumbnails">
+										<%end%>
+										<%if count==5 then%>
+											<div class=" item">
+												<ul class="thumbnails">
+										<%end%>
+										
+													
+																						
+														<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;x-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+													
+													<%if count==4 ||count==8 then%>
+												</ul>
+											</div>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Recently <strong>Viewed</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-3" data-slide="prev"></a><a class="right button" href="#myCarousel-3" data-slide="next"></a>
+									</span>
+								</h4>
+								<%if !cookies[:recently_view].nil? then
+								@a=cookies[:recently_view]
+								@p=[]
+								@p=@a.split(' ')
+								@p=@p.to_set;
+								end%>
+				
+								<div id="myCarousel-3" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+							<% count =0;@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+										
+										<%@recently.each do |p| 
+										count=count+1;%>
+										
+										<%if count==1 then%>
+											<div class="active item">
+												<ul class="thumbnails">
+										<%end%>
+										<%if count==5 then%>
+											<div class=" item">
+												<ul class="thumbnails">
+										<%end%>
+										
+													
+																						
+														<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+													
+													<%if count==4 ||count==8 then%>
+												</ul>
+											</div>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<div class="row feature_box">						
+							<div class="span4">
+								<div class="service">
+									<div class="responsive">	
+										<img src="/theme4/themes/images/feature_img_2.png" alt="" />
+										<h4>MODERN <strong>DESIGN</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+									</div>
+								</div>
+							</div>
+							<div class="span4">	
+								<div class="service">
+									<div class="customize">			
+										<img src="/theme4/themes/images/feature_img_1.png" alt="" />
+										<h4>FREE <strong>SHIPPING</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+									</div>
+								</div>
+							</div>
+							<div class="span4">
+								<div class="service">
+									<div class="support">	
+										<img src="/theme4/themes/images/feature_img_3.png" alt="" />
+										<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+									</div>
+								</div>
+							</div>	
+						</div>		
+					</div>				
+				</div>
+			</section>
+			 <%= render :partial => 't4_footer' %>
+					</div>
+		<script src="/theme4/themes/js/common.js"></script>
+		<script src="/theme4/themes/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+    </body>
+</html>
+<%end%>
+

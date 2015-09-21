@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sell anythign: Premium Responsive Template develope by bootstrappage.com (bootstrap 2.3.1 version)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!-- styles -->
+<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="/theme7/menu/css/default.css" />
+		 <link rel="stylesheet" type="text/css" href="/theme7/menu/css/component.css" />
+		<script src="/theme7/menu/js/modernizr.custom.js"></script>
+
+
+	<link rel="stylesheet/less" type="text/css" href="/theme7/less/bootstrap.less">
+	<script src="/theme7/js/less/less.js" type="text/javascript"></script>
+<style>
+body {
+background-color: 
+}
+</style>
+	<!-- favicon-icons -->
+    <link rel="shortcut icon" href="/theme7/images/favicon.ico">
+  </head>
+<body>
+<%= render :partial => 'home7' %>
+<section id="mainBody">
+<div class="container">
+<div class="row">
+<div id="sideBar" class="span3">
+
+	
+		<h3 class="title"><span>Filter By Categories </span></h3>
+		<div class="container demo-2">	
+			<!-- Codrops top bar -->
+			
+			<div class="main clearfix abc">
+		
+<div id="dl-menu" class="dl-menuwrapper">
+	<button class="dl-trigger" style="margin-left:10%">Open Menu</button>
+	<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+			
+	<ul class="dl-menu">
+	<%@category.each do |i|%>
+		<li>
+			<a href="#"> <%=i["product_category_name"]%></a>
+			<ul class="dl-submenu">
+		<li> <%=link_to "view all", :controller =>  "c_shop7", :action => "view_all", :id => @profile,:name => "search", :method => :post, :category_id => i['product_category_id'] %></li>
+	<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+			<%@subcategory.each do |j|%>
+				
+				<li><%=link_to j["sub_category_name"], :controller =>  "c_shop7", :action => "view_all", :id => @profile,:name => "sub", :method => :post, :sub_category_id => j["sub_category_id"]%>	</li>
+				
+			<%end%>	
+			</ul>
+		</li>
+	<%end%>
+		
+		
+	</ul>
+					</div><!-- /dl-menuwrapper -->
+				</div>
+		
+		</div><!-- /container -->
+<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set
+					end%>	
+		<h3 class="title" style="margin-top: 50%;"><span>RECENTLY VIEWED </span></h3>
+		
+	<%@pro=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+            	
+			<%@p.each do |a|%>
+						<%@pro.each do |i|%>
+							<%if i['product_id']==a.to_i  then %>
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+																													<%@d.each do |a|%>
+
+<div class="indexItems" style = "margin-top: 10%;"> 
+
+		<div class=" displayStyle">
+		<div class="itemBlock">
+			<span class="indexItemsImageMask"></span>
+			<span class="itemBlockAction">
+				<%= form_tag("/c_shop7/product_detail/", :method=>"put") do %>
+
+		<input type="hidden" name="url" value=<%="/#{Masterusers.title(i[:title])}/#{@cat}/#{@sub}/c_shop_7/#{i['product_id']}"%>>
+		<input type="hidden" name="product" value=<%=a['product_id']%>>
+		<input type="hidden" name="product_name" value=<%=a["product_name"]%>>
+	<%= submit_tag("Detail",  :value => "View Detail", :class => "btn btn-warning btn-xs", :productid => a["product_id"] ) %>
+						
+				
+<%end%>
+				
+			</span>
+			<a href="#" class="indexProductsImage">
+				<img src="<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" alt="Women's Clothing" title=" Women's Clothing ">
+			</a>
+		</div>
+		</div>
+</div>
+
+<%end%>	
+<%end%>	
+<%end%>	
+<%end%>		
+		
+		
+	<%end%>	
+		
+</div>
+
+<div class="span9">
+<div class="products">
+
+<h3 class="title"><span>All Products</span></h3>
+
+
+
+<ul class="thumbnails">
+	
+<%@product.each do |i|%>
+
+<%@category.each do |c|%>
+
+	<% if i["product_category_id"] == c["product_category_id"]%>
+		<% @cat = c["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if i["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+			
+	  <li class="span3">
+		<div class="thumbnail">
+			<img src="<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>" style="height: 124px!important;width: 160px!important;" alt="#">
+			<div class="caption">
+			<h3><%= i['title'].truncate(15, separator: ' ')%></h3>
+			<p class="detailNprice">
+				$<span><%= i['price']%></span>
+			</p>
+			<p>
+
+
+<%= form_tag("/#{Masterusers.title(i[:title])}/#{@cat}/#{@sub}/c_shop_7/#{i['product_id']}", :method=>"put") do %>
+
+			<input type="hidden" name="url" value=<%="/#{Masterusers.title(i[:title])}/#{@cat}/#{@sub}/c_shop_7/#{i['product_id']}"%>>
+		<input type="hidden" name="product" value=<%=i['product_id']%>>
+		<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => i["product_id"] ) %>
+						
+				
+<%end%>
+			</p>
+		  </div>
+		</div>
+	  </li>
+<%end%>
+	 
+	  </ul>
+	
+	
+</div>
+</div>
+</div>
+
+
+
+<!-- Footer
+================================================== -->
+<footer class="footer">
+	<div class="container">
+	<h5>Accepted Payment Methods </h5>
+	<p><a href="#"><img src="/theme7/images/payment_methods.png" alt="payment methods"/></a></p>
+	<hr class="soften"/>
+	<div class="footerMenu">
+		<a href="register.php"> REGISTRATION</a> | 
+		<a href="about_us.php"> ABOUT US</a> | 
+		<a  href="topology.php" >TOPOLOGY</a> | 
+		<a href="contact_us.php">CONTACT </a>
+		<p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
+	</div>
+	</div>
+</footer>
+<span id="toTop" style="display: none;"><span><i class="icon-angle-up"></i></span></span>
+    <!--  javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme7/js/jquery-1.8.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/theme7/js/smart.js"></script>
+
+<script src="/theme7/menu/js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+				});
+			});
+		</script>
+
+
+
+
+  </body>
+</html>

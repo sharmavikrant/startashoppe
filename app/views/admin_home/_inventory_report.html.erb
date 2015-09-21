@@ -1,0 +1,23 @@
+					<table id="category_details" class="table table-stats table-condensed table-striped table-sortable">
+						<thead>
+							<tr>
+								<th>Product id</th>
+								<th>Product Name</th>
+								<th>Remaining</th>
+								<th>Out</th>
+								<th>Total Available</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<%if !@name.nil? then%>
+							<tr>
+								<td><%= @name[0]['product_id'] %></td>
+								<td><%= @name[0]['product_name'] %></td>
+								<td><%= @name[0]['quantity'] %></td>
+								<td><%= @name[0]['out_quantity']%></td>
+								<td><%= @name[0]['quantity'] %></td>
+							</tr>
+							<%end%>
+						</tbody>
+					</table>

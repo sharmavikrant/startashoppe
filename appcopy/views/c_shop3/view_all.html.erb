@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Shopy Mart - Responsive E-commerce Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/shopymart/css/style.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+<link href="/shopymart/css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen"><!-- prettyPhoto -->
+<link href="/shopymart/css/tipsy.css" type="text/css" rel="stylesheet" media="screen"><!--zoom-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript" src="/shopymart/js/css3-mediaqueries.js"></script><!--mediaqueries-->
+<script type="text/javascript" src="/shopymart/js/modernizr-1.7.min.js"></script><!--modernizr-->
+<script type="text/javascript" src="/shopymart/js/jquery.prettyPhoto.js"></script><!-- prettyPhoto -->
+<script type="text/javascript" src="/shopymart/js/jquery.tipsy.js"></script><!--tooltip-->
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+<script type="text/javascript" src="/shopymart/js/jquery.hoverIntent.minified.js"></script><!--menu-->
+<script type="text/javascript" src="/shopymart/js/jquery.dcmegamenu.1.3.3.js"></script><!--menu-->
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+<script type="text/javascript" src="/shopymart/js/productview.js"></script><!--productgridlistview-->
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
+<!--MENU-->
+
+</head>
+
+<body>
+<script type="text/javascript">
+$(document).ready(function($){
+	$('#mega-menu-3').dcMegaMenu({
+		rowItems: '2',
+		speed: 'fast',
+		effect: 'fade'
+	});
+});
+</script>
+	<div id="page_wrap">
+    	<%= render :partial => 't3_header' %>
+        <div id="container">
+        	
+            <div class="content-wrap">
+            	<div style="clear:both; display:block; height:20px"></div>
+                <div id="intro">
+                	<div class="one-fourth serv first">
+                    	<img src="/shopymart/images/service-1.png" alt="">
+                        <h3>Free Shipping</h3>
+                        <span>Available</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-2.png" alt="">
+                        <h3>30 Days Return</h3>
+                        <span>Easy Return</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-3.png" alt="">
+                        <h3>Call Us</h3>
+                        <span>(63) 912 3456</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-4.png" alt="">
+                        <h3>Secured</h3>
+                        <span>Checkout</span>
+                    </div>
+              
+                </div>
+                <div class="container-2">
+                	<section class="content">
+                    	<div class="ctrl">
+                        	
+                            <span class="list-style-buttons">
+                                <a href="#" id="gridview" class="switcher"><img src="/shopymart/images/grid-view.png" alt="Grid"></a>
+                                <a href="#" id="listview" class="switcher active"><img src="/shopymart/images/list-view-active.png" alt="List"></a>
+                            </span>
+                        </div>
+						
+                        <ul id="products" class="list clearfix">
+						
+                        	<%@products.each do |p|%>
+                        	<li class="da-thumbs">
+                            	<div class="product-thumb-hover">
+                                    <section class="left">
+                                        <img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="">
+                                        <p class="sale">Sale</p>
+                                        <article class="da-animate da-slideFromRight" style="display: block;">
+                                            <h3><%=p[:title]%></h3>
+ <%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+
+                                            <p>
+
+<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="link tip" title="View Detail"></a>&nbsp;
+
+
+                                            <a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to cart"></a>&nbsp;&nbsp;
+                                        </article>
+axftbutwnff
+                                    </section>
+                                </div>
+                                <section class="center">
+                                	<h3><%=p[:title]%></h3>
+                                  
+                                </section>
+							
+                                <section class="right">
+                                    <span class="price"><small>$<%=p[:sale_price]%>.00</small>&nbsp;&nbsp; 	$<%=p[:revised_price]%></span>
+                                    <ul class="menu-button">
+                                        <li><a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1"  class="cart tip" title="Add to Cart"></a></li>
+                                         <li><a href="/c_shop3/product_detail?product=<%=p['product_id']%>" class="link tip" title="View Detail"></a></li>
+                                    </ul>
+                                </section>
+                            </li>
+								<%end%>
+                            
+                            
+                        </ul><!--end:products-->
+                        <ul id="pagination">
+                            <li><a class="current" href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">next</a></li>
+                        </ul>
+                    </section>
+                    <aside class="sidebar">
+                    	<div class="side">
+                        	<h4>Category</h4>
+                            <ul class="cat">
+                            	<%@category=Masterusers.find_by_sql("select * from product_category_#{session[:master_user_id]} " )%>
+								<li><a href="/c_shop3/view_all ">All</a></li>
+								<%@category.each do |c|%>	
+								
+                            	<li><a href="/c_shop3/view_all?c_id=<%=c[:product_category_id]%>&filter=search "><%=c[:product_category_name]%></a>
+									
+								</li>
+                                <%end%>
+                            </ul>
+                        </div><!--end:side-->
+						<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set;
+					end%>
+					
+					<%@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+				
+					<%if @recently!= nil then%> 
+						<div class="side">
+                        	<h4>Recently Viewed</h4>
+						 <%@recently.each do |p|%>
+                           <%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+				 <div class="entry">
+                            	<div class="da-thumbs">
+                                	<div>
+			<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="">
+										<article class="da-animate da-slideFromRight" style="display: block;">
+											<p><a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="link"></a></p>
+										</article>
+									</div>
+                                </div>
+                               <h3><a href="product-detail.html"><%=p[:title]%></a></h3>
+									<small><%=p[:sale_price]%></small>
+                            </div>
+                            <%end%>
+						
+                        </div><!--end:side-->
+					<%end%> 
+                        
+                    </aside>
+                </div><!--end:container-2-->
+                <%= render :partial => 't3_footer' %>
+            </div><!--end:content-wrap-->
+            
+        </div><!--end:container-->
+    </div><!--end:page_wrap-->
+</body>
+</html>

@@ -1,0 +1,712 @@
+
+
+<html>
+
+<head><!-- Stylesheets -->
+
+	<!-- Styles -->
+
+   
+
+    
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+	<meta content="" name="description" />
+
+	<meta content="" name="author" />
+
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+	<link href="/adminhome/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/adminhome/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+
+
+
+	
+
+<link href="/shopymart/css/theme.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
+
+
+
+	<!-- END GLOBAL MANDATORY STYLES -->
+
+	
+
+	
+
+	<script language="javascript">
+
+	$(document).ready(function(){
+
+		$('#state').val("<%=@post[:state]%>");
+
+		$('#Country').val("<%=@post[:country]%>");
+
+		$('#slide1').hide();$('#slide2').hide();$('#slide3').hide();
+
+		
+
+	});
+
+    
+
+	</script>
+
+	<script>
+
+	
+
+	function slide1(){
+
+		$('#slide1').show();
+
+	}
+
+	function slide2(){
+
+		$('#slide2').show();
+
+	}
+
+	function slide3(){
+
+		$('#slide3').show();
+
+	}
+
+	
+
+  </script>
+
+    <style>
+
+    .abc
+
+    {width:73%;
+
+    float:right;}
+
+    @media (max-width: 979px){
+
+.abc {
+
+
+
+margin-left:5%;
+
+width:90%;
+
+float:none;
+
+
+
+}
+
+
+
+}
+
+    </style>
+
+	</head>
+
+<body >
+
+<br><br>
+
+<%= render :partial => 'header' %>
+
+
+
+	<!-- END HEADER -->
+
+
+
+        
+
+   <%= render :partial => 'sidebar' %>          
+
+              
+
+            
+
+       
+
+<!-- span4 ends->      
+
+         
+
+        <!-- Add category-->
+
+		<br>
+
+			<div class="abc" style="border: 2px solid #e5e5e5; padding:2%; ">
+
+
+
+					<% unless flash[:notice].nil? %>
+
+						<div class="heading_featured" >
+
+							<fieldset style="height: 35px; background-color: rgb(250, 3, 3);color: #FFFFFF;padding-top:10px;border-radius: 20px;">
+
+								<div align="center">
+
+									<font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+
+								</div>
+
+							</fieldset>
+
+						</div>
+
+					<%end%>
+
+ 
+
+					<h1 style="color: #563d7c;">Edit Basic Details  </h1>
+
+					<div class='row'>
+
+                    <div class="span10" >
+
+                        <div class="span4 "  >	
+
+                           <%= form_tag("/admin_home/basic_details/", :method=>"post", :multipart => true, :name => "product") do %>
+
+				
+
+                            <br/>
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                                Shop Name 
+
+                                <span class="required">*</span>
+
+                            </label>
+
+							
+
+							<%= text_field_tag(:shopname,@post[:shop_name],:placeholder => 'Shop Name', class: "input-block-level",:required=>true,:onblur=>'myFunction()') %><p id="testing" style="color:red;"></p>
+
+						
+
+							
+
+						</div>
+
+                        <div class="span4" style="margin-top:2.8%" >
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                                Address
+
+                                <span class="required">*</span>
+
+				
+
+                            </label>
+
+							<%= text_field_tag(:address,@post[:address],:placeholder => 'Your Shop Address',:required=>true,:onblur=>'myFunction3()', class: "input-block-level") %><p id="testing3" style="color:red;"></p>
+
+                        </div>
+
+                    </div>
+
+                    </div>
+
+					<div class='row'>
+
+                    <div class="span10">
+
+                       <div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            City
+
+						
+
+                            </label>
+
+							<%= text_field_tag(:city,@post[:city],:placeholder => ' City',:required=>true,:onblur=>'myFunction8()',class: "input-block-level") %><p id="testing8" style="color:red;"></p>
+
+				
+
+                        </div>
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            State
+
+						
+                            </label>
+											<%= select_tag "state" , "<option value=''>Select State</option><option value='Andaman and Nicobar Islands'>Andaman and Nicobar Islands</option><option value='Andhra Pradesh'>Andhra Pradesh</option><option value='Arunachal Pradesh'>Arunachal Pradesh</option><option value='Assam'>Assam</option><option value='Bihar'>Bihar</option><option value='Chandigarh'>Chandigarh</option><option value='Chhattisgarh'>Chhattisgarh</option><option value='Dadra and Nagar Haveli'>Dadra and Nagar Haveli</option><option value='Daman and Diu'>Daman and Diu</option><option value='Delhi'>Delhi</option><option value='Goa'>Goa</option><option value='Gujarat'>Gujarat</option><option value='Haryana'>Haryana</option><option value='Himachal Pradesh'>Himachal Pradesh</option><option value='Jammu and Kashmir'>Jammu and Kashmir</option><option value='Jharkhand'>Jharkhand</option><option value='Karnataka'>Karnataka</option><option value='Kerala'>Kerala</option><option value='Lakshadweep'>Lakshadweep</option><option value='Madhya Pradesh'>Madhya Pradesh</option><option value='Maharashtra'>Maharashtra</option><option value='Manipur'>Manipur</option><option value='Meghalaya'>Meghalaya</option><option value='Mizoram'>Mizoram</option><option value='Nagaland'>Nagaland</option><option value='Orissa'>Orissa</option><option value='Pondicherry'>Pondicherry</option><option value='Punjab'>Punjab</option><option value='Rajasthan'>Rajasthan</option><option value='Sikkim'>Sikkim</option><option value='Tamil Nadu'>Tamil Nadu</option><option value='Tripura'>Tripura</option><option value='Uttaranchal'>Uttaranchal</option><option value='Uttar Pradesh'>Uttar Pradesh</option><option value='West Bengal'>West Bengal</option>".html_safe,:style=>"width: 100%;"%>
+
+
+				
+
+                        </div>
+
+						
+
+					</div>
+
+					</div>
+
+					<div class='row'>
+
+					<div class="span10">
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Country
+
+						
+
+                            </label>
+									<%= select_tag 'Country' ,"<option value='' selected='selected'>Select Country</option><option value='India'>India</option><option value='United States'>United States</option><option value='United Kingdom'>United Kingdom</option><option value='Afghanistan'>Afghanistan</option><option value='Albania'>Albania</option><option value='Algeria'>Algeria</option><option value='American Samoa'>American Samoa</option><option value='Andorra'>Andorra</option><option value='China'>China</option><option value='Malaysia'>Malaysia</option><option value='Maldives'>Maldives</option><option value='Monaco'>Monaco</option><option value='Mongolia'>Mongolia</option><option value='Montserrat'>Montserrat</option><option value='Morocco'>Morocco</option><option value='Mozambique'>Mozambique</option><option value='Myanmar'>Myanmar</option><option value='Namibia'>Namibia</option><option value='Nauru'>Nauru</option><option value='Nepal'>Nepal</option><option value='Netherlands'>Netherlands</option><option value='Netherlands Antilles'>Netherlands Antilles</option><option value='New Caledonia'>New Caledonia</option><option value='New Zealand'>New Zealand</option><option value='Nicaragua'>Nicaragua</option><option value='Niger'>Niger</option><option value='Nigeria'>Nigeria</option><option value='Niue'>Niue</option><option value='Norfolk Island'>Norfolk Island</option><option value='Northern Mariana Islands'>Northern Mariana Islands</option><option value='Norway'>Norway</option><option value='Oman'>Oman</option><option value='Pakistan'>Pakistan</option><option value='Palau'>Palau</option><option value='Palestinian Territory, Occupied'>Palestinian Territory, Occupied</option><option value='Panama'>Panama</option><option value='Papua New Guinea'>Papua New Guinea</option><option value='Paraguay'>Paraguay</option><option value='Peru'>Peru</option><option value='Philippines'>Philippines</option><option value='Pitcairn'>Pitcairn</option><option value='Poland'>Poland</option><option value='Portugal'>Portugal</option><option value='Puerto Rico'>Puerto Rico</option><option value='Qatar'>Qatar</option><option value='Reunion'>Reunion</option><option value='Romania'>Romania</option><option value='Russian Federation'>Russian Federation</option><option value='Rwanda'>Rwanda</option><option value='Saint Helena'>Saint Helena</option><option value='Saint Kitts and Nevis'>Saint Kitts and Nevis</option><option value='Saint Lucia'>Saint Lucia</option><option value='Saint Pierre and Miquelon'>Saint Pierre and Miquelon</option><option value='Saint Vincent and The Grenadines'>Saint Vincent and The Grenadines</option><option value='Samoa'>Samoa</option><option value='San Marino'>San Marino</option><option value='Sao Tome and Principe'>Sao Tome and Principe</option><option value='Saudi Arabia'>Saudi Arabia</option><option value='Senegal'>Senegal</option><option value='Serbia and Montenegro'>Serbia and Montenegro</option><option value='Seychelles'>Seychelles</option><option value='Sierra Leone'>Sierra Leone</option><option value='Singapore'>Singapore</option><option value='Slovakia'>Slovakia</option><option value='Slovenia'>Slovenia</option><option value='Solomon Islands'>Solomon Islands</option><option value='Somalia'>Somalia</option><option value='South Africa'>South Africa</option><option value='South Georgia and The South Sandwich Islands'>South Georgia and The South Sandwich Islands</option><option value='Spain'>Spain</option><option value='Sri Lanka'>Sri Lanka</option><option value='Sudan'>Sudan</option><option value='Suriname'>Suriname</option><option value='Svalbard and Jan Mayen'>Svalbard and Jan Mayen</option><option value='Swaziland'>Swaziland</option><option value='Sweden'>Sweden</option><option value='Switzerland'>Switzerland</option><option value='Syrian Arab Republic'>Syrian Arab Republic</option><option value='Taiwan, Province of China'>Taiwan, Province of China</option><option value='Tajikistan'>Tajikistan</option><option value='Tanzania, United Republic of'>Tanzania, United Republic of</option><option value='Thailand'>Thailand</option><option value='Timor-leste'>Timor-leste</option><option value='Togo'>Togo</option><option value='Tokelau'>Tokelau</option><option value='Tonga'>Tonga</option><option value='Trinidad and Tobago'>Trinidad and Tobago</option><option value='Tunisia'>Tunisia</option><option value='Turkey'>Turkey</option><option value='Turkmenistan'>Turkmenistan</option><option value='Turks and Caicos Islands'>Turks and Caicos Islands</option><option value='Tuvalu'>Tuvalu</option><option value='Uganda'>Uganda</option><option value='Ukraine'>Ukraine</option><option value='United Arab Emirates'>United Arab Emirates</option><option value='United Kingdom'>United Kingdom</option><option value='United States'>United States</option><option value='United States Minor Outlying Islands'>United States Minor Outlying Islands</option><option value='Uruguay'>Uruguay</option><option value='Uzbekistan'>Uzbekistan</option><option value='Vanuatu'>Vanuatu</option><option value='Venezuela'>Venezuela</option><option value='Viet Nam'>Viet Nam</option><option value='Virgin Islands, British'>Virgin Islands, British</option><option value='Virgin Islands, U.S.'>Virgin Islands, U.S.</option><option value='Wallis and Futuna'>Wallis and Futuna</option><option value='Western Sahara'>Western Sahara</option><option value='Yemen'>Yemen</option><option value='Zambia'>Zambia</option><option value='Zimbabwe'>Zimbabwe</option>".html_safe,:style=>"width: 100%;"%>
+	
+
+			<p id="testing6" style="color:red;"></p>				
+
+                        </div>
+
+                        <div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Landmark
+
+						
+
+                            </label>
+
+							<%= text_field_tag(:landmark  ,@post[:landmark], class: "input-block-level") %>
+
+				
+
+                        </div>
+
+						
+
+						
+
+						
+
+						
+
+					
+
+                    </div>
+
+                    </div>
+
+					<div class='row'>
+
+                    <div class="span10" >
+
+						<div class="span4" >
+
+                    
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Pin code
+
+						
+
+                            </label>
+
+							<%= text_field_tag(:pincode ,@post[:pincode],:placeholder => ' Pincode',:required=>true,:onblur=>'myFunction5()', class: "input-block-level") %><p id="testing5" style="color:red;"></p>
+
+				
+
+                        </div>
+
+                        <div class="span4" >
+
+				
+
+                            <label class="control-label" style="color : #563d7c;">
+
+                            Phone
+
+                            <span class="required">*</span>
+
+                            </label>
+
+							<%= text_field_tag(:phone ,@post[:phone],:placeholder => ' Phone',:required=>true,:onblur=>'myFunction7()', class: "input-block-level") %><p id="testing7" style="color:red;"></p>
+
+				
+
+                        </div>
+
+						
+
+                    </div>
+
+                    </div>
+
+					<div class='row'>
+
+					<div class="span10"> 
+
+						<br><br>
+
+						<%= submit_tag("shop_details", :name=> "shop_details",:value => "Submit",:class=>"btn btn-primary") %>
+
+					</div>
+
+					</div>
+
+				<% end %>
+
+			</div>
+
+            <div class="abc" style="border: 2px solid #e5e5e5; padding:2%; ">
+
+					
+
+					
+
+                <h1 style="color : #563d7c;">Images </h1>
+
+				<% unless flash[:upload].nil? %>
+
+						<div class="heading_featured" >
+
+							<fieldset style="height: 35px; background-color: rgb(250, 3, 3);color: #FFFFFF;padding-top:10px;border-radius: 20px;">
+
+							<div align="center">
+
+							<font size="5"><p class="flash-msg"> <%= flash[:upload] %> </p></font>
+
+						</div>
+
+					</fieldset>
+
+						</div>
+
+					<%end%>
+
+				 <%= form_tag("/admin_home/basic_details/", :method=>"post", :multipart => true, :name => "product") do %>
+
+				<div class='row'>
+
+				<div class="span10">
+
+					<div class="span3">
+
+					
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 1 </label>
+
+						<img src= <%=@post[:slide_1]%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide1()>
+
+						Edit
+
+						</button><br><br>
+
+						<p id ="slide1"><%= file_field 'upload1', 'file' %></p>
+
+					</div>
+
+					<div class="span3">
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 2 </label>
+
+						<img src= <%=@post[:slide_2]%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide2()>
+
+						Edit
+
+						</button><br><br>
+
+						<p id ="slide2"><%= file_field 'upload2', 'file'  %></p>
+
+					</div>
+
+					<div class="span3">
+
+						<label for="Upload_image" style="color : #563d7c;">Slider Image 3 </label>
+
+						<img src= <%=@post[:slide_3]%>  style="height: 90px!important;" alt="#" /><br><br>
+
+						
+
+						<button class="btn btn-success btn-sm" data-toggle="modal"  onclick=slide3()>
+
+						Edit
+
+						</button><br><br>
+
+
+
+						<p id ="slide3"><%= file_field 'upload3', 'file' %></p>
+
+					</div>
+
+				</div>
+
+				</div>
+
+				<div class='row'>
+
+                <div class="span10"> 
+
+					<br><br>
+
+                    <%= submit_tag("step1", :name=>"image_details" ,:value => "Submit",:class=>"btn btn-primary") %>
+
+					</div>
+
+					<% end %>
+
+				</div>
+
+				</div>
+
+			<div class="abc" style="border: 2px solid #e5e5e5; padding:2%; ">
+
+                 <h1 style="color : #563d7c;">Change Theme</h1>
+
+					<ul id="products" class="list clearfix">
+
+						<div class='row'>
+
+                        <div class="span10">
+
+							<div class="span4" >
+
+								<li class="da-thumbs">
+
+									<div >
+
+									
+
+											<img src="/first/img/theme1.png"  alt="" height="350px" width="350px">
+
+											
+
+											<article class="da-animate da-slideFromRight" style="display: block;">
+
+												<h3><%="Theme 1"%></h3>
+
+												<p>
+
+													<a href="http://electronics.startashoppe.com/" class="link tip" title="Preview " target="_blank"></a>&nbsp;
+
+													<a href="#" class="cart tip" title="Use This" target="_blank"></a>&nbsp;&nbsp;
+
+											</article>
+
+										
+
+									</div>
+
+									
+
+								</li>
+
+							</div>
+
+							<div class="span4" >	
+
+								<li class="da-thumbs">
+
+									<div >
+
+                                
+
+                                        <img src="/first/img/7.png"  alt="" height="350px" width="350px">
+
+                                        
+
+                                        <article class="da-animate da-slideFromRight" style="display: block;">
+
+                                            <h3><%="Theme 2"%></h3>
+
+                                            <p>
+
+												<a href="http://electronics.startashoppe.com/" class="link tip" title="Preview " target="_blank"></a>&nbsp;
+
+												<a href="/admin_home/basic_details?theme_details=Submit&theme=theme_2" class="cart tip" title="Use This"></a>&nbsp;&nbsp;
+
+                                        </article>
+
+                                    
+
+									</div>
+
+								</li>	
+
+							</div>
+
+                        </div> 
+
+                        </div> 
+
+						<div class='row'>
+
+						<div class="span10">
+
+							<div class="span4" >
+
+								<li class="da-thumbs">
+
+									<div >
+
+									
+
+											<img src="/first/img/9.png"  alt="" height="350px" width="350px">
+
+											
+
+											<article class="da-animate da-slideFromRight" style="display: block;">
+
+												<h3><%="Theme 3"%></h3>
+
+												<p>
+
+													<a href=http://unique.startashoppe.com/ class="link tip" title="Preview "  target="_blank"></a>&nbsp;
+
+													<a href="/admin_home/basic_details?theme_details=Submit&theme=theme_1" class="cart tip" title="Use This"></a>&nbsp;&nbsp;
+
+											</article>
+
+										
+
+									</div>
+
+									
+
+								</li>
+
+							</div>
+
+							<div class="span4" >	
+
+								<li class="da-thumbs">
+
+									<div >
+
+                                
+
+                                        <img src="/first/img/10.png"  alt="" height="350px" width="350px">
+
+                                        
+
+                                        <article class="da-animate da-slideFromRight" style="display: block;">
+
+                                            <h3><%="Theme 4"%></h3>
+
+                                            <p>
+
+												<a href="href=http://unique.startashoppe.com/ " class="link tip" title="Preview " target="_blank"></a>&nbsp;
+
+												<a href="/admin_home/basic_details?theme_details=Submit&theme=theme_4" class="cart tip" title="Use This"></a>&nbsp;&nbsp;
+
+                                        </article>
+
+                                    
+
+									</div>
+
+								</li>
+
+							</div>
+
+                        </div>
+
+                        </div>
+
+						<div class='row'>
+
+						<div class="span10">
+
+							<div class="span4" >
+
+								<li class="da-thumbs">
+
+									<div >
+
+									
+
+											<img src="/first/img/11.png"  alt="" height="350px" width="350px">
+
+											
+
+											<article class="da-animate da-slideFromRight" style="display: block;">
+
+												<h3><%="Theme 5"%></h3>
+
+												<p>
+
+													<a href="href=http://unique.startashoppe.com/ " class="link tip" title="Preview "></a>&nbsp;
+
+													<a href="/admin_home/basic_details?theme_details=Submit&theme=theme_6" class="cart tip" title="Use This"></a>&nbsp;&nbsp;
+
+											</article>
+
+										
+
+									</div>
+
+									
+
+								</li>
+
+							</div>
+
+							
+
+                        </div>   
+
+                        </div>   
+
+                    </ul><!--end:Themes-->	
+
+		</div>
+
+    	
+
+	
+
+</body>
+
+ 
+
+<script src="/first/js/bootstrap-tooltip.js"></script>
+
+		<script src="/first/js/bootstrap-popover.js"></script>
+
+
+
+</html>

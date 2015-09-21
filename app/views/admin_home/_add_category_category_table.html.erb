@@ -1,0 +1,19 @@
+<div  style="padding:10%;  background-color: #563d7c;">
+ 				<h3 style="color:white;">  Available categories </h3>
+				<div style="color:black;">   
+					<%@test=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
+					<%@test.each do |i|%>
+						<dl>
+							<dt><%=i['product_category_name']%></dt><br>
+							<%@subtest=Masterusers.find_by_sql("select * from product_sub_category_"+session[:master_user_id].to_s+" where product_category_id="+i.product_category_id.to_s)%>
+							<div class="subcat">
+								<%@subtest.each do |a|%><t>
+									<dd><%=a["sub_category_name"]%></dd><br>
+								<%end%>
+							</div>	
+						</dl>
+						<hr>
+					<%end%>		
+				</div>
+	  
+			</div>		

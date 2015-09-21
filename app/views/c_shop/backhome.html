@@ -1,0 +1,3037 @@
+<%if @theme =="theme_1"%>
+
+
+
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <title>Sell anythign: Premium Responsive Template develope by bootstrappage.com (bootstrap 2.3.1 version)</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="">
+
+    <meta name="author" content="">
+
+<!-- styles -->
+
+<link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+
+	<link rel="stylesheet/less" type="text/css" href="/theme7/less/bootstrap.less">
+
+	<script src="/theme7/js/less/less.js" type="text/javascript"></script>
+
+
+
+	<!-- favicon-icons -->
+
+    <link rel="shortcut icon" href="/theme7/images/favicon.ico">
+
+
+
+<script src="/theme7/js/smart.js"></script>
+
+  </head>
+
+<body>
+
+  
+
+<%= render :partial => 'home7' %>
+
+<div class="container">
+
+<section id="mainCarousel">
+
+	<div class="displayStyle">
+
+	<div id="myCarousel" class="carousel slide">
+
+		<span class="newTag tagRight"></span>
+
+		  <ol class="carousel-indicators">
+
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+
+			<li data-target="#myCarousel" data-slide-to="1"></li>
+
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+
+		  </ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<div class="carousel-inner">
+
+			<div class="item active">
+
+	<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+				<div class="row">
+
+					<div class="span12">
+
+						<img src="<%= @product[0]['slide_1']%>" style="height: 383px!important;" alt="#" />
+
+					</div>
+
+					
+
+				</div>
+
+			</div>
+
+			  <div class="item">
+
+				  <div class="row">
+
+						<div class="span12">
+
+							<img src="<%= @product[0]['slide_2']%>" style="height: 383px!important;" alt="#" />
+
+						</div>
+
+						
+
+				  </div>
+
+			  </div>
+
+			   <div class="item">
+
+			   <div class="row">
+
+			   <div class="span12">
+
+					<img src="<%= @product[0]['slide_3']%>" style="height: 383px!important;" alt="#" />
+
+				</div>
+
+				
+
+				</div>
+
+			  </div>
+
+			</div>
+
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+		<a class="right carousel-control" href="#myCarousel" data-slide="next" style="left:93%">›</a>
+
+	</div>
+
+	</div>
+
+</section>
+
+
+
+
+
+<section id="featuredProduct">
+
+
+
+<h3 class="title"><span>New Products</span></h3>
+
+
+
+<div id="myCarouselOne" class="carousel slide">
+
+
+
+	<!-- Dot Indicators -->
+
+
+
+	<div class="carousel-inner">
+
+
+
+
+
+
+
+<% count=0;
+
+
+
+	@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+
+
+
+							
+
+
+
+	<%@categories.each do |c|
+
+
+
+	count=count+1;%>
+
+
+
+
+
+
+
+	<%if count==1 then %>
+
+
+
+		<div class="item active">
+
+
+
+		<div class="row">
+
+
+
+				<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+
+
+
+				<%@products.each do |p|%>
+
+
+<% @sub_category=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} " ) %>
+
+	<%@category.each do |x|%>
+
+	<% if p["product_category_id"] == x["product_category_id"]%>
+		<% @cat = x["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if p["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+	
+
+						<div class="span3">
+
+
+
+						<div class="well well-small">
+
+
+
+							<span class="newTag"></span>
+
+
+
+							<span class="priceTag">
+
+
+
+								
+
+
+
+								<span class="newPrice"><small>$</small><%=p[:price]%></span>
+
+
+
+							</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<a class="displayStyle" href="#"><img src="<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>" style="height: 165px!important;width: 164px!important;" alt="#"/></a>
+
+
+
+							<h5><%=p[:title]%></h5>
+
+
+
+							<p>
+
+
+
+								
+
+
+
+							<%= form_tag("/#{Masterusers.title(p[:title])}/#{@cat}/#{@sub}/c_shop_7/#{p['product_id']}", :method=>"put") do %>
+
+
+
+
+
+
+
+
+
+
+
+		<input type="hidden" name="product" value=<%=p['product_id']%>>
+
+
+
+		<input type="hidden" name="product_name" value=<%=p["product_name"]%>>
+
+
+
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => p["product_id"] ) %>
+
+
+
+						
+
+
+
+				
+
+
+
+<%end%>
+
+
+
+							</p>
+
+
+
+							<p><span class="price"><small>$</small><%=p[:price]%></span></p>
+
+
+
+					
+
+
+
+						</div>
+
+
+
+						</div>
+
+
+
+				<%end%>
+
+
+
+
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+	<%else%>
+
+
+
+	<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+
+
+
+
+
+
+
+	<div class="item">
+
+
+
+	<div class="row">
+
+
+
+	<%@products.each do |p|%>
+
+<%@category.each do |x|%>
+
+	<% if p["product_category_id"] == x["product_category_id"]%>
+		<% @cat = x["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if p["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+
+
+
+		<div class="span3">
+
+
+
+			<div class="well well-small">
+
+
+
+				<span class="newTag"></span>
+
+
+
+				<span class="priceTag">
+
+
+
+					
+
+					<span class="newPrice"><small>$</small><%=p[:price]%></span>
+
+
+
+				</span>
+
+
+
+				<a class="displayStyle" href="#"><img src="<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>" style="height: 165px!important;width: 164px!important;" alt="#"/></a>
+
+
+
+				<h5><%=p[:title]%></h5>
+
+
+
+				<p>
+
+
+
+	
+
+
+
+					
+
+
+
+							<%= form_tag("/#{Masterusers.title(p[:title])}/#{@cat}/#{@sub}/c_shop_7/#{p['product_id']}", :method=>"put") do %>
+
+
+
+
+
+
+
+
+
+
+
+		<input type="hidden" name="product" value=<%=p['product_id']%>>
+
+
+
+		<input type="hidden" name="product_name" value=<%=p["product_name"]%>>
+
+
+
+	<%= submit_tag("View Detail",  :value => "View Detail", :class => "btn btn-warning", :productid => p["product_id"] ) %>
+
+
+
+						
+
+
+
+				
+
+
+
+<%end%>
+
+
+
+				</p>
+
+
+
+				<p><span class="price"><small>$</small><%=p[:price]%></span></p>
+
+
+
+				
+
+
+
+			</div>
+
+
+
+		</div>
+
+
+
+	<%end%>	
+
+
+
+	</div>
+
+
+
+	</div>
+
+
+
+<%end%>
+
+
+
+<%end%>
+
+
+
+
+
+
+
+	</div>
+
+
+
+		<a class="left carousel-control" href="#myCarouselOne" data-slide="prev">‹</a>
+
+
+
+		<a class="right carousel-control" href="#myCarouselOne" data-slide="next">›</a>
+
+
+
+</div>
+
+
+
+	<%if !cookies[:recently_view].nil? then
+
+
+
+						@a=cookies[:recently_view]
+
+
+
+						@p=[]
+
+
+
+						@p=@a.split(' ')
+
+
+
+						@p=@p.to_set
+
+
+
+					end%>	
+
+
+
+<h3 class="title"><span>Recentlly Viewed Items</span></h3>
+
+
+
+<div id="showCase" class="row">
+
+
+
+
+
+
+
+	
+
+
+
+	<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+
+
+
+
+
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+
+
+
+
+
+
+
+
+
+            	
+
+
+
+			<%@p.each do |a|%>
+
+
+
+						<%@product.each do |i|%>
+
+
+
+							<%if i['product_id']==a.to_i  then %>
+
+
+
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+
+
+
+																													<%@d.each do |a|%>
+
+
+
+<div class="span2">
+
+
+
+<div class="carousel slide">
+
+
+
+                     <div class="carousel-inner">       
+
+
+
+			<div class="item active">
+
+
+
+			<a  href="details.php" ><img src="<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" style="height: 90px!important;width: 108px!important;" alt="#"/>
+
+
+
+			</a>
+
+
+
+<%=link_to "View Detail", :controller =>  "c_shop7", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => a['product_id'] , :product => a['product_id'],:product_name => a["product_name"]%>
+
+
+
+			</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+	<%end%>	
+
+
+
+<%end%>	
+
+
+
+<%end%>	
+
+
+
+<%end%>			
+
+
+
+	
+
+
+
+
+
+
+
+</div>
+
+
+
+<%end%>	
+
+
+
+</section>
+
+
+
+<section id="scn">
+
+<h3 class="title"><span>WELCOME !</span></h3>
+
+<div class="row">
+
+	<div class="span4">
+
+	<h1><i class="icon-heart"></i> </h1>
+
+	<h4>Who we are?</h4>	
+
+	<p>Bootstrapapge.com helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage, Logo etc. </p>
+
+	<p>We are helping you to design you a professional website.Converting PSD to XHTML & CSS. Even more in Graphic Design such as Coverpage </p>
+
+	</div>
+
+	<div class="span4">
+
+	<div class="seperator">
+
+		<h1><i class="icon-truck iconShipping"></i> </h1>		
+
+		<h4>Shipping Information</h4>		
+
+		<p>If you are looking for upgrade your website for mobiles and tablets, Even if you do not have any website. Remember! bootsttrappage.com will come to make your dreams true.</p>
+
+		<p class="shipping"><span class="shippingCall">Free Shipping On Orders Over $400</span></p>
+
+	</div>
+
+	</div>
+
+	<div class="span4">
+
+		<h1><i class="icon-comments-alt"></i> </h1>
+
+		<h4>Find us in</h4>
+
+		<p class="findUs">
+
+			<a href="#"><i class="icon-facebook"></i> </a>
+
+			<a href="#"><i class="icon-twitter"></i> </a>
+
+			<a href="#"><i class="icon-google-plus"></i> </a>
+
+		</p>
+
+		<h4>Subscribe us</h4>	
+
+		<div class="caption">
+
+		<p> Subscribe us for our newsletters</p>
+
+		<form class="">
+
+		  <div class="control-group">
+
+			<div class="controls">
+
+			  <input type="text" id="userEmail" placeholder="eg: info:bootstrappage.com">
+
+			</div>
+
+		  </div>
+
+		  <div class="control-group">
+
+			<div class="controls">
+
+			  <button type="submit" class="btn btn-success ">subscribe</button>
+
+			</div>
+
+		  </div>
+
+		</form>
+
+	</div>
+
+</div>
+
+</div>
+
+</section>
+
+<hr class="soften"/>
+
+
+
+</div>
+
+<!-- Footer
+
+================================================== -->
+
+<footer class="footer">
+
+<div class="container">
+
+<h5>Accepted Payment Methods </h5>
+
+<p><a href="#"><img src="/theme7/images/payment_methods.png" alt="payment methods"/></a></p>
+
+<hr class="soften"/>
+
+<div class="footerMenu">
+
+	<a href="register.php"> REGISTRATION</a> | 
+
+	<a href="about_us.php"> ABOUT US</a> | 
+
+	<a  href="topology.php" >TOPOLOGY</a> | 
+
+	<a href="contact_us.php">CONTACT </a>
+
+<p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
+
+</div>
+
+</div>
+
+</footer>
+
+<span id="toTop" style="display: none;"><span><i class="icon-angle-up"></i></span></span>
+
+
+
+<!--  javascript
+
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+
+    <script src="/theme7/js/jquery-1.8.3.min.js"></script>
+
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="/theme7/js/smart.js"></script>
+
+  </body>
+
+</html>
+
+
+
+
+
+<%end%>
+
+
+
+
+
+
+
+<%if @theme =="theme_6"%>
+
+<%= render :partial => 'home6' %>
+
+
+
+<!DOCTYPE html>
+
+
+
+<head>
+
+	<script type="text/javascript">
+
+//<![CDATA[
+
+window.__CF=window.__CF||{};window.__CF.AJS={"abetterbrowser":{"ie":"7"},"ga_key":{"ua":"UA-7078796-5","ga_bs":"2"}};
+
+//]]>
+
+</script>
+
+<script type="text/javascript">
+
+//<![CDATA[
+
+try{if (!window.CloudFlare) { var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/abv=2980380653/"},atok:"de8fe5ff0bd002870044c36593fe8ba2",petok:"8101959a919cc564267338dd66801fcd-1384149002-1800",zone:"template-help.com",rocket:"0",apps:{"abetterbrowser":{"ie":"7"},"ga_key":{"ua":"UA-7078796-5","ga_bs":"2"}}}];var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.async=!0;a.src="//ajax.cloudflare.com/cdn-cgi/nexp/abv=616370820/cloudflare.min.js";b.parentNode.insertBefore(a,b);}}catch(e){};
+
+//]]>
+
+</script>
+
+<script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><title>Travel Store | Just another WordPress site</title>
+
+	<meta name="description" content=" | Just another WordPress site" />
+
+	<meta charset="UTF-8" />
+
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	
+
+	
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/normalize.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/style.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/prettyPhoto.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/cameraslideshow.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/flexslider.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/skeleton.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/touchTouch.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/shop-styles.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/320.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/480.css" />
+
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/768.css" />
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+<script type='text/javascript' src='/theme6/js/jquery.mobilemenu.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/superfish.js?ver=1.4.8'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.easing.1.3.js?ver=1.3'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.prettyPhoto.js?ver=3.1.3'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.tools.min.js?ver=1.2.6'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.elastislide.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.loader.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/swfobject.js?ver=2.2-20120417'></script>
+
+<script type='text/javascript' src='/theme6/js/slides.jquery.js?ver=1.1.9'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.twitter.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery.flickrush.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/touchTouch.jquery.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/audiojs/audio.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/camera.js?ver=1.3.3'></script>
+
+<script type='text/javascript' src='/theme6/js/custom.js?ver=1.0'></script>
+
+<script type='text/javascript' src='/theme6/js/jquery-ui-1.9.2.min.js?ver=1.9.2'></script>
+
+<script type='text/javascript' src='/theme6/js/blockui.js?ver=3.4'></script>
+
+
+
+<script type='text/javascript' src='/theme6/js/comment-reply.js?ver=3.4'></script>
+
+
+
+
+
+	
+
+	
+
+	<script type="text/javascript">
+
+		jQuery(window).load(function() {
+
+			$('#topnav').css({display:'block'});
+
+		});
+
+	</script>
+
+
+
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+var _gaq = _gaq || [];
+
+_gaq.push(['_setAccount', 'UA-7078796-5']);
+
+_gaq.push(['_trackPageview']);
+
+
+
+(function() {
+
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+
+})();
+
+
+
+(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
+
+/* ]]> */
+
+</script>
+
+</head>
+
+
+
+<body class="home page page-id-203 page-template page-template-page-home-php">
+
+
+
+<div id="main"><!-- this encompasses the entire Web site -->
+
+	
+
+	<div class="bg-content">
+
+			<section id="slider-wrapper">
+
+			<div class="slider-container">
+
+				<script type="text/javascript">
+
+	jQuery(window).load(function() {
+
+		jQuery(function(){
+
+			jQuery('.camera_wrap').camera({
+
+				autoAdvance			: true,	//true, false
+
+				mobileAutoAdvance	: true, //true, false. Auto-advancing for mobile devices
+
+				barDirection		: 'leftToRight',	//'leftToRight', 'rightToLeft', 'topToBottom', 'bottomToTop'
+
+				barPosition			: 'bottom',	//'bottom', 'left', 'top', 'right'
+
+				cols				: 10,
+
+				easing				: 'easeInOutExpo',	//for the complete list http://jqueryui.com/demos/effect/easing.html
+
+				mobileEasing		: '',	//leave empty if you want to display the same easing on mobile devices and on desktop etc.
+
+				fx					: 'stampede',	//'random','simpleFade', 'curtainTopLeft', 'curtainTopRight', 'curtainBottomLeft', 			'curtainBottomRight', 'curtainSliceLeft', 'curtainSliceRight', 'blindCurtainTopLeft', 'blindCurtainTopRight', 'blindCurtainBottomLeft', 'blindCurtainBottomRight', 'blindCurtainSliceBottom', 'blindCurtainSliceTop', 'stampede', 'mosaic', 'mosaicReverse', 'mosaicRandom', 'mosaicSpiral', 'mosaicSpiralReverse', 'topLeftBottomRight', 'bottomRightTopLeft', 'bottomLeftTopRight', 'bottomLeftTopRight'
+
+												//you can also use more than one effect, just separate them with commas: 'simpleFade, scrollRight, scrollBottom'
+
+				mobileFx			: '',	//leave empty if you want to display the same effect on mobile devices and on desktop etc.
+
+				gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
+
+				height				: '27.62%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+
+				imagePath			: 'images/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)	
+
+				loader				: 'none',	//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)
+
+				loaderColor			: '#eeeeee', 
+
+				loaderBgColor		: '#222222', 
+
+				loaderOpacity		: .8,	//0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1
+
+				loaderPadding		: 2,	//how many empty pixels you want to display between the loader and its background
+
+				loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter		
+
+				minHeight			: '200px',	//you can also leave it blank
+
+				navigation			: true,	//true or false, to display or not the navigation buttons
+
+				navigationHover		: false,	//if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always 
+
+				pagination			: true,
+
+				playPause			: false,	//true or false, to display or not the play/pause buttons
+
+				pieDiameter			: 38,
+
+				piePosition			: 'rightTop',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
+
+				rows				: 3,
+
+				slicedCols			: 10,
+
+				slicedRows			: 3,
+
+				thumbnails			: true,
+
+				time				: 5000,	//milliseconds between the end of the sliding effect and the start of the next one
+
+				transPeriod			: 1000,	//lenght of the sliding effect in milliseconds
+
+				
+
+		////////callbacks
+
+
+
+				onEndTransition		: function() {  },	//this callback is invoked when the transition effect ends
+
+				onLoaded			: function() {  },	//this callback is invoked when the image on a slide has completely loaded
+
+				onStartLoading		: function() {  },	//this callback is invoked when the image on a slide start loading
+
+				onStartTransition	: function() {  }	//this callback is invoked when the transition effect starts
+
+			});
+
+		});
+
+	});
+
+</script>
+
+
+
+<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+<div class="camera_wrap">
+
+					
+
+		
+
+		
+
+					
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_1']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/emotive/lorem-ipsum-dolor/' data-thumb='<%= @product[0]['slide_1']%>'>										
+
+							</div>	
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_2']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/cityscape/mauris-posuere/' data-thumb='<%= @product[0]['slide_2']%>'>										
+
+							</div>	
+
+		
+
+					
+
+		<div		data-src='<%= @product[0]['slide_3']%>' data-link='http://livedemo00.template-help.com/free_sample_jigoshop/emotive/dolore-magna-aliqua/' data-thumb='<%= @product[0]['slide_3']%>'>										
+
+							</div>	
+
+		
+
+		</div>			</div>
+
+		</section><!--#slider-->
+
+		<div class="content-box bg">
+
+		<div class="primary_content_wrap">
+
+        		<div class="before-content-area clearfix">
+
+        <div class="container_12 clearfix">
+
+			<div class="grid_12">
+
+								<div id="my_carouselwidget-2">					<h2>Featured Products</h2>							
+
+							<!-- Elastislide Carousel -->
+
+							<div id="carousel" class="es-carousel-wrapper">
+
+								<div class="es-carousel">
+
+									<div class="item-list">
+
+										<ul>
+
+											                                            		<% @product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 4 ")%>
+
+		
+
+<%@product.each do |i|%>																				
+
+																						
+
+																														<li>
+
+																							<figure class="featured-thumbnail"><a href=" <%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>"><img src= <%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> style="height: 127px;"> </a></figure>
+
+ 																							<h4><a href=""><%= i['title']%></a></h4>
+
+
+
+<%= form_tag("/c_shop6/product_detail/", :method=>"put") do %>	
+
+                                		
+
+<input type="hidden" name="productid" value=<%=i['product_id']%> />
+
+<input type="hidden" name="product" value=<%=i['product_id']%> />
+
+<input type="hidden" name="product_name" value=<%=i['product_name']%> />
+
+<%= submit_tag("detail", :name=>"detail", :value => "detail",:class=>"js_widget_product_link button") %>
+
+<span class="price" style="margin-left:30%">$<%= i['price']%></span>     
+
+<%end%>
+
+
+
+				                               
+
+											</li>
+
+																					
+
+<%end%>		 											
+
+																																				
+
+																		</ul>
+
+									</div>
+
+								</div>
+
+<div class="es-nav"><span class="es-nav-prev" style="display: none;"><span>Previous</span></span><span class="es-nav-next" style="display: block;"><span>Next</span></span></div>
+
+							</div>
+
+							<script type="text/javascript">
+
+			
+
+								$('#carousel').elastislide({
+
+									imageW 	: 220,
+
+									minItems	: 4
+
+								});
+
+								
+
+							</script>
+
+							<!-- End Elastislide Carousel -->
+
+			
+
+			
+
+				</div>        			</div>
+
+		</div><!-- .container -->
+
+	</div>
+
+
+
+        
+
+
+
+
+
+<div class="content-area">
+
+		<div class="container_12 clearfix">
+
+			<div class="main-separator clearfix">
+
+				<div class="grid_8">
+
+
+
+
+
+				<%if !cookies[:recently_view].nil? then
+
+						@a=cookies[:recently_view]
+
+						@p=[]
+
+						@p=@a.split(' ')
+
+						@p=@p.to_set
+
+					end%>
+
+			<div id="widget_recent_entries"><h2>Latest products</h2>
+
+				<ul class="product_list_widget">
+
+					<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+
+
+
+            	
+
+			<%@p.each do |a|%>
+
+						<%@product.each do |i|%>
+
+							<%if i['product_id']==a.to_i  then %>
+
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+
+																													<%@d.each do |a|%>
+
+                            
+
+
+
+
+
+		<li>
+
+			<div class="inner">
+
+			<figure class="featured-thumbnail">
+
+			<a href=" <%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" class="thumb">
+
+				<span class="stroke"></span>
+
+				<span class="image-wrapper">
+
+				<img src=" <%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>" alt="">
+
+				</span>
+
+			</a>
+
+			</figure>
+
+			<div class="js_widget_product_title">
+
+			<a href=""><%=a["title"]%></a>
+
+			</div>
+
+			<span class="js_widget_product_excerpt"><%=a["description"]%></span>
+
+			<span class="js_widget_product_price">$<%=a["price"]%></span>
+
+			<a href="" class="js_widget_product_link button">Details</a>
+
+		</li>
+
+	
+
+<%end%>	
+
+<%end%>	
+
+<%end%>	
+
+<%end%>	
+
+</ul>
+
+</div>	
+
+<%end%>			
+
+<br>
+
+<br>
+
+<a href="/c_shop7/view_all" class="link">view all</a>
+
+	</div>
+
+				
+
+		  
+
+		<div id="text-3" class="grid_3 widget-footer"><h4>Quick contact</h4>			<div class="textwidget"><div class="wpcf7" id="wpcf7-f208-w1-o1"><form action="/free_sample_jigoshop/#wpcf7-f208-w1-o1" method="post" class="wpcf7-form">
+
+<div style="display: none;">
+
+<input type="hidden" name="_wpcf7" value="208" />
+
+<input type="hidden" name="_wpcf7_version" value="3.3" />
+
+<input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f208-w1-o1" />
+
+<input type="hidden" name="_wpnonce" value="ec054a9d7c" />
+
+</div>
+
+<p class="field"><span class="wpcf7-form-control-wrap text-193"><input type="text" name="text-193" value="" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required wpcf7-use-title-as-watermark" size="40" title="Name" /></span></p>
+
+<p class="field"><span class="wpcf7-form-control-wrap email-611"><input type="text" name="email-611" value="" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email wpcf7-use-title-as-watermark" size="40" title="Email" /></span></p>
+
+<p class="area"><span class="wpcf7-form-control-wrap textarea-113"><textarea name="textarea-113" class="wpcf7-form-control  wpcf7-textarea wpcf7-use-title-as-watermark" cols="40" rows="10" title="Message"></textarea></span></p>
+
+<p class="submit-wrap"><input type="submit" value="Send" class="wpcf7-form-control  wpcf7-submit" /></p>
+
+</form></div></div>
+
+		</div>		
+
+
+
+			</div>
+
+			</div>
+
+		</div>
+
+					</div><!--.container-->
+
+                </div><!--.primary_content_wrap-->
+
+			</div><!--.content-box-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+<%end%>
+
+
+
+
+<%if @theme =="theme_10"%>
+
+<!DOCTYPE html>
+<html lang="en"><head>
+	<script src="/js/jquery.unveil.js"></script>
+<script type="text/javascript" charset="utf-8">
+               $(document).ready(function() {
+                        console.log('testing lazyload');
+                        $(".mainContent  img").unveil();
+               });
+       </script>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Hotel - Bootstrap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	
+
+	<link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="/css/bootstrap-responsive.min.css" type="text/css">
+	<link rel="stylesheet" href="/theme2/css/hotel.css" type="text/css">
+	<link rel="stylesheet" href="/theme2/css/hotel-responsive.css" type="text/css">
+
+	<link rel="stylesheet" href="/theme2/css/default.css" type="text/css" media="screen" >
+	<link rel="stylesheet" href="/theme2/css/nivo-slider.css" type="text/css" media="screen" >
+	<link rel="stylesheet" href="/theme2/css/socialcount-with-icons.css" type="text/css" media="screen" >
+	
+	
+	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">	<link href="http://fonts.googleapis.com/css?family=ABeeZee" rel="stylesheet" type="text/css">			
+	<link rel="shortcut icon" href="http://demo.startashoppe.info/files/2012/12/Untitled-1.png" /> 
+	<link href="/viewall/css/style.css" type="text/css" rel="stylesheet" />
+	
+	<link rel='stylesheet' id='aqpb-view-css-css'  href='/viewall/css/aqpb-view.css?ver=1378883354' type='text/css' media='all' />
+    <link rel='stylesheet' id='aqpb-view-custom-css-css'  href='/viewall/css/aqpb-view-custom.css?ver=1378883354' type='text/css' media='all' />
+    <link rel='stylesheet' id='prettyphoto-style-css'  href='/viewall/css/prettyPhoto.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='mp-flexmarket-css-css'  href='/viewall/css/mp.css' type='text/css' media='all' />
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/theme.css">
+    <link href="/css/css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="/css/animate.css" media="screen, projection">
+    <link rel="stylesheet" href="/css/sign-up.css" type="text/css" media="screen">
+
+
+<script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script>
+
+
+<script type='text/javascript' src='/viewall/js/jquery.js'></script>
+
+<script type='text/javascript' src='/viewall/js/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var MP_Ajax = {"ajaxUrl":"http:\/\/demo.startashoppe.info\/wp-admin\/admin-ajax.php","emptyCartMsg":"Are you sure you want to remove all items from your cart?","successMsg":"Item(s) Added!","imgUrl":"http:\/\/demo.startashoppe.info\/wp-content\/plugins\/marketpress\/marketpress-includes\/images\/loading.gif","addingMsg":"Adding to your cart...","outMsg":"In Your Cart","show_filters":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/viewall/js/ajax-cart.js?ver=2.8.8'></script>
+<script type='text/javascript' src='/viewall/js/bootstrap.js?ver=3.6'></script>
+<script type='text/javascript' src='/viewall/js/filterable.js?ver=3.6'></script>
+<script type='text/javascript' src='/viewall/js/jquery.prettyPhoto.js?ver=3.6'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://demo.startashoppe.info/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://demo.startashoppe.info/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="Shops" />
+
+
+			
+<style type="text/css">#wpadminbar li#wp-admin-bar-pro-site {float:right;}#wpadminbar li#wp-admin-bar-pro-site a{padding-top:3px !important;height:25px !important;border-right:1px solid #333 !important;}#wpadminbar li#wp-admin-bar-pro-site a span{display:block;color:#fff;font-weight:bold;font-size:11px;margin:0px 1px 0px 1px;padding:0 30px !important;border:1px solid #409ed0 !important;height:18px !important;line-height:18px !important;border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;background-image:-moz-linear-gradient( bottom, #3b85ad, #419ece ) !important;background-image:-ms-linear-gradient( bottom, #3b85ad, #419ece ) !important;background-image:-webkit-gradient( linear, left bottom, left top, from( #3b85ad ), to( #419ece ) ) !important;background-image:-webkit-linear-gradient( bottom, #419ece, #3b85ad ) !important;background-image:linear-gradient( bottom, #3b85ad, #419ece ) !important;}#wpadminbar li#wp-admin-bar-pro-site a:hover span{background-image:-moz-linear-gradient( bottom, #0B93C5, #3b85ad ) !important;background-image:-ms-linear-gradient( bottom, #0B93C5, #3b85ad ) !important;background-image:-webkit-gradient( linear, left bottom, left top, from( #0B93C5 ), to( #3b85ad ) ) !important;background-image:-webkit-linear-gradient( bottom, #3b85ad, #0B93C5 ) !important;background-image:linear-gradient( bottom, #0B93C5, #3b85ad ) !important;border:1px solid #3b85ad !important;color:#E8F3F8;}</style>
+			<link rel="canonical" href="http://demo.startashoppe.info/" />
+	<meta name="description" content="Just another Shops site" />
+<link rel="shortcut icon" href="//startashoppe.info/wp-content/uploads/ultimate-branding/includes/favicon/favicon.png" />
+	<link href="/viewall/css/color-black.css" type="text/css" rel="stylesheet" />
+<style>
+h2, h3{
+color: #563d7c;
+}
+</style>	
+   	
+</head>
+
+<body>
+  <%= render :partial => 'home1' %>
+	
+	\
+	
+	</div>
+	</div><!-- end header -->
+	<!-- Modal slider_1 -->
+<div id="slider_1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Slider Image</h3>
+  </div>
+  <div class="modal-body">
+  
+  
+  <%= form_tag({ :controller =>  "c_shop",:action => 'editmode'}, {:name => 'details',:multipart=>true}) do%>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+	
+			<tab id=t1><h1>Choose First Image Of Your Slider</h1></tab>
+			<hr>
+			
+			<br>
+			
+			<%= file_field 'upload1', 'file1',class: "input-block-level" %></p>
+
+			
+			<%= submit_tag("submit", :value => "slider_1", :class=>"btn btn-primary") %>
+		
+			<br>
+			<br>
+		
+		
+		
+			
+			<% end %>
+			
+			
+			
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+ 
+  </div>
+</div>
+
+		<!-- end  Modal slider_1 -->
+	
+	
+	<!-- Modal slider_2 -->
+<div id="slider_2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Slider Image</h3>
+  </div>
+  <div class="modal-body">
+  
+  
+  	<%= form_tag({ :controller =>  "c_shop",:action => 'editmode'}, {:name => 'details',:multipart=>true}) do%>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+	
+			<tab id=t1><h1>Choose Second Image Of Your Slider</h1></tab>
+			<hr>
+			
+			<br>
+			
+			<%= file_field 'upload2', 'file2' %></p>
+
+			
+			<%= submit_tag("submit", :value => "slider_2", :class=>"btn btn-primary") %>
+		
+			<br>
+			<br>
+		
+		
+		
+			
+			<% end %>
+			
+			
+			
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   
+  </div>
+</div>
+
+		<!-- end  Modal slider_2 -->
+	
+	
+		<!-- Modal slider_3 -->
+<div id="slider_3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Slider Image</h3>
+  </div>
+  <div class="modal-body">
+  
+  
+  	<%= form_tag({ :controller =>  "c_shop",:action => 'editmode'}, {:name => 'details',:multipart=>true}) do%>
+		
+			<br>
+			<br>
+			<br>
+			<br>
+	
+			<tab id=t1><h1>Choose Third Image Of Your Slider</h1></tab>
+			<hr>
+			<br>
+		
+		
+			<%= file_field 'upload3', 'file3' %></p>
+
+			
+			<%= submit_tag("submit", :value => "slider_3", :class=>"btn btn-primary") %>
+		
+			<br>
+			<br>
+		
+		
+		
+			
+			<% end %>
+			
+			
+			
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  
+  </div>
+</div>
+
+		<!-- end  Modal slider_3 -->
+	
+	<div class="row-fluid slideshow-row">
+	
+		<div class="span12 slideshow">
+			<div class="slider-wrapper theme-default">
+				<div class="ribbon"></div>
+					<div id="nivoslider-125" class="nivoSlider">
+						<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+						<% if session[:mode]=="edit" then %>	
+													
+													
+							<%=link_to image_tag(@product[0]['slide_1'], :width => 1000, :height => 500)  ,'#slider_1', html_options = {:data => {:toggle => 'modal'} }%>
+							<%=link_to image_tag(@product[0]['slide_2'], :width => 1000, :height => 500)  ,'#slider_2', html_options = {:data => {:toggle => 'modal'} }%>
+							<%=link_to image_tag(@product[0]['slide_3'], :width => 1000, :height => 500)  ,'#slider_3', html_options = {:data => {:toggle => 'modal'} }%>
+							
+						<%else%>
+						<%= image_tag(@product[0]['slide_1'], :size => "260x180") %> 
+							
+							<img src= "<%= @product[0]['slide_2']%>" alt="" >
+							<img src= "<%= @product[0]['slide_3']%>" alt="" >
+						<%end%>
+						
+					</div>
+				</div>
+				<div id="nivoslider-125-caption-0" class="nivo-html-caption">You can add captions too&#8230;</div>
+			</div>
+	
+		</div>
+		<% if session[:mode]=="edit" then %>	
+			<%= form_tag({ :controller =>  "c_shop",:action => 'home'}, {:name => 'details',:multipart=>true}) do%>
+					<%= submit_tag("visit site", :value => "visit site", :class=>"btn btn-primary") %>
+			<%end%>
+		<%end%>
+		<div class="row-fluid home">
+			<div class="span12" style="margin-left:5%;">
+			<h2>start <span>Booking your </span><br > select your dates and options below</h2>
+			</div>
+		</div>
+
+	
+	
+	<hr>
+<div class="row-fluid">
+	
+
+	<div id="aq-block-9" class="aq-block aq-block-aq_mp_product_grid_block span12 aq-first cf">
+	<div id="mpt-product-grid">
+		<div class="row-fluid">
+		<h2 style="margin-left:4%;">Latest Products </h2>
+				<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 4 ")%>
+		
+		<%@product.each do |i|%>
+<!-- Modal -->
+			<div id=<%=i["product_id"]%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:65%;height:320px;">
+				<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				</div>
+				<div id="product-single-wrapper">
+					<div class="content-section">
+						<div class="outercontainer">
+							<div class="container">
+								<div class="row-fluid">
+									<div class="span8">
+										<div id="post-27" class="post-27 product type-product status-publish hentry">
+											<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+												<%@d.each do |a|%>
+									
+											<div class="image-box transparent add-shadow-effect" style="width: 1000px;height: 250px;">
+												<div class="hover-btn">
+									
+													<a href=<%=a["image_1"]%> class="btn btn-block" rel="prettyPhoto[post-<%=a['product_id']%>]">
+													<i class="icon-search"></i> View Image</a>
+												</div>
+									
+													 <a href=<%=a["image_2"]%> rel="prettyPhoto[post-<%=a['product_id']%>]">
+													 <a href=<%=a["image_3"]%> rel="prettyPhoto[post-<%=a['product_id']%>]">
+
+								
+									
+												<div class="mainContent"><img src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%>  width="190" height="240" data-src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%> >
+												</div>
+					
+													</a>
+											</div>
+								
+								
+								
+								<div class="row-fluid">
+									<div class="span3">
+										<i class="icon-tags"></i> Price: <span itemprop="price" class="mp_normal_price"><span class="mp_current_price"><%= a["price"]%></span></span>	
+										<i class="icon-tags"></i> Available Quatity: <span itemprop="price" class="mp_normal_price"><span class="mp_current_price"><%= a['product_id']%></span></span>	
+									</div>
+									<div class="span9 align-right">
+								  		<form class="mp_buy_form form-inline" method="post" action="http://demo.startashoppe.info/store/shopping-cart/">
+											<input type="hidden" name="product_id" value="27" />
+											<input type="hidden" name="variation" value="0" />
+											<span class="mp_quantity">
+											<label>Quantity: <input class="mp_quantity_field input-mini" type="text" name="quantity" value="1" />
+											</label>
+											</span>&nbsp;
+											<input type="hidden" name="action" value="mp-update-cart" />
+											<input class="mp_button_addcart btn btn-inverse" type="submit" name="addcart" value="Add To Cart" />
+										</form>		
+									</div>
+								</div>
+								<%end%>
+							</div>
+					
+							
+								
+
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	
+	</div>
+</div>
+		
+			<%= form_tag("/c_shop/product_detail/", :method=>"put") do %>
+			<div class="span3 well well-small accessories" style="background: #fff; color: #676767;">
+				<div class="image-box" style="max-width: 360px";>
+					
+					
+					<div class="mainContent">
+				
+					 <a href="/test">
+					<img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>%>
+					</a>
+					<input type="hidden" name="product" value=<%=i['product_id']%>>
+					<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
+					<div class="hover-block hidden-phone">
+						<div class="btn-group">
+						<%= submit_tag("submit",  :value => i["product_name"], :class => "btn btn-primary btn btn-info", :productid => i["product_id"] ) %>
+						
+						<a href=#<%=i['product_id']%> role="button" class="btn btn-primary" data-toggle="modal">
+							
+							<i class="icon-zoom-in icon-white"></i>
+							</a>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+				<div class="clear padding5">
+				</div>
+				<div class="hidden-phone">
+					<div class="product-meta row-fluid">
+						<div class="span6">
+							<p>
+								<small><i class="icon-tags"></i> 
+									<span itemprop="price" class="mp_normal_price">
+										<span class="mp_current_price">Rs. <%= i["price"]%>
+										</span>
+									</span>
+								</small>
+							</p>
+						</div>
+						<div class="span6 atc">
+						
+							<form class="mp_buy_form" method="post" action="http://demo.startashoppe.info/store/shopping-cart/">
+								<input type="hidden" name="product_id" value="27" />
+								<input type="hidden" name="variation" value="0" />
+								<input type="hidden" name="action" value="mp-update-cart" />
+								
+							</form>
+						</div>
+					</div>
+				</div>
+				
+					
+			</div>
+			<%end%>	
+			<%end%>
+	</div>
+
+	</div>
+	
+</div>
+
+
+
+
+			</div><!-- / container -->
+		</div><!-- / outercontainer -->	
+	</div>
+</div>	
+	</div>
+</div>	
+		
+<div class="row-fluid">		
+		<h3 style="margin-left:4%;">Recently viewed Products</h3>
+
+<%if !cookies[:recently_view].nil? then
+			@a=cookies[:recently_view]
+			@p=[]
+			@p=@a.split(' ')
+			@p=@p.to_set
+		end%>
+		<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+	<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+
+		<div id="aq-block-9" class="aq-block aq-block-aq_mp_product_grid_block span12 aq-first cf">
+			<div id="mpt-product-grid">
+				<div class="row-fluid">
+					
+					<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%if i['product_id']==a.to_i  then %>
+<!-- Modal -->
+										<div id=<%=i["product_id"]%> class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width:65%;height:320px;">
+											<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											</div>
+											<div id="product-single-wrapper">
+												<div class="content-section">
+													<div class="outercontainer">
+														<div class="container">
+															<div class="row-fluid">
+																<div class="span8">
+																	<div id="post-27" class="post-27 product type-product status-publish hentry">
+																		<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+																			<%@d.each do |a|%>
+																
+																		<div class="image-box transparent add-shadow-effect" style="width: 1000px;height: 250px;">
+																			<div class="hover-btn">
+																
+																				<a href=<%=a["image_1"]%> class="btn btn-block" rel="prettyPhoto[post-<%=a['product_id']%>]">
+																				<i class="icon-search"></i> View Image</a>
+																			</div>
+																
+																				 <a href=<%=a["image_2"]%> rel="prettyPhoto[post-<%=a['product_id']%>]">
+																				 <a href=<%=a["image_3"]%> rel="prettyPhoto[post-<%=a['product_id']%>]">
+
+															
+																
+																			<div class="mainContent"><img src="/images/loader_lazyload1.gif" width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>>
+																			</div>
+												
+																				</a>
+																		</div>
+															
+															
+															
+															<div class="row-fluid">
+																<div class="span3">
+																	<i class="icon-tags"></i> Price: <span itemprop="price" class="mp_normal_price"><span class="mp_current_price"><%= a["price"]%></span></span>	
+																	<i class="icon-tags"></i> Available Quatity: <span itemprop="price" class="mp_normal_price"><span class="mp_current_price"><%= a['product_id']%></span></span>	
+																</div>
+																<div class="span9 align-right">
+																	<form class="mp_buy_form form-inline" method="post" action="http://demo.startashoppe.info/store/shopping-cart/">
+																		<input type="hidden" name="product_id" value="27" />
+																		<input type="hidden" name="variation" value="0" />
+																		<span class="mp_quantity">
+																		<label>Quantity: <input class="mp_quantity_field input-mini" type="text" name="quantity" value="1" />
+																		</label>
+																		</span>&nbsp;
+																		<input type="hidden" name="action" value="mp-update-cart" />
+																		<input class="mp_button_addcart btn btn-inverse" type="submit" name="addcart" value="Add To Cart" />
+																	</form>		
+																</div>
+															</div>
+															<%end%>
+														</div>
+												
+														
+															
+
+													</div>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+								
+								</div>
+							</div>
+
+										<%= form_tag("/c_shop/product_detail/", :method=>"put") do %>
+										<div class="span3 well well-small accessories" style="background: #fff; color: #676767;">
+											<div class="image-box" style="max-width: 360px";>
+												
+												
+												<div class="mainContent">
+												 <a href="/test">
+												<img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%>  width="190" height="240" data-src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> 
+												</a>
+												<input type="hidden" name="product" value=<%=i['product_id']%>>
+												<input type="hidden" name="product_name" value=<%=i["product_name"]%>>
+												<div class="hover-block hidden-phone">
+													<div class="btn-group">
+													<%= submit_tag("submit",  :value => i["product_name"], :class => "btn btn-primary btn btn-info", :productid => i["product_id"] ) %>
+													
+													<a href=#<%=i['product_id']%> role="button" class="btn btn-primary" data-toggle="modal">
+														
+														<i class="icon-zoom-in icon-white"></i>
+														</a>
+														</div>
+													</div>
+												</div>
+											</div>
+												
+											<div class="clear padding5">
+											</div>
+											<div class="hidden-phone">
+												<div class="product-meta row-fluid">
+													<div class="span6">
+														<p>
+															<small><i class="icon-tags"></i> 
+																<span itemprop="price" class="mp_normal_price">
+																	<span class="mp_current_price">Rs. <%= i["price"]%>
+																	</span>
+																</span>
+															</small>
+														</p>
+													</div>
+													<div class="span6 atc">
+													
+														<form class="mp_buy_form" method="post" action="http://demo.startashoppe.info/store/shopping-cart/">
+															<input type="hidden" name="product_id" value="27" />
+															<input type="hidden" name="variation" value="0" />
+															<input type="hidden" name="action" value="mp-update-cart" />
+															
+														</form>
+													</div>
+												</div>
+											</div>
+											
+												
+										</div>
+			<%end%>	
+			<%end%>
+			<%end%>
+			<%end%>
+	</div>
+
+	</div>
+	</div>
+	
+</div>
+
+
+
+
+			</div><!-- / container -->
+		</div><!-- / outercontainer -->	
+	<%else%>
+		<h2> Empty Cart</h2>
+	<%end%>	
+
+</div>
+
+<footer>
+	<div class="container">
+		<div class="row footer_section_pre">
+
+		<div class="span4">
+			<h4>Online booking<span class="line"></span></h4>
+
+			<p>Address</p>
+			<p>Tel: <br />Fax:   <br />Email: abc@xyz.com  </p>
+
+			<ul data-facebook-action="recommend" data-url="#" class="socialcount socialcount-small recommend grade-a">
+				<li class="facebook"><a title="Share on Facebook" href="#"><span class="social-icon icon-facebook"></span><span class="count"></span></a></li>
+				<li class="twitter"><a title="Share on Twitter" href="#"><span class="social-icon icon-twitter"></span><span class="count"></span></a></li>
+				<li class="googleplus"><a title="Share on Google Plus" href="#"><span class="social-icon icon-googleplus"></span><span class="count"></span></a></li>
+			</ul>
+			<br />
+				<p class="copy">All content &copy; 2013 <a href="#"></a></p>
+
+		</div>
+		<div class="span4">
+			<h4>Special offers<span class="line"></span></h4>
+			<p><b>FREE</b> Breakfast, <b>FREE</b> Internet, <b>FREE</b> Tour = Savings!</p>
+			<p>Stay five nights and get one night totally <b>FREE</b>!</p>
+			<p>Save up to <b>20% OFF</b> our Best Available Rate by booking with us in advance.</p>
+		</div>
+		<div class="span4">
+			<h4>Contact details<span class="line"></span></h4>
+			<p><%=@address%></p>
+			<p><%=@master_email%></p>
+			<p><%=@phone%></p>
+		</div>
+	</div>
+	
+	
+	
+	
+</footer>
+
+	<script type="text/javascript" src="/theme2/js/jquery.js"></script>
+	
+	<script type="text/javascript" src="/theme2/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/theme2/js/jquery.nivo.slider.js"></script>
+	<script type="text/javascript" src="/theme2/js/socialcount.min.js"></script>
+	<script src="/theme2/js/jquery.quicksand.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="/theme2/js/global.js"></script>
+	
+	
+		<!-- Load JS -->
+	<script type="text/javascript">
+	
+	jQuery(document).ready(function () {
+	
+		// prettyPhoto
+    	jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+    		social_tools: false
+    	});
+
+    	// tooltip
+    	jQuery('.tool-tip').tooltip();
+	});
+
+	</script>
+	<script type='text/javascript'>
+/* <![CDATA[ */
+var lumeboxOptions = {"graphicsDir":"http:\/\/demo.startashoppe.info\/wp-content\/plugins\/marketpress\/marketpress-includes\/lightbox\/style\/"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/viewall/js/jquery.lumebox.min.js?ver=2.8.8'></script>
+<script type='text/javascript' src='/viewall/js/admin-bar.min.js?ver=3.6'></script>
+	<script type="text/javascript">
+		(function() {
+			var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
+
+			request = true;
+
+			b[c] = b[c].replace( rcs, ' ' );
+			b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
+		}());
+		
+		$('#mylink').click(function(e){
+		e.preventDefault();
+		});
+	</script>
+	
+</body>
+</html>
+    
+
+
+<!-- Theme_1 end -->
+
+<!-- Theme_2 start -->
+
+
+
+
+<%elsif @theme == "theme_2" %>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Metawing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/shopymart/css/style.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+<link href="/shopymart/css/prettyPhoto.css" type="text/css" rel="stylesheet" media="screen"><!-- prettyPhoto -->
+<link href="/shopymart/css/tipsy.css" type="text/css" rel="stylesheet" media="screen"><!--tooltip-->
+<link href="/shopymart/css/jcarousel.css" type="text/css" rel="stylesheet" media="screen" /> <!-- list_work -->
+<link href="/shopymart/css/itemslider.css" type="text/css" rel="stylesheet" media="screen" /> <!-- list_work -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript" src="/shopymart/js/css3-mediaqueries.js"></script><!--mediaqueries-->
+<script type="text/javascript" src="/shopymart/js/modernizr-1.7.min.js"></script><!--modernizr-->
+<script type="text/javascript" src="/shopymart/js/modernizr.custom.63321.js"></script><!--itemslider-modernizr-->
+<script type="text/javascript" src="/shopymart/js/jquery.prettyPhoto.js"></script><!-- prettyPhoto -->
+<script type="text/javascript" src="/shopymart/js/jquery.tipsy.js"></script><!--tooltip-->
+<script type="text/javascript" src="/shopymart/js/jquery.jcarousel.min.js"> </script> <!-- list_work -->
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+<script type='text/javascript' src='/shopymart/js/jquery.hoverIntent.minified.js'></script><!--menu-->
+<script type='text/javascript' src='/shopymart/js/jquery.dcmegamenu.1.3.3.js'></script><!--menu-->
+<script type='text/javascript' src="/shopymart/js/jquery.tweet.js"></script><!--twitter plugin-->
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+<script type="text/javascript" src="/shopymart/js/jquery.catslider.js"></script><!--itemslider-->
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
+
+
+<!--MENU-->
+
+</head>
+
+<body>
+<script type="text/javascript">
+$(document).ready(function($){
+	$('#mega-menu-3').dcMegaMenu({
+		rowItems: '2',
+		speed: 'fast',
+		effect: 'fade'
+	});
+});
+</script>
+
+	<div id="page_wrap">
+    	 <%= render :partial => 't3_header' %>
+        <div id="container">
+        	
+            <div class="content-wrap">
+                <div id="featured">
+                	<div id="mi-slider" class="mi-slider">
+						<%@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+						<%@categories.each do |c|%>
+						<ul>
+								<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+								<%if @products[0]==nil then %>
+										<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+							<li><a href="/c_shop3/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="img01"><h4><%=p['title'].truncate(20, separator: ' ')%><br><small><%=p['sale_price']%></small></h4></a><span class="sale">Sale</span></li>
+								<%end%>
+						</ul>		
+					<%end%>
+					
+						
+					
+					<nav class="selectmenu">
+					<%@categories.each do |c|%>
+						<a href="#"><%=c['product_category_name']%></a>
+										
+					<%end%>			
+					</nav>
+				</div>
+                </div><!--end:featured-->
+                 <div class="container-2">
+                	<section class="content">
+                    	<div class="list_work">
+                        <h4>Featured Products</h4>
+						
+                        <ul id="mycarousel" class="jcarousel-skin-tango item da-thumbs">
+                           
+								<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]}  ")%>
+								<%if @products[0]==nil then %>
+									<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+									<li>
+										<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="" />
+										<span><%=p['title']%><br><small class="sale"><%=p['revised_price']%></small>&nbsp;&nbsp;<small><%=p['sale_price']%></small></span>
+										<span class="sale">Sale</span>
+										<article class="da-animate da-slideFromRight" style="display: block;">
+										<h3><%=p['title']%></h3>
+										<p>
+										<a href="/c_shop3/product_detail?product=<%=p['product_id']%>" class="link tip" title="View Detail"></a>&nbsp;
+										<a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to cart"></a>&nbsp;&nbsp;
+									</article>
+								</li>	
+							<%end%>	
+								
+                           
+                            
+                            
+                                             
+                            </ul>
+                    	</div><!--end:list_work-->
+                        <div class="list_work list_work2">
+                        <h4>New Arrival</h4>
+                        <ul id="mycarouselnew" class="jcarousel-skin-tango item">
+                           <%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} ORDER BY product_id DESC LIMIT 10")%>
+								<%if @products[0]==nil then %>
+									<li><h4 style="margin-top: 40%;">No Products</h4></li>
+
+								<%end%>
+								<%@products.each do |p|%>
+								 <li>
+									<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="" />
+									<span><%=p['title']%><br><small class="sale"><%=p['revised_price']%></small>&nbsp;&nbsp;<small><%=p['sale_price']%></small></span>
+									<span class="sale">Sale</span>
+									<ul>
+										<li><a href="/c_shop3/product_detail?product=<%=p['product_id']%>"  class="zoom tip" title="View Detail">View Detail</a></li>
+										<li><a href="/c_shop3/add_to_cart?p_id=<%=p['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to Cart">Cart</a></li>
+									</ul>
+								</li>
+								<%end%>
+						  
+                                      
+                        </ul>
+                    	</div><!--end:list_work-->
+                    </section>
+					<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set;
+					end%>
+					
+					<%@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+				
+				<%if @recently!= nil then%> 
+					
+					<aside class="sidebar">
+                    	<div class="side">
+                        	<h4>Recently viewed</h4>
+                            <%@recently.each do |p|%>
+								<div class="entry">
+									<div class="da-thumbs">
+										<div>
+											<img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt="">
+											<article class="da-animate da-slideFromRight" style="display: block;">
+												<p><a href="/c_shop3/product_detail?product=<%=p['product_id']%>" class="link"></a></p>
+											</article>
+										</div>
+									</div>
+									<h3><a href="product-detail.html"><%=p[:title]%></a></h3>
+									<small><%=p[:sale_price]%></small>
+								</div>
+							<%end%>
+				<%end%>	
+							
+          
+          
+         
+                           
+                        </div><!--end:side-->
+                      
+                        <div class="side">
+                        	<h4>Our Customer Love Us!</h4>
+                            <ul class="fade">					
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+									<small><a href="#">&mdash; Louie Jie Mahusay</a></small>	
+                                </li>
+                                <li class="feed">Easy shopping experience! Pricing is attractive! Lots of styles to choose from and great pics!<br>
+                                	<small><a href="#">&mdash; Louie Jie Mahusay</a></small>
+								</li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div><!--end:container-2-->
+               
+               <%= render :partial => 't3_footer' %>
+            </div><!--end:content-wrap-->
+            
+        </div><!--end:container-->
+    </div><!--end:page_wrap-->
+<script type="text/javascript">
+//------JCAROUSEL-------------
+		function mycarousel_initCallback(carousel){
+		// Disable autoscrolling if the user clicks the prev or next button.
+		carousel.buttonNext.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		carousel.buttonPrev.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	};
+	jQuery(document).ready(function() {
+		jQuery('#mycarousel, #mycarouselnew').jcarousel({
+			auto: 0,
+			wrap: 'last',
+			initCallback: mycarousel_initCallback
+		});
+	});	
+</script>
+<!--itemslider-->    
+<script type="text/javascript">
+//------JCAROUSEL-------------
+		function mycarousel_initCallback(carousel){
+		// Disable autoscrolling if the user clicks the prev or next button.
+		carousel.buttonNext.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		carousel.buttonPrev.bind('click', function() {
+			carousel.startAuto(0);
+		});
+		// Pause autoscrolling if the user moves with the cursor over the clip.
+		carousel.clip.hover(function() {
+			carousel.stopAuto();
+		}, function() {
+			carousel.startAuto();
+		});
+	};
+	jQuery(document).ready(function() {
+		jQuery('#mycarousel, #mycarouselnew').jcarousel({
+			auto: 0,
+			wrap: 'last',
+			initCallback: mycarousel_initCallback
+		});
+	});
+</script>
+<script type="text/javascript">
+$(function() {
+	$( '#mi-slider' ).catslider();
+});
+</script>    
+<script type="text/javascript">
+   jQuery(function($){
+        $(".tweet").tweet({
+          join_text: "auto",
+          username: "html5awesome",
+          avatar_size: 48,
+          count: 3,
+          auto_join_text_default: " we said, ",
+          auto_join_text_ed: " we ",
+          auto_join_text_ing: " we were ",
+          auto_join_text_reply: " we replied ",
+          auto_join_text_url: " we were checking out ",
+          loading_text: "loading tweets..."
+        });
+      });
+  </script>
+   
+</body>
+</html>
+
+<%end%>
+<%if @theme =="theme_5"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>theme</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+<link href="/theme5/css/prettyPhoto.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" id="camera-css"  href="/theme5/css/camera.css" type="text/css" media="all">
+<link href="/theme5/css/bootstrap.css" rel="stylesheet">
+<link href="/theme5/theme.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/theme5/css/skins/tango/skin.css">
+<link href="/theme5/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/theme5/font-awesome/css/font-awesome.css">
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->    
+</head>
+<body>
+	
+     <%= render :partial => 'home5' %>
+    <!--page_container-->
+    <div class="page_container">
+
+	<!-- Macbook carousel -->
+	<div id="carousel" class="carousel slide macbook">
+
+		<!-- Carousel items -->
+		<div class="carousel-inner">
+			<!-- Item -->
+			
+
+<%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%>
+
+			<!-- Item -->
+			<div class="item active">
+				<img src= "<%= @product[0]['slide_1']%>" alt="" style="width: 700px;height:300px;">
+			</div>
+			<!-- end Item -->
+			<!-- Item -->
+			<div class="item">
+				<img src= "<%= @product[0]['slide_2']%>" alt=""  style="width: 700px;height:300px;">
+			</div>
+			<!-- end Item -->
+			<!-- Item -->
+			<div class="item">
+				<img src= "<%= @product[0]['slide_3']%>" alt=""  style="width: 700px;height:300px;">
+			</div>
+			<!-- end Item -->
+					</div>
+		<!-- Carousel navigation -->
+		<a class="carousel-control left" href="#carousel" data-slide="prev" style="margin-left:5%"></a>
+		<a class="carousel-control right" href="#carousel" data-slide="next" style="margin-right:5%"></a>
+	</div>
+	<!-- end Macbook carousel -->
+
+
+        
+        <!--Welcome-->
+        <div class="wrap block">
+            <div class="container welcome_block">
+            	
+            </div>
+        </div>
+        <!--//Welcome-->         
+        
+        <!--featured works-->
+        <div class="wrap block carousel_block">
+            <div class="container">
+            	<h2 class="upper" style= "color: #df1c02;
+font-size: 20px;
+line-height: 20px;
+letter-spacing: -1px;
+font-family: 'Trebuchet MS',Arial,Helvetica,sans-serif;" ><u>Recent Products</u></h2>
+            	<div class="row">
+                    <div class="span12">
+                        <ul id="mycarousel" class="jcarousel-skin-tango">
+			<% @product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+ " LIMIT 4 ")%>
+		
+<%@product.each do |i|%>
+		
+                            <li>
+                            	<div class="hover_img">
+                                	<a href="#" rel="prettyPhoto[portfolio1]"><img src=<%="#{i['image_1']}thumb/#{i[:image_name_1]}"%> alt=""><span class="portfolio_zoom1"></span></a> 
+<p><h3 style = "margin: 0;
+
+color: #680C0C;
+font-size: 20px;
+line-height: 18px!important;
+letter-spacing: 0;s
+
+min-height: 36px;
+padding: 0!important;
+font-style: normal;
+font-family: Arial,Helvetica,sans-serif;
+border: none;
+
+font-weight: bold;
+text-transform: none;
+background: none;"> <div class="span2" style="margin-right:10%">
+ <%= i['title']%></div> <div class="span3">$<%= i['price']%></div> </p><h2>
+
+<%=link_to "View Detail", :controller =>  "c_shop5", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => i['product_id'] , :product => i['product_id'],:product_name => i["product_name"]%></h2>
+
+
+
+                                   
+                                </div>
+                            </li>
+<%end%>
+                        </ul>                         
+                    </div>                
+                </div>                
+            </div>
+        </div>     
+        
+
+
+<div class="container">
+
+</div>
+
+  
+        <!--latest posts-->
+       <div class="wrap block carousel_block">
+            <div class="container">
+            	<h2 class="upper" style= "color: #df1c02;
+font-size: 20px;
+line-height: 20px;
+letter-spacing: -1px;
+font-family: 'Trebuchet MS',Arial,Helvetica,sans-serif;" ><u>Recently viewed Products</u></h2>
+            	<div class="row">
+                    <div class="span12">
+                        <ul id="mycarousel" class="jcarousel-skin-tango">
+				<%if !cookies[:recently_view].nil? then
+						@a=cookies[:recently_view]
+						@p=[]
+						@p=@a.split(' ')
+						@p=@p.to_set
+					end%>
+					<%@product=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s )%>
+
+				<%if !@p.nil? && cookies[:recently_view]!= "" then %>
+
+
+            	
+			<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%if i['product_id']==a.to_i  then %>
+				<%@d=Masterusers.find_by_sql("select * from product_"+session["master_user_id"].to_s+" where product_id="+i['product_id'].to_s)%>
+																													<%@d.each do |a|%>
+                            
+
+			
+
+			<li>
+                            	<div class="hover_img">
+
+
+
+                                	<a href="#" rel="prettyPhoto[portfolio1]"><img src=<%="#{a['image_1']}thumb/#{a[:image_name_1]}"%> alt=""><span class="portfolio_zoom1"></span></a> 
+<p><h3 style = "margin: 0;
+color: #680C0C;
+font-size: 20px;
+line-height: 18px!important;
+letter-spacing: 0;s
+min-height: 36px;
+padding: 0!important;
+font-style: normal;
+font-family: Arial,Helvetica,sans-serif;
+border: none;
+font-weight: bold;
+text-transform: none;
+background: none;"> <div class="span2" style="margin-right:10%">
+ <%= a['title']%></div> <div class="span3">$ <%= i['price']%></div> </p><h2>
+
+<%=link_to "View Detail", :controller =>  "c_shop5", :action => "product_detail", :id => @profile,:name => "detail",:class => "btn btn-primary btn btn-info", :method => :post,:productid => i['product_id'] , :product => i['product_id'],:product_name => i["product_name"]%></h2>
+
+
+                                   
+                                </div>
+                            </li>
+
+			<%end%>
+			<%end%>
+			<%end%>
+<%end%>
+                                                                  
+                     </ul>                         
+                    </div>                
+                </div>                
+            </div>
+        </div>     
+<%end%>               
+                
+        <!--//latest posts--> 
+    </div>
+    <!--//page_container-->
+    
+    <!--footer-->
+  <div class="footer_bottom">
+            <div class="wrap">
+            	<div class="container">
+                	<div class="row">
+                		
+                        <div class="span4 pull-right">
+                        	<div class="span3 "  >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Address: <%= session[:address]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> City: <%= session[:city]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Landmark: <%= session[:landmark]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;">Country: <%= session[:country]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> Phone: <%= session[:phone]%></p>
+				</div>   
+				<div class="span3 " >
+					 <p  style= "font-weight: normal;
+					
+					color: #FFFFFF;"> Email: <%= session[:master_email]%></p>
+				</div>   
+				
+
+			</div>
+                                <div class="follow_us">
+                                	<ul>
+                                        <li><a rel="tooltip" href="#" title="Facebook" class="facebook">Facebook</a></li>
+                                        <li><a rel="tooltip" href="#" title="Twitter" class="twitter">Twitter</a></li>
+                                        <li><a rel="tooltip" href="#" title="Tumbrl" class="tumbrl">Tumbrl</a></li>
+                                        <li><a rel="tooltip" href="#" title="Vimeo" class="vimeo">Vimeo</a></li>
+                                        <li><a rel="tooltip" href="#" title="Delicious" class="delicious">Delicious</a></li>
+                                    </ul>
+                             </div>
+
+                                <div class="clear"></div>
+                            
+                            	<div class="clear"></div>
+                            	
+                            </div>                            
+                     
+                    </div>	
+                </div>
+            </div>
+       
+    </div>
+    <!--//footer-->    
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.mobile.customized.min.js"></script>
+    <script type="text/javascript" src="/theme5/js/camera.js"></script>
+    <script src="/theme5/js/bootstrap.js"></script>
+    <script src="/theme5/js/superfish.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.prettyPhoto.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.jcarousel.js"></script>
+    <script type="text/javascript" src="/theme5/js/jquery.tweet.js"></script>
+    <script type="text/javascript" src="/theme5/js/myscript.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function(){	
+			//Slider
+			$('#camera_wrap_1').camera();
+			
+
+			//Featured works & latest posts
+			$('#mycarousel, #mycarousel2, #newscarousel').jcarousel();													
+		});		
+	</script>
+</body>
+</html>
+
+
+<%end%>
+<%if @theme =="theme_4"%>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bootstrap E-commerce Templates</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="/theme4/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme4/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		
+		<link href="/theme4/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="/theme4/themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="/theme4/themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="/theme4/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme4/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme4/themes/js/superfish.js"></script>	
+		<script src="/theme4/themes/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		 <%= render :partial => 't4_header' %>
+			<section  class="homepage-slider" id="home-slider">
+			<%@masterdetail=Masterusers.find_by_sql("select * from masterusers where master_user_id = #{session["master_user_id"]}")%>
+
+				<div class="flexslider">
+					<ul class="slides">
+						<li>
+							<img src="/theme4/themes/images/carousel/banner-1.jpg" alt="" />
+						</li>
+						<li >
+							<img src=<%=@masterdetail[0][:slide_1]%> alt="" style ="max-height: 300px;" />
+							<div class="intro">
+								<h1>Mid season sale</h1>
+								<p><span>Up to 50% Off</span></p>
+								<p><span>On selected items online and in stores</span></p>
+							</div>
+						</li>
+						<li >
+							<img src=<%=@masterdetail[0][:slide_2]%> alt="" style ="max-height: 300px;" />
+							<div class="intro">
+								<h1>Mid season sale</h1>
+								<p><span>Up to 50% Off</span></p>
+								<p><span>On selected items online and in stores</span></p>
+							</div>
+						</li>
+						<li >
+							<img src=<%=@masterdetail[0][:slide_3]%> alt="" style ="max-height: 300px;" />
+							<div class="intro">
+								<h1>Mid season sale</h1>
+								<p><span>Up to 50% Off</span></p>
+								<p><span>On selected items online and in stores</span></p>
+							</div>
+						</li>
+					</ul>
+				</div>			
+			</section>
+			<section class="header_text">
+				We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
+				<br/>Don't miss to use our cheap abd best bootstrap templates.
+			</section>
+			<section class="main-content">
+				<div class="row">
+					<div class="span12">													
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+										<% count=0;
+										@categories=Masterusers.find_by_sql("select * from product_category_#{session["master_user_id"]} LIMIT 4 ")%>
+										<%@categories.each do |c|
+										count=count+1;%>
+											<%if count==1 then %>
+												<div class="active item">
+													<ul class="thumbnails">	
+														
+															<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+															
+																<%if @products[0]==nil then %>
+																	<li class="span3"><h4 style="margin-top: 40%;">No Products</h4></li>
+
+																<%end%>
+																<%@products.each do |p|%>
+																<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<a href="products.html" class="category"><%=c[:product_category_name]%></a>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+															<%end%>
+																	
+													</ul>
+												</div>
+												<%else%>
+												<%@products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']} LIMIT 4")%>
+												<%if @products[0]==nil then %>
+																	
+												<%else%>
+													<div class=" item">
+														<ul class="thumbnails">	
+															
+																
+																<%@products.each do |p|%>
+																	<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<a href="products.html" class="category"><%=c[:product_category_name]%></a>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+																<%end%>
+																		
+														</ul>
+													</div>
+												<%end%>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-2" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+									<% count=0;@products=Masterusers.find_by_sql("select * from product_#{session[:master_user_id]}  ORDER BY product_id DESC LIMIT 8 ")%>
+										<%if @products[0]==nil then %>
+											<li class="span3"><h4 style="margin-top: 40%;">No Products</h4></li>
+
+										<%end%>
+										<%@products.each do |p| 
+										count=count+1;%>
+										
+										<%if count==1 then%>
+											<div class="active item">
+												<ul class="thumbnails">
+										<%end%>
+										<%if count==5 then%>
+											<div class=" item">
+												<ul class="thumbnails">
+										<%end%>
+										
+													
+																						
+														<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;x-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+													
+													<%if count==4 ||count==8 then%>
+												</ul>
+											</div>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<br/>
+						<div class="row">
+							<div class="span12">
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><span class="line">Recently <strong>Viewed</strong></span></span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-3" data-slide="prev"></a><a class="right button" href="#myCarousel-3" data-slide="next"></a>
+									</span>
+								</h4>
+								<%if !cookies[:recently_view].nil? then
+								@a=cookies[:recently_view]
+								@p=[]
+								@p=@a.split(' ')
+								@p=@p.to_set;
+								end%>
+				
+								<div id="myCarousel-3" class="myCarousel carousel slide">
+									<div class="carousel-inner">
+							<% count =0;@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+										
+										<%@recently.each do |p| 
+										count=count+1;%>
+										
+										<%if count==1 then%>
+											<div class="active item">
+												<ul class="thumbnails">
+										<%end%>
+										<%if count==5 then%>
+											<div class=" item">
+												<ul class="thumbnails">
+										<%end%>
+										
+													
+																						
+														<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"/></a></p>
+																		<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+													
+													<%if count==4 ||count==8 then%>
+												</ul>
+											</div>
+											<%end%>
+										<%end%>
+										
+									</div>							
+								</div>
+							</div>						
+						</div>
+						<div class="row feature_box">						
+							<div class="span4">
+								<div class="service">
+									<div class="responsive">	
+										<img src="/theme4/themes/images/feature_img_2.png" alt="" />
+										<h4>MODERN <strong>DESIGN</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+									</div>
+								</div>
+							</div>
+							<div class="span4">	
+								<div class="service">
+									<div class="customize">			
+										<img src="/theme4/themes/images/feature_img_1.png" alt="" />
+										<h4>FREE <strong>SHIPPING</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+									</div>
+								</div>
+							</div>
+							<div class="span4">
+								<div class="service">
+									<div class="support">	
+										<img src="/theme4/themes/images/feature_img_3.png" alt="" />
+										<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
+										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+									</div>
+								</div>
+							</div>	
+						</div>		
+					</div>				
+				</div>
+			</section>
+			 <%= render :partial => 't4_footer' %>
+					</div>
+		<script src="/theme4/themes/js/common.js"></script>
+		<script src="/theme4/themes/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+    </body>
+</html>
+<%end%>

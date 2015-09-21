@@ -1,0 +1,227 @@
+<html>
+
+<head>
+
+
+
+<style>
+
+<link href="/theme5/css/prettyPhoto.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" id="camera-css"  href="/theme5/css/camera.css" type="text/css" media="all">
+
+<link href="/theme5/css/bootstrap.css" rel="stylesheet">
+
+<link href="/theme5/theme.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="/theme5/css/skins/tango/skin.css">
+
+<link href="/theme5/css/bootstrap-responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="/theme5/font-awesome/css/font-awesome.css">
+
+</style>
+
+</head>
+
+<body>
+
+	<!--header-->
+
+    <div class="header">
+
+    	<div class="wrap">
+
+        	<div class="navbar navbar_ clearfix">
+
+            	<div class="container">
+
+                    <div class="row">
+
+                       
+
+                       <a href="/c_shop/home">
+
+	<h1 align="center" style = "text-transform: uppercase;"><%=session[:shop_name]%></span></h1></a>
+
+                            <div class="clear"></div>
+
+                            
+
+
+
+
+
+				<div class="page-header">
+
+  <div class="row-fluid">
+
+    <h1> <a href="index.html" style="margin-left:45%; color: #FFFFFF; font-weight: bolder; font-family: 'Comic Sans MS';"></a></h1>
+
+   
+
+  </div>
+
+  <div class="navbar-wrapper">
+
+    <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+
+    <div class="container">
+
+      <div class="navbar navbar-inverse">
+
+        <div class="navbar-inner">
+
+	
+
+          <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+
+          
+
+          <!-- Responsive   <div class="Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+
+          <div class="nav-collapse collapse">
+
+            <ul class="nav">
+
+              <li><a class="brand" href="/c_shop/home">Home</a></li>
+
+              
+
+              
+
+              <li class="dropdown"> <a class="brand" href="#" class="dropdown-toggle" data-toggle="dropdown">Products<b class="caret"></b></a>
+
+               <ul class="dropdown-menu">
+
+		<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+
+		<%@category.each do |i|%>
+
+                 <li>
+
+<%=link_to i["product_category_name"], :controller =>  "c_shop5", :action => "view_all", :id => @profile,:name => "search", :method => :post, :category_id => i['product_category_id'] %></li>
+
+		<%end%>
+
+                </ul>
+
+              </li>
+
+            
+
+              <li><a class="brand" href="/c_shop5/view_all">View all</a></li>
+
+              <li><a class="brand" href="/c_shop5/contact">Contact Us</a></li>
+
+          
+
+
+
+	<% if session[:adminflag] == "true" then %>
+
+		<li class="active" id ="adminhome"><%=link_to "Admin home",:controller =>  "admin_home", :action => "adminhome", :id => @profile,:title=>"This is to view your settings and admin action for making chnages to your shop.", :method => :post%></li>
+
+	<%end%>
+
+</ul>
+
+<div class="span1" style="float:right;">
+
+<%=link_to image_tag("/images/Shopping-Cart.png", :width => 50, :height => 50), :controller =>  "c_shop5",:action => "add_to_cart" , :id => @profile,:name => "show_cart", :method => :post %>
+
+</div> 
+
+
+
+          </div>
+
+          <!--/.nav-collapse -->
+
+        </div>
+
+        <!-- /.navbar-inner -->
+
+      </div>
+
+      <!-- /.navbar -->
+
+    </div>
+
+    <!-- /.container -->
+
+  </div>
+
+  <!-- /.navbar-wrapper -->
+
+</div>
+
+
+
+
+
+
+
+                           
+
+                        </div>
+
+                    </div>                
+
+                </div>
+
+             </div>
+
+        </div>    
+
+
+
+    <!--//header--> 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/jquery.easing.1.3.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/jquery.mobile.customized.min.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/camera.js"></script>
+
+    <script src="/theme5/js/bootstrap.js"></script>
+
+    <script src="/theme5/js/superfish.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/jquery.prettyPhoto.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/jquery.jcarousel.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/jquery.tweet.js"></script>
+
+    <script type="text/javascript" src="/theme5/js/myscript.js"></script>
+
+    <script type="text/javascript">
+
+		$(document).ready(function(){	
+
+			//Slider
+
+			$('#camera_wrap_1').camera();
+
+			
+
+
+
+			//Featured works & latest posts
+
+			$('#mycarousel, #mycarousel2, #newscarousel').jcarousel();													
+
+		});		
+
+	</script>
+
+ 
+
+</body>
+
+</html>

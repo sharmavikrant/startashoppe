@@ -1,10 +1,35 @@
 Startashop::Application.routes.draw do
+	
 	 
-	  match "/" => "c_shop#shop_search",:constraints => {:subdomain => /.+/}
-	  match "/" => "first#start"
-	  #match "/" => "c_shop#fst"
+  resources :high_scores
+
+
+  get "sitemap/site"
+
+  get "c_shop6/xyz"
+
+  get "c_shop7/xyz"
+
+  get "c_shop4/test"
+
+  get "c_shop3/all"
+
+  get "c_shop5/all"
+get ':controller/catlog', to: ':controller#view_all' 
+  get ':controller/Get_in_touch', to: ':controller#contact' 
+  get ':controller/cart', to: ':controller#add_to_cart' 
+post':controller/Get_in_touch', to: ':controller#contact'
+ match "/:title/:category/:sub_category/:controller/:product"=>":controller#product_detail", as: 'patient'
+	 match "/" => "first#start",:constraints => {:subdomain => "www",:domain => "startashoppe.com"}
+ match "/" => "c_shop#shop_search",:constraints => {:subdomain => /.+/}
+ match "/sms" => "metawing#sms",:constraints => {:subdomain => "metawing"}		 
+			match "/" => "first#start"
+# match "/sitemap.xml" => "first#sitemap.xml"		
+get "/sitemap.xml" => "sitemap#site", :as => "sitemap", :defaults => { :format => "xml" }
+	  match "/" => "c_shop#fst"
 	  match "admin/" => "admin_home#adminlogin"
 	  #match ":session_url/home/" => "c_shop#home"
+
 	  
   # The priority is based upon order of creation:
   # first created -> highest priority.

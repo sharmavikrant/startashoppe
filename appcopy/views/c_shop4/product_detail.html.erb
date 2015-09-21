@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<title> <%=@product_detail[0]['title']%> | <%=session[:shop_name]%> </title>
+		<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content= <%=@product_detail[0]['description']%> >
+
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		
+		<!-- bootstrap -->
+		<link href="/theme4/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme4/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="/theme4/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="/theme4/themes/css/main.css" rel="stylesheet"/>
+		<link href="/theme4/themes/css/jquery.fancybox.css" rel="stylesheet"/>
+				
+		<!-- scripts -->
+		<script src="/theme4/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme4/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme4/themes/js/superfish.js"></script>	
+		<script src="/theme4/themes/js/jquery.scrolltotop.js"></script>
+		<script src="/theme4/themes/js/jquery.fancybox.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="/theme4/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>		
+		
+		 <%= render :partial => 't4_header' %>
+			
+			<section class="header_text sub">
+			<img class="pageBanner" src="/theme4/themes/images/pageBanner.png" alt="New products" >
+				<h4><span>Product Detail</span></h4>
+			</section>
+			<section class="main-content">				
+				<div class="row">						
+					<div class="span9">
+						<div class="row">
+							<div class="span4">
+								<a href="<%="#{@product_detail[0]['image_1']}#{@product_detail[0][:image_name_1]}"%>" class="thumbnail" data-fancybox-group="group1" title="Description 1"><img alt="" src="<%="#{@product_detail[0]['image_1']}#{@product_detail[0][:image_name_1]}"%>"></a>												
+								<ul class="thumbnails small">								
+									<li class="span2">
+										<a href="<%="#{@product_detail[0]['image_2']}#{@product_detail[0][:image_name_2]}"%>" class="thumbnail" data-fancybox-group="group1" title="Description 2"><img src="<%="#{@product_detail[0]['image_2']}#{@product_detail[0][:image_name_2]}"%>" alt=""></a>
+									</li>								
+									<li class="span2">
+										<a href="<%="#{@product_detail[0]['image_3']}#{@product_detail[0][:image_name_3]}"%>" class="thumbnail" data-fancybox-group="group1" title="Description 3"><img src="<%="#{@product_detail[0]['image_3']}#{@product_detail[0][:image_name_3]}"%>" alt=""></a>
+									</li>													
+								
+								</ul>
+							</div>
+							<div class="span5">
+								<address>
+									<strong>Product Name:</strong> <span><%=@product_detail[0][:product_name]%></span><br>
+									<strong>Product Code:</strong> <span><%=@product_detail[0][:product_id]%></span><br>
+									
+									<strong>Availability:</strong> <span><%if @product_detail[0][:quantity]>0 then %>Instock<%else%>Out of Stock<%end%></span><br>								
+								</address>									
+								<h4><strong>$<%=@product_detail[0][:sale_price]%></strong></h4>
+							</div>
+							<div class="span5">
+								<form action="/c_shop4/add_to_cart?name=add to cart">
+									<input type="hidden" name="p_id" value=<%=@product_detail[0][:product_id]%> />
+									<p>&nbsp;</p>
+									<label>Qty:</label>
+									 <select name="quantity">
+											<% for j in 1..@product_detail[0][:quantity]  %>
+											<option value= <%= j %>><%= j %></option>
+											<%end%>
+											</select>
+									<button class="btn btn-inverse" name="name" value = "add to cart"  type="submit">Add to cart</button>
+								</form>
+							</div>							
+						</div>
+						<div class="row">
+							<div class="span9">
+								<ul class="nav nav-tabs" id="myTab">
+									<li class="active"><a href="#home">Description</a></li>
+									<li class=""><a href="#profile">Additional Information</a></li>
+								</ul>							 
+								<div class="tab-content">
+									<div class="tab-pane active" id="home"><%=@product_detail[0][:description]%></div>
+									<div class="tab-pane" id="profile">
+										<table class="table table-striped shop_attributes">	
+											<tbody>
+												<tr class="">
+													<th>Product Code</th>
+													<td><%=@product_detail[0][:product_id]%></td>
+												</tr>		
+												<tr class="alt">
+													<th>Availability</th>
+													<td><%if @product_detail[0][:quantity]>0 then %>Instock<%else%>Out of Stock<%end%></td>
+												</tr>
+												<tr class="alt">
+													<th>Price:</th>
+													<td>$<%=@product_detail[0][:sale_price]%></td>
+												</tr>
+												
+											</tbody>
+										</table>
+									</div>
+								</div>							
+							</div>						
+							<div class="span9">	
+								<br>
+								<h4 class="title">
+									<span class="pull-left"><span class="text"><strong>Related</strong> Products</span></span>
+									<span class="pull-right">
+										<a class="left button" href="#myCarousel-1" data-slide="prev"></a><a class="right button" href="#myCarousel-1" data-slide="next"></a>
+									</span>
+								</h4>
+								<div id="myCarousel-1" class="carousel slide">
+									<div class="carousel-inner">
+										
+											
+										<%  if @related[0]==nil then %>
+											<div class="active item">
+												<ul class="thumbnails listing-products">
+													<li class="span3"><h4 style="margin-top: 40%;">No Products</h4></li>
+												</ul>
+											</div>
+										<%end%>
+										<%count=0;%>
+										<%@related.each do |p| 
+									
+											count= count + 1;%>
+										<%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+											<%if count==1 then%>
+												<div class="active item">
+													<ul class="thumbnails listing-products">
+											<%end%>
+											<%if count==4 then%>
+												<div class=" item">
+													<ul class="thumbnails listing-products">
+											<%end%>
+												<li class="span3">
+																	<div class="product-box">
+																		<span class="sale_tag"></span>
+																		<p><a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" ><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""style="min-height: 220px;max-height: 220px;"></a></p>
+																		<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+																		<p class="price">$<%=p[:sale_price]%></p>
+																	</div>
+																</li>
+												<%if count==3 ||count==8 then%>
+												</ul>
+											</div>
+											<%end%>
+																							
+										<%end%>
+									</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					<div class="span3 col">
+						
+						<div class="block">
+							<h4 class="title">
+								<span class="pull-left"><span class="text">Recently Viwed</span></span>
+								<span class="pull-right">
+									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+								</span>
+							</h4>
+							<%if !cookies[:recently_view].nil? then
+								@a=cookies[:recently_view]
+								@p=[]
+								@p=@a.split(' ')
+								@p=@p.to_set;
+								end%>
+							<% count =0;@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+				
+							<div id="myCarousel" class="carousel slide">
+								<div class="carousel-inner">
+								<%@recently.each do |p| %>
+								<%count=count+1%>
+								<%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+									<%if count ==1 then %>
+										<div class="active item">
+											<ul class="thumbnails listing-products">
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"></a></p>
+														<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+														<p class="price">$<%=p[:sale_price]%></p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									<%else%>
+									
+									<div class="item">
+										<ul class="thumbnails listing-products">
+											<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;min-width: 200px;max-height: 220px;max-width: 220px;"></a></p>
+														<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+														<p class="price">$<%=p[:sale_price]%></p>
+													</div>
+												</li>
+										</ul>
+									</div>
+									<%end%>
+								<%end%>
+									
+								</div>
+							</div>
+						</div>
+						<div class="block">								
+							<h4 class="title"><strong>Best</strong> Seller</h4>								
+							<ul class="small-product">
+								<li>
+									<a href="#" title="Praesent tempor sem sodales">
+										<img src="/theme4/themes/images/ladies/1.jpg" alt="Praesent tempor sem sodales">
+									</a>
+									<a href="#">Praesent tempor sem</a>
+								</li>
+								<li>
+									<a href="#" title="Luctus quam ultrices rutrum">
+										<img src="/theme4/themes/images/ladies/2.jpg" alt="Luctus quam ultrices rutrum">
+									</a>
+									<a href="#">Luctus quam ultrices rutrum</a>
+								</li>
+								<li>
+									<a href="#" title="Fusce id molestie massa">
+										<img src="/theme4/themes/images/ladies/3.jpg" alt="Fusce id molestie massa">
+									</a>
+									<a href="#">Fusce id molestie massa</a>
+								</li>   
+							</ul>
+						</div>
+					</div>
+				</div>
+</div>
+			</section>			
+			 <%= render :partial => 't4_footer' %>
+			
+
+		<script src="/theme4/themes/js/common.js"></script>
+		<script>
+			$(function () {
+				$('#myTab a:first').tab('show');
+				$('#myTab a').click(function (e) {
+					e.preventDefault();
+					$(this).tab('show');
+				})
+			})
+			$(document).ready(function() {
+				$('.thumbnail').fancybox({
+					openEffect  : 'none',
+					closeEffect : 'none'
+				});
+				
+				$('#myCarousel-2').carousel({
+                    interval: 2500
+                });								
+			});
+		</script>
+    </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sell anythign: Premium Responsive Template develope by bootstrappage.com (bootstrap 2.3.1 version)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!-- styles -->
+	<link rel="stylesheet/less" type="text/css" href="/theme7/less/bootstrap.less">
+	<script src="/theme7/js/less/less.js" type="text/javascript"></script>
+
+<style>
+body {
+background-color: #424242
+}
+.title
+{
+color : #F5F0F0;
+}
+</style>
+	<!-- favicon-icons -->
+    <link rel="shortcut icon" href="/theme7/images/favicon.ico">
+  </head>
+<body>
+<%if !@p.nil? && cookies[:cart_value]!= ""then %>
+<section id="mainBody">
+<div class="container">
+<h3 class="title"><span>Shopping Cart</span></h3>
+<ul class="breadcrumb">
+  <li><a href="/c_shop/home">Home</a> <span class="divider">/</span></li>
+  <li class="active">Cart Detail</li>
+</ul>
+
+
+
+<div class="row">
+		<div class="span12">
+		<h3 class="title" style = "color = #FAF4F4;"><span>Cart item details</span></h3>
+		<div class="well">
+		<table class="table table-bordered table-striped">
+			  <thead>
+				  <tr>
+					<th>Remove</th>
+					<th>Image</th>
+					<th>Item Name</th>
+					<th>Quantity</th>
+					<th>Unit Price</th>
+					<th>Total</th>
+				  </tr>
+				</thead>
+				<tbody>
+
+ <%@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",@a])%>
+
+
+					<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%b=a.split("-")%>
+							<%if i['product_id']==b[0].to_i  then %>
+								<%if i['revised_price'].nil? then %>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total %>
+								<%else%>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total%>
+								<%end%>
+
+				  <tr>
+
+
+
+
+					<td class=""><%= link_to "Delete", :controller =>  "c_shop7",:action => 'add_to_cart', :id => @profile,:name => "delete", :method => :post,:class=>"btn btn-primary",:p_id=>i['product_id'] %></td>
+					<td class="cntr"><a href="products.html"><img src="<%="#{i['image_1']}#{i[:image_name_1]}"%>" style="height: 100px!important;width: 143px!important;" alt="#"></a></td>
+					<td><%=i[:title]%> </td>
+					<td><input type="text" size="1" value="<%=b[1]%>" name="quantity[40]" class="span1"></td>
+					<td>$<%=i["sale_price"]%></td>
+					<td>$<%=@p_total%></td>
+				  </tr>			  
+				<%end%>
+							
+						<%end%>
+					<%end%>
+                        
+				  <tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>Total:</td>
+					<td><strong>$<%=@total%></strong></td>
+				  </tr>		  
+				</tbody>
+			  </table>
+		</div>
+		</div>
+		
+		<div class="span12">
+		<h3 class="title"><span>Payment type selection</span></h3>
+		<div class="well">	
+			
+		<label><input type="radio"  name="pm"> <strong>Direct Bank Transfer </strong></label>
+		<p><em>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order wont be shipped until the funds have cleared in our account.</em></p>
+
+		<label><input type="radio"  name="pm"> <strong>Cheque Payment </strong></label>
+		<p><em>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</em></p>
+		<label><input type="radio" name="pm"> <strong>PayPal </strong></label>
+		<p><em>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account</em></p>
+		<br>
+
+	
+<%= form_tag("/c_shop/payment/", :method=>"post") do %>
+						<input type="hidden" name="total" value=<%=@total%>>
+						<%= submit_tag("payment", :value => "Payment", :class => "btn btn-success btn-large pull-right") %>
+					<%end%>
+
+<%= form_tag("/c_shop7/view_all/", :method=>"post") do %>
+				<%= submit_tag("Continue Shopping", :value => "continue", :class => "btn btn-large btn-warning") %>
+					<%end%>
+		</div>
+		</div>
+
+		
+	
+</div>
+</div>
+</section>
+
+<%else%>
+<h3 style="color: #F0EDF5;"> Empty Cart</h3>
+<%end%>
+                
+
+<!-- Footer
+================================================== -->
+<footer class="footer">
+<div class="container">
+<h5>Accepted Payment Methods </h5>
+<p><a href="#"><img src="/theme7/images/payment_methods.png" alt="payment methods"/></a></p>
+<hr class="soften"/>
+<div class="footerMenu">
+	<a href="register.php"> REGISTRATION</a> | 
+	<a href="about_us.php"> ABOUT US</a> | 
+	<a  href="topology.php" >TOPOLOGY</a> | 
+	<a href="contact_us.php">CONTACT </a>
+<p class="pull-right"><a href="#">Terms and condition.php</a> &copy; Copyright 2013 Sell Anything. </p>
+</div>
+
+</div><!-- /container -->
+</footer>
+<span id="toTop" style="display: none;"><span><i class="icon-angle-up"></i></span></span>
+
+    <!--  javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme7/js/jquery-1.8.3.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/theme7/js/smart.js"></script>
+  </body>
+</html>

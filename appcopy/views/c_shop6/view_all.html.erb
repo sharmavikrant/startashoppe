@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html>
+
+<!--[if (gt IE 9)|!(IE)]><!--><html dir="ltr" lang="en-US" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:addthis="http://www.addthis.com/help/api-spec" > <!--<![endif]-->
+<head>
+	
+<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="/theme6/menu/css/default.css" />
+		 <link rel="stylesheet" type="text/css" href="/theme6/menu/css/component.css" />
+		<script src="/theme6/menu/js/modernizr.custom.js"></script>
+
+<script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script><title>  Products Archive | Travel Store</title>
+	<meta name="description" content=" &raquo; Products | Just another WordPress site" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	
+		
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/normalize.css" />
+	
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/prettyPhoto.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/cameraslideshow.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/flexslider.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/skeleton.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/touchTouch.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/shop-styles.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/320.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/480.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="/theme6/css/768.css" />
+	
+	<script src="/theme6/js/jquery.mobile.customized.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		jQuery(function(){
+			jQuery('.sf-menu').mobileMenu({
+				combine: false,
+				switchWidth:768,
+				prependTo: 'nav.primary'
+			});
+		})
+	</script>
+
+</head>
+
+<body class="archive post-type-archive post-type-archive-product jigoshop jigoshop-shop jigoshop-products">
+<%= render :partial => 'home6' %>
+<div id="main"><!-- this encompasses the entire Web site -->
+	
+	<div class="bg-content">
+		<div class="content-box bg">
+		<div class="primary_content_wrap">
+        	<div class="container_12">
+<div class="grid_9" id="content"><div class="shop">
+	<div class="bc-wrap">
+		<div id="breadcrumb"><a class="home" href="/c_shop/home">Home</a>  &rsaquo; <a href="">Shop</a></div>	</div>
+			<h1 class="page-title">All Products</h1>
+	
+	
+	<ul class="products">	
+<%@product.each do |i|%>
+
+<%@category.each do |c|%>
+
+	<% if i["product_category_id"] == c["product_category_id"]%>
+		<% @cat = c["product_category_name"]%>
+	<%end%>
+<%end%>
+
+<%@sub_category.each do |s|%>
+
+	<% if i["sub_category_id"] == s["sub_category_id"]%>
+		<% @sub = s["sub_category_name"]%>
+	<%end%>
+<%end%>
+<li class="product first">
+		
+				<div class="product-image-wrap"><a href=<%= "/#{Masterusers.title(i[:title])}/#{@cat}/#{@sub}/c_shop_6/#{i['product_id']}"%> class="product-image">
+<%= image_tag("#{i['image_1']}thumb/#{i[:image_name_1]}", :width => 200, :height => 200) %>					
+	</a></div>
+		
+
+
+
+
+
+		<div class="caption">
+			<div class="title"><%= i['title']%></div>
+			<a href="/free_sample_jigoshop/shop/?add-to-cart=451&#038;_n=086990660b" class="button">Add to cart</a>			<span class="price">$<%= i['price']%></span>		</div>
+	</li>
+<%end%>
+	</ul><div class="clear"></div>
+		</div></div>
+<aside class="grid_3" id="sidebar">
+    <div class="box-holder">
+       <div id="jigoshop_product_categories-3" class="widget"><h3>Filter By Categories</h3>
+
+
+<div class="container demo-2">	
+			<!-- Codrops top bar -->
+			
+			<div class="main clearfix">
+				
+
+<div id="dl-menu" class="dl-menuwrapper">
+	<img src="/theme6/menu/images/clickhere.png" alt="Travel Store" title="Just another WordPress site"><button class="dl-trigger">Open Menu</button>
+	<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+			
+	<ul class="dl-menu">
+	<%@category.each do |i|%>
+		<li>
+			<a href="#"> <%=i["product_category_name"]%></a>
+			<ul class="dl-submenu">
+		<li> <%=link_to "view all", :controller =>  "c_shop6", :action => "view_all", :id => @profile,:name => "search", :method => :post, :category_id => i['product_category_id'] %></li>
+	<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+			<%@subcategory.each do |j|%>
+				
+				<li><%=link_to j["sub_category_name"], :controller =>  "c_shop6", :action => "view_all", :id => @profile,:name => "sub", :method => :post, :sub_category_id => j["sub_category_id"]%>	</li>
+				
+			<%end%>	
+			</ul>
+		</li>
+	<%end%>
+		
+		
+	</ul>
+					</div><!-- /dl-menuwrapper -->
+				</div>
+		
+		</div><!-- /container -->
+		
+		<script src="/theme6/menu/js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+				});
+			});
+		</script>
+
+
+
+<style>
+media="all"
+ul li {
+vertical-align: top;
+list-style-type: none;
+color: #626060;
+font-size: 12px;
+line-height: 19px;
+background: none;
+padding: 0;
+margin: 0 0 11px 0;
+}
+media="all"
+ul li {
+vertical-align: top;
+list-style-type: none;
+color: #626060;
+font-size: 12px;
+line-height: 19px;
+background: none;
+padding: 0;
+margin: 0 0 11px 0;
+}
+</style>
+
+
+
+
+</div>  </div>
+</aside>
+</div>
+					</div><!--.container-->
+                </div><!--.primary_content_wrap-->
+		</div><!--.content-box-->
+			
+	</div><!--.bg-content-->
+</div><!--#main-->
+<script type="text/javascript">
+
+</body>
+</html>

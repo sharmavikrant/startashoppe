@@ -1,0 +1,11 @@
+<% if @ajaxsearch == "sucessfull" %>
+	$('#category_table').html('<%= escape_javascript(render("add_category_category_table")) %>');
+	<% unless @flash.nil? %>
+	$("#notice").html('<div class="heading_featured" ><fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px"><div align="center"><font size="5"><p class="flash-msg"> <%= @flash %> </p></font></div></fieldset></div>');  
+	<%end%>
+<%end%>
+<% if @ajaxsearch == "error" %>
+	<% unless @flash.nil? %>
+	$("#notice").html('<div class="heading_featured" ><fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px"><div align="center"><font size="5"><p class="flash-msg"> <%= @flash %> </p></font></div></fieldset></div>');  
+	<%end%>
+<%end%>

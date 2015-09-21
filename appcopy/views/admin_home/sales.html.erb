@@ -1,0 +1,362 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+<script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script language="javascript">
+	
+	function startFunction()
+	{	
+			var x=document.forms["bydate"]["startdatepicker"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{	
+				document.getElementById('s_date').innerHTML = 'Select Start Date' 
+				return false;
+			}
+			else
+			{
+				
+					document.getElementById('s_date').innerHTML = '';
+				return true;
+			}
+	}
+	function endFunction()
+	{
+			var x=document.forms["bydate"]["enddatepicker"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{	
+				document.getElementById('e_date').innerHTML = 'Select end Date'
+				return false;				
+			}
+			else
+			{
+				
+					document.getElementById('e_date').innerHTML = '';
+				return true;
+			}
+	}
+	
+	function p_startFunction()
+	{$( "#productstartdatepicker" ).datepicker();
+			var x=document.forms["byproduct"]["productstartdatepicker"].value;
+			
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{	
+				document.getElementById('ps_date').innerHTML = 'Select Start Date' 
+				return false;
+			}
+			else
+			{
+				
+					document.getElementById('ps_date').innerHTML = '';
+				return true;
+			}
+	}
+	function p_endFunction()
+	{		$( "#productenddatepicker" ).datepicker();
+			var x=document.forms["byproduct"]["productenddatepicker"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{	
+				document.getElementById('pe_date').innerHTML = 'Select end Date'
+				return false;				
+			}
+			else
+			{
+				
+					document.getElementById('pe_date').innerHTML = '';
+				return true;
+			}
+	}
+	
+	
+</script> 
+
+ <script type='text/javascript'>
+         $(document).ready(function() {
+            //option A
+            $("#bydate").submit(function(e){
+              var s= startFunction();
+			  var e= endFunction();
+			   return (s&&e);
+                
+            });
+			$("#byproduct").submit(function(e){
+              var s= p_startFunction();
+			  var e= p_endFunction();
+			   return (s&&e);
+                
+            });
+        });
+        </script>
+		<script type='text/javascript'>
+		var t ;
+		function filterdate()
+		{
+			$('#filter_by_date').append( t);
+		}
+         $(document).ready(function()
+		 {
+		
+
+			t=$('#filter').remove();
+            $("#category_id").change(function(e){
+			var inp = $("#category_id").val();
+			 if (inp <1){
+             $( "#c_id" ).text( "Please select a value !" ).show();
+				}
+                
+            });
+        });
+        </script>
+   <script>
+  $(function() {
+    $( "#startdatepicker" ).datepicker();
+  });
+  $(function() {
+    $( "#enddatepicker" ).datepicker();
+  });
+  
+  </script>
+  <script>
+   
+
+	
+ 
+  function salesfilterproduct(){
+   $("#tag_for_date").hide();
+  }
+ 
+</script>
+
+<script type="text/javascript" src="/first/js/jquery.js"></script>
+<script type="text/javascript" src="/first/js/bootstrap.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-overrides.css" rel="stylesheet">
+    <!-- Styles -->
+   
+	
+	<link href="/inventory/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/inventory/css/tablecloth.css" rel="stylesheet" type="text/css"/>
+	 <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]--> 
+  <link href="/inventory/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  
+  
+  <script src="/inventory/jquery-ui.js"></script>
+  <style>
+  li , p , h4, label{
+  font-family: 'Oxygen', sans-serif;
+  }
+  p 
+  { font-weight: bold;
+color: #563d7c;
+}
+label {
+color: #563d7c;}
+
+.return { 
+background-color:white !important;
+color:#563d7c !important;
+font-family: 'Oxygen', sans-serif !important;
+font-weight: bold;
+
+}
+select {
+width: 180px;
+}
+.nav-tabs>.active>a, .nav-tabs>.active>a:hover, .nav-tabs>.active>a:focus {
+color: white;
+cursor: default;
+background-color: #563d7c;
+border: 1px solid #ddd;
+border-bottom-color: transparent;
+}
+	</style>
+
+</head>
+<body class="page-header-fixed">
+
+
+ <%= render :partial => 'header' %>
+  <%= render :partial => 'sidebar' %>
+<div class="row-fluid" style="margin-left: -1%;">
+<div class="span9" style="float:right; margin-top:3%;">				
+				<h2 style="color: #563d7c;">Sales Report</h2>
+		
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active" style="width: 50%;"><a href="#Sales_Report_by_date">Sales Report by Date</a></li>
+  <li style="width: 50%;"><a href="#Sales_Report_by_product" onclick="salesfilterproduct()">Sales Report by Product</a></li>
+  
+</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id ="Sales_Report_by_date">
+				
+			<h4 style="color: #563d7c;margin-left: 30%;">Sales Report By Date</h4>
+					<%= form_tag({:controller=>'admin_home',:action => 'sales'}, {:name => 'login',:id=>"bydate",:remote => true}) do%>
+					<div style="margin-left:10%;">	
+                    <div class="control-group span4">
+					<%= text_field_tag(:startdate,"",:id =>"startdatepicker",:placeholder=>"From:",:onchange=>"startFunction()",:onblur=>"startFunction()"	) %><p id="s_date" style="color:red;"></p>
+					</div>
+					<div class="control-group span4">
+					<%= text_field_tag(:enddate,"",:id =>"enddatepicker",:placeholder=>"To:",:onchange=>"endFunction()",:onblur=>"endFunction()") %><p id="e_date" style="color:red;"></p>
+					
+					</div>
+					<div class="span3">
+					<%= submit_tag( '',:name=>"sales_date_search", :value=>"Go", :style=>"height:auto") %>
+					</div>
+					</div>
+					
+					
+					
+				<%end%>
+  
+  
+		</div>
+		<div class="tab-pane" id="Sales_Report_by_product">
+			<%= form_tag("/admin_home/sales/", :method=>"post", :multipart => true,:remote => true,:id=>"byproduct") do %>
+					<h4 style="color: #563d7c;text-align:center;">Sales Report By Product</h4>
+	
+			
+				<div class="span3">
+					<label class="control-label">
+					Select  Product Category 
+					<span class="required">*</span>
+					</label>
+					<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>
+					
+					<%= select_tag "category_id", options_for_select(@category.collect{ |u| [u.product_category_name, u.product_category_id] }), :prompt => "Select a Category",include_blank:false,:required=>true,:data => { :remote => true, :url => url_for(:controller => "admin_home",  :action => "inventory",:filter =>"sub_category") }%><p id="c_id" style="color:red;"></p>
+				</div>
+				<div id='subcategory_details' class="span3" >
+				
+				</div>
+
+				<div id='product' class="span3" >
+				
+				</div>
+				<div id="tag_for_date" class="span10">
+					<div class="span3" style="margin-left:38%;">
+						<a href="#"  onclick=filterdate(); class="go" style="margin-left: 2%"><b>  Add Date Filtration </b></a>
+					</div>
+				</div>
+
+				<div class="span10" id="filter_by_date">
+					<div id="filter">
+						<div class="span5" style="margin-left:10%;" >
+							<%= text_field_tag(:startdate,"",:id =>"productstartdatepicker",:placeholder=>"Start Date",:onblur=>"p_startFunction()",:onchange=>"p_startFunction()",required:true) %><p id="ps_date" style="color:red;"></p>
+						</div>
+						<div class="span5">
+							<%= text_field_tag(:enddate,"",:id =>"productenddatepicker",:placeholder=>"End Date",:onblur=>"p_endFunction()",:onchange=>"p_endFunction()",required:true) %><p id="pe_date" style="color:red;"></p>
+						</div>
+						</div>
+					</div>
+				<div class="span4" style="margin-left: 30%;">
+					<%= submit_tag("ok",  :value => "ok",:name=>'sale',:class=>"btn") %>	
+					<%end%>
+
+				</div>
+
+		</div>
+
+		<br/>
+		<br/>
+	</div>
+	
+				<div id ="search_result">
+					<table id="category_details" class="table table-stats table-condensed table-striped table-sortable">
+						<thead>
+							<tr>
+							<th>Transaction  Id</th>
+								<th>Product Id</th>
+								<th>Product Name</th>
+								<th>Order Id</th>
+								<th>Date</th>
+								<th>Quantity</th>
+								<th>Amount</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+						<%if !@sales.nil?%>
+							<%@sales.each do |i|%>
+							<tr>
+							<td><%=i['sale_id'] %></td>
+								<td><%= i['product_id'] %></td>
+								<td><%= i['productname'] %></td>
+								<td><%= i['order_id'] %></td>
+								<td><%= i['date'] %></td>
+								<td><%= i['quantity']%></td>
+								<td><%= i['total'] %></td>
+							</tr>
+							<%end%>
+						<%end%>
+						</tbody>
+					</table>
+				<div>
+		
+
+
+
+		
+		
+		
+			</div>
+</div>
+	
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+	
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  </script>
+  <script>
+  $(function() {
+    $( "#datepicker1" ).datepicker();
+  });
+  </script>
+  <script>
+$('#myTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+  
+})
+</script>
+  
+	</body>
+<script src="/first/js/bootstrap-tooltip.js"></script>
+		<script src="/first/js/bootstrap-popover.js"></script>
+	</html>
+	

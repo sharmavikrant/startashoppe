@@ -1,0 +1,25 @@
+<%if !@display.nil? then%>
+						<table class="table table-hover table-stats" id="customers-customer-list">
+							<thead>
+								<tr>
+									<th class="headerSortable"> Order Id </th>
+									<th class="headerSortable"> Customer Name</th>
+									<th class="headerSortable"> Order Date</th>
+									<th class="headerSortable"> Total Amount</th>
+									
+								</tr>
+							</thead>
+							<tbody>						
+							<%@display.each do |i|%>
+								<tr>
+								
+									<td><%=i["order_id"]%></td>
+									<td><%= i["name"]%></td>
+									<td><%= i["order_date"]%></td>
+									<td><%= i["total_amt"]%></td>
+								
+								</tr>
+							<%end%>	
+							</tbody>
+						</table>
+					<%end%>

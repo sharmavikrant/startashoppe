@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>Template</title>
+
+    
+
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+	<link href="/inventory/css/style.css" rel="stylesheet" type="text/css"/>
+
+	<link href="/inventory/css/tablecloth.css" rel="stylesheet" type="text/css"/>
+
+
+
+	
+
+	
+
+    <style>
+
+	.return { 
+
+		background-color:white !important;
+
+		color:#563d7c !important;
+
+		font-family: 'Oxygen', sans-serif !important;
+
+		font-weight: bold;
+
+
+
+		}
+
+		li , p , h4, label, h1, h2, h3{
+
+			font-family: 'Oxygen', sans-serif;
+
+		}
+
+		.table-stats thead tr th{ 
+
+		font-family: 'Oxygen', sans-serif !important;
+
+		
+
+ }
+
+	</style>
+
+
+
+
+
+</head>
+
+	<body class="page-header-fixed">
+
+	
+
+	
+
+	
+
+	<%= render :partial => 'header' %>
+
+
+
+	<!-- END HEADER -->
+
+
+
+        
+
+             
+
+            <%= render :partial => 'sidebar' %>
+
+	
+
+	
+
+	
+
+
+
+	<section id="content">
+
+		<div class="container">
+
+			
+
+			<div class="row">
+
+				<div class="span3">
+
+				</div>
+
+				<div class="span8">
+
+					<h2 style="color: #563d7c;"> Product Details</h2>
+
+				</div>
+
+			</div>
+
+      
+
+			<div class="row">
+
+				<div class="span3">
+
+	
+
+				</div>
+
+				<div class="span8">
+
+					<div class="">
+
+					<table class="table table-stats table-bordered table-striped" id="example-default">
+
+						<thead>
+
+							<tr>
+
+								<th>Delete</th>
+
+								<th>Product Id</th>
+
+								<th>Product Name</th>
+
+								<th>Product Title</th>
+
+								<th>Category</th>
+
+								<th>Sub-Category</th>
+
+								<th>Price</th>
+
+								<th>Sales Price</th>
+
+								<th>Quantity</th>
+
+								<th>Edit</th>
+
+					   
+
+							</tr>
+
+						</thead>
+
+					<tbody>
+
+					
+
+					
+
+						<%@product.each do |i|%>
+
+							<tr>
+
+								<td><%= link_to image_tag("/images/cross.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'product_view', :id => @profile,:value => "delete_product", :method => :post, :product_id => i["product_id"]%></td>
+
+								<td> <%= i["product_id"]%></td>
+
+								<td><%= i["product_name"]%></td>
+
+								<td> <%= i["title"]%></td>
+
+								<td><%= %> <%cat=@cat.detect{|w| w.product_category_id == i[:product_category_id]}%><%if !cat.nil? then %><%=  cat[:product_category_name]%><%end%></td>
+
+								<td> <%= %> <%sub=@sub.detect{|w| w.sub_category_id == i.sub_category_id}%><%if !sub.nil? then %><%=sub[:sub_category_name]%> <%end%></td>
+
+								<td><%= i["price"]%></td>
+
+								<td> <%= i["sale_price"]%></td>
+
+								<td><%= i['quantity']%></td>
+
+								<td><%= link_to image_tag("/images/edit.ico", :width => 30, :height => 30), :controller =>  "admin_home",:action => 'product_edit', :id => @profile,:product_id => i["product_id"], :method => :post%></td>
+
+							</tr>
+
+
+
+						<%end%>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+      </div>    
+
+    
+
+    		
+
+          
+
+
+
+ 
+
+
+
+</section>
+
+
+
+
+
+
+
+	
+
+</body>
+
+<script src="/first/js/bootstrap-tooltip.js"></script>
+
+		<script src="/first/js/bootstrap-popover.js"></script>
+
+
+
+</html>

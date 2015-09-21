@@ -1,0 +1,1212 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Startashoppe</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" The ever evolving online market has nurtured a solution which is meant
+for empowering the common user to create build and efficently run his or her own ecommerce shop. With the growing technology the user has now been directly benefited by the technology sources and providing ease of use rather been dependent on technical people for day to day shop operations. Startashoppe enable user to build store with in few clicks, generate bills invoices, manage the logistics, purchase order, sales order pre integrated payment gateways, suppply chain, exclusive themes, market place to flourish your products and services.The online store at startashoppe provides your own domain with a powerful CMS and backend to manage. Immediate adding deleting customizing the view and product now can be done with a few clicks. No pre requisite IT technology awareness makes it available for everyone to spread their products and reach the market with no big efforts.  "/>
+<!-- Base scripts -->
+<!-- <script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script> -->
+
+
+
+
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="/first/css/pricing.css" />
+<link rel="stylesheet" type="text/css" href="/first/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/first/font-awesome-4.0.3/css/font-awesome.css" />
+<!-- media query -->
+<!-- stylesheet for themes slider-->
+
+    <link rel="stylesheet" type="text/css" href="/first/css/slider/foundation.min.css" />
+    <link rel="stylesheet" href="/first/css/slider/site.css" />
+<link rel="stylesheet" href="/first/css/slider/bx_styles-v2.css" type="text/css" />
+
+<!-- stylesheet ends here-->
+
+<!-- Fonts -->
+
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+<script language="javascript">
+	
+	function myFunction()
+	{
+			var x=document.forms["login"]["name"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{
+				document.getElementById('testing').innerHTML = 'Shop name Mandatory' 
+			}
+			else
+			{
+				if (x.match(/\ /))
+				{
+					document.getElementById('testing').innerHTML = 'Please Select a Username without Spaces';
+					document.forms["login"]["name"].focus();
+				}
+				else
+				{
+					document.getElementById('testing').innerHTML = '';
+				}
+			}
+	}
+	
+	function myFunction2()
+	{
+		var x2=document.forms["login"]["email"].value;	
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+	
+			if (x2==''||x2== null||x2=='Email Address *')
+			{
+			 document.getElementById('testing2').innerHTML = 'Email Mandetory' 
+			}
+			else
+			{
+					if (!re.test(x2))
+					{
+						document.getElementById('testing2').innerHTML = 'This Email address is not valid';
+					document.forms["login"]["email"].focus();
+					}
+					
+					else
+					{
+						document.getElementById('testing2').innerHTML = '';
+					} 
+				
+			}
+	}function amyFunction()
+
+	{
+			var x=document.forms["alogin"]["aname"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{
+				document.getElementById('atesting').innerHTML = 'Shop name Mandatory' 
+			}
+			else
+			{
+				if (x.match(/\ /))
+				{
+					document.getElementById('atesting').innerHTML = 'Please Select a Username without Spaces';
+					document.forms["alogin"]["aname"].focus();
+				}
+				else
+				{
+					document.getElementById('atesting').innerHTML = '';
+				}
+			}
+	}
+	
+	function amyFunction2()
+	{
+		var x2=document.forms["alogin"]["aemail"].value;	
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+	
+			if (x2==''||x2== null||x2=='Email Address *')
+			{
+			 document.getElementById('atesting2').innerHTML = 'Email Mandetory' 
+			}
+			else
+			{
+					if (!re.test(x2))
+					{
+						document.getElementById('atesting2').innerHTML = 'This Email address is not valid';
+					document.forms["alogin"]["aemail"].focus();
+					}
+					
+					else
+					{
+						document.getElementById('atesting2').innerHTML = '';
+					} 
+				
+			}
+	}
+</script>
+
+<style>
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+ 
+ 
+.page-header {
+padding-bottom:0px;
+}
+.navbar.navbar-inverse {
+margin-bottom:0px;
+background:#000;
+opacity:.9;
+}
+.nav > li > a{
+color: #563d7c;
+text-transform:uppercase;
+font-size:12px;
+}
+.navbar-inner {
+background-image:none;
+background:none;
+}
+.navbar .nav > li > a {
+float: none;
+padding: 5px 15px 10px;
+color: rgb(221, 221, 221)!important;
+text-decoration: none;
+text-shadow: none;
+text-transform:uppercase;
+font-size:15px;
+}
+.nav-tabs {
+margin-top: 5%;
+margin-left: 4%;
+}
+.navbar-inverse .nav .active > a
+{
+background-color:transparent;
+}
+.brand
+{
+color:#fff!important;
+text-transform: capitalize;
+font-weight:normal!important;
+font-size:22px!important;
+padding: 10px 20px 16px;
+}
+.navbar .nav {
+position: relative;
+left: 0;
+display: block;
+float: right;
+margin: 10px 10px 0 0;
+}
+.tabb{
+ background-image: url('images//home/Apple-iMAC.jpg');
+ background-size: cover;
+ height: 650px;
+}
+.tabbcon {
+height: 350px;
+overflow: auto;
+margin-left: 7%;
+margin-top: 5%;
+}
+footer.main .copyright {
+background: #000!important;
+border-top: 1px solid #555;
+padding:1% 2%;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+text-decoration: none;
+background-color: transparent!important;
+}
+.copyright.clearfix .row
+{
+margin:0;
+}
+@media (max-width: 1000px)
+{
+#fmin{display:block; margin-top:10%;}
+#features{display:none;}
+}
+@media (min-width: 1000px)
+{
+#fmin{display:none;}
+}
+@media (max-width: 767px)
+{
+.copyright.clearfix .span3
+{
+ width:33%;
+ margin:0 auto;
+float:left;
+}
+.signbg {
+top: 60%;
+width: 80%;
+float: none;
+margin: 0 5%;
+}
+.signbg .input-large {
+width: 60%;
+margin: 1% 20%;
+}
+.signup .btn {
+margin-left: 20%;
+margin-top: 1%;
+}
+}
+@media (max-width: 579px)
+{
+.navbar .btn-navbar {
+display: block;
+margin-top: 5%;
+}
+.navbar .nav
+{
+float:left;
+width:100%;
+}
+.navbar .brand {
+padding: 5px 20px 10px 18px;
+}
+.nav-collapse .nav > li {
+width: 100%;
+}
+.background-img
+{background: #000 url(/first/img/slide1.jpg) center top no-repeat fixed!important;
+height: 478px!important;
+background-position: -419px 70px!important;
+-webkit-background-size: cover!important;
+-moz-background-size: cover!important;
+-o-background-size: cover!important;
+background-size: cover!important;
+}
+
+}
+</style>
+<style>
+#site-message {
+			
+			width: 100% ;
+			}
+ 
+		#site-message span {
+			display: block ;
+
+			}
+ 
+		footer.site-message-absolute {
+			left: 0px ;
+			position: absolute ;
+			top: 60px ;
+			}
+ 
+		footer.site-message-fixed {
+		left: 0px ;
+			position: fixed ;
+			top: 0px ;
+			}
+            .show{
+            display:none;}
+           
+
+.no-hidden-fees .icon {
+
+}
+.header-heading
+{
+background:#01B8E9;
+padding:30px 0;
+color:#fff;
+text-align:center;
+}
+
+input[type="text"], footer.main textarea
+{
+background:#fff!important;
+}
+
+.copyright.clearfix b {
+color: #666;
+font-weight: normal;
+font-size: 18px;
+text-transform: capitalize;
+}
+.signup-button #name {
+border-radius: 0;
+background: #fff;
+border: none;
+color: #000;
+}
+p.sub-hero 
+{
+color:#fff!important;
+margin:0;
+font-size: 28px!important;
+line-height: 40px!important;
+
+}
+.pricing .btn.btn-large.btn-block.btn-inverse {
+border-radius: 0;
+}
+ .features_list .icon {
+display: inline-block;
+width: 49px;
+height: 45px;
+vertical-align: middle;
+margin-right: 10px;
+background-repeat: no-repeat;
+border: 2px #FFFCFC;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+.features_list li {
+margin-bottom: 20px;
+font-size: 16px;
+line-height: 22px;
+font-weight: 700;
+text-align: left;
+white-space: nowrap;
+}
+.meshim_widget_widgets_Favicon.favicon {
+background: #222!important;
+}
+.meshim_widget_components_chatButton_Button.ltr.button {
+background: #222!important;
+}
+
+.button-blue
+{
+background:#3498db;
+}
+.button-blue:hover
+{
+background:#5dade2;
+}
+.button-red
+{
+background:#dc2d1b;
+}
+.button-red:hover
+{
+background-color: #ec7063;
+}
+.button-seagreen
+{
+background:#1abc9c;
+}
+.button-seagreen:hover
+{
+background:#2fe2bf;
+}
+ </style>
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//v2.zopim.com/?1knlaHKIdHsDFeN6bJxHwq9lPwwLNNJk';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zopim Live Chat Script-->
+</head>
+
+<body>
+
+
+<%= render :partial => 'header' %>
+<% unless flash[:notice].nil? %>
+                        <div class="heading_featured" >
+                            <fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px;">
+                            <div align="center">
+                            <font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+                        </div>
+                    </fieldset>
+                        </div>
+                    <%end%>
+
+ 
+
+
+<!-- background image and sign up starts here-->
+
+<div class="bg-image">
+        <div class="background-img"style="background: #000 url(/first/img/slide1.jpg) center top no-repeat fixed;
+height: 590px;
+background-position: 0 70px;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;">
+<section class="signup">
+  <div class="container-fluid">
+
+          <div class="row-fluid ">
+                        <div class="signbg">     
+	  		          <div class="span3 offset2">
+				  <input type="text" class="input-large" placeholder="Your Shop name here">
+				  </div>
+				 <div class="span3">		
+				  <input type="email" class="input-large" placeholder="Your Email id">
+		                  </div>
+	 			<div class="span3">
+		                  <button type="submit" class="btn">Create My Store</button>
+		                 </div>	
+  		     </div>		
+
+          </div>
+   </div>
+</section>
+</div>
+</div>
+
+<!--background image and signup ends here-->    
+
+
+
+
+
+
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+      <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+	
+      <div class="login-form">
+	  
+	                 <%= form_tag("/admin_home/adminlogin/", :method=>"put") do %>        
+          <fieldset>
+          <div class="clearfix">
+  <%=text_field_tag 'email', nil, :placeholder => 'Email'%><br>           
+      </div>
+          <div class="clearfix">
+           
+                        <%=password_field_tag 'password', nil, :placeholder => 'Password'%><br><br>         
+ </div>
+	<%= submit_tag("login",  :value => "login", :class => "btn btn-large btn btn-info abc" ) %>
+          </fieldset>
+        <%end%>
+      </div>
+    </div>
+  </div>
+ </footer>
+
+
+<div class="header-heading">
+<p class="sub-hero"> Indigenous platform to <strong> Create | Manage | Run </strong> your store for efficient output. We not only provide complete <strong> E-Commerce solution </strong>, also <strong> Pre-Integrated ERP </strong>to manage and run your plateform.</p></div>
+</div>
+
+
+
+
+
+<!--features starts from here-->
+
+<section class="features" id="feature">
+<div class="container-fluid">
+      <div class="row-fluid">
+		    <div class="span12">
+			   <div class="headings">
+			      <h2> Some of our unique features </h2>
+			   </div>
+			</div>
+		</div>
+		
+		
+		<div class="row-fluid row-features">
+		     <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-bar-chart-o fa-5x fa-border" style="color:#d45500;border-color:#d45500;"></i>
+				</div>
+			  </div>
+			 <div class="span8">
+			    <h3>Sales Analytics</h3>
+			    <p>Now get Complete Figure, Facts and Reports anytime with StartAShoppee to see what are you selling and how much.</p>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span8">
+			    <h3>One Click Setup</h3>
+			   <p>Set up your store with StartAShoppee easily in no time.Be as Creative as you want, design your store the way you want. Easy 1-2-3 Setup. </p>
+			  </div>
+			 <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-check-square-o fa-5x fa-border" style="color:#dd3333;border-color:#dd3333;"></i>
+				</div>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-mobile fa-5x fa-border" style="color:#000;border-color:#000;"></i>
+				</div>
+			  </div>
+			 <div class="span8">
+			   <h3>Liquid Design</h3>
+				<p>your website would be mobile optmized from the word go, tapping into the huge market of smartphone users and making your portal available to you and your customers 24x7. Creating more impact with two step payment gateway.</p>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span8">
+			   <h3>Cloud Hosting </h3>
+                <p>Unlimited hosting space on our cloud, create as many page as you want with ninja security features. You need not worry about your data losses and other technical ambiguities</p>
+			  </div>
+			 <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-cloud-upload fa-5x fa-border " style="color:#40b3ed;border-color:#40b3ed;"></i>
+				</div>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-cog fa-5x fa-border" style="color:#c9025c;border-color:#c9025c;"></i>
+				</div>
+			  </div>
+			 <div class="span8">
+			   <h3>Apps Store</h3>
+				<p>Keeping you updated with a big number of new apps every month providing various new features with a single click installation, and lot of apps to enhance your users buying experience get started with apps.</p>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span8">
+			   <h3>Payment Gateway</h3>
+                <p>Collect online payments on your store using Credit cards, Debit cards & Net banking through your own payment gateways.We supports integration with a number of domestic and international payment gateways like TechProcess, CCAvenue, HDFC, Axis and PayPal.</p>
+			  </div>
+			 <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-inr fa-5x fa-border" style="color:006196;border-color:#006196"></i>
+				</div>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-share-square-o fa-5x fa-border " style="color:#932ab6;border-color:#932ab6;"></i>
+				</div>
+			  </div>
+			 <div class="span8">
+			   <h3>SEO & SMOs</h3>
+				<p>more the marketing and the customers amoung your target users would help you to reach to the top within a short span precustomized onsite seo friendly features would cut down your cost for private vendors and make your site google friendly from the start, let people find on search engine use twitter, facebook, to socially connect with your audiance</p>
+    		 </div>		 
+		</div>
+		<div class="row-fluid row-features">
+		     <div class="span8">
+			   <h3>Track Users</h3>
+                <p>Get upto date result about who is logging in and who can become a user.Tap into new leads with startashoppe</p>
+			  </div>
+			 <div class="span4 morph">
+			    <div class="icons">
+				<i class="fa fa-users fa-5x fa-border" style="color:#43c83c;border-color:#43c83c;"></i>
+				</div>
+    		 </div>		 
+		</div>
+</div>
+</section>
+
+<!--Features ends here-->
+
+
+<!--featured themes slider starts here-->
+
+
+<div class="themeslider container-fluid" id="examples">
+ <section class="showcase">
+ <div class="row-fluid">
+		    <div class="span12">
+			   <div class="headings">
+			      <h2> Complete mobile friendly templates </h2>
+			   </div>
+			</div>
+		</div>
+        <div class="row-fluid container">
+        
+        
+        <div class="span12">
+            <div class="showcase-container" id="showcase-container">
+                <img id="showcase-bg" src="/first/img/slider/showcase_desktop.png" class="showcase-bg">
+                <img class="showcase-shine" src="/first/img/slider/showcase_shine.png" />
+                <div class="slideshow-bezel">
+                    <ul class="slideshow">
+                        
+                             
+                             
+                            <li>
+                                <img src="/first/img/slider/122219_991x557.jpg" alt="Propel RC" />
+                            </li>
+                            
+                            
+                        
+                             
+                             
+                            <li>
+                                <img src="/first/img/slider/122220_991x557.jpg" alt="Zeus Gear" />
+                            </li>
+                            
+                            
+                        
+                             
+                             
+                            <li>
+                                <img src="/first/img/slider/122221_991x557.jpg" alt="The Black Box Boutique" />
+                            </li>
+                            
+                            
+                        
+                             
+                             
+                            <li>
+                                <img src="/first/img/slider/122222_991x557.jpg" alt="My Envy Box" />
+                            </li>
+                            
+                            
+                        
+                             
+                             
+                            <li>
+                                <img src="/first/img/slider/122223_991x557.jpg" alt="Pink Cow Fashions" />
+                            </li>
+                            
+                            
+                        
+                    </ul><!-- .slideshow -->
+                </div><!-- slideshow-bezel -->
+                <div class="mobile-preview">
+                    <img id="mobile-showcase-bg" src="/first/img/slider/showcase_mobile.png" class="mobile-showcase-bg">
+                    <div class="mobile-bezel">
+                      <ul class="mobile-slideshow"  >
+                        
+                            
+                            
+                                <li>
+                                <img src="/first/img/slider/122236_184x326.jpg" alt="Propel RC" />
+                                </li>
+                            
+                            
+                        
+                            
+                            
+                                <li>
+                                <img src="/first/img/slider/122237_184x326.jpg" alt="Zeus Gear" />
+                                </li>
+                            
+                            
+                        
+                            
+                            
+                                <li>
+                                <img src="/first/img/slider/122238_184x326.jpg" alt="The Black Box Boutique" />
+                                </li>
+                            
+                            
+                        
+                            
+                            
+                                <li>
+                                <img src="/first/img/slider/122237_184x326.jpg" alt="My Envy Box" />
+                                </li>
+                            
+                            
+                        
+                            
+                            
+                                <li>
+                                <img src="/first/img/slider/122238_184x326.jpg" alt="Pink Cow Fashions" />
+                                </li>
+                            
+                            
+                        
+                      </ul>
+                    </div><!-- .mobile-bezel -->
+                </div><!-- .mobile-preview -->
+            </div><!-- .showcase-container -->
+        </div>
+        
+        </div><!-- .container -->
+    </section><!-- .showcase -->
+	</div>
+ 
+
+
+<!-- featured themes slider ends here-->
+
+<!--pricing starts here-->
+
+<section class="pricing" id="pricing">  <!-- dark background for pricing #2b2b2b -->
+<div class="container-fluid">
+		<div class="row-fluid">
+		    <div class="span12">
+			   <div class="headings">
+			      <h2>Check Our Affordable Pricing</h2>
+			   </div>
+			</div>
+		</div>
+<div class="row-fluid">	
+
+<!--  BLUE PRICE ITEM  -->
+<div class="span4">
+	<div class="pricing-table blue"><!-- BODY BOX-->
+        <div class="pricing-table-header"><!-- HEADER BOX-->
+				
+            <span class="heading">Basic Plan</span>
+            <span class="price-value">INR<span>1199</span><span class="mo">/mo</span></span>
+               
+		</div><!--/ BODY BOX-->
+		
+    <div class="pricing-table-space"></div><!-- CONTENT BOX-->
+        <div class="pricing-table-features">
+            <p><i class="fa fa-check-square-o fa-2x"></i> <strong> 5GB</strong> Data Transfer</p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> 100</strong> Products</p>
+	    <p><i class="fa fa-check-square-o fa-2x"></i> <strong> 24X7</strong> Phone Support</p>
+	    <p><i class="fa fa-check-square-o fa-2x"></i> <strong> 2%</strong> Transaction Fees</p>
+            <p> <i class="fa fa-check-square-o fa-2x"></i>  <strong> Order Notification</strong></p>
+	    <p><i class="fa fa-check-square-o fa-2x"></i>  <strong> Order Management</strong></p>
+            <p> <i class="fa fa-check-square-o fa-2x"></i> </i> <strong> Live Chat</strong> Functionality</p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> </i> <strong> Payment Gateway</strong></p>
+<p> <strong style="text-decoration:line-through;">SMS Alerts</strong></p>
+<p><strong style="text-decoration:line-through;">Google Analytics</strong></p>
+
+<p><strong style="text-decoration:line-through;">Email Campaign</strong></p>
+
+<p><strong style="text-decoration:line-through;">Shipping Labelling</strong></p>
+
+<p><strong style="text-decoration:line-through;">Themes Editing</strong></p>
+<p><strong style="text-decoration:line-through;">Add Your Blogs	</strong></p>
+			
+        </div><!-- /  CONTENT BOX-->
+		
+        <div class="pricing-table-sign-up"><!-- BUTTON BOX-->
+            <a href="#" class="btn btn-large btn-block btn-inverse button-blue" >Try For Free</a>
+        </div><!-- BUTTON BOX-->
+		
+    </div><!--/ BODY BOX-->
+</div>
+<!--  BLUE PRICE ITEM  -->
+
+
+<!--  RED PRICE ITEM  -->
+<div class="span4">
+	<div class="pricing-table red"><!-- BODY BOX-->
+        <div class="pricing-table-header"><!-- HEADER BOX-->
+				
+            <span class="heading">Pro Plan</span>
+            <span class="price-value">INR<span>2499</span><span class="mo">/mo</span></span>
+               
+		</div><!--/ BODY BOX-->
+		
+    <div class="pricing-table-space"></div><!-- CONTENT BOX-->
+        <div class="pricing-table-features">
+             <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> 15GB</strong> Data Transfer</p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> 500</strong> Products</p>
+ <p><i class="fa fa-check-square-o fa-2x"></i>  <strong> SMS Alerts</strong></p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> No</strong> Transaction Fees</p>
+            <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> 1 Warehouse</strong></p>
+	   
+           
+	    	
+	     <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Shipping Labelling</strong></p>		
+ <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Theme Editing</strong></p> <p><i class="fa fa-check-square-o fa-2x"></i>  <strong> Google Analytics</strong></p>
+
+<p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Email Campaign</strong></p>
+ <p> <strong style="text-decoration:line-through;">Report Generation</strong></p>
+ <p> <strong style="text-decoration:line-through;">Lead Generation</strong></p>
+ <p> <strong style="text-decoration:line-through;">Accounting</strong></p>
+ <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Add Your Blogs</strong></p>
+ <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> All Features of Basic Plan</strong></p>
+        </div><!-- /  CONTENT BOX-->
+		
+        <div class="pricing-table-sign-up"><!-- BUTTON BOX-->
+            <a href="#" class="btn btn-large btn-block btn-inverse button-red">Try For Free</a>
+        </div><!-- BUTTON BOX-->
+		
+    </div><!--/ BODY BOX-->
+</div>
+<!--  RED PRICE ITEM  -->
+
+<!--  ORANGE PRICE ITEM  -->
+<div class="span4">
+	<div class="pricing-table"><!-- BODY BOX-->
+        <div class="pricing-table-header"><!-- HEADER BOX-->
+				
+            <span class="heading">Premium Plan</span>
+            <span class="price-value">INR<span>4999</span><span class="mo">/mo</span></span>
+               
+		</div><!--/ BODY BOX-->
+		
+    <div class="pricing-table-space"></div><!-- CONTENT BOX-->
+        <div class="pricing-table-features">
+            <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> 40GB</strong> Data Transfer</p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Unlimited</strong> Products</p>
+<p><i class="fa fa-check-square-o fa-2x"></i>  <strong> SMS Alerts</strong></p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> No</strong> Transaction Fees</p>
+            <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Unlimited Warehouse</strong></p>
+	    <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Google Analytics</strong></p>
+	    
+	   		
+ 
+ <p><i class="fa fa-check-square-o fa-2x"></i>  <strong> Email Campaign</strong></p>
+<p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Shipping Labelling</strong></p>
+<p><i class="fa fa-check-square-o fa-2x"></i>  <strong> Theme Editing</strong></p>
+<p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Add Your Blogs</strong></p>
+<p><i class="fa fa-check-square-o fa-2x"></i>  <strong> Report Generation</strong></p>
+            <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Lead Generation</strong></p>
+<p> <i class="fa fa-check-square-o fa-2x"></i> <strong> Accounting</strong></p>	
+ <p> <i class="fa fa-check-square-o fa-2x"></i> <strong> All Features of Basic & Pro Plan</strong></p>
+        </div><!-- /  CONTENT BOX-->
+		
+        <div class="pricing-table-sign-up"><!-- BUTTON BOX-->
+            <a href="#" class="btn btn-large btn-block btn-inverse button-seagreen">Try For Free</a>
+        </div><!-- BUTTON BOX-->
+		
+    </div><!--/ BODY BOX-->
+</div>
+<!--  ORANGE PRICE ITEM  -->
+
+</div>
+</div>
+</section>
+
+
+<!--pricing ends here-->
+
+<!--section subscription  -->
+<section class="subscription bordered">
+
+  <div class="container">
+   <div class="row-fluid">
+   <div class="row-fluid">
+		    <div class="span12">
+			   <div class="headings">
+			      <h2> Wish To Have Subscription Based Model </h2>
+			   </div>
+			
+	<div class="row-fluid">
+		<div class="span12">
+   			<a href="#myModal" type="button" class="btn btn-new btn-lg btn3d" data-	toggle="modal" style="width:23%; height:50px; margin-left: 35%;}"><p>Subscribe Now</p></a>
+	     </div>
+        </div>
+ </div>
+</div>
+
+</section>
+<!--section subscription ends here-->
+
+<!--section testimonials starts here-->
+
+
+<section class="testimonial-section">
+
+<div class="testimonial-wrapper">
+<div class="container-fluid">
+                <div class="row-fluid">
+		    <div class="span12">
+			   <div class="headings">
+			      <h2> What People Says About Our Work</h2>
+			   </div>
+			</div>
+		</div>
+<div class="row-fluid">
+<div class="post-row">
+  <div id="myCarousel" class="carousel postCarousel slide">
+        
+    <!-- Carousel items -->
+    <div class="carousel-inner">
+      <div class="item row-fluid active">
+                <div class="span4">
+          <div class="testimonial post">
+          
+            <h4>
+              heading here           </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/head-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="head">            <div class="testimonial-sign"> Lucy &amp; Gang </div></div>
+          </div>
+          </div>                  <div class="span4">
+          <div class="testimonial post">
+          
+            <h4>
+              heading here           </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/head2-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="head2">            <div class="testimonial-sign"> Charlie Brown </div></div>
+          </div>
+          </div>                  <div class="span4">
+          <div class="testimonial post">
+          
+            <h4>
+             heading here            </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/head-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="head">            <div class="testimonial-sign"> Ellen Gallagher </div></div>
+          </div>
+          </div></div><div class="item row-fluid">                  <div class="span4">
+          <div class="testimonial post">
+          
+            <h4>
+    heading here           </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/skier-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="skier">            <div class="testimonial-sign"> Big Bill Watson </div></div>
+          </div>
+          </div>                  <div class="span4">
+          <div class="testimonial post">
+          
+            <h4>
+             heading here           </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/head2-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="head2">            <div class="testimonial-sign"> Happy Client </div></div>
+          </div>
+          </div>                  <div class="span4">
+          <div class="testimonial post">
+          <!--<div class="arrow-down"></div>-->
+            <h4>
+        heading here          </h4>
+            <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Aenean lacinia bibendum nulla sed consectetur.</p>
+          </div>
+          <div class="author-wrapper">
+            <div class="arrow"> </div><div class="t-image"><img src="http://pixelgrapes.com/demo/trek/wp-content/uploads/2013/05/skier-50x50.png" class="attachment-Testimonial Pic wp-post-image" alt="skier">            <div class="testimonial-sign"> Helen Inglasius </div></div>
+          </div>
+          </div>                  </div>
+      </div>
+            <!-- Carousel nav --> 
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev"></a> <a class="carousel-control right" href="#myCarousel" data-slide="next"></a>
+          </div>
+  </div>
+</div>
+</div></div>
+
+</section>
+
+
+
+
+<!--section testimonials ends here-->
+ 
+<!--sectionn contact us starts from here-->
+
+<section class="contactus" id="contact-us">
+    <div class="container">
+                      <div class="row-fluid">
+		         <div class="span12">
+			   <div class="headings">
+			      <h2>Interested ?? Give Us A Shout</h2>
+			   </div>
+			</div>
+		     </div>
+      <div class="row-fluid">
+		<div class="span12">
+                   <div class="row-fluid">
+                       <div class="span6">
+	      	        	 <input id="name" name="name" placeholder="Name" type="text" value="" />
+                       </div>
+              	      <!-- /.span6 -->
+                      <div class="span6">
+                         <input id="email" name="email" placeholder="Email Address *" type="text" />
+                      </div>
+                      <!-- /.span6 -->
+                  </div>
+                </div>
+            <!-- /.row-fluid -->
+
+            <div class="row-fluid">
+              <div class="span12">
+                <textarea class="req" id="comments" name="comments" placeholder="Comments..." style = "height: 20%;width: 90%;"></textarea>
+               </div>
+              </div>
+              
+           <div class-="row-fluid"> 
+                 <div class="span3" style="
+    float: right;
+">
+<input class="btn contactusbtn" name="commit" type="submit" value="Submit">
+                </div>
+            </div>
+
+
+        
+
+      </div>
+
+      <!-- /.row-fluid -->
+
+    </div>
+
+<!-- /.container -->
+
+
+   </section>       
+
+    
+
+<!--section contact us ends here-->
+
+
+<div >
+  <footer class="main contact ">
+   
+<%= render :partial => 'start_footer' %>
+
+
+
+
+
+      <div class="row-fluid">
+       
+        <!-- /.pull-left -->
+        <div>
+	<p> <h4><b>Description:</b></h4></p><br>
+          <p style="color: #666;font-size:12px;"> The ever evolving online market has nurtured a solution which is meant
+for empowering the common user to create build and efficently run his or her own 
+ecommerce shop. With the growing technology the user has now been directly benefited by
+the technology sources and providing ease of use rather been dependent on technical people
+for day to day shop operations. Startashoppe enable user to build store with in few clicks, generate bills invoices, manage the logistics, purchase order, sales order 
+pre integrated payment gateways, suppply chain, exclusive themes, market place to flourish your products and services. 
+The online store at startashoppe provides your own domain with a powerful CMS and backend to manage. Immediate adding deleting customizing the view and product now can be done 
+with a few clicks. No pre requisite IT technology awareness makes it available for everyone to spread their products and reach the market with no big efforts. 
+ </p> 
+
+<p>  2014 www.startashoppe.com. All rights reserved.</p>
+    
+     
+
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.copyright -->
+  </footer>
+</div>
+<!-- /footer.main -->
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
+
+<script type="text/javascript" src="/first/js/bootstrap.js"></script>
+
+
+<!-- js for theme slider-->
+
+<script src="/first/js/slider/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="/first/js/slider/jquery.bxslider-v2.min.js"></script>
+<!--ends here-->
+<script type="text/javascript" src="/first/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="/first/js/jquery.nav.js"></script>
+
+<!-- script for scrolling the navabar-->
+ <script>
+             $('#top-nav').onePageNav({
+                 currentClass: 'active',
+                 changeHash: true,
+                 scrollSpeed: 1200
+            });
+        </script>
+
+<!--script ends here-->
+
+<script>
+        var PS = (typeof(PS) != "undefined")? PS : {};
+        /*PS.resizeScContainer =     function() {
+            $('#showcase-container').height($('#showcase-bg').height());
+        }
+        
+       /* $(window).load(function(){
+            
+    		PS.resizeScContainer();
+    		$(window).resize(function(){
+        	    PS.resizeScContainer();
+    		});
+    		window.addEventListener("orientationchange", function(){
+                PS.resizeScContainer();
+    		}, false);
+            
+            $('.slideshow img, .mobile-slideshow img, .showcase-container').css('visibility','visible');
+            
+    	});*/
+        
+      	$(function(){
+            
+            
+            var desktopSlidesNumber = $('.slideshow').find('img').length;
+            var mobileSlidesNumber = $('.mobile-slideshow').find('img').length;
+            var slideShowOk = false;
+            if((desktopSlidesNumber == mobileSlidesNumber) && (desktopSlidesNumber > 0)) {
+                slideShowOk = true;
+            }
+              
+            if(slideShowOk){
+                $slideShow = $('.slideshow').bxSlider({
+                    'pager':false,
+                    'mode':'horizontal',
+                    'auto':true,
+                    'autoHover': true,
+                    'pause':'5000',
+                    'randomStart': true,
+                    'onSlideAfter': function($slideElement, oldIndex, newIndex){
+                        $mobileSlideShow.goToSlide(newIndex);
+                    }
+                });
+                
+                $mobileSlideShow = $('.mobile-slideshow').bxSlider({
+                    'pager': false,
+                    'mode': 'horizontal',
+                    'auto': false,
+                    'controls': false,
+                    'mode': 'fade',
+                    'onSlideAfter': function($slideElement, oldIndex, newIndex){
+                        $slideShow.goToSlide(newIndex);
+                    },
+                    'onSliderLoad': function() {
+                        $mobileSlideShow.goToSlide($slideShow.getCurrentSlide());
+                    }
+                });
+            } //slideShowOk
+		});
+	</script>
+<!-- themes slider ends here-->
+
+<script src="/first/js/bootstrap-tooltip.js"></script>
+<script src="/first/js/bootstrap-popover.js"></script>
+<script>
+$(function ()
+{ $("#email").popover();
+});
+$(function ()
+{ $("#aemail").popover();
+});
+
+ $("#sachin :input").tooltip( {
+    placement:'top',trigger: 'onfocus',animation: true});
+	$("#asachin :input").tooltip( {
+    placement:'bottom',trigger: 'onfocus',animation: true});
+
+</script>
+<script>
+$(function ()
+{ $("#webaddress").popover();
+});
+$(function ()
+{ $("#awebaddress").popover();
+});
+
+</script>
+
+
+ 
+</body>
+</html>
+

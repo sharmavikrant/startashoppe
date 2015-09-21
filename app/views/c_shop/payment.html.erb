@@ -2,176 +2,913 @@
 <head><!-- Stylesheets -->
 	<link href="/pay/bootstrap-min.css" rel="stylesheet">
 	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-    <script type='text/javascript' src='/js/jquery-latest.js'></script>
-	<script src="/adminhome/js/bootstrap.min.js" type="text/javascript"></script>
+         <link rel="stylesheet" type="text/css" media="all" href="/first/css/style.css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed' rel='stylesheet' type='text/css'>
+
 <style>
-.steps{
-border: 5px solid rgb(204, 204, 204);
-padding: 1%;
-background-color: #563d7c;
+
+@media (max-width: 979px) and (min-width: 768px)
+{
+.span5 {
+width: 290px;
+margin-left: 15%;
+}
+}
+@media (max-width: 979px) and (min-width: 768px)
+{
+.span3 {
+width: auto;
+
+}
+}
+</style>
+
+
+
+<style>
+
+#site-message {
+
+			
+
+			width: 100% ;
+
+			}
+
+ 
+
+		#site-message span {
+
+			display: block ;
+
+
+
+			}
+
+ 
+
+		footer.site-message-absolute {
+
+			left: 0px ;
+
+			position: absolute ;
+
+			top: 60px ;
+
+			}
+
+ 
+
+		footer.site-message-fixed {
+
+		left: 0px ;
+
+			position: fixed ;
+
+			top: 0px ;
+
+			}
+
+            .show{
+
+            display:none;}
+
+           
+
+
+
+.no-hidden-fees .icon {
+
+
+
+}
+
+.header-heading
+
+{
+
+background:#01B8E9;
+
+padding:30px 0;
+
+color:#fff;
+
+text-align:center;
+
+}
+
+
+
+input[type="text"], footer.main textarea
+
+{
+
+background:#fff!important;
+
+}
+
+
+
+.copyright.clearfix b {
+
+color: #666;
+
+font-weight: normal;
+
+font-size: 18px;
+
+text-transform: capitalize;
+
+}
+
+.signup-button #name {
+
+border-radius: 0;
+
+background: #fff;
+
+border: none;
+
+color: #000;
+
+}
+
+p.sub-hero 
+
+{
+
+color:#fff!important;
+
+margin:0;
+
+font-size: 28px!important;
+
+line-height: 40px!important;
+
+
+
+}
+
+.pricing .btn.btn-large.btn-block.btn-inverse {
+
+border-radius: 0;
+
+}
+
+ .features_list .icon {
+
+display: inline-block;
+
+width: 49px;
+
+height: 45px;
+
+vertical-align: middle;
+
+margin-right: 10px;
+
+background-repeat: no-repeat;
+
+border: 2px #FFFCFC;
+
+-webkit-border-radius: 5px;
+
+-moz-border-radius: 5px;
+
+border-radius: 5px;
+
+}
+
+.features_list li {
+
+margin-bottom: 20px;
+
+font-size: 16px;
+
+line-height: 22px;
+
+font-weight: 700;
+
+text-align: left;
+
+white-space: nowrap;
+
+}
+
+.meshim_widget_widgets_Favicon.favicon {
+
+background: #222!important;
+
+}
+
+.meshim_widget_components_chatButton_Button.ltr.button {
+
+background: #222!important;
+
+}
+
+
+
+.button-blue
+
+{
+
+background:#3498db;
+
+}
+
+.button-blue:hover
+
+{
+
+background:#5dade2;
+
+}
+
+.button-red
+
+{
+
+background:#dc2d1b;
+
+}
+
+.button-red:hover
+
+{
+
+background-color: #ec7063;
+
+}
+
+.button-seagreen
+
+{
+
+background:#1abc9c;
+
+}
+
+.button-seagreen:hover
+
+{
+
+background:#2fe2bf;
+
+}
+
+ </style>
+
+<!--Start of Zopim Live Chat Script-->
+
+<!-- stylesheet ends here-->
+
+<style>
+
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+.page-header {
+
+padding-bottom:0px;
+
+}
+
+.navbar.navbar-inverse {
+
+margin-bottom:0px;
+
+background:#000;
+
+opacity:.9;
+
+}
+
+.nav > li > a{
+
+color: #563d7c;
+
+text-transform:uppercase;
+
+font-size:12px;
+
+}
+
+.navbar-inner {
+
+background-image:none;
+
+background:none;
+
+}
+
+.navbar .nav > li > a {
+
+float: none;
+
+padding: 5px 15px 10px;
+
+color: rgb(221, 221, 221)!important;
+
+text-decoration: none;
+
+text-shadow: none;
+
+text-transform:uppercase;
+
+font-size:15px;
+
+}
+
+.nav-tabs {
+
+margin-top: 5%;
+
+margin-left: 4%;
+
+}
+
+.navbar-inverse .nav .active > a
+
+{
+
+background-color:transparent;
+
+}
+
+.brand
+
+{
+
+color:#fff!important;
+
+text-transform: capitalize;
+
+font-weight:normal!important;
+
+font-size:22px!important;
+
+padding: 10px 20px 16px;
+
+}
+
+.navbar .nav {
+
+position: relative;
+
+left: 0;
+
+display: block;
+
+float: right;
+
+margin: 10px 10px 0 0;
+
+}
+
+.tabb{
+
+ background-image: url('images//home/Apple-iMAC.jpg');
+
+ background-size: cover;
+
+ height: 650px;
+
+}
+
+.tabbcon {
+
+height: 350px;
+
+overflow: auto;
+
+margin-left: 7%;
+
+margin-top: 5%;
+
+}
+
+footer.main .copyright {
+
+background: #000!important;
+
+border-top: 1px solid #555;
+
+padding:1% 2%;
+
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+
+text-decoration: none;
+
+background-color: transparent!important;
+
+}
+
+.copyright.clearfix .row
+
+{
+
+margin:0;
+
+}
+
+@media (max-width: 1000px)
+
+{
+
+#fmin{display:block; margin-top:10%;}
+
+#features{display:none;}
+
+}
+
+@media (min-width: 1000px)
+
+{
+
+#fmin{display:none;}
+
+}
+
+@media (max-width: 767px)
+
+{
+
+.copyright.clearfix .span3
+
+{
+
+ width:33%;
+
+ margin:0 auto;
+
+float:left;
+
+
+
+}
+
+.signbg {
+
+top: 60%;
+
+width: 80%;
+
+float: none;
+
+margin: 0 5%;
+
+}
+
+.signbg .input-large {
+
+width: 60%;
+
+margin: 1% 20%;
+
+}
+
+.signup .btn {
+
+margin-left: 20%;
+
+margin-top: 1%;
+
+}
+
+}
+
+@media (max-width: 579px)
+
+{
+
+.navbar .btn-navbar {
+
+display: block;
+
+margin-top: 5%;
+
+}
+
+.navbar .nav
+
+{
+
+float:left;
+
+width:100%;
+
+}
+
+.navbar .brand {
+
+padding: 5px 20px 10px 18px;
+
+}
+
+.nav-collapse .nav > li {
+
+width: 100%;
+
+}
+
+.background-img
+
+{background: #000 url(/first/img/slide1.jpg) center top no-repeat fixed!important;
+
+height: 478px!important;
+
+background-position: -419px 70px!important;
+
+-webkit-background-size: cover!important;
+
+-moz-background-size: cover!important;
+
+-o-background-size: cover!important;
+
+background-size: cover!important;
+
+}
+
+
+
 }
 
 </style>
 
+<!--style sheet for checkout page-->
+<style>
+
+.wrap {
+min-height: 100%;
+height: auto !important;
+}
+
+.checkout .nav-tabs>li>a
+{
+background:#01b8e9;
+color:#fff;
+font-size:19px;
+text-transform: capitalize;
+}
+.checkout .nav > li > a:hover, .nav > li > a:focus
+{
+background:#018fb7!important;
+color:#fff;
+}
+.checkout
+{
+margin-top:155px;
+}
+
+.checkout .tab-content
+{
+padding:20px 2%;
+}
+.checkout label
+{
+color:#34495e;
+text-align: left;
+font-size:16px;
+}
+.checkout .row-fluid
+{
+text-align:center;
+}
+.nxtbtn
+{
+border-radius:0;
+background:#c72527;
+text-shadow:none;
+text-shadow:none;
+font-size:19px;
+width: 50px;
+height: 22px;
+}
+.nxtbtn:hover {
+background: #9b1c1f;
+}
+.steps{
+/*border: 1px solid rgb(204, 204, 204);*/
+padding: 1%;
+/*background-color: #fff;*/
+}
+
+.checkout .well
+{
+min-height:350px!important;
+}
+.checkout-content
+{
+color: #34495e;
+padding-top: 22px;
+font-size: 18px;
+line-height: 24px;
+}
+.checkout select:focus
+{
+border-color:rgba(82,168,236,0.8);
+-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+box-shadow:inset 0 1px 1px rgba(0,0,0,0.075),0 0 8px rgba(82,168,236,0.6);
+}
+.checkout textarea
+{
+height:40px;
+border-radius:0;
+
+}
+.checkout select
+{
+border:none;
+outline:none;
+height:40px;
+border-radius:0;
+border:1px solid #ccc;
+-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+box-shadow:inset 0 1px 1px rgba(0,0,0,0.075);
+-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,0.075)
+}
+</style>
+<!--style sheet for checkout page-->
+
 	</head>
 <body>
-<div class="container" style="padding-top: 5%;">
-<div class="steps">
-<ul class="nav nav-tabs">
-	<li class="active" ><a href="#tab1" data-toggle="tab">Accounts</a></li>
-    <li><a href="#tab2" data-toggle="tab">Personal Details</a></li>
-    <li><a href="#tab3" data-toggle="tab">Settings</a></li>
-    <li><a href="#tab4" data-toggle="tab">Payment</a></li>
-	<li><a href="#tab5" data-toggle="tab">Confirm</a></li>
-</ul>
-<div class="tab-content">
-	<div class="tab-pane active" id="tab1">
-	<div class="span10">
-	   <div class="span3">
-        <label class="control-label" for="email">Email</label>
-        <%=text_field_tag 'email', nil, :placeholder => 'Email'%>
-	   </div>
-	   <div class="span5" style="padding-top: 2.5%;">
-		<%= link_to image_tag("/ja/images/fb.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
-		<%= link_to image_tag("/ja/images/google.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
-		<%= link_to image_tag("/ja/images/twitter.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
-	   </div>
-	</div>
-							
-	</div>
-	
-	<div class="tab-pane" id="tab2">
-				   <%= form_tag("/c_shop/payment/", :method=>"put") do %>
-				<div class="span10" style="margin-left: 8%;">
-					<div class="span3">
-                                <label class="control-label"  for="name">Full Name</label>
-								<%= text_field_tag(:name,"") %>
-                    </div>
-					<div class="span3">					
-                           
-                                <label class="control-label"  for="name">Address</label>
-                                <TEXTAREA NAME="address" COLS=40 ROWS=3></TEXTAREA>
-                    </div>
-					<div class="span3">
-                                <label class="control-label" for="name">Pin Code</label>
-                                <%= text_field_tag(:pincode,"") %>
-                    </div>
-				</div>
-				<div class="span10" style="margin-left: 8%;">
-					<div class="span3">
-							<label class="control-label"  for="country">State</label>
-                                <%= text_field_tag(:state,"") %>
-                    </div>
-					<div class="span3">					
-                                <label class="control-label"  for="country">City</label>
-                                <%= text_field_tag(:city,"") %>
-                    </div>
-					<div class="span3">
-                                <label class="control-label"  for="country">Land Mark</label>
-                                <%= text_field_tag(:landmark,"") %>
-                    </div>
-				</div>
-				<div class="span10" style="margin-left: 8%;">
-					<div class="span3">
-                                <label class="control-label" for="country">Country</label>
-                                <%= text_field_tag(:country,"") %>
-                    </div>
-					<div class="span3">					
-                                <label class="control-label" for="phone">Phone</label>
-                                <%= text_field_tag(:phone,"") %>
-                    </div>
-				</div>
-                  	
-	</div>
-    <div class="tab-pane" id="tab3">
-						<div class="span3">
-							<p>
-                                <label class="control-label" for="newsletter">Newsletter</label>
-                                <select id="newsletter" name="newsletter">
-                                    <option value="Daily" selected>Daily</option>
-                                    <option value="Weekly">Weekly</option>
-                                    <option value="Monthly">Monthly</option>
-                                    <option value="Never">Never</option>
-                                </select>
-                            </p>
-						</div>
-						<div class="span3">
-                            <p>
-                                <label class="control-label"  for="updates">Updates</label>
-                                <select id="updates" name="updates">
-                                    <option value="1" selected>Package 1</option>
-                                    <option value="2">Package 2</option>
-                                    <option value="0">Don't send updates</option>
-                                </select>
-                            </p>
-						</div>
-						<div class="span3">
-							<p>
-                                <label class="control-label"  for="tagname">Newsletter Tag</label>
-                                <input id="tagname" name="tagname" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-						</div>
+
+
+
+
+
+
+
+<!--login starts here-->
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-header">
+
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+
+      <h3 id="myModalLabel">Login</h3>
+
+    </div>
+
+    <div class="modal-body">
+
 	
 
-	</div>
-    <div class="tab-pane" id="tab4">
-						<div class="span10" style="margin-left: 8%;">
-							<div class="span3">
-							<p>
-                                <label class="control-label"  for="cardtype">Card</label>
-                                <select id="cardtype" name="cardtype">
-                                    <option>Visa</option>
-                                    <option>Mastercard</option>
-                                    <option>American Express</option>
-                                </select>
-                            </p>
-							</div>
-							<div class="span3">
-                            <p>
-                                <label class="control-label" for="cardnumber">Card number</label>
-                                <input id="cardnumber" name="cardnumber" type="number" AUTOCOMPLETE=OFF />
-                            </p>
-							</div>
-							<div class="span3">
-                            <p>
-                                <label class="control-label" for="secure">Security code</label>
-                                <input id="secure" name="secure" type="number" AUTOCOMPLETE=OFF />
-                            </p>
-							</div>
-							<div class="span3">
-                            <p>
-                                <label class="control-label" for="namecard">Name on Card</label>
-                                <input id="namecard" name="namecard" type="text" AUTOCOMPLETE=OFF />
-                            </p>
-							</div>
-						</div>
+      <div class="login-form">
+
+	  
+
+	                 <form accept-charset="UTF-8" action="/admin_home/adminlogin/" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="Bc2Fh5ydeNB81hr2jk2DQPu5ffItmm06zUTM7vtNdKg=" /></div>        
+
+          <fieldset>
+
+          <div class="clearfix">
+
+  <input id="email" name="email" placeholder="Email" type="text" /><br>           
+
+      </div>
+
+          <div class="clearfix">
+
+           
+
+                        <input id="password" name="password" placeholder="Password" type="password" /><br><br>         
+
+ </div>
+
+	<input class="btn btn-large btn btn-info abc" name="commit" type="submit" value="login" />
+
+          </fieldset>
+
+</form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+<!--login ends here-->
+
+
+
+
+
+<div id ="paymentdetails">
+
+</div>
+
+<!--container starts here-->
+
+<div class="container-fluid wrap checkout">
+
+<div class="row-fluid"> <!--row-fluid starts here-->
+<div class="span1"></div>
+   <div class="span10"> <!--span12 ends here-->
+
+			<div class="steps well">
+					<ul class="nav nav-tabs">
+
+						<li class="active" ><a href="#tab1" data-toggle="tab">Details</a></li>
+					    <li><a href="#tab2" data-toggle="tab">Personal Details</a></li>
+					    <li><a href="#tab3" data-toggle="tab">Order Summary</a></li>
+						<li><a href="#tab4" data-toggle="tab">Confirm</a></li>
+					</ul>
+			<div class="tab-content">
+				<div class="tab-pane active" id="tab1">
+				<div class="span12"><!--outer span-->
+                                   <div class="row-fluid">
+					   <div class="span5"> <!--span3-->
+						    <%= form_tag("/c_shop/payment/", :method=>"put") do %>
+						<label class="control-label" for="email">Email</label>
+						<%=text_field_tag 'email', nil, :placeholder => 'Email'%>
+					   </div>           <!--span3-->
+					   <div class="span5 pad" style="padding-top:4%;"> <!--span -->
+						<%= link_to image_tag("/ja/images/fb.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
+						<%= link_to image_tag("/ja/images/google.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
+						<%= link_to image_tag("/ja/images/twitter.jpg", :width => 85, :height => 60), :id => @profile,:name => "Residential", :method => :post%>
+					   </div><!--span-->
+                                    </div>
+
+				</div><!--outer span-->
+							
+				</div> <!--tab pane-->
 	
-	</div>
-	<div class="tab-pane" id="tab5">
-                            <p style="color:white;">
-								Everything in the form was correctly filled 
-								if all the steps have a green checkmark icon.
-								A red checkmark icon indicates that some field 
-								is missing or filled out with invalid data. In this
-								last step the user can confirm the submission of
-								the form.
-							</p>
+				<div class="tab-pane" id="tab2">
+							  
+							<div class="span12"><div class="row-fluid">
+								 <div class="span4">
+						                          <label class="control-label"  for="name">Full Name</label>
+											<%= text_field_tag(:name,"",:required=> true) %>
+					                        </div>
+								<div class="span4">	
+									   <label class="control-label"  for="name">Address</label>
+						        		   <TEXTAREA NAME="address" COLS=40 ROWS=3></TEXTAREA>
+					    			</div>
+								<div class="span4">
+									    <label class="control-label" for="name">Pin Code</label>
+										<%= text_field_tag(:pincode,"",:required=> true) %>
+					    			</div>
+							   </div>	
+							</div>
+							<div class="span12" style="margin:0;padding:0;"><div class="row-fluid">
+								<div class="span4">
+										<label class="control-label"  for="country">State</label>
+						      				  <%= text_field_tag(:state,"",:required=> true) %>
+					   			 </div>
+								<div class="span4">					
+						      			  <label class="control-label"  for="country">City</label>
+						       			 <%= text_field_tag(:city,"",:required=> true) %>
+					    			</div>
+								<div class="span4">
+						      			  <label class="control-label"  for="country">Land Mark</label>
+						      		  <%= text_field_tag(:landmark,"",:required=> true) %>
+								</div></div>
+							</div>
+							<div class="span12" style="margin:0;padding:0;"><div class="row-fluid">
+								<div class="span4">
+						        		<label class="control-label" for="country">Country</label>
+						        		<%= text_field_tag(:country,"",:required=> true) %>
+					   			 </div>
+								<div class="span4">					
+						      			  <label class="control-label" for="phone">Phone</label>
+						        		<%= text_field_tag(:phone,"",:required=> true) %>
+					    			</div>
+                                                                  </div>
+							</div>
+					  	
+				</div>
+			    
+			    <div class="tab-pane" id="tab3">
+					
+					<table class="table table-bordered table-striped">
+					  <thead>
+						  <tr>
+							
+							<th>Image</th>
+							<th>Item Name</th>
+							<th>Quantity</th>
+							<th>Unit Price</th>
+							<th>Total</th>
+						  </tr>
+						</thead>
+						<tbody>
+							<%@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",@a])%>
 						
-                            
-                            
-							   	<br><br><br>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	<%= submit_tag("payment", :value => "payment", :class => "btn btn-primary") %>
+					<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%b=a.split("-")%>
+							<%if i['product_id']==b[0].to_i  then %>
+								<%if i['revised_price'].nil? then %>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total %>
+								<%else%>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total%>
 								<%end%>
-	    </div>
+
+				  <tr>
+
+
+
+
+					<td class="cntr"><a href="#"><img src="<%="#{i["image_1"]}/thumb/#{i["image_name_1"]}"%>" style="height: 100px!important;width: 143px!important;" alt="#"></a></td>
+					<td><%=i[:title]%> </td>
+					<td><%=b[1]%></td>
+					<td>$<%=i["sale_price"]%></td>
+					<td>$<%=@p_total%></td>
+				  </tr>			  
+				<%end%>
+							
+						<%end%>
+					<%end%>
+                        
+				  <tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>Total:</td>
+					<td><strong>$<%=@total%></strong></td>
+				  </tr>		  
+				</tbody>
+			  </table>
+				
+	
+				</div>
+				<div class="tab-pane" id="tab4">
+						    <p class="checkout-content">
+											Everything in the form was correctly filled 
+											if all the steps have a green checkmark icon.
+											A red checkmark icon indicates that some field 
+											is missing or filled out with invalid data. In this
+											last step the user can confirm the submission of
+											the form.
+										</p>
+						
+						    
+						    
+										   	<br><br><br>
+											<input type="hidden" name="total" value=<%=params[:total]%>>
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											<%= submit_tag("payment", :value => "payment", :class => "btn btn-primary") %>
+											<%end%>
+				    </div>
+			</div>
+			</div>
+			<br><a class="btn nxtbtn" href="#" id="btnReview" style="margin-left: 45%;;">Next</a><br>
+     </div><!--span8 ends here-->
+
+<div class="span1"></div>  <!--span2 ends here-->
+  </div> <!--row fluid ends here-->
 </div>
-</div>
-<br><a class="btn" href="#" id="btnReview" style="margin-left: 45%;;">Next</a><br>
-</div>
+
+
 <script>
 $('#btnReview').click(function(){
   $('.nav-tabs > .active').next('li').find('a').trigger('click');
+  
 });
 </script>
+<script type='text/javascript'>
+ $(document).ready(function(){
+  
+
+	$( "#email" ).change(function() {
+		$.ajax({
+   type: "get",
+   url: "/c_shop/payment?payment=details",
+   dataType: "script",
+   data: ({name: this.value}) ,
+
+   success: $('#paymentdetails').append('<h1><h1>')
+     });
+	});
+});
+ </script>
+<script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+//if (window.sidebar){  
+//document.onmousedown=disableselect  
+//document.onclick=reEnable  
+}
+</script>
+<script type='text/javascript' src='/js/jquery-latest.js'></script>
+<script src="/adminhome/js/bootstrap.min.js" type="text/javascript"></script>
 
  </body>
 </html>

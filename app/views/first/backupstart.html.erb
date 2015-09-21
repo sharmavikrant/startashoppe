@@ -1,0 +1,1223 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Startashoppe</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content=" The ever evolving online market has nurtured a solution which is meant
+for empowering the common user to create build and efficently run his or her own ecommerce shop. With the growing technology the user has now been directly benefited by the technology sources and providing ease of use rather been dependent on technical people for day to day shop operations. Startashoppe enable user to build store with in few clicks, generate bills invoices, manage the logistics, purchase order, sales order pre integrated payment gateways, suppply chain, exclusive themes, market place to flourish your products and services.The online store at startashoppe provides your own domain with a powerful CMS and backend to manage. Immediate adding deleting customizing the view and product now can be done with a few clicks. No pre requisite IT technology awareness makes it available for everyone to spread their products and reach the market with no big efforts.  "/>
+<!-- Base scripts -->
+<!-- <script type="text/javascript"> 
+function disableselect(e){  
+return false  
+}  
+
+function reEnable(){  
+return true  
+}  
+
+//if IE4+  
+document.onselectstart=new Function ("return false")  
+document.oncontextmenu=new Function ("return false")  
+//if NS6  
+if (window.sidebar){  
+document.onmousedown=disableselect  
+document.onclick=reEnable  
+}
+</script> -->
+
+
+
+<script type="text/javascript" src="/first/js/jquery.js"></script>
+<script type="text/javascript" src="/first/js/modernizr-latest.js"></script>
+
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="/first/css/bootstrap.css" />
+<!-- media query -->
+
+<!-- Fonts -->
+
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<script language="javascript">
+	
+	function myFunction()
+	{
+			var x=document.forms["login"]["name"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{
+				document.getElementById('testing').innerHTML = 'Shop name Mandatory' 
+			}
+			else
+			{
+				if (x.match(/\ /))
+				{
+					document.getElementById('testing').innerHTML = 'Please Select a Username without Spaces';
+					document.forms["login"]["name"].focus();
+				}
+				else
+				{
+					document.getElementById('testing').innerHTML = '';
+				}
+			}
+	}
+	
+	function myFunction2()
+	{
+		var x2=document.forms["login"]["email"].value;	
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+	
+			if (x2==''||x2== null||x2=='Email Address *')
+			{
+			 document.getElementById('testing2').innerHTML = 'Email Mandetory' 
+			}
+			else
+			{
+					if (!re.test(x2))
+					{
+						document.getElementById('testing2').innerHTML = 'This Email address is not valid';
+					document.forms["login"]["email"].focus();
+					}
+					
+					else
+					{
+						document.getElementById('testing2').innerHTML = '';
+					} 
+				
+			}
+	}function amyFunction()
+
+	{
+			var x=document.forms["alogin"]["aname"].value;
+			if (x==''||x== null||x=="Enter your Shop's web address *")
+			{
+				document.getElementById('atesting').innerHTML = 'Shop name Mandatory' 
+			}
+			else
+			{
+				if (x.match(/\ /))
+				{
+					document.getElementById('atesting').innerHTML = 'Please Select a Username without Spaces';
+					document.forms["alogin"]["aname"].focus();
+				}
+				else
+				{
+					document.getElementById('atesting').innerHTML = '';
+				}
+			}
+	}
+	
+	function amyFunction2()
+	{
+		var x2=document.forms["alogin"]["aemail"].value;	
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			
+	
+			if (x2==''||x2== null||x2=='Email Address *')
+			{
+			 document.getElementById('atesting2').innerHTML = 'Email Mandetory' 
+			}
+			else
+			{
+					if (!re.test(x2))
+					{
+						document.getElementById('atesting2').innerHTML = 'This Email address is not valid';
+					document.forms["alogin"]["aemail"].focus();
+					}
+					
+					else
+					{
+						document.getElementById('atesting2').innerHTML = '';
+					} 
+				
+			}
+	}
+</script>
+
+<style>
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+ h1, h2, h3, h4, h5, h6 {
+font-family: ‘Hoefler Text’, Garamond, Georgia, ‘Times New Roman’, Times, serif;
+text-transform: uppercase;
+font-weight: normal;
+}
+.nav > li > a{
+color: #563d7c;
+font-size: medium;
+}
+.nav-tabs {
+margin-top: 5%;
+margin-left: 4%;
+}
+.tabb{
+ background-image: url('images//home/Apple-iMAC.jpg');
+ background-size: cover;
+ height: 650px;
+}
+.tabbcon {
+height: 350px;
+overflow: auto;
+margin-left: 7%;
+margin-top: 5%;
+}
+@media (max-width: 1000px)
+{
+#fmin{display:block; margin-top:10%;}
+#features{display:none;}
+}
+@media (min-width: 1000px)
+{
+#fmin{display:none;}
+}
+</style>
+<style>
+#site-message {
+			
+			width: 100% ;
+			}
+ 
+		#site-message span {
+			display: block ;
+			padding: 10px 20px 10px 20px ;
+			}
+ 
+		footer.site-message-absolute {
+			left: 0px ;
+			position: absolute ;
+			top: 60px ;
+			}
+ 
+		footer.site-message-fixed {
+			border-bottom: 1px solid #E0E0E0 ;
+			left: 0px ;
+			position: fixed ;
+			top: 0px ;
+			}
+            .show{
+            display:none;}
+           
+.btn
+{display: inline-block;
+margin-bottom: 20px;
+padding: 4px 20px;
+font-weight: 700;
+line-height: 1.4286;
+text-align: center;
+vertical-align: middle;
+padding-right:70%;
+}
+.no-hidden-fees .icon {
+
+}
+ .features_list .icon {
+display: inline-block;
+width: 51px;
+height: 51px;
+vertical-align: middle;
+margin-right: 10px;
+background-repeat: no-repeat;
+border: 2px solid #a1c5e5;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+.features_list li {
+margin-bottom: 20px;
+font-size: 16px;
+line-height: 22px;
+font-weight: 700;
+text-align: left;
+white-space: nowrap;
+}
+
+
+ </style>
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+_.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+$.src='//v2.zopim.com/?1knlaHKIdHsDFeN6bJxHwq9lPwwLNNJk';z.t=+new Date;$.
+type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zopim Live Chat Script-->
+</head>
+
+<body class="home" data-spy="scroll" data-target="#navbar">
+
+
+
+<% unless flash[:notice].nil? %>
+                        <div class="heading_featured" >
+                            <fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px">
+                            <div align="center">
+                            <font size="5"><p class="flash-msg"> <%= flash[:notice] %> </p></font>
+                        </div>
+                    </fieldset>
+                        </div>
+                    <%end%>
+<div class="page-header" style="background-image:url('/first/img/slide1.jpg'); background-size:cover; height:500px;)">
+  <div class="row-fluid">
+    
+
+
+
+<footer class="main contact  sign" >
+  <div class="container">
+    <div class="row-fluid">
+	 <div class="span12 ">
+	  <%= form_tag({:controller=>'first',:action => 'master_signup'}, {:name => 'login',:id=>"sachin"}) do%>
+        
+          <div class="row-fluid">
+          
+            <div class="span4" style="margin-top: 3%; margin-left:6%;">
+			<div class="span10">  
+			  <%= text_field_tag(:name,"",:placeholder => "Enter your Shop's web address *", class: "input-block-level",:required=>true,:onfocusout=>'myFunction()',:title=>"Atleast 4 latter name  and with out space and underscore  ") %><p id="testing" style="color:red;"></p>
+			</div>
+			<div class="span2" style="padding-top:3%;">	
+				<a  id="email"  rel="popover" data-content="<b>www.WEBADDRESS.startashop.com</b> <br>will become your temporary url for your shop, so please choose your unique web address"><img src="/first/img/1381837136_support-px-png.png" alt="help" ></a>
+			</div>
+			
+            </div>
+
+
+            <!-- /.span4 -->
+            <div class="span4"  style="margin-top: 3%;margin-left: 0;">
+			<div class="span10">  
+            <%=text_field_tag 'email', nil, :placeholder => 'Email Address *' ,:requried=>true,:onfocusout=>'myFunction2()',:title=>"Enter a valid Email Id "%><p id="testing2" style="color:red;"></p>
+            </div>
+			<div class="span2" style="padding-top:3%;">
+			<a  id="webaddress"  rel="popover" data-content="This is the registered Email Id for accessing yourshop at startashoppe.Please chosse on accordingly. "><img src="/first/img/1381837136_support-px-png.png" alt="help" ></a>
+			</div>
+            </div>
+			
+            <!-- /.span4 -->
+			<div class="span3" style="padding-top:3%;">
+			 
+            
+             <%= submit_tag("Submit",  :value => "Submit", :name=>"commit" ) %>
+          
+			</div>
+          </div>
+          <!-- /.row-fluid -->
+		  <%end%>
+      </div>
+	  
+      
+      <!-- /.span12 -->
+    </div>
+    <!-- /.row-fluid -->
+  </div>
+  <!-- /.container -->
+</footer>
+      </div>
+      
+  </div>
+  <div class="navbar-wrapper">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+   <h1>     <a class="brand" href="#">StartAShoppe</a> </h1>
+        <div id="navbar" class="main nav-collapse collapse">
+          <ul class="nav">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="/first/pricing">Pricing</a></li>
+            <li><a href="#contact">Get in touch</a></li>
+			
+            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">See More<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/first/blog">Blog</a></li>
+                <li><a href="/first/faq.html">FAQ</a></li>
+              </ul>
+			  </li>
+			  <li>
+			<!-- Button to trigger modal -->
+  <a href="#myModal" data-toggle="modal">Login</a>
+  <!-- Modal -->
+ 
+			</li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+      <!-- /.navbar-inner -->
+    </div>
+    <!-- /.navbar -->
+  </div>
+  <!-- /.navbar-wrapper -->
+</div>
+<footer class="main contact site-message-absolute show" id="site-message" style="background: rgba(68,76,83,0.8);z-index: 1000000;">
+  
+        <div class="span12 ">
+	  <%= form_tag({:controller=>'first',:action => 'master_signup'}, {:name => 'alogin',:id=>"asachin"}) do%>
+        
+          <div class="row-fluid">
+          
+            <div class="span4" style="margin-top: 3%; margin-left:6%;">
+			<div class="span10">  
+			  <%= text_field_tag(:aname,"",:placeholder => "Enter your Shop's web address *", class: "input-block-level",:required=>true,:onfocusout=>'amyFunction()',:title=>"Atleast 4 latter name  and with out space and underscore  ") %><p id="atesting" style="color:red;"></p>
+			</div>
+			<div class="span2" style="padding-top:3%;">	
+				<a  id="aemail"  rel="popover" data-content="<b>www.WEBADDRESS.startashop.com</b> <br>will become your temporary url for your shop, so please choose your unique web address"><img src="/first/img/1381837136_support-px-png.png" alt="help" ></a>
+			</div>
+			
+            </div>
+
+
+            <!-- /.span4 -->
+            <div class="span4"  style="margin-top: 3%;margin-left: 0;">
+			<div class="span10">  
+            <%=text_field_tag 'aemail', nil, :placeholder => 'Email Address *' ,:requried=>true,:onfocusout=>'amyFunction2()',:title=>"Enter a valid Email Id "%><p id="atesting2" style="color:red;"></p>
+            </div>
+			<div class="span2" style="padding-top:3%;">
+			<a  id="awebaddress"  rel="popover" data-content="This is the registered Email Id for accessing yourshop at startashoppe.Please chosse on accordingly. "><img src="/first/img/1381837136_support-px-png.png" alt="help" ></a>
+			</div>
+            </div>
+			
+            <!-- /.span4 -->
+			<div class="span3" style="padding-top:3%;">
+			 
+            
+             <%= submit_tag("Submit",  :value => "Submit", :name=>"commit" ) %>
+          
+			</div>
+          </div>
+          <!-- /.row-fluid -->
+		  <%end%>
+		</div>
+      
+</footer>
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">Login</h3>
+    </div>
+    <div class="modal-body">
+	
+      <div class="login-form">
+	  
+	                 <%= form_tag("/admin_home/adminlogin/", :method=>"put") do %>        
+          <fieldset>
+          <div class="clearfix">
+  <%=text_field_tag 'email', nil, :placeholder => 'Email'%><br>           
+      </div>
+          <div class="clearfix">
+           
+                        <%=password_field_tag 'password', nil, :placeholder => 'Password'%><br><br>         
+ </div>
+<%= submit_tag("login",  :value => "login", :class => "btn btn-large btn btn-info abc" ) %>
+          </fieldset>
+        <%end%>
+      </div>
+    </div>
+  </div>
+ </footer>
+
+<div id="features" class="box" style="margin-top:10%">
+  <section>
+    <div class="container">
+      <h1 class="hero">Features</h1>
+      <p class="sub-hero">Start selling online in a matter of minutes</p>
+      
+      <div class="tabbable tabb" style="margin-left: 5%;">
+        
+        <ul class="nav nav-tabs" data-tabs="tabs" style="text-align:center; border-bottom: 0;">
+          <li class=""><a href="#f1" data-toggle="tab1" style="border: 0; color: rgb(208, 101, 3);"><i class="icon-bar-chart icon-2x"></i>
+            <h6>Sales Analytics</h6>
+            </a></li>
+          <li class=""><a href="#f2" data-toggle="tab1" style="border: 0; color: rgb(233, 147, 26);"><i class="icon-resize-small icon-2x"></i>
+            <h6>Liquid design</h6>
+            </a></li>
+          <li class=""><a href="#f3" data-toggle="tab1" style="border: 0; color: rgb(22, 145, 190);"><i class="icon-check icon-2x"></i>
+            <h6>Click Setup</h6>
+            </a></li>
+          <li class=""><a href="#f4" data-toggle="tab1" style="border: 0; color: rgb(22, 107, 162);"><i class="icon-cloud-upload icon-2x"></i>
+            <h6>Cloud Hosting</h6>
+            </a></li>
+			<li class=""><a href="#f5" data-toggle="tab1" style="border: 0; color: rgb(27, 54, 71);"><i class="icon-folder-open icon-2x"></i>
+            <h6>App store</h6>
+            </a></li>
+			<li class="active"><a href="#f6" data-toggle="tab1" style="border: 0; color: rgb(21, 40, 54);"><i class="icon-group icon-2x"></i>
+            <h6>SEO &amp; SMO</h6>
+            </a></li>
+			<li class=""><a href="#f7" data-toggle="tab1" style="border: 0; color: rgb(208, 101, 3);"><i class="icon-external-link-sign icon-2x"></i>
+            <h6>Lead Generation</h6>
+            </a></li>
+			<li class=""><a href="#f8" data-toggle="tab1" style="border: 0; color: rgb(233, 147, 26);"><i class="icon-exchange icon-2x"></i>
+            <h6>Share it</h6>
+            </a></li>
+			<li class=""><a href="#f9" data-toggle="tab1" style="border: 0; color: rgb(22, 145, 190);"><i class="icon-inr icon-2x"></i>
+            <h6>Payment gateway</h6>
+            </a></li>
+        </ul>
+        <div id="my-tab-content" class="tab-content tbbcon" style="margin-left:3%;">
+          <div class="tab-pane" id="f1">
+            <div class="span6"> <img src="/images/home/ld.png" alt="">
+            </div>
+            <div class="span4 " style="margin-top:20px"> 
+			<h4>Figure, Facts and reports to help you see what are you selling and how much.</h4></div>
+          </div>
+          <div class="tab-pane" id="f2">
+            <div class="span6"> <img src="/images/home/pay.png" alt="">
+            </div>
+			 <div class="span4 " style="margin-top:20px"> 
+			<h4>Your website would be mobile optmized from the word go, tapping into the huge smartphone users market.</h4></div>
+          
+          </div>
+          <div class="tab-pane" id="f3">
+            <div class="span6"> <img src="/images/home/ld.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px"> 
+			<h4>Be as creative as you want, design your store the way you want, without worrying about knowledge of coding, HTML etc</h4></div>
+          </div>
+          <div class="tab-pane" id="f4">
+            <div class="span6"> <img src="/images/home/cloud.jpg" alt="" style="height:300px;">
+            </div>
+			<div class="span4 " style="margin-top:20px"> 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f5">
+            <div class="span6"> <img src="/images/home/appstore.jpg" alt="" style="height:300px;">
+            </div>
+			<div class="span4 " style="margin-top:20px"> 
+			<h4>lot of app to enhance your users buying experence get started with apps.</h4></div>
+          </div>
+		   <div class="tab-pane active" id="f6">
+            <div class="span6"> <img src="/images/home/seosmo.jpg" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px"> 
+			<h4>make your site google friendly from the start, let people find on search engine use twitter, facebook, to socially connect with your audiance.
+					</h4></div>
+          </div>
+		   <div class="tab-pane" id="f7">
+            <div class="span6"> <img src="/images/home/ld.png" alt="">
+            </div>
+			<div class="span3 " style="margin-top:20px"> 
+			<h4>get upto date result about who is logging in and who can become a user.tap into new leads with startashoppe </h4></div>
+          </div>
+		   <div class="tab-pane" id="f8">
+            <div class="span6"> 
+            </div>
+			<div class="span4" style="margin-top:20px"> 
+			<h4>share your products on friends facebook wall, email's and other platform to help you sell more</h4></div>
+          </div>
+		   <div class="tab-pane" id="f9">
+            <div class="span6"> <img src="/images/home/pay.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px"> 
+			<h4>start taking money online from users payment by debit card  or credit card </h4></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="fmin" class="box">
+    <section>
+    <div class="container">
+      <h1 class="hero">Features</h1>
+      <p class="sub-hero">Check out some of the stuff we've created</p>
+      <div class="tabbable" style="margin-left:8%">
+        <ul class="nav nav-tabs" data-tabs="tabs" style="text-align:center">
+          <li class="active"><a href="#f1" data-toggle="tab1" style="color: rgb(208, 101, 3);"><i class="icon-bar-chart icon-2x"></i>
+            <h6>Sales Analytics</h6>
+            </a></li>
+          <li><a href="#f2" data-toggle="tab1" style="color: rgb(208, 101, 3);"><i class="icon-resize-small icon-2x"></i>
+            <h6>Liquid design</h6>
+            </a></li>
+          <li><a href="#f3" data-toggle="tab1" style="color: rgb(233, 147, 26);"><i class="icon-check icon-2x"></i>
+            <h6>Click Setup</h6>
+            </a></li>
+          <li><a href="#f4" data-toggle="tab1" style="color: rgb(21, 40, 54);"><i class="icon-cloud-upload icon-2x"></i>
+            <h6>Cloud Hosting</h6>
+            </a></li>
+			<li><a href="#f5" data-toggle="tab1" style="color: rgb(208, 101, 3);"><i class="icon-folder-open icon-2x"></i>
+            <h6>App store</h6>
+            </a></li>
+			<li><a href="#f6" data-toggle="tab1" style="color: rgb(22, 107, 162);"><i class="icon-group icon-2x"></i>
+            <h6>SEO & SMO</h6>
+            </a></li>
+			<li><a href="#f7" data-toggle="tab1" style="color: rgb(208, 101, 3));"><i class="icon-external-link-sign icon-2x"></i>
+            <h6>Lead Generation</h6>
+            </a></li>
+			<li><a href="#f8" data-toggle="tab1" style="color: rgb(233, 147, 26);"><i class="icon-exchange icon-2x"></i>
+            <h6>Share it</h6>
+            </a></li>
+			<li><a href="#f9" data-toggle="tab1" style="color: rgb(22, 145, 190);"><i class="icon-inr icon-2x"></i>
+            <h6>Payment gateway</h6>
+            </a></li>
+        </ul>
+        <div id="my-tab-content" class="tab-content">
+          <div class="tab-pane active" id="f1">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+            </div>
+            <div class="span4 " style="margin-top:20px" > 
+			<h4>Start selling online to India and worldwide</h4></div>
+          </div>
+	
+<div class="tab-pane" id="f2">
+           <div class="span3">
+           </div>
+                        <div class="span4 " style="margin-top:20px" > 
+                       <h4>Mobile optimized sites from the word go, tap the mobile market</h4></div>
+         
+         </div>
+          <div class="tab-pane" id="f3">
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Be as creative as you want, design your store the way you want, without worrying about knowledge of coding, HTML etc</h4></div>
+          </div>
+          <div class="tab-pane" id="f4">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f5">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f6">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Get in built Google SEO for your sites, let people find you on Google
+Make your site socially relevant, integrate social media sites in your store
+</h4></div>
+          </div>
+		   <div class="tab-pane" id="f7">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f8">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Unlimited hosting on our servers, make as many pages as you want</h4></div>
+          </div>
+		   <div class="tab-pane" id="f9">
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+            </div>
+			<div class="span4 " style="margin-top:20px" > 
+			<h4>Get Payment Gateway, start accepting money online</h4></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<section>
+<div id="examples" class="box">
+    <div class="container">
+      <h1 class="hero">Our Stores</h1>
+      <p class="sub-hero">Check out simple themes below:</p>
+      <div class="tabbable">
+        <ul class="nav nav-tabs"  data-tabs="tabs" style="text-align:center">
+          <li class="active extab"><a href="#s1" data-toggle="tab2"><i class="icon-star-empty icon-2x"></i><h6>Featured</h6></a></li>
+          <li class="extab"><a href="#s2" data-toggle="tab2"><i class="icon-female icon-2x"></i><h6>Fashion</h6></a></li>
+          <li class="extab"><a href="#s3" data-toggle="tab2"><i class="icon-camera icon-2x"></i><h6>Electronics</h6></a></li>
+          <li class="extab"><a href="#s4" data-toggle="tab2"><i class="icon-gift icon-2x"></i><h6>Gifts</h6></a></li>
+		  <li class="extab"><a href="#s1" data-toggle="tab2"><i class="icon-plus-sign-alt icon-2x"></i><h6>Health</h6></a></li>
+          
+           </ul>
+        <div id="my-tab-content" class="tab-content">
+          <div class="tab-pane active" id="s1">
+
+<div>
+    <h4 class="title">a 
+	<span class="pull-right" style="height: 37px"> 
+	<a class="left button" href="#myCarousel" data-slide="prev">> </a>
+	<a class="right button" href="#myCarousel" data-slide="next">< </a> 
+	</span> 
+	</h4>
+      <div id="myCarousel" class="myCarousel carousel slide">
+        <div class="carousel-inner">
+          <div class="item">
+            <ul class="thumbnails" style="list-style:none">
+              <li class="span3" style = "margin-left: 5%">
+                
+<img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+              
+              </li>
+ <li class="span3">
+                 <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+           
+
+           
+              </li>
+              
+<li class="span3">
+                 <img src="/first/img/theme6.png" alt="">
+            			  <h4>Theme 1</h4>
+           		
+              </li>
+              <li class="span3">
+              <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+          
+
+          
+              </li>
+            </ul>
+          </div>
+          <div class="item active">
+            <ul class="thumbnails">
+ <li class="span3" style = "margin-left: 5%">
+                
+<img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+              
+              </li>
+ <li class="span3">
+                 <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+           
+
+           
+              </li>
+              
+<li class="span3" >
+                 <img src="/first/img/theme6.png" alt="">
+                                  <h4>Theme 1</h4>
+                        
+              </li>
+              <li class="span3" >
+             <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+          
+
+          
+              </li>
+
+            </ul>
+          </div>
+        </div> <!--carousel inner -->
+      </div>
+  </div>
+
+
+
+<script>
+      !function ($) {
+        $(function(){
+          // carousel demo
+          $('#myCarousel').carousel()
+        })
+      }(window.jQuery)
+    </script>
+</div>
+          <div class="tab-pane" id="s2">
+           <div style="margin-left:7%;">
+     
+        
+           <div class="span3"> <img src="/first/img/theme1.png" alt="">
+             <h4>Theme 7</h4>
+           </div>
+         </div>
+         </div>
+          <div class="tab-pane" id="s3">
+           <div>
+            <div class="span3"> <img src="/first/img/theme1.png" alt="">
+              <h4>Theme 6</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme2.png" alt="">
+              <h4>Theme 5</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme3.png" alt="">
+              <h4>Theme 4 </h4>
+            </div>
+           </div>
+          </div>
+          <div class="tab-pane" id="s4">
+           <div>
+            <div class="span3"> <img src="/first/img/theme4.png" alt="">
+              <h4>Theme 2</h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme5.png" alt="">
+              <h4>Theme 3 </h4>
+            </div>
+            <div class="span3"> <img src="/first/img/theme6.png" alt="">
+              <h4>Theme 1</h4>
+            </div>
+           </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+  <section style="padding:  0">
+ <div id="morefeatures" class="box">
+  <section>
+    <div class="container">
+      <h1 class="hero">More features</h1>
+      <p class="sub-hero">Check out some of the stuff we've created</p>
+      <ul class="row features_list" style="list-style-type: none;">
+            <li class="span4 no-hidden-fees">
+                <div class="icon"></div>
+               Ninja Security Features            </li>
+            <li class="span4 ev-certificate-checkout">
+                <div class="icon"></div>
+             Order Notifications
+            </li>
+            <li class="span4 unlimited-bandwidth">
+                <div class="icon"></div>
+        	Add Your Blog
+            </li>
+            <li class="span4 tweet-from-admin">
+                <div class="icon"></div>
+                Publish On Facebook
+            </li>
+            <li class="span4 free-image-hosting">
+                <div class="icon"></div>
+               Sell via Facebook
+            </li>
+            <li class="span4 password-protect">
+                <div class="icon"></div>
+                Unlimited Bandwidth
+            </li>
+            <li class="span4 built-with-seo">
+                <div class="icon"></div>
+                Ext. Warehouse Mgnt.
+            </li>
+            <li class="span4 email-customers">
+                <div class="icon"></div>
+              Social Notifications
+            </li>
+            <li class="span4 keep-track-inventory">
+                <div class="icon"></div>
+                Order Notification
+            </li>
+            <li class="span4 drag-drop-images">
+                <div class="icon"></div>
+              Create Customer Acc.
+            </li>
+            <li class="span4 add-blog">
+                <div class="icon"></div>
+            High Resolution Image
+            </li>
+            <li class="span4 strong-encryption">
+                <div class="icon"></div>
+                Password Protect Your Store
+            </li>
+            <li class="span4 order-notifications">
+                <div class="icon"></div>
+        	24x7 Customer Support
+            </li>
+            <li class="span4 keep-track-metrics">
+                <div class="icon"></div>
+               Template Customization
+            </li>
+            <li class="span4 friendly-customer-support">
+                <div class="icon"></div>
+                Beautiful Storefonts
+            </li>
+            <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Shopping Cart
+            </li>
+	<li class="span4 high-res-images">
+                <div class="icon"></div>
+                Discount Coupon Engine
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+               Lead Generation
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Manageable Acc.
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Manage Store On Go
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Integrable Analytics
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Integrable With ERP
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Supply Chain Mgnt.
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+              Hassel Free Setup
+            </li>
+ <li class="span4 high-res-images">
+                <div class="icon"></div>
+                Pre-integrated Payment Gateway
+            </li>
+
+
+
+        </ul>
+      
+    </div>
+    </section>
+<div id="blog" class="box">
+<section >
+
+			<div class="container">
+			
+				<h1 class="hero">Our Blog</h1>
+				<p class="sub-hero">Read our latest thoughts on our always interesting blog.</p>
+
+				<div class="members clearfix">
+					
+					<div class="member">
+						
+						<div class="overlay"></div>
+						<img src="/first/img/blog1.jpg" alt="Ferrol Cheyne" />
+						<p class="name to-right">Ferrol Cheyne.</p>
+						<p class="position to-right">Web Developer</p>
+						<p class="info to-right">Lorem ipsum dolor sit amet consecetur adipiscing sit elit. Lorem ipsum dolor sit amet consecetur adipiscing sit elit.</p>
+						<ul class="social to-right">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul>
+						
+					</div> <!-- /.member -->
+
+					<div class="member">
+						
+						<div class="overlay"></div>
+						<img src="/first/img/blog1.jpg" alt="Charlotte Dykes" />
+						<p class="name to-right">Charlotte Dykes.</p>
+						<p class="position to-right">Web Developer</p>
+						<p class="info to-right">Lorem ipsum dolor sit amet consecetur adipiscing sit elit. Lorem ipsum dolor sit amet consecetur adipiscing sit elit. </p>
+						<ul class="social to-right">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul>
+						
+					</div> <!-- /.member -->
+
+					<div class="member">
+						
+						<div class="overlay"></div>
+						<img src="/first/img/blog1.jpg" alt="William Paton" />
+						<p class="name to-right">William Paton.</p>
+						<p class="position to-right">Web Developer</p>
+						<p class="info to-right">Lorem ipsum dolor sit amet consecetur adipiscing sit elit. Lorem ipsum dolor sit amet consecetur adipiscing sit elit. </p>
+						<ul class="social to-right">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul>
+						
+					</div> <!-- /.member -->
+
+					<div class="member">
+						
+						<div class="overlay"></div>
+						<img src="/first/img/blog1.jpg" alt="Courtney Vijars" />
+						<p class="name to-left">Courtney Vijars.</p>
+						<p class="position to-left">Web Developer</p>
+						<p class="info to-left">Lorem ipsum dolor sit amet consecetur adipiscing sit elit. Lorem ipsum dolor sit amet consecetur adipiscing sit elit. </p>
+						<ul class="social to-left">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul>
+						
+					</div> <!-- /.member -->
+
+					<div class="member">
+						
+						<div class="overlay"></div>
+						<img src="/first/img/blog1.jpg" alt="Hok-Yee Siu" />
+						<p class="name to-left">Hok-Yee Siu.</p>
+						<p class="position to-left">Web Developer</p>
+						<p class="info to-left"> Lorem ipsum dolor sit amet consecetur adipiscing sit elit. Lorem ipsum dolor sit amet consecetur adipiscing sit elit.</p>
+						<ul class="social to-left">
+				            <li><a href="#">F</a></li>
+				            <li><a href="#">T</a></li>
+				            <li><a href="#">U</a></li>
+				            <li><a href="#">X</a></li>
+				        </ul>
+						
+					</div> <!-- /.member -->
+					
+				</div> <!-- /.members -->
+				
+			</div> <!-- /.container -->
+
+		</section> <!--/.our-team -->
+    </div>
+ 
+
+<div >
+  <footer class="main contact ">
+    <div class="container">
+      <h1 class="hero">Get in touch.</h1>
+      <div id="results">
+        <div class="alert alert-error" id="error"> Please fill in all required fields. </div>
+        <div class="alert alert-success" id="success"> Thanks for getting in touch. We will get back to you shortly! </div>
+      </div>
+      <div class="row-fluid">
+        <!-- /.span3 -->
+        <div class="span5 styledbox general" style="padding-left:1%">
+          <h5><b><i class="icon-envelope"></i>Email</b></h5>
+          <p>support@startashoppe.com <br /></p>
+            
+          <h5><b><i class="icon-phone"></i>Phone</b></h5>
+          <p>Phone no.: 01204825304<br/>
+	  </p>
+        </div>
+        <!-- /.span3 -->
+   
+	
+<div class="span6 offset1">
+          <div class="rmw-fluid">
+            <div class="span6">
+		<%= form_tag("/first/contact/", :method=>"put") do %>
+
+		 <%= text_field_tag(:name,"",:placeholder => "Name") %>
+              </div>
+              <!-- /.span6 -->
+              <div class="span6">
+                <%=text_field_tag 'email', nil, :placeholder => 'Email Address *'%>
+              </div>
+              <!-- /.span6 -->
+            </div>
+            <!-- /.row-fluid -->
+            <div class="row-fluid">
+              <div class="span12">
+                <textarea class="req" id="comments" name="comments" placeholder="Comments..."></textarea>
+                 <%= submit_tag("Submit",  :value => "Submit", :name=>"commit" ) %>
+              <!-- /.span12 -->
+            </div>
+            <!-- /.row-fluid --> 
+        <%end%>
+        </div>
+        <!-- /.span6 -->
+      </div>
+      <!-- /.row-fluid -->
+    </div>
+
+          
+    <!-- /.container -->
+     <div class="copyright clearfix">
+      <div class="container">
+       
+        <!-- /.pull-left -->
+        <div class="row">
+            <div class="span3" style="margin-left: 5%;">      
+                <h5><b>Product</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="about.html" style="color:white;">Features</a></li>
+                    <li><a href="terms.html" style="color:white;">Pricing</a></li>
+                    <li><a href="faq.html" style="color:white;">Add on services</a></li>
+                </ul>
+            </div>
+            <div class="span3">      
+                <h5><b>Support</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="about.html" style="color:white;">Community forum</a></li>
+                    <li><a href="terms.html" style="color:white;">Support portal</a></li>
+                    <li><a href="faq.html" style="color:white;">Webinars</a></li>
+                    <li><a href="faq.html" style="color:white;">Tutorial</a></li>
+                </ul>
+            </div>
+            
+                    <div class="span3">      
+            <h5><b>Why Startashoppe</b></h5>
+                <ul style="list-style:none" class="nav nav-stacked">
+                   
+                   <li><a href="faq.html" style="color:white;">FAQs</a></li>
+                    <li><a href="faq.html" style="color:white;">Blog</a></li>
+                </ul>
+            </div>
+            <div class="span2">      
+                <h5><b>Contact us</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="/first/about" style="color:white;">About us</a></li>
+                 
+                    <li><a href="/first/terms" style="color:white;">Terms of service</a></li>
+                    <li><a href="faq.html" style="color:white;">Privacy</a></li>
+                              </ul>
+            </div>
+        </div>
+<div>
+
+  <ul style= "text-align: center;list-style: none">
+                    <li>
+                        <img src="/first/img/twitter.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Twitter</a>
+ <img src="/first/img/facebook.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Facebook</a>
+                        <img src="/first/img/linkedin.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Linkedin</a>
+                       <img src="/first/img/youtube.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Youtube</a>
+                       <img src="/first/img/pinterest.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Pinterest</a>
+
+
+                    </li>
+</ul>
+
+</div>
+
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.copyright -->
+  </footer>
+</div>
+<!-- /footer.main -->
+<script type="text/javascript" src="/first/js/jquery.js"></script>
+<script type="text/javascript" src="/first/js/bootstrap.js"></script>
+<script type="text/javascript" src="/first/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/first/js/custom.js"></script>
+<script type="text/javascript" src="/first/js/jquery.debouncedresize.js"></script>
+<script type="text/javascript" src="/first/js/retina.js"></script>
+<script type="text/javascript" src="/first/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="/first/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript" src="/first/js/jquery.isotope.min.js"></script>
+<script type="text/javascript" src="/first/js/jquery.actual.js"></script>
+<script type="text/javascript" src="/first/js/form.js"></script>
+<script type="text/javascript">
+
+		jQuery(document).ready(function($) {
+
+
+		});
+ 
+
+
+	</script>
+<script src="/first/js/jquery.min.js"></script>
+<script src="/first/js/bootstrap-tooltip.js"></script>
+<script src="/first/js/bootstrap-popover.js"></script>
+<script>
+$(function ()
+{ $("#email").popover();
+});
+$(function ()
+{ $("#aemail").popover();
+});
+
+ $("#sachin :input").tooltip( {
+    placement:'top',trigger: 'onfocus',animation: true});
+	$("#asachin :input").tooltip( {
+    placement:'bottom',trigger: 'onfocus',animation: true});
+
+</script>
+<script>
+$(function ()
+{ $("#webaddress").popover();
+});
+$(function ()
+{ $("#awebaddress").popover();
+});
+
+</script>
+ <script type="text/javascript">
+ 
+		// When the DOM is ready, initialize the scripts.
+		jQuery(function( $ ){
+ 
+			// Get a reference to the message whose position
+			// we want to "fix" on window-scroll.
+			var message = $( "#site-message" );
+ 
+			// Get the origional position of the message; we will
+			// need this to compare to the view scroll for
+			// reverting back to the original display position.
+			var originalMessageTop = message.offset().top;
+ 
+			// Get a reference to the window object; we will use
+			// this several time, so cache the jQuery wrapper.
+			var view = $( window );
+ 
+ 
+			// Bind to the window scroll and resize events.
+			// Remember, resizing can also change the scroll
+			// of the page.
+			view.bind(
+				"scroll resize",
+				function(){
+ 
+					// Get the current scroll of the window.
+					var viewTop = view.scrollTop();
+ 
+					// Check to see if the view had scroll down
+					// past the top of the original message top
+					// AND that the message is not yet fixed.
+					if (
+						(viewTop > originalMessageTop) &&
+						!message.is( ".site-message-fixed" )
+						){
+ 
+						// Toggle the message classes.
+						message
+							.removeClass( "site-message-absolute" )
+							.addClass( "site-message-fixed" )
+						;
+ 
+					// Check to see if the view has scroll back up
+					// above the message AND that the message is
+					// currently fixed.
+					} else if (
+						(viewTop <= originalMessageTop) &&
+						message.is( ".site-message-fixed" )
+						){
+ 
+						// Toggle the message classes.
+						message
+							.removeClass( "site-message-fixed" )
+							.addClass( "site-message-absolute" )
+						;
+ 
+					}
+				}
+			);
+ 
+		});
+ 
+	</script>
+    
+    
+    <script>
+    $(function(){
+    $(document).scroll(function(){
+        if (document.body.scrollTop>300){
+            $(".show").show();
+       } else
+       {
+           $(".show").hide();
+       }
+    });
+});
+    </script>
+</body>
+</html>

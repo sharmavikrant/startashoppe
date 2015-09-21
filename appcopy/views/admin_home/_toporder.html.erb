@@ -1,0 +1,67 @@
+
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+						<i class="icon-tasks"></i>
+
+						<%if $order.count > 0 then %>
+
+						<span class="badge"><%=$order.count%></span>
+
+						<%end%>
+
+						</a>
+
+						<ul class="dropdown-menu extended tasks">
+
+							<li>
+
+								<p>You have <%=$order.count%> New Orders</p>
+
+							</li>
+
+							<%if $order[0] != nil%>
+
+								
+
+							<li>
+
+								<ul class="dropdown-menu-list scroller" style="height:250px">
+
+									<%$order.each do |a|%>
+
+									<li>
+
+										<a href="/admin_home/order?id=<%=a[:order_id]%>&way=notification">
+
+										<span class="label label-important"><i class="icon-plus"></i></span>
+
+										
+
+										<%=a[:name]%>
+
+										<span class="time">Placed Order </span>
+
+										</a>
+
+									</li>
+
+									<%end%>
+
+								</ul>
+
+							</li>
+
+							
+
+									<%end%>
+
+							<li class="external">
+
+								<a href="/admin_home/order">See all Orders <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					

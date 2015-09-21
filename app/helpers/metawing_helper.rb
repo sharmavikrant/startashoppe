@@ -1,0 +1,2 @@
+module MetawingHelper
+end

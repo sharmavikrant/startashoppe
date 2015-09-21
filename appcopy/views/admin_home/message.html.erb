@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	
+
+	
+
+    <link href="/adminhome/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link href="/css/sangoma-green.css" rel="stylesheet" type="text/css">
+
+	
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+
+
+<script type="text/javascript"> 
+
+function disableselect(e){  
+
+return false  
+
+}  
+
+
+
+function reEnable(){  
+
+return true  
+
+}  
+
+
+
+//if IE4+  
+
+document.onselectstart=new Function ("return false")  
+
+document.oncontextmenu=new Function ("return false")  
+
+//if NS6  
+
+if (window.sidebar){  
+
+document.onmousedown=disableselect  
+
+document.onclick=reEnable  
+
+}
+
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+    <script>
+
+  $(function() {
+
+    $( "#startdatepicker" ).datepicker();
+
+  });
+
+  $(function() {
+
+    $( "#enddatepicker" ).datepicker();
+
+  });
+
+  </script>
+
+	<script>
+
+$(document).ready(function() {
+
+  $('p').hide();
+
+  $('#filter_by_date').hide();
+
+});
+
+</script>
+
+	<style>
+
+p, td ,label{
+
+font-family: 'Oxygen', sans-serif;
+
+
+
+color:#563d7c !important;
+
+}
+
+.Pending{
+
+background-color:#FA8258;
+
+}
+
+.header .nav > li.dropdown .dropdown-toggle .badge {
+
+position: absolute;
+
+font-size: 11px !important;
+
+font-weight: 300;
+
+top: 8px;
+
+right: 24px;
+
+text-align: center;
+
+height: 14px;
+
+background-color: #e02222;
+
+padding: 2px 6px 2px 6px;
+
+-webkit-border-radius: 12px !important;
+
+-moz-border-radius: 12px !important;
+
+border-radius: 12px !important;
+
+text-shadow: none !important;
+
+}
+
+.label, .badge {
+
+font-weight: 300;
+
+
+
+}
+
+.badge {
+
+padding-right: 9px;
+
+padding-left: 9px;
+
+-webkit-border-radius: 9px;
+
+-moz-border-radius: 9px;
+
+border-radius: 9px;
+
+}
+
+.label, .badge {
+
+display: inline-block;
+
+padding: 2px 4px;
+
+font-size: 11.844px;
+
+font-weight: bold;
+
+line-height: 14px;
+
+color: #fff;
+
+text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+
+white-space: nowrap;
+
+vertical-align: baseline;
+
+background-color: #999;
+
+}
+
+.return { 
+
+background-color:white !important;
+
+color:#563d7c !important;
+
+font-family: 'Oxygen', sans-serif !important;
+
+font-weight: bold;
+
+
+
+}
+
+.Dispatch, .Ready, .Delivered
+
+{ background-color:rgb(210, 198, 214)}
+
+.go{
+
+cursor: pointer;
+
+display: inline-block;
+
+font-weight: bold;
+
+font-size: 14px;
+
+line-height: 20px;
+
+padding: 4px 12px;
+
+text-align: center;
+
+vertical-align: middle;
+
+background: #563d7c;
+
+-webkit-transition: all 350ms ease;
+
+-moz-transition: all 350ms ease;
+
+-o-transition: all 350ms ease;
+
+transition: all 350ms ease;
+
+-webkit-border-radius: 4px;
+
+-moz-border-radius: 4px;
+
+border-radius: 4px;
+
+color:white;}
+
+</style>
+
+
+
+</head>
+
+
+
+<body  >
+
+<div class="header navbar navbar-inverse navbar-fixed-top">
+
+		<!-- BEGIN TOP NAVIGATION BAR -->
+
+		<div class="navbar-inner" style ="margin-top: 0;" >
+
+			<div class="container-fluid">
+
+				<!-- BEGIN LOGO -->
+
+				<a class="brand" href="/admin_home/adminhome" style="margin-left:1%;">
+
+				StartAshoppe
+
+				</a>
+
+				
+
+				<i class="icon-home icon-2x" style="color: white;">
+
+					 <%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
+
+					<a href=<%="http://"+@a1[0]['url_name']+".startashoppe.com"%> class="btn btn-lg return">Go to your Shop</a>
+
+    
+
+				</i>
+
+		
+
+				<!-- END LOGO -->
+
+				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+				<a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+				<img src="/first/img/menu-toggler.png" alt="" />
+
+				</a>          
+
+				<!-- END RESPONSIVE MENU TOGGLER -->            
+
+				<!-- BEGIN TOP NAVIGATION MENU -->              
+
+				<ul  class="nav pull-right">
+
+				
+
+					<!-- BEGIN NOTIFICATION DROPDOWN -->   
+
+					<li class="dropdown" id="header_order_bar">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+						<i class="icon-tasks"></i>
+
+						<%if $order.count > 0 then %>
+
+						<span class="badge"><%=$order.count%></span>
+
+						<%end%>
+
+						</a>
+
+						<ul class="dropdown-menu extended tasks">
+
+							<li>
+
+								<p>You have <%=$order.count%> New Orders</p>
+
+							</li>
+
+							<%if $order[0] != nil%>
+
+								
+
+							<li>
+
+								<ul class="dropdown-menu-list scroller" style="height:250px">
+
+									<%$order.each do |a|%>
+
+									<li>
+
+										<a href="/admin_home/order?id=<%=a[:order_id]%>&way=notification">
+
+										<span class="label label-important"><i class="icon-plus"></i></span>
+
+										
+
+										<%=a[:name]%>
+
+										<span class="time">Placed Order </span>
+
+										</a>
+
+									</li>
+
+									<%end%>
+
+								</ul>
+
+							</li>
+
+							
+
+									<%end%>
+
+							<li class="external">
+
+								<a href="/admin_home/order">See all Orders <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					</li>
+
+					
+
+					<!-- END NOTIFICATION DROPDOWN -->
+
+					<!-- BEGIN INBOX DROPDOWN -->
+
+					
+
+					<li class="dropdown"  id="header_message_bar">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+						<i class="icon-envelope"></i>
+
+						<p id="header_message_count"><span  class="badge"><%=$message.count%></span></p>
+
+						</a>
+
+						<ul class="dropdown-menu extended inbox">
+
+							<li>
+
+								<p id ="inner_message_count">You have <%=$message.count%> new messages</p>
+
+							</li>
+
+							<%if $message[0] != nil%>
+
+							<li>
+
+								<ul class="dropdown-menu-list scroller" style="height:250px" id ="test123">
+
+									<%$message.each do |a|%>
+
+									<li>
+
+									
+
+										<a href="/admin_home/message?id=<%=a[:message_id]%>&way=notification">
+
+										
+
+										<span class="subject">
+
+										<span class="from"><%=a[:name]%></span>
+
+										
+
+										</span>
+
+										<span class="message">
+
+										<%=a[:message]%>
+
+										</span>  
+
+										</a>
+
+									</li>
+
+									<%end%>
+
+									
+
+									
+
+								</ul>
+
+							</li>
+
+							<%else%>
+
+							<li>
+
+								<ul class="dropdown-menu-list scroller" style="height:250px" id ="test123">
+
+									
+
+									
+
+									
+
+								</ul>
+
+							</li>
+
+							<%end%>
+
+							<li >
+
+								<a href="/admin/message">See all messages <i class="m-icon-swapright"></i></a>
+
+							</li>
+
+						</ul>
+
+					</li>
+
+					
+
+					<!-- END INBOX DROPDOWN -->
+
+					              
+
+					<!-- BEGIN USER LOGIN DROPDOWN -->
+
+					<li class="dropdown user">
+
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+						
+
+						<span class="username">Admin</span>
+
+						<i class="icon-angle-down"></i>
+
+						</a>
+
+						<ul class="dropdown-menu">
+
+							
+
+							<li><i class="icon-key"></i> <%=link_to "Log out", :controller => "admin_home", :action => "admin_logout", :id => @profile, :value => "logout" %></li>
+
+						</ul>
+
+					</li>
+
+					<!-- END USER LOGIN DROPDOWN -->
+
+					<!-- END USER LOGIN DROPDOWN -->
+
+				</ul>
+
+				<!-- END TOP NAVIGATION MENU --> 
+
+			</div>
+
+		</div>
+
+		<!-- END TOP NAVIGATION BAR -->
+
+	</div>
+
+
+<div class="row-fluid" style="padding-top:4.18%">
+
+
+
+	<article class="span12 data-block">
+
+	<header>
+
+	<h2>Messages</h2>
+
+	
+
+	
+
+	
+
+</header>
+
+	<div class="data-block-nav tab-content">
+
+	  
+
+
+
+	
+
+	
+
+	
+
+	
+
+	
+
+<section>	
+
+						
+
+<article class="span12 data-block">
+
+
+
+<form id="order-form" enctype="multipart/form-data" method="post" action="">
+
+	<table id="orders-list" class="table table-hover isotope powertour-hook-relative">
+
+				<tbody>
+
+					<tr data-id="453" class="element ready-for-dispatch isotope-item active" style=" font-family: 'Oxygen', sans-serif; background-color:rgb(167, 121, 236)">
+
+						
+
+						<td class="left span2"> Name</td>
+
+						
+
+						<td class="left span2">Email Id </td>
+
+						<td class="left span2">Phone No</td>
+
+						
+
+						<td class="right span2">Message</td>
+
+					</tr>
+
+					
+
+				<%@message.each do |i|%>
+
+				
+
+				<tr class =<%=i['order_status']%>>
+
+					
+
+					
+
+					
+
+					<td class="left span2"><%=i["name"]%></td>
+
+					<td class="left span2"><%=i["email"]%></td>
+
+					<td class="left span2"><%=i["phone"]%></td>
+
+					<td class="left span2"><%=i["message"]%></td>
+
+					
+
+					
+
+				</tr>
+
+	<%end%>
+
+		</tbody>
+
+	</table>
+
+		</form>
+
+
+
+
+
+</article>
+
+
+
+
+
+  <script src="/js/bootstrap.min.js"></script>
+
+    <script src="/js/theme.js"></script>
+
+	
+
+  
+
+</body>
+
+</html>
+

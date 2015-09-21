@@ -1,0 +1,351 @@
+	<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title><%= session[:shop_name]%></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="/theme10/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme10/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<link href="/theme10/themes/css/bootstrappage.css" rel="stylesheet"/>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
+		<!-- global styles -->
+		
+		<link href="/theme10/themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="/theme10/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme10/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme10/themes/js/superfish.js"></script>	
+		<script src="/theme10/themes/js/jquery.scrolltotop.js"></script>
+        
+		<style>
+			.style_image {
+				height: 150px;
+				}
+		</style>
+	</head>
+    <body>	
+	<%= render :partial => 'header10' %>
+			           <!--slider section starts here-->
+       <%@product=Masterusers.find_by_sql("select * from masterusers where master_user_id = "+session["master_user_id"].to_s)%> 
+<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>			   
+<section  class="homepage-slider" id="home-slider">
+    <div id="myCarousel" class="carousel slide carouselhome">
+         <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+   
+    
+  </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="<%= @product[0]['slide_1']%>" alt="">
+        <!--  <div class="container">
+            <div class="carousel-caption slider-caption">
+              <h1>Example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+             
+            </div>
+          </div> -->
+        </div>
+        <div class="item">
+          <img src="<%= @product[0]['slide_2']%>" alt="">
+         <!-- <div class="container">
+            <div class="carousel-caption slider-caption1">
+              <h1>Another example headline.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+             
+            </div>
+          </div>-->
+        </div>
+        <div class="item">
+          <img src="<%= @product[0]['slide_3']%>" alt="">
+<!--          <div class="container">
+            <div class="carousel-caption slider-caption">
+              <h1>One more for good measure.</h1>
+              <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+             
+            </div>
+          </div> -->
+        </div>
+          
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div><!-- /.carousel -->
+
+                
+</section>
+            
+            
+            <!--section slider ends here-->
+            
+    
+            <section class="main-content">
+              <!-- <section class="header_text">
+                    <h2>welcome to my store</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus posuere pulvinar interdum. Duis id porttitor risus. Etiam nec arcu <br/>venenatis, fringilla velit et, tempor mi. In tempor nulla vitae mi blandit, nec cursus est faucibus. </p>
+			</section>-->
+                <section class="featured-products">													
+		<div class="row">
+
+	<%@category.each do |c|%>
+		
+<div class="span6">
+  <h2 class="widget-title"><span><%= c['product_category_name']%></span></h2>
+	<div class="sidebar-line"><span></span></div>
+		<h4 class="title">
+		<span class="pull-right">
+		<a class="left button" href='#<%=c['product_category_id']%>' data-slide="prev"></a><a class="right button" href='#<%=c['product_category_id']%>' data-slide="next"></a>
+		</span>
+		</h4>
+
+		<div id='<%= c['product_category_id']%>' class="myCarousel carousel slide">
+			<div class="carousel-inner">
+
+	<% @products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]} where product_category_id=#{c['product_category_id']}")%>
+	<% count = 0;%>
+	<% c = 0;%>
+
+<%@products.each do |p|%>
+
+	<% count=count+1;%>
+<%end%>		
+		<%if c <=2 then %>
+				<div class="active item">
+					<ul class="thumbnails">						
+		
+
+		
+			<% for i in (0..1) %>
+					<%@category.each do |c|%>
+						<% if @products[i]["product_category_id"] == c["product_category_id"]%>
+							<% @cat = c["product_category_name"]%>
+						<%end%>
+					<%end%>
+					<%@sub_category.each do |s|%>
+						<% if @products[i]["sub_category_id"] == s["sub_category_id"]%>
+							<% @sub = s["sub_category_name"]%>
+						<%end%>
+					<%end%>
+				<% if @products[i]!= nil %>
+						<li class="span3">
+						      <div class="item-product">
+						<a href=/<%="#{@products[i][:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{@products[i]['product_id']}"%>>		<%= image_tag("#{@products[i]['image_1']}thumb/#{@products[i][:image_name_1]}", :class => "style_image")   %>
+</a>
+							<label class="title"><%= @products[i][:product_name]%></label>	                                                
+							<label class="price">INR <%= @products[i][:price]%></label>
+        					        <label class="btn_buy"><a href=/<%="#{@products[i][:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{@products[i]['product_id']}"%>>Buy</a></label>
+					                
+					                <br></label><div class="clear"></div>
+                                                      </div>
+                                                    <div class="clear"></div>
+						</li>
+				<%end%>
+	<% c=c+1;%>
+			   <% end %>
+		
+					</ul>
+				</div>
+			
+			<%end%>
+			<%if c > 1 then %>	
+				<div class="item">
+					<ul class="thumbnails">	
+				<% for j in (2..3) %>
+					<% if @products[j]!= nil %>
+              				<li class="span3">
+					  <div class="item-product">
+<a href=/<%="#{@products[i][:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{@products[i]['product_id']}"%>><%= image_tag("#{@products[i]['image_1']}thumb/#{@products[i][:image_name_1]}", :class => "style_image")%></a>
+						<label class="title"><%= @products[j][:product_name]%></label>
+                                                <label class="price">INR <%= @products[i][:price]%></label>
+				                           					        <label class="btn_buy"><a href=/<%="#{@products[i][:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{@products[i]['product_id']}"%>>BUY</a></label>
+
+                    				<label class="prod_view_label">
+				                <button class="btn btn-primary view_prod_info" type="button">View Details</button>
+			                        <br>
+						</label><div class="clear"></div>
+                                         </div>
+					    <div class="clear"></div>
+					</li>
+					<%end%>
+				<%end%>
+				
+					</ul>
+	
+				</div>
+<% c=c+1;%>
+			<%end%>							
+			</div>							
+		</div>
+	</div>						
+			<%end%>
+							
+						<br/>
+					
+								
+							
+				
+			
+             
+                    </div>
+						<br/>
+					
+								
+					
+
+			</section>
+                
+               
+            
+            
+            
+            
+            <section class="new-arrival">
+                <div class="row">
+                    <div class="span12">
+                        <h2 class="widget-title"><span>Just Arrived</span></h2>
+                        <div class="sidebar-line"><span></span></div>
+											<ul class="thumbnails">	
+
+                                                <div class="row">
+
+
+	<% @products=Masterusers.find_by_sql("select * from product_#{session["master_user_id"]}  ORDER BY product_id DESC LIMIT 12")%>
+		
+	
+		<%@products.each do |i|%>
+											<%@category.each do |c|%>
+												<% if i["product_category_id"] == c["product_category_id"]%>
+													<% @cat = c["product_category_name"]%>
+												<%end%>
+											<%end%>
+											<%@sub_category.each do |s|%>
+												<% if i["sub_category_id"] == s["sub_category_id"]%>
+													<% @sub = s["sub_category_name"]%>
+												<%end%>
+											<%end%>
+	<li class="span2">
+		<div class="item-product">
+<a href=/<%="#{i[:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{i['product_id']}"%>>	<%= image_tag("#{i['image_1']}thumb/#{i[:image_name_1]}", :class => "style_image")  %></a>
+
+		<label class="title"><%= i['product_name']%></label>
+
+		<label class="price">INR <%= i['price']%></label>
+                <label class="btn_buy"><a href=/<%="#{i[:title].parameterize}/#{@cat.parameterize}/#{@sub.parameterize}/c_shop_10/#{i['product_id']}"%>>View Detail</a></label>
+                
+             
+                
+                <br></label><div class="clear"></div>
+                </div>
+	</li>
+                                                    <%end%>
+
+                  
+											</div></ul>
+									</div></div>
+			</section>            
+            </section>
+			  <section id="footer-bar">
+				<div class="row">
+					<div class="span4">
+                        <div class="heading_footer">                 
+						<h4>Navigation</h4>
+                        </div>
+                        <div class="row">
+                        <div class="span2">
+                       
+						<ul class="nav">
+							
+							<li><a href="/c_shop10/home">About Us</a></li>
+							<li><a href="/c_shop10/home">Shipping &amp; Delivery Policy</a></li>
+							<li><a href="/c_shop10/home">Disclaimer Policy</a></li>
+							
+						</ul>
+                            </div>
+                         <div class="span2">
+                       
+						<ul class="nav">
+							<li><a href="/c_shop10/home">
+Terms &amp; Conditions</a></li>  
+							
+							<li><a href="/c_shop10/home">
+Privacy Policy</a></li>
+							<li><a href="/c_shop10/home">
+Cancellation &amp; Refund</a></li>							
+						</ul>
+                            </div>
+                                </div>
+					</div>
+					<div class="span4">
+                    <div class="heading_footer2">                 
+						<h4>My Account</h4>
+                     </div>
+                        <div class="row">
+                            <div class="span2">
+						<ul class="nav">
+							<li><a href="/c_shop10/home">My Account</a></li>
+							<li><a href="/c_shop10/home">Order History</a></li>
+							<li><a href="/c_shop10/home">Wish List</a></li>
+							<li><a href="/c_shop10/home">Newsletter</a></li>
+						</ul>
+					</div>
+                        <div class="span2">
+						<ul class="nav">
+							<li><a href="/c_shop10/home">My Account</a></li>
+							<li><a href="/c_shop10/home">Order History</a></li>
+							<li><a href="/c_shop10/home">Wish List</a></li>
+							<li><a href="/c_shop10/home">Newsletter</a></li>
+						</ul>
+					</div></div></div>
+					<div class="span3">
+						<div class="heading_footer2">                 
+						<h4>My Account</h4>
+                     </div>
+                        <ul class="nav">
+							<li><a href="/c_shop10/home">My Account</a></li>
+							<li><a href="/c_shop10/home">Order History</a></li>
+							
+                        
+						</ul>
+                        <span class="social_icons" style="color:#fff!important;">
+							<a class="facebook" href="/c_shop10/home">Facebook</a>
+							<a class="twitter" href="/c_shop10/home">Twitter</a>
+							<a class="skype" href="/c_shop10/home">Skype</a>
+							<a class="vimeo" href="/c_shop10/home">Vimeo</a>
+						</span>
+						
+					</div>					
+				</div>	
+			</section>
+
+			<section id="copyright">
+				<span>Powered by <a href="http://www.startashoppe.com">StartAShoppe</a></span>
+			</section>
+</div>
+		<script src="/theme10/themes/js/common.js"></script>
+		<script src="/theme10/themes/js/jquery.flexslider-min.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(document).ready(function() {
+					$('.flexslider').flexslider({
+						animation: "fade",
+						slideshowSpeed: 4000,
+						animationSpeed: 600,
+						controlNav: false,
+						directionNav: true,
+						controlsContainer: ".flex-container" // the container that holds the flexslider
+					});
+				});
+			});
+		</script>
+       
+    </body>
+</html>
+

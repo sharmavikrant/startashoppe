@@ -1,0 +1,10 @@
+<% if @ajaxsearch == "error" %>
+	$("#testing2").html("email alredy exists <br> please select another one ");
+	document.forms["details"]["emailaddress"].focus();	
+	<%end%>
+	<% if @ajaxsearch == "ok" %>
+	$("#testing2").html(" "); 
+	<%end%>
+	<% if @ajaxsearch == "theme" %>
+		$("#theme").html('<div class="heading_featured" ><fieldset style="height: 35px; background-color: #FF0040;color: #FFFFFF;padding-top:10px;border: 2px solid;  border-radius:25px;"><div align="center"><font size="5"><p class="flash-msg"> <%= "Theme Selected Press Next Button "  %> </p></font></div></fieldset></div>'); 
+	<%end%>

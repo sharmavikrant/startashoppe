@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href=" btn.css" rel="stylesheet">
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body style="background-color:#8363B3;">
+
+<%if session[:flag] != "true" then%>
+
+<div style="background-color:#8363B3;">
+            <a href="#"   onclick="
+   window.open(
+     'https://www.facebook.com/sharer/sharer.php?u=http://lvh.me:3000/c_shop/c_step_2', 
+     'facebook-share-dialog', 
+     'width=626,height=436'); 
+   return false;" type="button" class="btn btn-new btn-lg btn3d" style="width:30%; height:50px; margin-left: 35%; margin-top: 20%;}"><h1>Share on <i class="icon-facebook icon-large icon-white"></i>acebook</h1></a>
+           
+<%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
+
+
+ <a href="http://"+@a1[0]['url_name']+".startashoppe.com/c_shop/shop_search_2" type="button" class="btn btn-new btn-lg btn3d" style="width:30%; height:50px; margin-left: 35%;}"><h1>Go To Your Sh<i class="icon-home icon-large icon-white">p</i></h1></a>
+</div>
+
+<%end%>	
+
+</body>
+</html>
+
+
+
+<%if session[:flag] != "true" then%>			
+		<div class="span3" style="padding-left:38%;padding-top:1%">
+		
+			<a href="#" 
+ onclick="
+   window.open(
+     'https://www.facebook.com/sharer/sharer.php?u=http://lvh.me:3000/c_shop/c_step_2', 
+     'facebook-share-dialog', 
+     'width=626,height=436'); 
+   return false;">
+ Share your shop on Facebook
+</a>
+
+<br>
+<br>
+<br>
+			<%@a1=Masterusers.find_by_sql("select url_name from masterusers where master_user_id ='"+session[:master_user_id].to_s+"'")%>		
+			<a href=<%="http://"+@a1[0]['url_name']+".lvh.me:3000/c_shop/shop_search_2"%> class="btn btn-lg">Go to your Shop</a>
+		</div> 
+<%end%>		

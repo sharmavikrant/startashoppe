@@ -1,0 +1,29 @@
+	<table id="category_details" class="table table-stats table-condensed table-striped table-sortable">
+		<thead>
+			<tr>
+			<th>Transaction  Id</th>
+				<th>Product Id</th>
+				<th>Product Name</th>
+				<th>Order Id</th>
+				<th>Date</th>
+				<th>Quantity</th>
+				<th>Amount</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+		<%if !@sales.nil?%>
+			<%@sales.each do |i|%>
+			<tr>
+			<td><%=i['sale_id'] %></td>
+				<td><%= i['product_id'] %></td>
+				<td><%= i['productname'] %></td>
+				<td><%= i['order_id'] %></td>
+				<td><%= i['date'] %></td>
+				<td><%= i['quantity']%></td>
+				<td><%= i['total'] %></td>
+			</tr>
+			<%end%>
+		<%end%>
+		</tbody>
+	</table>

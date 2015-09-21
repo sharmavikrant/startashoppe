@@ -1,0 +1,278 @@
+/* #Tablet (Portrait)
+================================================== */
+/* Note: Design for a width of 768px */
+
+@media only screen and (min-width: 768px) and (max-width: 995px) {
+
+.content-box {max-width:788px;}
+
+/*----------------------------------------
+				Content
+---------------------------------------- */
+.main-separator {background-position: 500px 0;}
+
+.colborder {background-position:491px 0;}
+.grid_8.colborder {width:462px!important; padding-right:30px;}
+
+.separator {background-position: 550px 0;}
+.separator.left {background-position: 244px 0;}
+
+/*----------------------------------------
+				Slider
+---------------------------------------- */
+#slider-wrapper {height:413px;}
+.slider-container{
+	height:413px;
+	width:995px;
+	margin-left:-497px;	
+}
+	.camera_caption {
+		width: 788px;
+		margin-left:-394px;
+	}
+
+.camera_prev {left: 104px;}
+.camera_next {right: 104px;}
+.camera_commands {right: 144px;}
+
+
+/*----------------------------------------
+				Carousel
+---------------------------------------- */
+.es-carousel li h5 {font-size:13px;}
+
+
+.wp-pagenavi .extend, .wp-pagenavi a, .wp-pagenavi .current {margin-right:6px;}
+.row-top, .row-logo {padding: 0 10px;}	
+	
+/* Flickr widget */
+.flickrImages a {
+	width:58px;
+	height:58px;
+	}
+
+.frame.alignleft img,
+.frame.alignright img,
+.frame.alignnone img	{
+	width:100% !important;
+	height:auto !important;
+	}
+
+/* SlidesJS */
+.slides_container {
+	width:224px;
+}
+.slides_container .item {
+	width:224px;
+	height:170px;
+	}
+	.slides_container .item .featured-thumbnail {
+		float:none;
+		margin-right:0;
+		overflow:hidden;
+		}
+		.slides_container .item .featured-thumbnail img {
+			width:100%;
+			height:auto;
+			}
+/*----------------------------------------
+			Post
+---------------------------------------- */
+.post-meta time {margin-right:5px;}
+.comments-link {margin-right:5px;}
+
+/* Large thumbnail */
+.featured-thumbnail.large, .featured-thumbnail.large img {
+	width:465px;
+	height:236px;
+}
+/*----------------------------------------
+				Recent Post Events
+---------------------------------------- */
+.recent-posts.events li {
+	width:175px;
+	margin:0 10px 40px 0;
+}
+
+/*----------------------------------------
+				Recent Post Team
+---------------------------------------- */
+
+.recent-posts.team li .featured-thumbnail {
+	width:100px;
+	height:auto;
+	overflow:hidden;
+}
+
+/* Address */
+.address {overflow:hidden; padding:30px 0 0 0;}
+.address dt {
+	width:135px;
+	margin:0 110px;
+	padding:0 0 0 55px;
+	font-size:11px;
+	float:left;
+}
+.address dd {
+	width:195px;
+	padding:0 0 0 43px;
+	float:left;
+}
+	.address dd span {width:80px;}
+
+/* Google Map */
+.google-map {
+	position: relative;
+	padding-bottom: 46.25%;
+	height: 0;
+	overflow: hidden;
+	margin:0 0 2% 0;
+	float:none;
+}
+.google-map iframe,  
+.google-map object,  
+.google-map embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+/*---------------------------------------- 
+			Post Formats
+---------------------------------------- */
+
+/* Image Post Format */
+.image-post-format img {
+	width:100%;
+	overflow:hidden;
+}	
+
+/* Gallery Post Format */
+.slides_container_gallery {
+	width:534px;
+	height:270px;
+}
+	.slides_container_gallery .g_item {width:534px;}
+	
+	
+/*----------------------------------------
+				Portfolio
+---------------------------------------- */
+
+/* Default layout 3 columns */
+#gallery .portfolio li {
+	width:235px;
+	margin:0 18px 50px 0;
+}
+	#gallery .portfolio li a.image-wrap {
+		width:233px;
+		height:167px;
+	}
+	#gallery .portfolio li a.image-wrap img {
+		width:100%;
+		height:auto;
+	}
+
+/* 1 column portfolio*/
+#gallery.one_column .portfolio li a.image-wrap {
+	width:400px;
+	height:186px;
+}
+	#gallery.one_column .folio-desc {overflow:visible;}
+
+		
+/* 2 columns portfolio*/
+#gallery.two_columns .portfolio li {
+	width:362px;
+	margin-right:20px;
+}
+	#gallery.two_columns .portfolio li a.image-wrap {
+		width:360px;
+		height:167px;
+	}
+
+/* 4 columns portfolio*/
+#gallery.four_columns .portfolio li {
+	width:172px;
+}
+	#gallery.four_columns .portfolio li a.image-wrap {
+		width:170px;
+		height:123px;
+	}
+/*----------------------------------------
+				Comment Form
+---------------------------------------- */		
+.commentlist ul.children {margin:0 0 0 10px;}	
+
+/*----------------------------------------
+				Contact form
+---------------------------------------- */	
+.wpcf7-form p.field input {width:154px;}
+.wpcf7-form textarea {width:154px;}
+.wpcf7-not-valid-tip {width:165px !important; padding:6px 0 6px 5px !important;}
+
+	
+/*----------------------------------------
+				Sidebar
+---------------------------------------- */
+#searchform .searching {width:100px;}	
+
+.bc-wrap {margin-right: 10px;}
+/**************Shop styles************/
+
+.product.type-product .images + .summary {
+	width: 236px;
+}
+.product.type-product form.cart .button-alt {
+	margin-left: 5px;
+}
+.summary .single_variation .stock {
+	font-size: 11px;
+}
+#widget_recent_entries .product_list_widget li {
+	}
+	#widget_recent_entries .product_list_widget li .inner .product-image {
+		padding: 0 10px;
+	}
+	.tabs .tab .products li {width: 172px;}
+	.tabs .tab .products li .caption .title {font-size: 12px; line-height: 14px;}
+	.tabs .tab .products li .caption .button {
+		padding: 5px 6px 6px;
+	}	
+	.tabs .tab .products li .caption .price {
+		margin: 0 10px 0 5px;
+	}
+
+.jigoshop-products .products li {
+	 	width: 165px;
+	}
+	
+.jigoshop-products .products li .title {
+		font-size: 12px;
+		line-height: 15px;
+		text-transform: uppercase;
+	}
+	
+.jigoshop-products .products li .button {
+		padding: 4px 6px 5px;
+		float: right;
+	}
+	
+.jigoshop-products .products li .price {
+		font-size: 12px;
+		line-height: 15px;
+	}
+	
+.jigoshop-products .products li .caption {padding: 0 10px;}
+.post_list.popular h5 .post-title {
+	font-size: 12px;
+	line-height: 15px;
+}
+.post_list.popular li .featured-thumbnail {margin-right: 10px;}
+	
+	.jigoshop_message,
+	.shop .jigoshop_message {margin-right: 15px;}
+}

@@ -1,0 +1,68 @@
+<div class="copyright clearfix">
+      <div class="container">
+       
+        <!-- /.pull-left -->
+        <div class="row">
+            <div class="span3" style="margin-left: 5%;">      
+                <h5><b>Product</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="about.html" style="color:white;">Features</a></li>
+                    <li><a href="terms.html" style="color:white;">Pricing</a></li>
+                    <li><a href="faq.html" style="color:white;">Add on services</a></li>
+                </ul>
+            </div>
+            <div class="span3">      
+                <h5><b>Support</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="about.html" style="color:white;">Community forum</a></li>
+                    <li><a href="terms.html" style="color:white;">Support portal</a></li>
+                    <li><a href="faq.html" style="color:white;">Webinars</a></li>
+                    <li><a href="faq.html" style="color:white;">Tutorial</a></li>
+                </ul>
+            </div>
+            
+            <div class="span3">      
+            	<h5><b>Why Startashoppe</b></h5>
+                
+		<ul style="list-style:none" class="nav nav-stacked">
+			                <li><a href="faq.html" style="color:white;">FAQs</a></li>
+                    <li><a href= <%= "blog.startashoppe.com" %> style="color:white;">Blog</a></li>
+                </ul>
+            </div>
+            <div class="span2">      
+                <h5><b>Contact us</b></h5>
+                    
+        
+                <ul style="list-style:none" class="nav nav-stacked">
+                    <li><a href="/first/about" style="color:white;">About us</a></li>
+                 
+                    <li><a href="/first/terms" style="color:white;">Terms of service</a></li>
+                    <li><a href="faq.html" style="color:white;">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+     <div>
+
+  		<ul style= "text-align: center;list-style: none">
+                    <li>
+                        <img src="/first/img/twitter.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Twitter</a>
+ 				<img src="/first/img/facebook.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Facebook</a>
+                        	<img src="/first/img/linkedin.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Linkedin</a>
+                       		<img src="/first/img/youtube.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Youtube</a>
+                       		<img src="/first/img/pinterest.png" alt="Twitter icon" class="icon">
+                        <a href="#" title="Visit @Bigcommerce on Twitter">Pinterest</a>
+
+
+                    </li>
+		</ul>
+
+</div>
+

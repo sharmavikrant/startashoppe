@@ -1,0 +1,17 @@
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType /first/css/bootstrap-responsive.css "access plus 1 year"
+ExpiresByType /first/css/bootstrap.css "access plus 1 year"
+ExpiresByType /first/css/pricing.css "access plus 1 year"
+ExpiresByType /first/css/slider/bx_styles-v2.css "access plus 1 year"
+ExpiresByType /first/css/slider/foundation.min.css "access plus 1 month"
+ExpiresByType /first/css/slider/site.css "access plus 1 month"
+ExpiresByType /first/css/style.css "access plus 1 month"
+
+ExpiresDefault "access plus 2 days"
+</IfModule>
+## EXPIRES CACHING ##
+
+
+

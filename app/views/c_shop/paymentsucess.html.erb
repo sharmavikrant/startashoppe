@@ -1,0 +1,160 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample Invoice</title>
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<style>
+	@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+	body, h1, h2, h3, h4, h5, h6{
+		font-family: 'Bree Serif', serif;
+	}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="span12" style=" background-color: green;color: white;text-align: center;">
+			 
+				<h3><p>Thanks for Purchase Your transaction of amount Rs.<%=@order[0]["gatway_recived_amount"]%> is successful.</p></h3>
+			
+			</div>
+		</div>
+		<h1 style="text-align: center;">INVOICE</h1>
+		<div class="row">
+			<div class="span12">
+			
+				<div class="span10" style=" text-align: right;" >
+				  <h1>
+					<%=session[:shop_name]%>
+				  </h1>
+				</div>
+				
+			</div>
+		</div>
+			
+		  <div class="row">
+		    <div class="col-xs-5 col-xs-offset-2 text-right">
+		      <div class="panel panel-default">
+		              <div class="panel-body">
+							<table style="margin-left: 5%;">
+							<tr><td>Order No </td><td><%=@order[0]["order_id"]%></td></tr>
+							<tr>
+							<td>To :</td>
+							<td><%=@order[0]["name"]%></td>
+							</tr>
+							<tr>
+								<td>Address :</td>
+								<td><%=@order[0]["address"]%></td>
+							</tr>
+							<tr>
+								<td>City :</td>
+								<td><%=@order[0]["city"]%></td>
+							</tr>
+							<tr>
+								<td>State:</td>
+								<td><%=@order[0]["state"]%></td>
+							</tr>
+							<tr>
+								<td>LandMark: </td>
+								<td><%=@order[0]["landmark"]%></td>
+							</tr>
+							<tr>	
+								<td>Pincode: </td>
+								<td><%=@order[0]["pincode"]%></td>
+							</tr>
+							
+							</table>
+		                  
+		                
+		              </div>
+		            </div>
+		    </div>
+		  </div> <!-- / end client details section -->
+
+		         <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th><h4>Product Id</h4></th>
+            <th><h4>Name</h4></th>
+            <th><h4>Qty</h4></th>
+            <th><h4>Price</h4></th>
+            <th><h4>Sub Total</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+		<%@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",@a])%>
+						
+					<%@p.each do |a|%>
+						<%@product.each do |i|%>
+							<%b=a.split("-")%>
+							<%if i['product_id']==b[0].to_i  then %>
+								<%if i['revised_price'].nil? then %>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total %>
+								<%else%>
+									<%@p_total= i['sale_price'].to_i * b[1].to_i%>
+									<%@total=@total.to_i + @p_total%>
+								<%end%>
+
+				  <tr>
+
+
+
+					<td><%=i[:product_id]%></td>
+					<td><%=i[:title]%> </td>
+					<td><%=b[1]%></td>
+					<td>$<%=i["sale_price"]%></td>
+					<td>$<%=@p_total%></td>
+				  </tr>			  
+				<%end%>
+							
+						<%end%>
+					<%end%>
+          
+        </tbody>
+      </table>
+
+		<div class="row text-right">
+			<div class="col-xs-2 col-xs-offset-8">
+				<p>
+					<strong>
+						Sub Total :<%=@total%> <br>
+						TAX : Nil <br>
+						Total :<%=@total%> <br>
+					</strong>
+				</p>
+			</div>
+			
+		</div>
+
+
+		<div class="row">
+		  <div class="span6">
+		    <div class="span7">
+			  <div class="panel panel-info">
+			    <div class="panel-heading">
+			      <h4>Contact Details</h4>
+			    </div>
+			    <div class="panel-body">
+			      <p>
+			        Email : <%=@order[0]["email"]%> <br>
+			        Mobile : <%=@order[0]["phone"]%> <br>
+			        
+			      </p>
+			      
+			    </div>
+			  </div>
+			</div>
+		  </div>
+		  
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+

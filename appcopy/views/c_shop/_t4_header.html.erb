@@ -1,0 +1,85 @@
+<div id="top-bar" class="container">
+
+			<div class="row">
+
+				<div class="span4">
+
+					 <div id="demo-header" style= "width: 125px;height: 27px;float: left;padding-left: 60px;padding-bottom: 20px;position: relative;z-index: 999;top: 4px;font-family: sans-serif;text-transform: uppercase;margin-right: 36px;">
+
+					  <div class='span4'> <h1 style="color: #000000;"><b><i><%=session[:shop_name]%></i></b></h1></div>
+
+					   </div>
+
+				</div>
+
+				<div class="span8">
+
+					<div class="account pull-right">
+
+						<ul class="user-menu">				
+
+							<li>
+
+							<%=link_to "Your Cart", :controller =>  "c_shop4", :action => "add_to_cart", :id => @profile,:name => "show_cart", :method => :post %>
+
+							</li>
+
+							<li><a href="#">Login</a></li>		
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="wrapper" class="container">
+
+			<section class="navbar main-menu">
+
+				<div class="navbar-inner main-menu">				
+
+					<a href="/" class="logo pull-left"><img src="/theme4/themes/images/logo.png" class="site_logo" alt=""></a>
+
+					<nav id="menu" class="pull-right">
+
+						<ul>
+
+							<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+
+							<%@category.each do |i|%>
+
+							<li><a href="/c_shop4/view_all?c_id=<%=i['product_category_id']%>&filter=search"><%=i[:product_category_name]%></a>					
+
+								<ul>
+
+									<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+
+									<%@subcategory.each do |i|%>
+
+									<li><a href="/c_shop4/view_all?s_id=<%=i['sub_category_id']%>&filter=subcategory"><%=i[:sub_category_name]%></a></li>									
+
+									<%end%>								
+
+								</ul>
+
+							</li>
+
+							<%end%>
+
+												
+
+
+
+							<li><a href="/c_shop4/contact">Contact Us </a></li>
+
+						</ul>
+
+					</nav>
+
+				</div>
+
+			</section>

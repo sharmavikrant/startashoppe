@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bootstrap E-commerce Templates</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+		<!-- bootstrap -->
+		<link href="/theme4/bootstrap/css/bootstrap.min.css" rel="stylesheet">      
+		<link href="/theme4/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">		
+		<link href="/theme4/themes/css/bootstrappage.css" rel="stylesheet"/>
+		
+		<!-- global styles -->
+		<link href="/theme4/themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="/theme4/themes/css/main.css" rel="stylesheet"/>
+
+		<!-- scripts -->
+		<script src="/theme4/themes/js/jquery-1.7.2.min.js"></script>
+		<script src="/theme4/bootstrap/js/bootstrap.min.js"></script>				
+		<script src="/theme4/themes/js/superfish.js"></script>	
+		<script src="/theme4/themes/js/jquery.scrolltotop.js"></script>
+		<!--[if lt IE 9]>			
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="/theme4/js/respond.min.js"></script>
+		<![endif]-->
+		
+		
+		 
+		
+		<link rel="stylesheet" type="text/css" href="/theme4/menu/css/component.css" />
+		<script src="/theme4/menu/js/modernizr.custom.js"></script>
+		
+		
+		
+		
+	</head>
+    <body>		
+		
+		<%= render :partial => 't4_header' %>
+			
+			<section class="header_text sub">
+			<img class="pageBanner" src="/theme4/themes/images/pageBanner.png" alt="New products" >
+				
+			</section>
+			<section class="main-content">
+				
+				<div class="row">						
+					<div class="span9">								
+						<ul class="thumbnails listing-products">
+						<%@products.each do |p|%>
+					<%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+							<li class="span3">
+								<div class="product-box">
+									<span class="sale_tag"></span>												
+									<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>"><img alt="" src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  style="min-height: 220px;max-height: 220px;"> </a><br/>
+									<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="title"><%=p[:product_name]%> </a><br/>
+									<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="category"><%=p[:title]%></a>
+									<p class="price">$<%=p[:sale_price]%></p>
+								</div>
+							</li>  
+						<%end%>							
+													
+						<hr>
+						
+					</div>
+					<div class="span3 col">
+						<div id="dl-menu" class="dl-menuwrapper">
+							<img src="/theme4/menu/images/clickhere.png" ><button class="dl-trigger">Open Menu</button>
+							<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+							<ul class="dl-menu">
+								<%@category.each do |i|%>
+									<li>
+									
+										<a href="#"> <%=i["product_category_name"]%></a>
+										<ul class="dl-submenu">
+											<li> 
+												<%=link_to "view all", :controller =>  "c_shop4", :action => "view_all", :id => @profile,:filter => "search", :method => :post, :c_id => i['product_category_id'] %>
+											</li>
+											<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+												<%@subcategory.each do |j|%>
+												<li>
+													<%=link_to j["sub_category_name"], :controller =>  "c_shop4", :action => "view_all", :id => @profile,:filter => "subcategory", :method => :post, :s_id => j["sub_category_id"]%>
+												</li>
+											<%end%>	
+										</ul>
+									</li>
+								<%end%>
+							
+							
+							</ul>
+						</div><!-- /dl-menuwrapper -->
+						<div class="block" style="padding-top: 300px;">
+							<h4 class="title">
+								<span class="pull-left"><span class="text">Recently Viwed</span></span>
+								<span class="pull-right">
+									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+								</span>
+							</h4>
+							<%if !cookies[:recently_view].nil? then
+								@a=cookies[:recently_view]
+								@p=[]
+								@p=@a.split(' ')
+								@p=@p.to_set;
+								end%>
+							<% count =0;@recently=Masterusers.find_by_sql(["select * from product_#{session[:master_user_id]} where product_id IN (?)",@p])%>
+				
+							<div id="myCarousel" class="carousel slide">
+								<div class="carousel-inner">
+								<%@recently.each do |p| %>
+									<%c_id=(p[:product_category_id]-1);%><%s_id=(p[:sub_category_id]-1);%>
+								<%count=count+1%>
+
+									<%if count ==1 then %>
+										<div class="active item">
+											<ul class="thumbnails listing-products">
+												<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%> alt=""  style="min-height: 220px;max-height: 220px;"></a></p>
+														<a href="/<%=Masterusers.title(p[:title])%>/<%=@category[c_id]['product_category_name']%>/<%=@sub_category[s_id]['sub_category_name']%>/<%= @controller%>/<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+														<p class="price">$<%=p[:sale_price]%></p>
+													</div>
+												</li>
+											</ul>
+										</div>
+									<%else%>
+									
+									<div class="item">
+										<ul class="thumbnails listing-products">
+											<li class="span3">
+													<div class="product-box">
+														<span class="sale_tag"></span>
+														<p><a href="/c_shop4/product_detail?product=<%=p['product_id']%>"><img src=<%="#{p['image_1']}thumb/#{p[:image_name_1]}"%>  alt=""  style="min-height: 220px;max-height: 220px;"></a></p>
+														<a href="/c_shop4/product_detail?product=<%=p['product_id']%>" class="title"><%=p[:title]%></a><br/>
+														<p class="price">$<%=p[:sale_price]%></p>
+													</div>
+												</li>
+										</ul>
+									</div>
+									<%end%>
+								<%end%>
+									
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</section>
+			
+			<%= render :partial => 't4_footer' %>
+		</div>
+		<script src="/theme4/themes/js/common.js"></script>	
+    </body>
+		<script src="/theme4/menu/js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-2', classout : 'dl-animate-out-2' }
+				});
+			});
+		</script>
+		
+</html>

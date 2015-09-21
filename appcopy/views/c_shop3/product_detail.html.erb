@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title> <%=@product_detail[0]['title']%> | <%=session[:shop_name]%> </title>
+<meta name="description" content= <%=@product_detail[0]['description']%> >
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/shopymart/css/style.css" type="text/css" rel="stylesheet" media="screen" /> <!-- General style -->
+<link href="/shopymart/css/tipsy.css" type="text/css" rel="stylesheet" media="screen"><!--tooltip-->
+<link href="/shopymart/css/jquery.jqzoom.css" type="text/css" rel="stylesheet" media="screen"><!--zoom-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Arvo:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="/shopymart/js/jquery-1.8.2.min.js"></script>
+
+<script type="text/javascript" src="/shopymart/js/css3-mediaqueries.js"></script><!--mediaqueries-->
+<script type="text/javascript" src="/shopymart/js/modernizr-1.7.min.js"></script><!--modernizr-->
+<script type="text/javascript" src="/shopymart/js/jquery.tipsy.js"></script><!--tooltip-->
+<script type="text/javascript" src="/shopymart/js/jquery-hover-effect.js"></script><!--Image Hover Effect-->
+<script type='text/javascript' src='/shopymart/js/jquery.hoverIntent.minified.js'></script><!--menu-->
+<script type='text/javascript' src='/shopymart/js/jquery.dcmegamenu.1.3.3.js'></script><!--menu-->
+<script type="text/javascript" src="/shopymart/js/jquery.quovolver.js"></script><!--blockquote-->
+<script type='text/javascript' src="/shopymart/js/jquery.jqzoom-core.js"></script><!--image zoom-->
+<script type="text/javascript" src="/shopymart/js/organictabs.jquery.js"></script><!--tabs-->
+<script type="text/javascript" src="/shopymart/js/custom.js"></script><!--custom-->
+<!--MENU-->
+
+</head>
+
+<body>
+<script type="text/javascript">
+$(document).ready(function($){
+	$('#mega-menu-3').dcMegaMenu({
+		rowItems: '2',
+		speed: 'fast',
+		effect: 'fade'
+	});
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.jqzoom').jqzoom({
+            zoomType: 'innerzoom',
+            preloadImages: false,
+			zoomWidth: 300,
+            alwaysOn:false
+        });
+});
+</script>
+<script type="text/javascript">
+$(function() {        
+	$("#tab").organicTabs({
+  		"speed": 200
+	});    
+});
+</script>
+
+	<div id="page_wrap">
+    	<%= render :partial => 't3_header' %>
+        <div id="container">
+        	
+            
+            <div class="content-wrap">
+            	<div style="clear:both; display:block; height:20px"></div>
+                <div id="intro">
+                	<div class="one-fourth serv first">
+                    	<img src="/shopymart/images/service-1.png" alt="">
+                        <h3><a href="#">Free Shipping</a></h3>
+                        <span>Available</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-2.png" alt="">
+                        <h3><a href="#">30 Days Return</a></h3>
+                        <span>Easy Return</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-3.png" alt="">
+                        <h3><a href="#">Call Us</a></h3>
+                        <span>(63) 912 3456</span>
+                    </div>
+                    <div class="one-fourth serv">
+                    	<img src="/shopymart/images/service-4.png" alt="">
+                        <h3><a href="#">Secured</a></h3>
+                        <span>Checkout</span>
+                    </div>
+                </div><!--end:intro-->
+                <div class="container-2">
+                	<div style="clear:both; display:block; height:40px"></div>
+                	<div class="prod">
+					
+					<img src=<%="#{@product_detail[0]['image_1']}#{@product_detail[0][:image_name_1]}"%>  style="border: 4px solid #e5e5e5;">
+
+
+<!-- <div class="clearfix"> 
+                        <a href=<%=@product_detail[0][:image_1]%> class="jqzoom" rel='gal1'  title="triumph" > <img src=<%="#{@product_detail[0]['image_1']}#{@product_detail[0][:image_name_1]}"%> style="border: 4px solid #e5e5e5;"> </a>
+                        </div>
+                        <div class="clearfix" >
+                            <ul id="thumblist" class="clearfix" >
+                              <li>
+                                <a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/products/product_small1.jpg',largeimage: './images/products/product_big1.jpg'}"><img src='/shopymart/images/products/product_small1.jpg'></a>
+                              </li>
+                              <li><a href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/products/product_small2.jpg',largeimage: './images/products/product_big2.jpg'}"><img src='/shopymart/images/products/product_small2.jpg'></a></li>
+                              <li><a  href='javascript:void(0);' rel="{gallery: 'gal1', smallimage: './images/products/product_small3.jpg',largeimage: './images/products/product_big3.jpg'}"><img src='/shopymart/images/products/product_small3.jpg'></a></li>
+                            </ul>
+                        </div> -->
+
+
+
+
+
+
+
+
+
+                    </div><!--end:prod-->
+                    <div class="prod-detail">
+                    	<h2><%=@product_detail[0][:title]%></h2>
+                        <span class="price">$<%=@product_detail[0][:sale_price]%></span>
+						<form action="/c_shop3/add_to_cart?name=add to cart">
+                        	Choose you sizes :&nbsp;
+                            <select>
+                            	<option>Large</option>
+                                <option>Medium</option>
+                                <option>Small</option>
+                                <option>X-Large</option>
+                                <option>X-Small</option>
+                             </select>
+                             &nbsp;&nbsp;
+                             Quantity:&nbsp;
+						<input type="hidden" name="p_id" value=<%=@product_detail[0][:product_id]%> />
+
+                             <select name="quantity">
+											<% for j in 1..@product_detail[0][:quantity]  %>
+											<option value= <%= j %>><%= j %></option>
+											<%end%>
+											</select>
+											</br>
+											<span class="cart-button">
+							<%= submit_tag("add to cart",  :name=>"name",:value => "add to cart",:class=>"cart-button",:style=>"background-color: #f5640c;width: 100%;") %>
+								</span>
+                        
+
+<br>
+<%@ids=Masterusers.find_by_sql("select product_category_id, sub_category_id from product_#{session["master_user_id"].to_s} where product_id = #{@product_detail[0][:product_id]}")%>
+<%@cat=Masterusers.find_by_sql("select product_category_name from product_category_#{session['master_user_id'].to_s} where product_category_id = #{@ids[0]["product_category_id"]}")%>
+<%@sub=Masterusers.find_by_sql("select sub_category_name from product_sub_category_#{session["master_user_id"].to_s} where sub_category_id = #{@ids[0]["sub_category_id"]}")%>
+
+<% x = "/#{@product_detail[0][:title].parameterize}/#{@cat[0]["product_category_name"].parameterize}/#{@sub[0]["sub_category_name"].parameterize}/c_shop_3/#{@product_detail[0][:product_id]}"%>
+
+<% y = x.parameterize%>
+
+
+<a href="http://twitter.com/share" class="twitter-share-button" data-url= "http://<%= session[:url_name]%>.startashoppe.com<%=x%>" data-text=<%=@product_detail[0][:title]%> data-count="vertical" data-via="vikrant">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+<span class="cart-button" style = "float: right">
+<a href="#"   onclick="
+
+   window.open(
+        'http://www.facebook.com/sharer.php?s=100&p[title]=<%=@product_detail[0][:title]%>&p[summary]=<%=@product_detail[0][:description]%>,&p[images][0]=<%= @x%> &p[url]=http://<%= session[:url_name]%>.startashoppe.com/<%= params[:controller]%>/product_detail?product='+<%=@product_detail[0][:product_id]%>,
+        'facebook-share-dialog', 
+        'width=626,height=436'
+    ); 
+ return false;" type="button" class = "cart-button" style="background-color: #f5640c;width: 90%;height: 5%">Share on Facebook</a>
+</span>
+
+
+
+
+
+
+ </form>
+                                                
+					   
+                         
+                         <div id="tab">
+                            <ul class="nav">
+                                <li class="nav-one"><a href="#details" class="current">Details</a></li>
+                                <li class="nav-two"><a href="#specs">Specification</a></li>
+                                
+                            </ul>
+                            <div class="list-wrap">
+                                <div id="details">
+                                	<%=@product_detail[0][:description]%>
+                                </div>
+                                <ul id="specs" class="hide">
+                                    <li><span>Product Code:</span>  <%=@product_detail[0][:product_id]%></li>
+                                    <li><span>Availability:</span> <%if @product_detail[0][:quantity]>0 then %>Instock<%else%>Out of Stock<%end%></li>
+                                    <li><span>Price:</span> $<%=@product_detail[0][:sale_price]%></li>
+                                    <li><span>Eco Tax:</span> $1</li>
+                                    <li><span>Vat(10%):</span> $7</li>
+                                </ul>
+                                
+                                
+                            </div>
+                        </div>
+                    </div><!--prodetail-->
+                    <div class="relatedprod">
+                    	<h4>Related Products</h4>
+						<%@related.each do |r|%>
+                    	<div class="entry ">
+                            <div class="da-thumbs">
+                                <div class="div-related">
+                                    <img src=<%="#{r['image_1']}thumb/#{r[:image_name_1]}"%>  alt="">
+                                    <article class="da-animate da-slideFromRight" style="display: block;">
+                                    
+									<h3><%=r['title']%></h3>
+									<p>
+                                    <a href="/c_shop3/product_detail?product=<%=r['product_id']%>" class="link tip" title="View Detail"></a>&nbsp;
+                                    <a href="/c_shop3/add_to_cart?p_id=<%=r['product_id']%>&name=add to cart&quantity=1" class="cart tip" title="Add to cart"></a>&nbsp;&nbsp;
+                                	</article>
+                            	</div>
+                            </div>
+                            <h3><a href="product-detail.html"><%=r['title']%></a></h3>
+                         	<span>$<%=r['sale_price']%></span>
+                         </div>
+						 <%end%>
+                         
+                            
+                         
+                         
+                    </div>
+                </div><!--end:container-2-->
+                <%= render :partial => 't3_footer' %>
+            </div><!--end:content-wrap-->
+            
+        </div><!--end:container-->
+    </div><!--end:page_wrap-->
+</body>
+</html>

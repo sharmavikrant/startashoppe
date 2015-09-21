@@ -1,0 +1,267 @@
+
+
+<header>
+
+            <div id="top2">
+
+            	
+
+               <% if cookies[:cart_value]!=nil then 
+
+						cart=cookies[:cart_value].split(' ')
+
+						@count=0;
+
+						cart.each do |a|
+
+							@count=@count +1;
+
+						end
+
+					end
+
+				%>
+
+				       <div id="demo-header" style= "width: 125px;
+
+height: 27px;
+
+float: left;
+
+padding-left: 60px;
+
+padding-bottom: 20px;
+
+position: relative;
+
+z-index: 999;
+
+top: 4px;
+
+font-family: sans-serif;
+
+text-transform: uppercase;
+
+margin-right: 36px;">
+
+					   <h1 style="color: #F8F2F2;"><b><i><%=session[:shop_name]%></i></b></h1>
+
+					   </div>
+
+
+
+                <div id="demo-header">
+
+				
+
+                    <a id="cart-link" href="#cart" title="Cart"> <%=@count%> Items </a>
+
+                    <div id="cart-panel">
+
+					  	
+
+                    	<div class="item-cart">
+
+                        <table>
+
+                          <tbody>
+
+						
+
+						<%if cookies[:cart_value]!=nil then 
+
+						
+
+						cart=cookies[:cart_value].split(' ')
+
+							cart.each do |a|
+
+								b=a.split("-")
+
+								@product=Masterusers.find_by_sql(["select * from product_"+session[:master_user_id].to_s+" where product_id IN (?)",b[0]])
+
+								@product.each do |i|
+
+									if i['product_id']==b[0].to_i  then 
+
+										if i['revised_price'].nil? then 
+
+											@p_total= i['sale_price'].to_i * b[1].to_i
+
+											@total=@total.to_i + @p_total 
+
+										else
+
+											@p_total= i['sale_price'].to_i * b[1].to_i
+
+											@total=@total.to_i + @p_total
+
+										end%>
+
+										<tr>
+
+										  <td class="image"><a href="product.html"><img width="60" height="60" src="<%=i[:image_1]%>" alt="product" title="product"></a></td>
+
+										  <td class="name"><a href="product.html"><%=i[:title]%></a></td>
+
+										  <td class="quantity">x&nbsp;<%=b[1]%></td>
+
+										  <td class="total">$<%=@p_total%></td>
+
+										  <td class="remove"><i class="icon-remove"></i></td>
+
+										</tr>
+
+									<%end%>
+
+								<%end%>
+
+							<%end%>
+
+						<%end%>
+
+								
+
+                            
+
+                          </tbody>
+
+                        </table>
+
+                        <table>
+
+                          <tbody>
+
+                            <tr>
+
+                              <td class="textright"><b>Sub-Total:</b></td>
+
+                              <td class="textright">$</td>
+
+                            </tr>
+
+                            <tr>
+
+                              <td class="textright"><b>Eco Tax (-2.00):</b></td>
+
+                              <td class="textright">$</td>
+
+                            </tr>
+
+                            <tr>
+
+                              <td class="textright"><b>VAT (10%):</b></td>
+
+                              <td class="textright">$</td>
+
+                            </tr>
+
+                            <tr>
+
+                              <td class="textright"><b>Total:</b></td>
+
+                              <td class="textright">$<%=@total%></td>
+
+                            </tr>
+
+                          </tbody>
+
+                        </table>
+
+                        <div class="buttoncart">
+
+                          <a href="/c_shop3/add_to_cart?name=show_cart">View Cart</a>
+
+                          <a href="checkout.html">Checkout</a>
+
+                        </div>
+
+                    </div>
+
+                    </div><!-- /login-panel -->
+
+            	</div><!-- /demoheader -->	
+
+				
+
+            </div><!--end:top2-->
+
+            <div id="top3">
+
+            	<nav>  
+
+					<ul id="mega-menu-3" class="mega-menu">
+
+					   <li class="first">				
+
+							<a href="/c_shop/home?method=post">Home</a>
+
+						</li>
+
+						<li class="dc-mega-li"><a href="/c_shop3/view_all" class="dc-mega">Categories<span class="dc-mega-icon"></span></a>
+
+							<div class="sub-container mega" style="left: 0px; top: 62px; z-index: 1000;">
+
+								<ul class="sub" style="display: none;">
+
+									<div class="row" style="width: auto;">
+
+										<%@category=Masterusers.find_by_sql("select * from product_category_"+session[:master_user_id].to_s)%>				
+
+										<%@category.each do |i|%>
+
+										<div class="span3" style="float: left;">
+
+											<li class="mega-unit mega-hdr"><a href="/c_shop3/view_all?c_id=<%=i['product_category_id']%>&filter=search" class="mega-hdr-a"><%=i[:product_category_name]%></a>
+
+												<%@subcategory=Masterusers.find_by_sql("select * from product_sub_category_#{session[:master_user_id]} where product_category_id=#{i['product_category_id']}")%>				
+
+												<%@subcategory.each do |i|%>
+
+												<ul>
+
+													<li class=""><a href="/c_shop3/view_all?s_id=<%=i['sub_category_id']%>&filter=subcategory" ><%=i[:sub_category_name]%></a></li>
+
+												</ul>
+
+												<%end%>
+
+										
+
+											</li>
+
+											
+
+										</div>
+
+										<%end%>
+
+										
+
+									</div>
+
+								</ul>
+
+							</div>
+
+						
+
+						</li>
+
+				   
+
+						<li>
+
+							<a href="/c_shop3/contact">Contact</a>
+
+						</li>
+
+					</ul>
+
+				</nav>
+
+			</div><!--end:top3-->
+
+			
+
+        </header>
